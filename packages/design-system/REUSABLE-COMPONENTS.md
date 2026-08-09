@@ -45,6 +45,33 @@ To support a new material category, you add **content** and pick the **thumb var
    interchangeable — not a fork.
 4. Break this only when the *structure* itself differs, and document why.
 
-> **Open follow-up:** the library currently has both a `Tray` (generalized from `CabinetStyleTray`)
-> and a separate `SelectionTray`. These overlap — they should be consolidated into the single
-> `Tray` organism, with the other retired or demoted to an instance/example.
+## Consolidation (done)
+
+There used to be two overlapping trays. They're now consolidated to one:
+
+- **`Tray`** — canonical. One component; thumb shape driven by the `thumb/aspect-ratio` **variable**.
+- **`SelectionTray` → deprecated.** It carried the shape as a `Shape=Door / Shape=Square` **variant** —
+  exactly the fork this rule replaces. Soft-deprecated (renamed + pointed at `Tray`) rather than
+  deleted, so existing instances keep working; migrate them to `Tray`, then remove it.
+
+The lesson generalizes: when you find a component using a **variant** to express what is really the
+same organism with different content, that variant is usually a **variable** in disguise.
+
+## Naming audit
+
+Applying the rule to every name — the point is to rename what hardcodes *one feature*, and to
+consciously **keep** names that are already function-level or carry a deliberate semantic. Renaming
+for its own sake just churns the token pipeline, registries, and governance.
+
+| Component | Verdict | Why |
+|---|---|---|
+| `RoomSelector` | **renamed → `Dropdown`** | "Room" was one feature; the function is a dropdown. |
+| `CabinetStyleTray` | **renamed → `Tray`** | "Cabinet" was one of many tray uses; the function is a tray. |
+| `MaterialSwatch` | **keep** | "Material" is a **data family** (product-material data, paired with `MaterialCard`, per governance rule 7 — never flat hex chrome), not a feature. It already generalizes across cabinets, counters, paint, backsplash. Bare `Swatch` would lose that and collide with a generic UI colour swatch. |
+| `OptionCard` | **keep** | "Option" *is* the function — a selectable option tile. |
+| `PackageCard` | **keep** | Generic composition (media + title + price + CTA); "package" is the content type, and there's no cleaner generic (`Card` collides with `OptionCard`). |
+| `RightRail` | **keep** | Named by layout position/function (a right-hand rail), like `Sidebar` — not a product feature. |
+
+Rule of thumb: rename when the name would be wrong for a second valid use (a `RoomSelector` full of
+sources reads wrong). Keep when the name still fits every use (a `MaterialSwatch` of paint is still a
+material swatch).
