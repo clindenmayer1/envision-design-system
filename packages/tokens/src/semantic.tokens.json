@@ -214,6 +214,48 @@
               "$type": "color",
               "$value": "{envision.t1.color.taupe.100}"
             }
+          },
+          "status-neutral": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.neutral.300}"
+            }
+          },
+          "status-info": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.info.500}"
+            }
+          },
+          "status-success": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.success.500}"
+            }
+          },
+          "status-warning": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.warning.500}"
+            }
+          },
+          "status-critical": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.error.500}"
+            }
+          },
+          "status-accent": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.accent-orange.500}"
+            }
+          },
+          "placeholder": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.neutral.300}"
+            }
           }
         },
         "border": {
@@ -299,6 +341,14 @@
             "default": {
               "$type": "color",
               "$value": "{envision.t1.color.overlay.black-08}"
+            }
+          }
+        },
+        "effect": {
+          "shadow-warm": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.brown.a-12}"
             }
           }
         }
@@ -435,6 +485,10 @@
         "container-gap": {
           "$type": "dimension",
           "$value": "{envision.t1.spacing.12}"
+        },
+        "stack-gap-lg": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.20}"
         }
       },
       "border-radius": {
@@ -533,6 +587,18 @@
         "icon-lg": {
           "$type": "dimension",
           "$value": "{envision.t1.spacing.24}"
+        },
+        "icon-xs": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.12}"
+        },
+        "swatch": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.64}"
+        },
+        "indicator": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.28}"
         }
       },
       "layer": {

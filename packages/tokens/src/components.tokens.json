@@ -101,7 +101,7 @@
           },
           "header-height": {
             "$type": "dimension",
-            "$value": "{envision.t1.spacing.64}"
+            "$value": "{envision.t2.layout.top-bar-height}"
           },
           "color-background": {
             "$type": "color",
@@ -122,11 +122,11 @@
         },
         "gap": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.16}"
+          "$value": "{envision.t2.spacing.stack-gap}"
         },
         "padding-inline": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.24}"
+          "$value": "{envision.t2.spacing.inset-panel}"
         }
       },
       "bottom-tray": {
@@ -161,19 +161,19 @@
         "header": {
           "gap": {
             "$type": "dimension",
-            "$value": "{envision.t1.spacing.12}"
+            "$value": "{envision.t2.spacing.container-gap}"
           }
         },
         "content": {
           "gap": {
             "$type": "dimension",
-            "$value": "{envision.t1.spacing.16}"
+            "$value": "{envision.t2.spacing.stack-gap}"
           }
         },
         "footer": {
           "gap": {
             "$type": "dimension",
-            "$value": "{envision.t1.spacing.12}"
+            "$value": "{envision.t2.spacing.container-gap}"
           }
         },
         "media": {
@@ -205,23 +205,23 @@
         "text": {
           "gap": {
             "$type": "dimension",
-            "$value": "{envision.t1.spacing.2}"
+            "$value": "{envision.t2.spacing.hairline-gap}"
           }
         },
         "color-shadow": {
           "$type": "color",
-          "$value": "{envision.t1.color.brown.a-12}"
+          "$value": "{envision.t2.color.effect.shadow-warm.default}"
         }
       },
       "badge": {
         "notification": {
           "size": {
             "$type": "dimension",
-            "$value": "{envision.t1.spacing.24}"
+            "$value": "{envision.t2.size.icon-lg}"
           },
           "dot-size": {
             "$type": "dimension",
-            "$value": "{envision.t1.spacing.12}"
+            "$value": "{envision.t2.size.icon-xs}"
           },
           "color-background": {
             "$type": "color",
@@ -334,7 +334,7 @@
           "font-size": {
             "default": {
               "$type": "dimension",
-              "$value": "{envision.t1.font-size.12}"
+              "$value": "{envision.t2.font-size.caption}"
             }
           }
         },
@@ -366,7 +366,7 @@
         },
         "chip-size": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.64}"
+          "$value": "{envision.t2.size.swatch}"
         },
         "unavailable-opacity": {
           "$type": "number",
@@ -406,7 +406,7 @@
       "material-swatch-group": {
         "gap": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.8}"
+          "$value": "{envision.t2.spacing.control-gap}"
         }
       },
       "material-symbol": {
@@ -452,11 +452,11 @@
         },
         "size": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.28}"
+          "$value": "{envision.t2.size.indicator}"
         },
         "icon-size": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.16}"
+          "$value": "{envision.t2.size.icon-sm}"
         }
       },
       "thumbnail": {
@@ -478,52 +478,52 @@
       "form-field": {
         "gap": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.6}"
+          "$value": "{envision.t2.spacing.helper-gap}"
         }
       },
       "navigation-item": {
         "gap": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.12}"
+          "$value": "{envision.t2.spacing.container-gap}"
         },
         "padding-inline": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.12}"
+          "$value": "{envision.t2.spacing.inset-control}"
         },
         "padding-block": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.12}"
+          "$value": "{envision.t2.spacing.inset-control}"
         }
       },
       "navigation": {
         "gap": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.2}"
+          "$value": "{envision.t2.spacing.hairline-gap}"
         }
       },
       "search-field": {
         "padding-inline": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.16}"
+          "$value": "{envision.t2.spacing.field-padding-inline}"
         },
         "padding-block": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.12}"
+          "$value": "{envision.t2.spacing.field-padding-block}"
         }
       },
       "dialog": {
         "gap": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.20}"
+          "$value": "{envision.t2.spacing.stack-gap-lg}"
         },
         "padding": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.24}"
+          "$value": "{envision.t2.spacing.inset-panel}"
         },
         "footer": {
           "gap": {
             "$type": "dimension",
-            "$value": "{envision.t1.spacing.12}"
+            "$value": "{envision.t2.spacing.container-gap}"
           }
         }
       },
@@ -531,36 +531,36 @@
         "row": {
           "padding-inline": {
             "$type": "dimension",
-            "$value": "{envision.t1.spacing.16}"
+            "$value": "{envision.t2.spacing.control-padding-inline}"
           },
           "padding-block": {
             "$type": "dimension",
-            "$value": "{envision.t1.spacing.12}"
+            "$value": "{envision.t2.spacing.inset-control}"
           },
           "gap": {
             "$type": "dimension",
-            "$value": "{envision.t1.spacing.16}"
+            "$value": "{envision.t2.spacing.stack-gap}"
           }
         }
       },
       "cabinet-style-tray": {
         "gap": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.20}"
+          "$value": "{envision.t2.spacing.stack-gap-lg}"
         },
         "padding": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.24}"
+          "$value": "{envision.t2.spacing.inset-panel}"
         }
       },
       "finish-group": {
         "gap": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.12}"
+          "$value": "{envision.t2.spacing.container-gap}"
         },
         "swatch-gap": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.12}"
+          "$value": "{envision.t2.spacing.grid-gap-tight}"
         }
       },
       "logo": {
@@ -572,44 +572,44 @@
       "avatar": {
         "color-background": {
           "$type": "color",
-          "$value": "{envision.t1.color.neutral.300}"
+          "$value": "{envision.t2.color.background.placeholder.default}"
         }
       },
       "notification-badge": {
         "neutral": {
           "color-background": {
             "$type": "color",
-            "$value": "{envision.t1.color.neutral.300}"
+            "$value": "{envision.t2.color.background.status-neutral.default}"
           }
         },
         "info": {
           "color-background": {
             "$type": "color",
-            "$value": "{envision.t1.color.info.500}"
+            "$value": "{envision.t2.color.background.status-info.default}"
           }
         },
         "success": {
           "color-background": {
             "$type": "color",
-            "$value": "{envision.t1.color.success.500}"
+            "$value": "{envision.t2.color.background.status-success.default}"
           }
         },
         "warning": {
           "color-background": {
             "$type": "color",
-            "$value": "{envision.t1.color.warning.500}"
+            "$value": "{envision.t2.color.background.status-warning.default}"
           }
         },
         "error": {
           "color-background": {
             "$type": "color",
-            "$value": "{envision.t1.color.error.500}"
+            "$value": "{envision.t2.color.background.status-critical.default}"
           }
         },
         "accent": {
           "color-background": {
             "$type": "color",
-            "$value": "{envision.t1.color.accent-orange.500}"
+            "$value": "{envision.t2.color.background.status-accent.default}"
           }
         }
       },
@@ -617,7 +617,7 @@
         "track": {
           "color-background": {
             "$type": "color",
-            "$value": "{envision.t1.color.neutral.200}"
+            "$value": "{envision.t2.color.border.default.default}"
           }
         },
         "progress": {

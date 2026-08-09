@@ -49,6 +49,13 @@
   --envision-t2-color-background-dark-default: var(--envision-t1-color-neutral-900);
   --envision-t2-color-background-neutral-pressed-default: var(--envision-t1-color-taupe-100);
   --envision-t2-color-background-selected-default: var(--envision-t1-color-taupe-100);
+  --envision-t2-color-background-status-neutral-default: var(--envision-t1-color-neutral-300);
+  --envision-t2-color-background-status-info-default: var(--envision-t1-color-info-500);
+  --envision-t2-color-background-status-success-default: var(--envision-t1-color-success-500);
+  --envision-t2-color-background-status-warning-default: var(--envision-t1-color-warning-500);
+  --envision-t2-color-background-status-critical-default: var(--envision-t1-color-error-500);
+  --envision-t2-color-background-status-accent-default: var(--envision-t1-color-accent-orange-500);
+  --envision-t2-color-background-placeholder-default: var(--envision-t1-color-neutral-300);
   --envision-t2-color-border-default-default: var(--envision-t1-color-neutral-200);
   --envision-t2-color-border-strong-default: var(--envision-t1-color-brown-a-16);
   --envision-t2-color-border-selected-default: var(--envision-t1-color-taupe-600);
@@ -61,6 +68,7 @@
   --envision-t2-color-border-ring-selected-default: var(--envision-t1-color-taupe-600);
   --envision-t2-color-border-ring-hover-warm-default: var(--envision-t1-color-brown-a-40);
   --envision-t2-color-border-subtle-default: var(--envision-t1-color-overlay-black-08);
+  --envision-t2-color-effect-shadow-warm-default: var(--envision-t1-color-brown-a-12);
   --envision-t2-font-family-display: var(--envision-t1-font-family-playfair-display);
   --envision-t2-font-family-wordmark: var(--envision-t1-font-family-georgia);
   --envision-t2-font-size-display: var(--envision-t1-font-size-56);
@@ -107,6 +115,7 @@
   --envision-t2-spacing-container-padding-note: var(--envision-t1-spacing-18);
   --envision-t2-spacing-container-padding-head: var(--envision-t1-spacing-22);
   --envision-t2-spacing-container-gap: var(--envision-t1-spacing-12);
+  --envision-t2-spacing-stack-gap-lg: var(--envision-t1-spacing-20);
   --envision-t2-border-radius-none: var(--envision-t1-border-radius-0);
   --envision-t2-border-radius-control: var(--envision-t1-border-radius-6);
   --envision-t2-border-radius-card: var(--envision-t1-border-radius-12);
@@ -129,6 +138,9 @@
   --envision-t2-size-icon-sm: var(--envision-t1-spacing-16);
   --envision-t2-size-icon-md: var(--envision-t1-spacing-20);
   --envision-t2-size-icon-lg: var(--envision-t1-spacing-24);
+  --envision-t2-size-icon-xs: var(--envision-t1-spacing-12);
+  --envision-t2-size-swatch: var(--envision-t1-spacing-64);
+  --envision-t2-size-indicator: var(--envision-t1-spacing-28);
   --envision-t2-layer-base: var(--envision-t1-z-index-0);
   --envision-t2-layer-sticky-nav: var(--envision-t1-z-index-25);
   --envision-t2-layer-tray: var(--envision-t1-z-index-30);
