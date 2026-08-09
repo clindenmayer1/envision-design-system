@@ -75,9 +75,7 @@ Flattened from `tokens/*.tokens.json` (DTCG). 345 token entries. CSS custom prop
 | T1 | envision/t1/spacing/100 |  | `4px` | `--envision-t1-spacing-100` |
 | T1 | envision/t1/spacing/150 |  | `6px` | `--envision-t1-spacing-150` |
 | T1 | envision/t1/spacing/200 |  | `8px` | `--envision-t1-spacing-200` |
-| T1 | envision/t1/spacing/250 |  | `10px` | `--envision-t1-spacing-250` |
 | T1 | envision/t1/spacing/300 |  | `12px` | `--envision-t1-spacing-300` |
-| T1 | envision/t1/spacing/350 |  | `14px` | `--envision-t1-spacing-350` |
 | T1 | envision/t1/spacing/400 |  | `16px` | `--envision-t1-spacing-400` |
 | T1 | envision/t1/spacing/450 |  | `18px` | `--envision-t1-spacing-450` |
 | T1 | envision/t1/spacing/500 |  | `20px` | `--envision-t1-spacing-500` |
@@ -244,8 +242,8 @@ Flattened from `tokens/*.tokens.json` (DTCG). 345 token entries. CSS custom prop
 | T2-semantic | envision/t2/spacing/control/padding-block |  | `{envision.t1.spacing.200}` | `--envision-t2-spacing-control-padding-block` |
 | T2-semantic | envision/t2/spacing/control/gap |  | `{envision.t1.spacing.200}` | `--envision-t2-spacing-control-gap` |
 | T2-semantic | envision/t2/spacing/control/gap-tight |  | `{envision.t1.spacing.100}` | `--envision-t2-spacing-control-gap-tight` |
-| T2-semantic | envision/t2/spacing/field/padding-inline |  | `{envision.t1.spacing.350}` | `--envision-t2-spacing-field-padding-inline` |
-| T2-semantic | envision/t2/spacing/field/padding-block |  | `{envision.t1.spacing.250}` | `--envision-t2-spacing-field-padding-block` |
+| T2-semantic | envision/t2/spacing/field/padding-inline |  | `{envision.t1.spacing.400}` | `--envision-t2-spacing-field-padding-inline` |
+| T2-semantic | envision/t2/spacing/field/padding-block |  | `{envision.t1.spacing.300}` | `--envision-t2-spacing-field-padding-block` |
 | T2-semantic | envision/t2/spacing/content/label-gap |  | `{envision.t1.spacing.100}` | `--envision-t2-spacing-content-label-gap` |
 | T2-semantic | envision/t2/spacing/content/related-gap |  | `{envision.t1.spacing.150}` | `--envision-t2-spacing-content-related-gap` |
 | T2-semantic | envision/t2/spacing/content/heading-gap |  | `{envision.t1.spacing.300}` | `--envision-t2-spacing-content-heading-gap` |

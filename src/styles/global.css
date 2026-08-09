@@ -32,7 +32,7 @@ body {
 
 button { font-family: inherit; }
 
-::-webkit-scrollbar { width: var(--envision-spacing-250); } /* 10 */
+::-webkit-scrollbar { width: var(--envision-spacing-300); } /* 12 */
 ::-webkit-scrollbar-thumb {
   background: var(--envision-color-brown-a-25);
   border-radius: var(--envision-radius-200); /* 8 */

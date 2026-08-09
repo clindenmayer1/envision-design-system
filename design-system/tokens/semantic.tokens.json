@@ -449,12 +449,12 @@
         },
         "field": {
           "padding-inline": {
-            "$value": "{envision.t1.spacing.350}",
-            "$description": "Text field inline padding (14, product value)."
+            "$value": "{envision.t1.spacing.400}",
+            "$description": "Text field inline padding (16, product value)."
           },
           "padding-block": {
-            "$value": "{envision.t1.spacing.250}",
-            "$description": "Text field block padding (10)."
+            "$value": "{envision.t1.spacing.300}",
+            "$description": "Text field block padding (12)."
           }
         },
         "content": {

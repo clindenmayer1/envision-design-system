@@ -79,8 +79,8 @@
   --envision-theme-spacing-control-padding-block: var(--envision-spacing-200); /* Control block padding (8). */
   --envision-theme-spacing-control-gap: var(--envision-spacing-200); /* Control content gap (8). */
   --envision-theme-spacing-control-gap-tight: var(--envision-spacing-100); /* Tight control gap (4). */
-  --envision-theme-spacing-field-padding-inline: var(--envision-spacing-350); /* Text field inline padding (14, product value). */
-  --envision-theme-spacing-field-padding-block: var(--envision-spacing-250); /* Text field block padding (10). */
+  --envision-theme-spacing-field-padding-inline: var(--envision-spacing-400); /* Text field inline padding (16, product value). */
+  --envision-theme-spacing-field-padding-block: var(--envision-spacing-300); /* Text field block padding (12). */
   --envision-theme-spacing-content-label-gap: var(--envision-spacing-100); /* Label to related element (4). */
   --envision-theme-spacing-content-related-gap: var(--envision-spacing-150); /* Between related items (6). */
   --envision-theme-spacing-content-heading-gap: var(--envision-spacing-300); /* Heading to body (12). */

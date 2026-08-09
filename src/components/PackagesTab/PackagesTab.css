@@ -13,7 +13,7 @@
 .pkg-tab__header {
   display: flex;
   flex-direction: column;
-  gap: var(--envision-spacing-250); /* 10 */
+  gap: var(--envision-spacing-300); /* 12 */
 }
 .pkg-tab__title {
   margin: 0;

@@ -299,16 +299,8 @@
         "200": {
           "$value": "8px"
         },
-        "250": {
-          "$value": "10px",
-          "$description": "Off-grid. Field vertical padding."
-        },
         "300": {
           "$value": "12px"
-        },
-        "350": {
-          "$value": "14px",
-          "$description": "Off-grid. Field inline padding (product search input)."
         },
         "400": {
           "$value": "16px"
