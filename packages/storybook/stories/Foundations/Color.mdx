@@ -1,0 +1,56 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Foundations/Color" />
+
+export const Swatch = ({ token, label, ring }) => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '5px 0' }}>
+    <div style={{ width: 44, height: 44, borderRadius: 8, background: `var(${token})`, boxShadow: ring ? 'inset 0 0 0 1px rgba(0,0,0,.12)' : 'inset 0 0 0 1px rgba(0,0,0,.06)', flex: 'none' }} />
+    <div>
+      <div style={{ fontWeight: 600, fontSize: 14 }}>{label}</div>
+      <code style={{ fontSize: 12, color: '#666' }}>{token}</code>
+    </div>
+  </div>
+);
+
+export const TextRow = ({ token, label, on }) => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '5px 0' }}>
+    <div style={{ width: 120, height: 40, borderRadius: 8, background: on ? `var(${on})` : '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', color: `var(${token})`, fontWeight: 600, boxShadow: 'inset 0 0 0 1px rgba(0,0,0,.06)', flex: 'none' }}>Aa 14</div>
+    <div><div style={{ fontWeight: 600, fontSize: 14 }}>{label}</div><code style={{ fontSize: 12, color: '#666' }}>{token}</code></div>
+  </div>
+);
+
+# Color
+
+Color is expressed as **semantic roles**, never raw values. Components consume Tier-2 roles
+(`--envision-t2-color-*`); the raw ramps live in Tier-1 and are never used directly. Roles map to
+**purpose**: surfaces → `background`, text/icons → `content`, lines/dividers/rings → `border`.
+Every swatch below is the live production token.
+
+> **Selection & status are never colour-only** (WCAG 1.4.1): rings, checks, icons and text always
+> accompany a colour. Cabinet/paint/material colours are **product data**, not tokens.
+
+## Backgrounds
+<Swatch token="--envision-t2-color-background-surface-default" label="surface — default (page/card)" ring />
+<Swatch token="--envision-t2-color-background-surface-warm-default" label="surface — warm" ring />
+<Swatch token="--envision-t2-color-background-surface-sunken-default" label="surface — sunken" ring />
+<Swatch token="--envision-t2-color-background-brand-default" label="brand (primary CTA / green)" />
+<Swatch token="--envision-t2-color-background-brand-subtle-default" label="brand — subtle" />
+<Swatch token="--envision-t2-color-background-accent-default" label="accent" />
+
+## Content (text & icons)
+<TextRow token="--envision-t2-color-content-primary-default" label="primary (#222)" />
+<TextRow token="--envision-t2-color-content-secondary-default" label="secondary" />
+<TextRow token="--envision-t2-color-content-tertiary-default" label="tertiary" />
+<TextRow token="--envision-t2-color-content-brand-default" label="brand (links)" />
+<TextRow token="--envision-t2-color-content-on-brand-default" label="on-brand (on green)" on="--envision-t2-color-background-brand-default" />
+<TextRow token="--envision-t2-color-content-error-default" label="error" />
+
+## Borders
+<Swatch token="--envision-t2-color-border-default-default" label="default (hairline)" ring />
+<Swatch token="--envision-t2-color-border-strong-default" label="strong" ring />
+<Swatch token="--envision-t2-color-border-brand-default" label="brand" />
+<Swatch token="--envision-t2-color-border-focus-default" label="focus (2px ring)" />
+<Swatch token="--envision-t2-color-border-error-default" label="error" ring />
+
+For contrast results and the full role list, see the docs site (Foundations → Color) and
+`@envision/design-system` `ACCESSIBILITY.md`.

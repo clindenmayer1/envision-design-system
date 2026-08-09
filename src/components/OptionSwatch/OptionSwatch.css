@@ -1,0 +1,70 @@
+/* MaterialSwatch — consumes design-system Tier-3 (material-swatch/*) + semantic tokens. */
+.swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--envision-theme-material-swatch-label-gap); /* T3 -> T2 spacing/content/label-gap -> T1 spacing/100 -> 4 */
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.swatch__chip {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: none;
+  border-radius: var(--envision-theme-radius-control-small); /* -> T1 radius/100 -> 4 (product value) */
+  transition: box-shadow var(--envision-duration-instant) ease; /* 150ms */
+}
+
+/* Metal finishes are rendered as a reflective sphere on a transparent chip → circular
+   selection/hover ring hugs the sphere instead of a rounded square. */
+.swatch--sphere .swatch__chip {
+  border-radius: 50%;
+}
+
+/* Same selected/hover treatment as the tray tiles: a 2px dark ring just outside
+   the chip with a small gap (no checkmark). Hover = faded ring; selected = solid
+   ink ring (wins on hover via source order). */
+.swatch:hover .swatch__chip {
+  box-shadow: 0 0 0 var(--envision-theme-material-swatch-ring-hover-width) var(--envision-theme-material-swatch-ring-hover-color); /* hover ring -> brown/a-40 */
+}
+
+.swatch[aria-pressed='true'] .swatch__chip {
+  box-shadow: 0 0 0 var(--envision-theme-material-swatch-ring-selected-gap-width) var(--envision-theme-material-swatch-ring-selected-gap-color),
+              0 0 0 var(--envision-theme-material-swatch-ring-selected-width) var(--envision-theme-material-swatch-ring-selected-color); /* selected offset ring: white gap + taupe-600 */
+}
+
+.swatch__label {
+  width: 100%;
+  text-align: center;
+  font-size: var(--envision-font-size-50);       /* 11 */
+  font-weight: var(--envision-font-weight-medium); /* 500 */
+  line-height: 1.15; /* off-scale label line-height — documented exception */
+  color: var(--ink); /* -> --envision-theme-color-content-primary-default */
+}
+
+/* The 12th chip in the wall-colour row: a light chip like the others with a "more" chevron,
+   styled as a button that opens the Choose Wall Color picker. */
+/* Matches the OptionCard: card colour + the same outline states
+   (default #E2E2DD, hover #ABAB9D, active #999988). */
+.swatch__chip--more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--card-bg, #fbf8f5);
+  color: var(--ink-soft, #6c6359);
+  box-shadow: 0 0 0 1.5px #e2e2dd;
+  transition: box-shadow 0.15s ease, color 0.15s ease;
+}
+.swatch--more:hover .swatch__chip--more {
+  box-shadow: 0 0 0 1.5px #abab9d;
+  color: var(--ink, #2b2622);
+}
+.swatch--more:active .swatch__chip--more {
+  box-shadow: 0 0 0 1.5px #999988;
+}

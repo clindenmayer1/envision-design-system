@@ -1,0 +1,26 @@
+{
+  "$schema": "envision-migration-map@0.1",
+  "meta": { "note": "Maps existing product elements to system replacements. Migrate representative screens only after foundations + components are stable. Existing screens preserved until migrated.", "lastReviewed": "2026-07-16" },
+  "migrations": [
+    { "existing": "global.css :root vars (--ink #222, --ink-soft #666, --card-bg, --line, --hairline, --canvas-bg)", "replacement": "T2 semantic color tokens -> T1 primitives", "disposition": "normalize", "dataChanges": "none", "propChanges": "consume --envision-t2-* CSS vars", "priority": "high", "status": "ready", "risks": "hardcoded fallbacks (#2b2622/#6c6359) diverge from tokens; reconcile" },
+    { "existing": "3 hover greens (#21493f/#234c43/#1f453d)", "replacement": "green.600/700", "disposition": "normalize", "priority": "high", "status": "ready", "risks": "subtle visual shift on hover" },
+    { "existing": "TopBar", "replacement": "GlobalNav pattern", "disposition": "normalize", "priority": "medium", "status": "proposed" },
+    { "existing": "RightRail one-off frame", "replacement": "RightRail composite component", "disposition": "replace", "priority": "high", "status": "ready(figma)", "risks": "width 392 confirmed (comments said 416)" },
+    { "existing": "ConfiguratorSection", "replacement": "RightRailSection", "disposition": "normalize", "priority": "medium", "status": "proposed" },
+    { "existing": "OptionCard", "replacement": "OptionCard component", "disposition": "preserve", "priority": "high", "status": "ready(figma)" },
+    { "existing": "OptionSwatch", "replacement": "MaterialSwatch", "disposition": "preserve", "priority": "high", "status": "ready(figma)" },
+    { "existing": "CabinetStyleTray", "replacement": "BottomSelectionTray (MaterialSelector)", "disposition": "preserve", "priority": "medium", "status": "proposed" },
+    { "existing": "PackagesTab / PackageCard", "replacement": "PackageBrowser / PackageCard", "disposition": "preserve", "priority": "high", "status": "ready(figma card)", "risks": "remove any redundant choose-package CTA" },
+    { "existing": "WallColorModal", "replacement": "ColorPickerModal", "disposition": "preserve", "priority": "medium", "status": "proposed" },
+    { "existing": "RoomSelector", "replacement": "RoomSelector (wire status to real data)", "disposition": "preserve", "priority": "low", "status": "proposed" },
+    { "existing": "ViewSwitcher", "replacement": "ViewPresetControl", "disposition": "preserve", "priority": "low", "status": "proposed" },
+    { "existing": "Overview dashboard", "replacement": "DashboardTemplate + widgets", "disposition": "normalize", "priority": "medium", "status": "proposed" },
+    { "existing": "SceneCanvas/useSceneLoad", "replacement": "ThreeDViewportShell", "disposition": "preserve", "priority": "medium", "status": "proposed", "risks": "keep byte-driven load semantics" },
+    { "existing": "RailFooter", "replacement": "SelectionSummary", "disposition": "preserve", "priority": "medium", "status": "proposed" },
+    { "existing": "StudioPanel / PoseReadout / DebugTargetsPanel", "replacement": "none (dev tools)", "disposition": "retire", "priority": "low", "status": "excluded-from-library", "risks": "keep gated behind ?studio=1; never publish" },
+    { "existing": "hardcoded font-size one-offs (9,10.5,11.5,19)", "replacement": "consolidated type scale / text styles", "disposition": "normalize", "priority": "medium", "status": "ready" },
+    { "existing": "Inter (system fallback, no @font-face)", "replacement": "self-hosted Inter @font-face", "disposition": "normalize", "priority": "high", "status": "needs-confirmation", "risks": "rendering differs across machines without self-hosting" },
+    { "existing": "no destructive-red UI", "replacement": "error ramp (added)", "disposition": "needs-confirmation", "priority": "low", "status": "proposed", "risks": "confirm whether destructive actions exist" },
+    { "existing": "inline hand-drawn <svg> icons (bell, chevrons, close, search, bookmark, check, info, arrow, calendar, account)", "replacement": "Material icons via ligature (notifications, expand_more, chevron_left/right, close, search, bookmark, check, info, arrow_forward, calendar_today, account_circle)", "disposition": "replace", "priority": "medium", "status": "ready(design-system)", "risks": "design system standardized on Iconography page; code import = Material Symbols (canonical). NOT applied to website yet — replace app SVGs in a later pass." }
+  ]
+}

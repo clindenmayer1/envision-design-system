@@ -1,0 +1,113 @@
+import { EnvisionElement } from '../base/element.js';
+import { css } from '../base/css.js';
+
+/**
+ * Envision Tab — `<envision-tab>`.
+ *
+ * Registry contract → "rightrail-tab" (codeName Tab):
+ *   props:  label(required) · selected(false) · disabled(false)
+ *   states: default · hover · selected · disabled
+ *   a11y:   role=tab · aria-selected · controls the tabpanel id ·
+ *           Left/Right arrows move · Home/End · activation manual or automatic per APG
+ *
+ * The `Tabs` CONTAINER is a `proposed` (not-yet-designed) component, so it is intentionally not
+ * built here. To keep the shipped Tab primitive fully keyboard-operable on its own, it coordinates
+ * with sibling `<envision-tab>` elements under the same parent (a tablist): roving tabindex +
+ * Arrow/Home/End, with selection-follows-focus (automatic). It emits a composed `select` event so a
+ * host can show the matching panel; wrap in an element with role="tablist" for full APG semantics.
+ */
+const styles = css`
+  :host { display: inline-flex; }
+  .tab {
+    appearance: none;
+    border: none;
+    background: transparent;
+    /* Explicit type to match the website tabs (14px / 600). */
+    font-family: inherit;
+    font-size: var(--envision-t1-font-size-14, 14px);
+    font-weight: var(--envision-t1-font-weight-600, 600);
+    cursor: pointer;
+    /* Website tab padding: 16 top / 0 sides / 14 bottom. */
+    padding: var(--envision-t1-spacing-16, 16px) 0 var(--envision-t1-spacing-14, 14px);
+    color: var(--envision-t2-color-content-tertiary-default, #8a8a82);
+    border-block-end: 2px solid transparent;
+  }
+  .tab:hover { color: var(--envision-t2-color-content-primary-default, #222); }
+  :host([selected]) .tab {
+    color: var(--envision-t3-tab-selected-color-content-default, #29594f);
+    border-block-end-color: var(--envision-t3-tab-selected-color-indicator-default, #29594f);
+  }
+  .tab:focus-visible { outline: var(--envision-t2-border-width-focus, 2px) solid var(--envision-t2-color-border-focus-default, #29594f); outline-offset: 2px; }
+  :host([disabled]) .tab { color: var(--envision-t2-color-content-disabled-default, #8a8a82); cursor: not-allowed; }
+`;
+
+export class EnvisionTab extends EnvisionElement {
+  static styles = styles;
+  static observedAttributes = ['label', 'selected', 'disabled', 'panel'];
+
+  #tab!: HTMLButtonElement;
+  #label!: HTMLSpanElement;
+
+  get label(): string { return this.getStr('label') ?? ''; }
+  set label(v: string) { this.setStr('label', v); }
+  get selected(): boolean { return this.getBool('selected'); }
+  set selected(v: boolean) { this.reflectBool('selected', v); }
+  get disabled(): boolean { return this.getBool('disabled'); }
+  set disabled(v: boolean) { this.reflectBool('disabled', v); }
+  get panel(): string | null { return this.getStr('panel'); }
+  set panel(v: string | null) { this.setStr('panel', v); }
+
+  protected render(): void {
+    const root = this.shadowRoot!;
+    root.innerHTML = `<button class="tab" part="tab" role="tab" type="button"><span class="label" part="label"></span></button>`;
+    this.#tab = root.querySelector('.tab')!;
+    this.#label = root.querySelector('.label')!;
+    this.#tab.addEventListener('click', () => this.#activate());
+    this.#tab.addEventListener('keydown', this.#onKeydown);
+  }
+
+  #onKeydown = (e: KeyboardEvent): void => {
+    const group = this.#group();
+    if (!group.length) return;
+    let idx = group.indexOf(this);
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') idx = (idx + 1) % group.length;
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') idx = (idx - 1 + group.length) % group.length;
+    else if (e.key === 'Home') idx = 0;
+    else if (e.key === 'End') idx = group.length - 1;
+    else return;
+    e.preventDefault();
+    const next = group[idx];
+    next.#tab.focus();
+    next.#activate(); // automatic activation (selection follows focus)
+  };
+
+  #activate(): void {
+    if (this.disabled) return;
+    for (const t of this.#group()) t.selected = t === this;
+    this.dispatchEvent(new CustomEvent('select', { bubbles: true, composed: true, detail: { label: this.label, panel: this.panel } }));
+  }
+
+  /** Sibling tabs under the same parent (the tablist), non-disabled, in DOM order. */
+  #group(): EnvisionTab[] {
+    const parent = this.parentElement;
+    if (!parent) return [this];
+    return Array.from(parent.children).filter(
+      (c): c is EnvisionTab => c.tagName === 'ENVISION-TAB' && !(c as EnvisionTab).disabled,
+    );
+  }
+
+  protected updated(): void {
+    this.#label.textContent = this.label;
+    this.#tab.setAttribute('aria-selected', this.selected ? 'true' : 'false');
+    this.#tab.disabled = this.disabled;
+    this.#tab.tabIndex = this.selected ? 0 : -1; // roving tabindex
+    if (this.panel) this.#tab.setAttribute('aria-controls', this.panel);
+    else this.#tab.removeAttribute('aria-controls');
+  }
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'envision-tab': EnvisionTab;
+  }
+}

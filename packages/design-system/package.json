@@ -1,0 +1,10 @@
+{
+  "name": "@envision/design-system",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Envision design-system system-of-record: component registry, page recipes, content/state models, figma-code map, governance, specs, accessibility, and fixtures. The machine-readable + human contract that the token package, future component packages, and the Envision app all implement.",
+  "type": "module",
+  "dependencies": {
+    "@envision/tokens": "*"
+  }
+}

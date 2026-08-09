@@ -1,0 +1,45 @@
+{
+  "name": "@envision/components",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Envision design-system components — standards-based Web Components (custom elements) consuming @envision/tokens. Framework-agnostic; the React adapter lives in @envision/react.",
+  "type": "module",
+  "license": "UNLICENSED",
+  "sideEffects": [
+    "./dist/index.js",
+    "./dist/define.js",
+    "./dist/**/*.define.js"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./define": {
+      "types": "./dist/define.d.ts",
+      "import": "./dist/define.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "verify": "npm run typecheck && npm run test",
+    "test:a11y": "vitest run a11y"
+  },
+  "dependencies": {
+    "@envision/tokens": "*"
+  },
+  "devDependencies": {
+    "happy-dom": "^15.11.6",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8",
+    "vitest-axe": "^0.1.0"
+  }
+}

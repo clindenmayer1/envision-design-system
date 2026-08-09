@@ -1,0 +1,43 @@
+# === Dependencies ===
+node_modules/
+
+# === Build output ===
+/dist/
+dist-ssr/
+*.local
+
+# === Vite / tooling cache ===
+.vite/
+.wrangler/
+*.tsbuildinfo
+
+# === Logs ===
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# === Editor / OS ===
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# === Environment ===
+.env
+.env.*
+!.env.example
+
+# === Receive server persisted data (pushed snapshots / sheets / ifc) ===
+.data/
+
+# === Not part of the web application ===
+# After Effects video-production source + renders (~200 MB)
+Home Elevation/
+# Root-level dev screenshots / scratch renders (the app serves assets from public/ only)
+/*.png
+/*.mp4

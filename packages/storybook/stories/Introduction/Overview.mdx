@@ -1,0 +1,53 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction/Overview" />
+
+# Envision Design System — Storybook
+
+This Storybook is the **executable technical specification** of the Envision Design System.
+
+It is not a component gallery and not a set of mockups. Every example on every page is the **real
+production component** (`@envision/components`) rendered with the **real production tokens**
+(`@envision/tokens`). What you see here is exactly what ships to the product — same custom
+elements, same shadow DOM, same token bindings, same accessibility behaviour.
+
+Envision is a white-label homeowner + interactive home-design platform. Its components are built as
+**standards-based Web Components** (custom elements + Shadow DOM + `ElementInternals`) so the system
+is framework-agnostic; a thin React adapter (`@envision/react`) wraps the same elements without
+duplicating any logic.
+
+## What this Storybook is for
+
+| Role | Use it as |
+|---|---|
+| **Executable component reference** | The live, interactive source of truth for what each component is and how it behaves. |
+| **State library** | Every meaningful state — default, variants, sizes, hover, focus, disabled, loading, error, content extremes — captured as a story. |
+| **Technical documentation** | Per-component docs: anatomy, when to use / not use, states, behaviour, accessibility contract, API, token relationships, examples. |
+| **Interaction-testing environment** | Stories include `play` functions (keyboard, focus, activation) runnable via the Interactions panel and `test-storybook`. |
+| **Accessibility-testing environment** | The a11y (axe) panel checks WCAG 2.2 AA on every story. |
+| **Visual-regression source** | The rendered stories are the canonical frames a visual-regression tool (Chromatic / Playwright) snapshots. |
+
+## How it is organised
+
+- **Foundations** — the token layer (color roles, type scale, spacing, radius, elevation, motion),
+  read directly from `@envision/tokens`.
+- **Components** — the control primitives (Button, IconButton, Link, Label, Input, Checkbox, Radio,
+  Switch, Badge, Tab).
+- **Product Components** — MaterialSwatch, OptionCard, PackageCard.
+- **Patterns** — RightRail (the configurator shell, including its responsive rail→sheet behaviour).
+
+Scope is deliberately the **14 designed components** (`figmaStatus: ready-for-review` in the
+system-of-record). Components that are specified-but-not-yet-designed are intentionally absent — the
+spec does not claim components exist that don't.
+
+## Toolbar & panels
+
+- **Theme** (toolbar) — light / dark (dark is architecture-ready via `data-theme`).
+- **Backgrounds** (toolbar) — the real Envision surface roles (surface, warm, sunken, brand).
+- **Viewport** (toolbar) — the real breakpoints (390 / 1024 / 1280 / 1440); watch RightRail
+  re-compose from a rail into a modal sheet at ≤1024.
+- **Controls** — every public attribute/prop, live.
+- **Accessibility / Interactions** panels — axe results and `play`-function steps.
+
+See **Using this Storybook** for how designers and engineers should work with it, and **Storybook
+vs the docs site** for what belongs here versus in the broader documentation site.

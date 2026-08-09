@@ -1,0 +1,45 @@
+{
+  "$schema": "envision-page-recipes@0.1",
+  "meta": { "note": "Approved page compositions. A future page MUST reuse a recipe or add a reviewed one. Existing Envision pages are reverse-mapped below. lastReviewed 2026-07-16." },
+  "shells": {
+    "AppShell": { "responsibilities": ["global nav", "page-width", "background", "route transitions"], "figmaStatus": "proposed" },
+    "DashboardShell": { "extends": "AppShell", "regions": ["globalNavigation", "pageHeader(hero)", "primaryContent(card grid)"], "scroll": "page", "figmaStatus": "proposed" },
+    "DesignCenterShell": { "extends": "AppShell", "regions": ["globalNavigation", "viewport", "rightRail", "bottomTray", "overlay"], "scroll": "rail + tray own scroll; viewport fixed", "note": "Layout audit: row(canvas+rail) desktop; column mobile (canvas 60vh band + stacked rail)", "figmaStatus": "audited" },
+    "VisualizerShell": { "extends": "DesignCenterShell", "note": "3D-priority variant" },
+    "FullViewportShell": { "regions": ["viewport", "overlay"] },
+    "MobileTaskShell": { "regions": ["viewport", "sheet"], "note": "RightRail -> bottom sheet" }
+  },
+  "regionContracts": {
+    "globalNavigation": { "required": true, "allowed": ["global-nav"], "maxChildren": 1, "sticky": true, "responsive": "bar->mobile nav" },
+    "pageHeader": { "required": false, "allowed": ["hero", "page-title", "eyebrow", "button"], "scroll": "with page" },
+    "primaryContent": { "required": true, "allowed": ["card grid", "widgets", "browse results"], "scroll": "page", "responsive": "3->1 col at 1080" },
+    "viewport": { "required": true, "allowed": ["three-d-viewport-shell"], "maxChildren": 1, "scroll": "none (fixed)", "width": "fill", "responsive": "full height desktop, 60vh band mobile" },
+    "rightRail": { "required": false, "allowed": ["right-rail"], "maxChildren": 1, "width": "392 (t3)", "scroll": "internal", "sticky": "footer", "responsive": "full-width/sheet mobile" },
+    "bottomTray": { "required": false, "allowed": ["bottom-action-tray", "bottom-selection-tray"], "sticky": "bottom", "responsive": "safe-area" },
+    "overlay": { "required": false, "allowed": ["color-picker-modal", "modal", "sheet"], "z": "modal(40)" }
+  },
+  "layoutRecipes": [
+    { "id": "lr-viewport-rail", "name": "3D viewport + RightRail", "purpose": "Design Center configurator", "regions": ["globalNavigation", "viewport", "rightRail", "bottomTray"], "responsive": "row->column at 1024", "scroll": "rail internal; viewport fixed", "loading": "viewport byte-progress; rail skeleton", "empty": "rail empty-state", "error": "viewport error + retry", "landmarks": ["banner", "main(viewport)", "complementary(rail)"], "figmaStatus": "audited" },
+    { "id": "lr-hero-dashboard", "name": "Hero + dashboard grid", "purpose": "Homeowner dashboard", "regions": ["globalNavigation", "pageHeader(hero)", "primaryContent(3-card grid)"], "responsive": "3->1 col at 1080", "landmarks": ["banner", "main"], "figmaStatus": "proposed" },
+    { "id": "lr-browse-grid", "name": "Search + filter + card grid", "purpose": "Browse materials/packages", "regions": ["globalNavigation", "toolbar(search+filters)", "results(grid)"], "states": ["loading", "empty", "no-results", "error"], "figmaStatus": "proposed" },
+    { "id": "lr-review", "name": "Review & summary", "purpose": "Selection review", "regions": ["globalNavigation", "primaryContent(summary)", "bottomTray(actions)"], "states": ["typical", "loading", "empty", "error", "max-content"], "loading": "skeleton rows + footer price recalculating", "empty": "'nothing selected yet' + start-designing CTA", "error": "message + retry (non-fading)", "landmarks": ["banner", "main", "contentinfo"], "note": "'actions footer' is realized via the bottomTray region contract (sticky bottom, safe-area), not a separate footer contract.", "figmaStatus": "proposed" },
+    { "id": "lr-mobile-sheet", "name": "Mobile selection sheet", "purpose": "Mobile customize", "regions": ["viewport", "sheet"], "figmaStatus": "proposed" }
+  ],
+  "pages": [
+    {
+      "id": "page-dashboard", "route": "/ (Overview)", "family": "dashboard", "shell": "DashboardShell", "template": "DashboardTemplate", "layoutRecipe": "lr-hero-dashboard",
+      "pageTitleRole": "page-title", "regions": { "globalNavigation": ["global-nav"], "pageHeader": ["hero video + scrim + eyebrow + H1 + subtitle + Start Designing button"], "primaryContent": ["progress-card", "next-card", "key-date-card"] },
+      "components": ["global-nav", "progress-card", "key-date-card", "button", "link"], "dataModels": ["homeowner", "progressStep", "keyDate", "builderBrand"], "fixture": "fixtures/dashboard.json",
+      "states": ["typical", "loading", "empty", "error", "max-content", "desktop", "mobile"], "responsive": "cards 3->1 at 1080; hero video pauses when inactive", "landmarks": ["banner", "main"], "storybookStory": "Pages/Dashboard", "designReference": "Overview.tsx", "implementationStatus": "reverse-mapped"
+    },
+    {
+      "id": "page-design-center", "route": "/design (Design Center)", "family": "design-center", "shell": "DesignCenterShell", "template": "DesignCenterTemplate", "layoutRecipe": "lr-viewport-rail",
+      "pageTitleRole": "section-title", "regions": { "globalNavigation": ["global-nav"], "viewport": ["three-d-viewport-shell", "view-preset-control", "room-selector"], "rightRail": ["right-rail(customize|packages)"], "bottomTray": ["bottom-action-tray"], "overlay": ["color-picker-modal"] },
+      "components": ["global-nav", "three-d-viewport-shell", "right-rail", "option-card", "material-swatch", "package-card", "view-preset-control", "room-selector", "bottom-action-tray", "color-picker-modal"],
+      "dataModels": ["kitchenConfig", "materialOption", "designPackage", "priceAdjustment", "wallColor", "viewPreset", "designArea"], "fixture": "fixtures/design-center.json",
+      "states": ["typical", "loading(3D)", "empty", "no-results", "error", "saving", "applying", "applied", "price-recalculating", "max-content", "desktop", "mobile"],
+      "responsive": "row->column at 1024; rail->sheet mobile; canvas 60vh band", "focus": "rail not trapped desktop; trapped as modal on mobile sheet; return focus on close",
+      "landmarks": ["banner", "main(viewport)", "complementary(rail)"], "storybookStory": "Pages/DesignCenter", "designReference": "App.tsx + Layout + RightRail + SceneCanvas", "implementationStatus": "reverse-mapped"
+    }
+  ]
+}

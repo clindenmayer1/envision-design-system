@@ -1,0 +1,584 @@
+{
+  "envision": {
+    "t2": {
+      "color": {
+        "content": {
+          "primary": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.neutral.800}"
+            }
+          },
+          "secondary": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.neutral.600}"
+            }
+          },
+          "tertiary": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.neutral.700}"
+            }
+          },
+          "subtle": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.neutral.500}"
+            }
+          },
+          "placeholder": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.neutral.400}"
+            }
+          },
+          "brand": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t2.color.primary.500}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{envision.t2.color.primary.600}"
+            }
+          },
+          "on-brand": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.neutral.0}"
+            }
+          },
+          "disabled": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.neutral.400}"
+            }
+          },
+          "error": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.error.500}"
+            }
+          },
+          "success": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.success.500}"
+            }
+          },
+          "warning": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.warning.600}"
+            }
+          },
+          "info": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.info.600}"
+            }
+          },
+          "status-complete": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.success.500}"
+            }
+          },
+          "status-in-progress": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.warning.500}"
+            }
+          },
+          "status-not-started": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.neutral.400}"
+            }
+          }
+        },
+        "background": {
+          "page": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.neutral.150}"
+            }
+          },
+          "page-raised": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.neutral.75}"
+            }
+          },
+          "surface": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.neutral.0}"
+            }
+          },
+          "surface-warm": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.neutral.50}"
+            }
+          },
+          "surface-sunken": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.neutral.100}"
+            }
+          },
+          "brand": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t2.color.primary.500}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{envision.t2.color.primary.600}"
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{envision.t2.color.primary.700}"
+            }
+          },
+          "brand-subtle": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t2.color.primary.50}"
+            }
+          },
+          "disabled": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.neutral.100}"
+            }
+          },
+          "success-subtle": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.success.50}"
+            }
+          },
+          "warning-subtle": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.warning.50}"
+            }
+          },
+          "error-subtle": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.error.50}"
+            }
+          },
+          "info-subtle": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.info.50}"
+            }
+          },
+          "accent": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t2.color.accent.500}"
+            }
+          },
+          "overlay": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.overlay.black-45}"
+            }
+          },
+          "scrim-strong": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.overlay.black-70}"
+            }
+          },
+          "dark": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.neutral.900}"
+            }
+          },
+          "neutral-pressed": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.taupe.100}"
+            }
+          },
+          "selected": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.taupe.100}"
+            }
+          }
+        },
+        "border": {
+          "default": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.neutral.200}"
+            }
+          },
+          "strong": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.brown.a-16}"
+            }
+          },
+          "brand": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t2.color.primary.500}"
+            }
+          },
+          "focus": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t2.color.primary.500}"
+            }
+          },
+          "selected": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.taupe.600}"
+            }
+          },
+          "disabled": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.neutral.300}"
+            }
+          },
+          "error": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.error.500}"
+            }
+          },
+          "success": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.success.500}"
+            }
+          },
+          "ring-rest": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.taupe.100}"
+            }
+          },
+          "ring-hover": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.taupe.300}"
+            }
+          },
+          "ring-pressed": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.taupe.500}"
+            }
+          },
+          "ring-selected": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.taupe.600}"
+            }
+          },
+          "ring-hover-warm": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.brown.a-40}"
+            }
+          },
+          "subtle": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.overlay.black-08}"
+            }
+          }
+        }
+      },
+      "spacing": {
+        "inline-icon-gap": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.8}"
+        },
+        "label-control-gap": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.8}"
+        },
+        "helper-gap": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.6}"
+        },
+        "inset-compact": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.8}"
+        },
+        "inset-control": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.12}"
+        },
+        "inset-card": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.20}"
+        },
+        "inset-panel": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.24}"
+        },
+        "page-gutter": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.32}"
+        },
+        "section-gap": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.40}"
+        },
+        "grid-gap": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.24}"
+        },
+        "grid-gap-tight": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.12}"
+        },
+        "stack-gap": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.16}"
+        },
+        "heading-body-gap": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.12}"
+        },
+        "page-margin": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.64}"
+        },
+        "section-gap-lg": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.48}"
+        },
+        "subsection-gap": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.28}"
+        },
+        "control-padding-inline": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.16}"
+        },
+        "control-padding-block": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.8}"
+        },
+        "control-gap": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.8}"
+        },
+        "control-gap-tight": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.4}"
+        },
+        "field-padding-inline": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.14}"
+        },
+        "field-padding-block": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.10}"
+        },
+        "label-gap": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.4}"
+        },
+        "related-gap": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.6}"
+        },
+        "heading-gap": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.12}"
+        },
+        "paragraph-gap": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.8}"
+        },
+        "hairline-gap": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.2}"
+        },
+        "container-padding": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.20}"
+        },
+        "container-padding-sm": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.12}"
+        },
+        "container-padding-lg": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.24}"
+        },
+        "container-padding-note": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.18}"
+        },
+        "container-padding-head": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.22}"
+        },
+        "container-gap": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.12}"
+        }
+      },
+      "border-radius": {
+        "none": {
+          "$type": "dimension",
+          "$value": "{envision.t1.border-radius.0}"
+        },
+        "control": {
+          "$type": "dimension",
+          "$value": "{envision.t1.border-radius.6}"
+        },
+        "card": {
+          "$type": "dimension",
+          "$value": "{envision.t1.border-radius.12}"
+        },
+        "panel": {
+          "$type": "dimension",
+          "$value": "{envision.t1.border-radius.16}"
+        },
+        "modal": {
+          "$type": "dimension",
+          "$value": "{envision.t1.border-radius.12}"
+        },
+        "pill": {
+          "$type": "dimension",
+          "$value": "{envision.t1.border-radius.pill}"
+        },
+        "circular": {
+          "$type": "dimension",
+          "$value": "{envision.t1.border-radius.full}"
+        },
+        "control-sm": {
+          "$type": "dimension",
+          "$value": "{envision.t1.border-radius.4}"
+        },
+        "control-xs": {
+          "$type": "dimension",
+          "$value": "{envision.t1.border-radius.2}"
+        },
+        "container-sm": {
+          "$type": "dimension",
+          "$value": "{envision.t1.border-radius.8}"
+        },
+        "container-md": {
+          "$type": "dimension",
+          "$value": "{envision.t1.border-radius.10}"
+        },
+        "container-default": {
+          "$type": "dimension",
+          "$value": "{envision.t1.border-radius.12}"
+        },
+        "container-lg": {
+          "$type": "dimension",
+          "$value": "{envision.t1.border-radius.16}"
+        },
+        "container-menu": {
+          "$type": "dimension",
+          "$value": "{envision.t1.border-radius.14}"
+        },
+        "container-xs": {
+          "$type": "dimension",
+          "$value": 3
+        }
+      },
+      "border-width": {
+        "none": {
+          "$type": "dimension",
+          "$value": "{envision.t1.border-width.0}"
+        },
+        "default": {
+          "$type": "dimension",
+          "$value": "{envision.t1.border-width.1}"
+        },
+        "thin": {
+          "$type": "dimension",
+          "$value": "{envision.t1.border-width.1-5}"
+        },
+        "emphasis": {
+          "$type": "dimension",
+          "$value": "{envision.t1.border-width.2}"
+        },
+        "focus": {
+          "$type": "dimension",
+          "$value": "{envision.t1.border-width.2}"
+        }
+      },
+      "size": {
+        "icon-sm": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.16}"
+        },
+        "icon-md": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.20}"
+        },
+        "icon-lg": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.24}"
+        }
+      },
+      "layer": {
+        "base": {
+          "$type": "number",
+          "$value": "{envision.t1.z-index.0}"
+        },
+        "sticky-nav": {
+          "$type": "number",
+          "$value": "{envision.t1.z-index.25}"
+        },
+        "tray": {
+          "$type": "number",
+          "$value": "{envision.t1.z-index.30}"
+        },
+        "menu": {
+          "$type": "number",
+          "$value": "{envision.t1.z-index.30}"
+        },
+        "modal": {
+          "$type": "number",
+          "$value": "{envision.t1.z-index.40}"
+        },
+        "toast": {
+          "$type": "number",
+          "$value": "{envision.t1.z-index.1000}"
+        }
+      },
+      "motion": {
+        "micro-duration": {
+          "$type": "number",
+          "$value": "{envision.t1.duration.150}"
+        },
+        "panel-duration": {
+          "$type": "number",
+          "$value": "{envision.t1.duration.260}"
+        },
+        "dismiss-duration": {
+          "$type": "number",
+          "$value": "{envision.t1.duration.180}"
+        },
+        "loading-duration": {
+          "$type": "number",
+          "$value": "{envision.t1.duration.340}"
+        }
+      }
+    }
+  }
+}

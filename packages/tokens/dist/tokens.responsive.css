@@ -1,0 +1,16 @@
+/* Envision responsive overrides — import AFTER the base custom properties. */
+@media (max-width: 1024px) {
+  :root {
+    --envision-t2-font-size-display: var(--envision-t1-font-size-40);
+    --envision-t2-font-size-h1: var(--envision-t1-font-size-32);
+    --envision-t2-font-size-h2: var(--envision-t1-font-size-28);
+    --envision-t2-font-size-h3: var(--envision-t1-font-size-22);
+    --envision-t2-font-size-h4: var(--envision-t1-font-size-18);
+    --envision-t2-font-size-h5: var(--envision-t1-font-size-16);
+    --envision-t2-layout-right-rail-width: 390px;
+    --envision-t2-layout-top-bar-height: 56px;
+    --envision-t2-layout-page-gutter: var(--envision-t1-spacing-20);
+    --envision-t2-layout-card-grid-columns: 1;
+    --envision-t2-layout-swatch-grid-columns: 4;
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "envision": {
+    "t2": {
+      "color": {
+        "primary": {
+          "50": {
+            "$type": "color",
+            "$value": "{envision.t1.color.green.50}"
+          },
+          "100": {
+            "$type": "color",
+            "$value": "{envision.t1.color.green.100}"
+          },
+          "200": {
+            "$type": "color",
+            "$value": "{envision.t1.color.green.200}"
+          },
+          "300": {
+            "$type": "color",
+            "$value": "{envision.t1.color.green.300}"
+          },
+          "400": {
+            "$type": "color",
+            "$value": "{envision.t1.color.green.400}"
+          },
+          "500": {
+            "$type": "color",
+            "$value": "{envision.t1.color.green.500}"
+          },
+          "600": {
+            "$type": "color",
+            "$value": "{envision.t1.color.green.600}"
+          },
+          "700": {
+            "$type": "color",
+            "$value": "{envision.t1.color.green.700}"
+          },
+          "800": {
+            "$type": "color",
+            "$value": "{envision.t1.color.green.800}"
+          },
+          "900": {
+            "$type": "color",
+            "$value": "{envision.t1.color.green.900}"
+          }
+        },
+        "accent": {
+          "500": {
+            "$type": "color",
+            "$value": "{envision.t1.color.accent-orange.500}"
+          }
+        },
+        "content": {
+          "on-primary": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.neutral.0}"
+            }
+          }
+        }
+      },
+      "font-family": {
+        "display": {
+          "$type": "fontFamily",
+          "$value": "{envision.t1.font-family.playfair-display}"
+        },
+        "wordmark": {
+          "$type": "fontFamily",
+          "$value": "{envision.t1.font-family.georgia}"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "$description": "Envision Design System — TIER 2 RESPONSIVE. Variables that change across device MODES. In Figma this is one collection ('T2 · Responsive') with two modes: 'desktop' and 'mobile'. DTCG has no native modes, so each token carries $extensions.envision.modes {desktop, mobile}; the $value holds the desktop (default) value. RULE: heading sizes scale down on mobile; BODY sizes stay identical across devices (accessibility). Responsive modes are NOT a substitute for responsive layout logic — they only hold values that legitimately differ by device.",
+  "envision": {
+    "t2": {
+      "responsive": {
+        "font-size": {
+          "$type": "dimension",
+          "display": { "$value": "56px", "$extensions": { "envision": { "modes": { "desktop": "56px", "mobile": "40px" } } } },
+          "h1":      { "$value": "40px", "$extensions": { "envision": { "modes": { "desktop": "40px", "mobile": "32px" } } } },
+          "h2":      { "$value": "32px", "$extensions": { "envision": { "modes": { "desktop": "32px", "mobile": "28px" } } } },
+          "h3":      { "$value": "24px", "$extensions": { "envision": { "modes": { "desktop": "24px", "mobile": "22px" } } } },
+          "h4":      { "$value": "20px", "$extensions": { "envision": { "modes": { "desktop": "20px", "mobile": "18px" } } } },
+          "h5":      { "$value": "18px", "$extensions": { "envision": { "modes": { "desktop": "18px", "mobile": "16px" } } } },
+          "body-lg": { "$value": "16px", "$extensions": { "envision": { "modes": { "desktop": "16px", "mobile": "16px" } } }, "$description": "Stable across devices." },
+          "body":    { "$value": "15px", "$extensions": { "envision": { "modes": { "desktop": "15px", "mobile": "15px" } } }, "$description": "Stable across devices." },
+          "body-sm": { "$value": "14px", "$extensions": { "envision": { "modes": { "desktop": "14px", "mobile": "14px" } } }, "$description": "Stable across devices." },
+          "caption": { "$value": "12px", "$extensions": { "envision": { "modes": { "desktop": "12px", "mobile": "12px" } } }, "$description": "Stable across devices. Do NOT use for essential instructions/labels/pricing." }
+        },
+        "layout": {
+          "$type": "dimension",
+          "right-rail-width": { "$value": "392px", "$extensions": { "envision": { "modes": { "desktop": "392px", "mobile": "100%" } } }, "$description": "Desktop persistent 392px side rail; mobile full-width panel." },
+          "top-bar-height":   { "$value": "64px", "$extensions": { "envision": { "modes": { "desktop": "64px", "mobile": "56px" } } } },
+          "page-gutter":      { "$value": "40px", "$extensions": { "envision": { "modes": { "desktop": "40px", "mobile": "20px" } } } },
+          "viewport-height":  { "$value": "100vh", "$extensions": { "envision": { "modes": { "desktop": "100vh", "mobile": "60vh" } } }, "$description": "3D canvas: full height desktop; 60vh band above stacked rail on mobile." },
+          "card-grid-columns":{ "$value": "3", "$extensions": { "envision": { "modes": { "desktop": "3", "mobile": "1" } } }, "$description": "Dashboard/packages grid columns." },
+          "swatch-grid-columns": { "$value": "6", "$extensions": { "envision": { "modes": { "desktop": "6", "mobile": "4" } } } }
+        }
+      }
+    }
+  }
+}

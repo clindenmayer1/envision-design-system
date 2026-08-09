@@ -1,0 +1,39 @@
+{
+  "config": {
+    "selectedCategory": "cabinets", "cabinetStyle": "beadboard-shaker", "cabinetFinish": "white",
+    "hardwareStyle": "modern-bar-pull", "hardwareFinish": "silver", "countertop": "calacatta",
+    "backsplashStyle": "matching-stone", "backsplash": "gloss-white", "flooring": "natural-oak",
+    "wallColor": "pure-white", "sinkStyle": "single-bowl-undermount", "faucetStyle": "high-arc-gooseneck",
+    "faucetFinish": "silver", "applianceMode": "panel-ready", "applianceFinish": "panel-match", "lightingMood": "daylight"
+  },
+  "sections": [
+    { "id": "cabinets", "title": "Cabinets", "groups": [
+      { "key": "cabinetStyle", "kind": "card", "label": "Cabinet Style", "selected": "beadboard-shaker" },
+      { "key": "cabinetFinish", "kind": "swatch", "label": "Cabinet Finish", "selected": "white" }
+    ]},
+    { "id": "countertops", "title": "Countertops", "groups": [ { "key": "countertop", "kind": "card", "label": "Countertop", "selected": "calacatta" } ] }
+  ],
+  "materialOptions": {
+    "cabinetStyle": [
+      { "id": "beadboard-shaker", "label": "Beadboard Shaker", "note": "Included", "model": "/models/doors/beadboard.glb" },
+      { "id": "raised-panel", "label": "Raised Panel", "note": "+$650", "model": "/models/doors/raised.glb" },
+      { "id": "thorsen-glass-uppers", "label": "Thorsen Glass Uppers", "note": "+$1,650", "model": "/models/doors/glass.glb" }
+    ],
+    "cabinetFinish": [
+      { "id": "white", "label": "White", "note": "Included", "swatch": "#F4F1EC" },
+      { "id": "hale-navy", "label": "Hale Navy", "note": "+$400", "swatch": "#2C3A4B" },
+      { "id": "warm-walnut", "label": "Warm Walnut", "note": "+$2,600", "texture": "/textures/walnut.jpg" }
+    ],
+    "countertop": [
+      { "id": "calacatta", "label": "Calacatta", "note": "Included", "texture": "/textures/calacatta.jpg" },
+      { "id": "statuario", "label": "Statuario", "note": "+$1,900", "texture": "/textures/statuario.jpg" }
+    ]
+  },
+  "viewPresets": [ { "id": "v1", "name": "Overview", "index": 1 }, { "id": "v2", "name": "Sink", "index": 2 }, { "id": "v3", "name": "Island", "index": 3 } ],
+  "rooms": [
+    { "id": "kitchen", "name": "Kitchen", "status": "in-progress" },
+    { "id": "living", "name": "Living Room", "status": "complete" },
+    { "id": "primary-bed", "name": "Primary Bedroom", "status": "not-started" }
+  ],
+  "priceSummary": { "upgradeTotal": 180, "currency": "USD", "included": false, "unit": "/mo" }
+}

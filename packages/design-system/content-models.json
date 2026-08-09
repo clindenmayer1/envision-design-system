@@ -1,0 +1,66 @@
+{
+  "$schema": "envision-content-models@0.1",
+  "meta": { "note": "Data shapes reverse-engineered from envision-app (types.ts, three/packages.ts, three/pricing.ts, data/wallColorLibrary.ts, RoomSelector.tsx, Overview.tsx). Fields marked 'inferred' are proposed, not confirmed backend contracts. Do not invent backend fields as confirmed.", "lastReviewed": "2026-07-16" },
+  "models": {
+    "homeowner": {
+      "source": "inferred (Overview 'The Johnsons!')",
+      "fields": { "id": "string (inferred)", "displayName": "string", "greetingName": "string", "builderId": "string (inferred)" },
+      "empty": "fallback greeting", "loading": "skeleton name"
+    },
+    "home": {
+      "source": "inferred (Overview/dashboard)",
+      "fields": { "id": "string (inferred)", "address": "string (inferred)", "planName": "string (inferred)", "floorPlanImage": "url (floor-plan.png)", "lotMapImage": "url (lot map.png)", "heroMedia": "url (/home1.mp4)" }
+    },
+    "builderBrand": {
+      "source": "inferred (white-label)",
+      "fields": { "id": "string", "name": "string (WESTLAKE HOMES)", "wordmark": "string", "brandMode": "string -> T2 Brand mode (default 'westlake')", "primaryColor": "hex", "accentColor": "hex" }
+    },
+    "designArea": {
+      "source": "RoomSelector.tsx ROOMS (12)",
+      "fields": { "id": "string", "name": "string (Kitchen, Living Room, ...)", "status": "'complete'|'in-progress'|'not-started'" },
+      "sorting": "fixed order", "empty": "n/a"
+    },
+    "kitchenConfig": {
+      "source": "types.ts KitchenConfig / App INITIAL_CONFIG",
+      "fields": {
+        "selectedCategory": "SectionId", "cabinetStyle": "string(id)", "cabinetFinish": "string", "hardwareStyle": "string", "hardwareFinish": "string", "countertop": "string", "backsplashStyle": "string", "backsplash": "string", "flooring": "string", "wallColor": "string", "sinkStyle": "string", "faucetStyle": "string", "faucetFinish": "string", "applianceMode": "'standalone'|'panel-ready'|'integrated'", "applianceFinish": "string", "lightingMood": "string"
+      },
+      "defaults": { "cabinetStyle": "beadboard-shaker", "cabinetFinish": "white", "hardwareStyle": "modern-bar-pull", "hardwareFinish": "silver", "countertop": "calacatta", "backsplashStyle": "matching-stone", "backsplash": "gloss-white", "flooring": "natural-oak", "wallColor": "pure-white", "sinkStyle": "single-bowl-undermount", "faucetStyle": "high-arc-gooseneck", "faucetFinish": "silver", "applianceMode": "panel-ready", "applianceFinish": "panel-match", "lightingMood": "daylight" }
+    },
+    "materialOption": {
+      "source": "types.ts Option",
+      "fields": { "id": "string", "label": "string", "swatch": "hex? (flat)", "texture": "url? (image/texture)", "model": "url? (3D)", "color": "hex?", "roughness": "number?", "metalness": "number?", "note": "string? (e.g. 'Included')" },
+      "note": "swatch/texture/color are PRODUCT DATA, never UI tokens.",
+      "loading": "shimmer", "error": "image-failure fallback", "unavailable": "dim + non-color cue"
+    },
+    "designPackage": {
+      "source": "three/packages.ts KitchenPackage (10 packages)",
+      "fields": { "id": "string", "name": "string", "description": "string (one-line, material-focused)", "price": "string (e.g. '+$126/mo' or 'Included')", "popular": "boolean?", "badge": "string? (e.g. 'Trending')", "config": "PackageConfig (10 keys)" },
+      "derived": { "packageSwatches": "6 previews [cabinet,countertop,backsplash,flooring,metal,wall]", "packageThumbUrl": "/packages/{id}.jpg?v={hash}", "materialHash": "base36" },
+      "instances": ["summit(Included,popular)", "heritage(+$126/mo,popular,Trending)", "haven(+$104/mo)", "monarch(+$164/mo,popular)", "foundry(+$142/mo)", "canvas(+$92/mo)", "lumen(+$110/mo)", "oak-stone=>Sienna(+$114/mo)", "modern-prairie=>Meadow(+$120/mo)", "coastal(+$98/mo)"],
+      "defaultSelected": "summit"
+    },
+    "materialCategory": { "source": "types.ts SectionId", "values": ["cabinets", "hardware", "countertops", "backsplash", "flooring", "walls", "sink-faucet"] },
+    "priceAdjustment": {
+      "source": "three/pricing.ts",
+      "fields": { "key": "ConfigKey", "optionId": "string", "amount": "number (0 = Included)", "label": "'Included' | '+$1,200'" },
+      "pricedKeys": ["cabinetStyle", "cabinetFinish", "countertop", "backsplashStyle", "flooring", "hardwareStyle", "hardwareFinish", "faucetStyle"],
+      "states": ["included(0)", "upcharge(+$)", "pending", "unknown", "previous-price"]
+    },
+    "priceSummary": { "source": "RailFooter/upgradeTotal", "fields": { "upgradeTotal": "number (monthly)", "currency": "string (localized)", "included": "boolean (total===0 -> 'All selections included')" } },
+    "wallColor": {
+      "source": "data/wallColorLibrary.ts (279 Benjamin Moore, 7 sections)",
+      "fields": { "id": "string (wc-bm-oc-65)", "name": "string (Chantilly Lace)", "code": "string (BM OC-65)", "hex": "string (#F4F6F1)" },
+      "sections": ["Whites(39)", "Grays(40)", "Beiges & Taupes(40)", "Earth Tones(40)", "Greens(40)", "Blues(40)", "Dark & Moody(40)"],
+      "filtering": "by section + text query", "empty": "'No colors match {query}'"
+    },
+    "savedDesign": { "source": "inferred (Save/bookmark)", "fields": { "id": "string (inferred)", "configSnapshot": "KitchenConfig", "name": "string?", "savedAt": "ISO (inferred)" } },
+    "progressStep": { "source": "Overview SELECTIONS", "fields": { "id": "string", "label": "string (Kitchen, Primary Bathroom, ...)", "status": "'complete'|'in-progress'|'not-started'", "active": "boolean" }, "aggregate": "percent complete (20%)" },
+    "keyDate": { "source": "Overview KEY_DATES (4)", "fields": { "id": "string (inferred)", "label": "string", "date": "string" } },
+    "floorPlan": { "source": "floor-plan.png", "fields": { "image": "url", "rooms": "designArea[] (inferred link)" } },
+    "lotMap": { "source": "lot map.png", "fields": { "image": "url", "lotLabel": "string (inferred)" } },
+    "viewPreset": { "source": "three/cameraPresets + ViewSwitcher", "fields": { "id": "string", "name": "string", "index": "number" } },
+    "notification": { "source": "inferred (topbar badge '2')", "fields": { "id": "string (inferred)", "unreadCount": "number", "items": "[] (inferred)" } },
+    "statusMessage": { "source": "inferred", "fields": { "tone": "'info'|'success'|'warning'|'error'", "text": "string" } }
+  }
+}

@@ -1,0 +1,101 @@
+/* OptionCard — MIGRATED to design-system tokens (zero raw governed values). Every color, radius,
+   shadow, spacing, and type value consumes an option-card Tier-3 token (or a semantic role for
+   layout). Structure + resolved values preserved exactly from the product source of truth.
+   Only intrinsic thumbnail geometry (fixed px tile sizes, chosen to match the popup aspect ratios)
+   and the flex/line-height:1 icon reset remain literal — they are structural, not governed styling. */
+.opt-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--envision-theme-option-card-padding); /* 12 */
+  background: var(--card-bg);
+  border: none;
+  border-radius: var(--envision-theme-option-card-radius); /* 6 */
+  cursor: pointer;
+  text-align: left;
+  transition: box-shadow var(--envision-duration-instant) ease;
+  /* Selection ring: inner inset = card surface, outer spread = ring colour (rest/hover/pressed). */
+  box-shadow:
+    0 0 0 var(--envision-theme-option-card-ring-inset) var(--envision-theme-option-card-color-ring-inset),
+    0 0 0 var(--envision-theme-option-card-ring-width) var(--envision-theme-option-card-ring-rest-default);
+}
+
+.opt-card:hover {
+  box-shadow:
+    0 0 0 var(--envision-theme-option-card-ring-inset) var(--envision-theme-option-card-color-ring-inset),
+    0 0 0 var(--envision-theme-option-card-ring-width) var(--envision-theme-option-card-ring-hover-default),
+    var(--envision-theme-option-card-shadow-hover);
+}
+
+.opt-card:active,
+.opt-card--active,
+.opt-card--active:hover {
+  box-shadow:
+    0 0 0 var(--envision-theme-option-card-ring-inset) var(--envision-theme-option-card-color-ring-inset),
+    0 0 0 var(--envision-theme-option-card-ring-width) var(--envision-theme-option-card-ring-pressed-default),
+    var(--envision-theme-option-card-shadow-hover);
+}
+
+.opt-card__left {
+  display: flex;
+  align-items: center;
+  gap: var(--envision-theme-option-card-left-gap); /* 12 */
+  min-width: 0;
+}
+
+.opt-card__thumb {
+  flex: 0 0 auto;
+  width: 56px;  /* structural: rail thumbnail tile geometry */
+  height: 70px;
+  border-radius: var(--envision-theme-option-card-thumb-radius); /* 4 */
+  box-shadow: var(--envision-theme-option-card-thumb-shadow);
+  overflow: hidden;
+}
+
+/* Square thumbnail — used wherever the tray/popup uses square tiles (countertops,
+   backsplash, hardware, …), so the rail card matches the popup. */
+.opt-card__thumb--square {
+  width: 72px;
+  height: 72px;
+}
+
+/* Door thumbnail — portrait, matching the cabinet-door popup tiles (≈96:140). */
+.opt-card__thumb--door {
+  width: 49px; /* 72 × (96/140) keeps the door aspect */
+  height: 72px;
+}
+
+.opt-card__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.opt-card__title {
+  font-size: var(--envision-theme-option-card-title-font-size); /* 14 */
+  font-weight: var(--envision-font-weight-semibold);
+  color: var(--ink);
+  line-height: var(--envision-theme-option-card-title-line-height); /* 1.2 */
+}
+
+.opt-card__note {
+  margin-top: var(--envision-theme-option-card-note-gap); /* 2 */
+  font-size: var(--envision-theme-option-card-note-font-size); /* 13 */
+  font-weight: var(--envision-font-weight-medium);
+  color: var(--ink-soft);
+  line-height: var(--envision-theme-option-card-note-line-height); /* 1.6 */
+}
+
+.opt-card__note--upgrade {
+  color: var(--ink); /* primary ink (neutral/800 #222) for emphasis */
+  font-weight: var(--envision-font-weight-semibold);
+}
+
+.opt-card__chevron {
+  flex: 0 0 auto;
+  font-size: var(--envision-theme-option-card-chevron-font-size); /* 20 */
+  line-height: 1; /* structural: icon glyph reset */
+  color: var(--ink-soft);
+  padding-left: var(--envision-theme-option-card-chevron-gap); /* 8 */
+}

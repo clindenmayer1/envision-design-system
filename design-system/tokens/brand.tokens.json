@@ -1,0 +1,39 @@
+{
+  "$description": "Envision Design System — TIER 2 BRAND (theme seam). This is the ONLY layer a white-label builder overrides. Branded-house architecture: shared foundations + shared components, controlled brand overrides. Adding a new builder = add a new MODE to this collection (e.g. 'westlake', 'builder-b'), NOT a new design system. Default mode = 'westlake' (the audited product). Semantic color aliases point here for brand-tinted roles so a single mode swap re-themes the whole system. CSS prefix: --envision-t2-brand-<path>.",
+  "envision": {
+    "t2": {
+      "brand": {
+        "color": {
+          "$type": "color",
+          "primary": {
+            "$description": "Builder primary. Default = Envision green. Only this ramp + accent are expected to change per builder (Coke/Diet-Coke branded-house model from the methodology).",
+            "50":  { "$value": "{envision.t1.color.green.50}" },
+            "100": { "$value": "{envision.t1.color.green.100}" },
+            "200": { "$value": "{envision.t1.color.green.200}" },
+            "300": { "$value": "{envision.t1.color.green.300}" },
+            "400": { "$value": "{envision.t1.color.green.400}" },
+            "500": { "$value": "{envision.t1.color.green.500}" },
+            "600": { "$value": "{envision.t1.color.green.600}" },
+            "700": { "$value": "{envision.t1.color.green.700}" },
+            "800": { "$value": "{envision.t1.color.green.800}" },
+            "900": { "$value": "{envision.t1.color.green.900}" }
+          },
+          "accent": {
+            "$description": "Secondary brand accent (notification badge). Default = orange.",
+            "500": { "$value": "{envision.t1.color.accent-orange.500}" }
+          },
+          "on-primary": {
+            "$description": "Content color that sits on primary surfaces. Must pass contrast against primary/500.",
+            "default": { "$value": "{envision.t1.color.neutral.0}" }
+          }
+        },
+        "font": {
+          "$type": "fontFamily",
+          "$description": "Brand fonts. UI font is shared (Inter) and NOT part of the brand seam; only the display face changes per builder.",
+          "display": { "$value": "{envision.t1.font-family.display}" },
+          "wordmark": { "$value": "{envision.t1.font-family.serif}" }
+        }
+      }
+    }
+  }
+}

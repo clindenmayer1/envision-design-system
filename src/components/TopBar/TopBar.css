@@ -1,0 +1,130 @@
+.topbar {
+  position: relative;
+  height: 64px;
+  flex: 0 0 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  background: #fff;
+  border-bottom: 1px solid var(--hairline);
+}
+
+/* Brand wordmark (WESTLAKE / — HOMES —) */
+.topbar__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+.topbar__brand-name {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: var(--ink);
+}
+.topbar__brand-sub {
+  margin-top: 3px;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  color: #8a8a82;
+}
+
+/* Centered menu — absolutely centered so it stays put regardless of side widths. */
+.topbar__menu {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.topbar__link {
+  position: relative;
+  padding: 0 0 6px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b6f6d;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+.topbar__link:hover {
+  color: var(--ink);
+}
+.topbar__link--active {
+  color: var(--ink);
+  font-weight: 600;
+}
+.topbar__link--active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 1px;
+  background: #29594F;
+}
+
+/* Right cluster: bell + badge, avatar, chevron */
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.topbar__bell {
+  position: relative;
+  display: flex;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #2e3230;
+  cursor: pointer;
+}
+.topbar__badge {
+  position: absolute;
+  top: -6px;
+  right: -7px;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: #e67e22;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.topbar__account {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #5a5e5c;
+}
+.topbar__avatar {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #dcdcd6;
+  color: #3a3a34;
+  font-size: 12px;
+  font-weight: 600;
+}
+.topbar__chevron {
+  display: block;
+}

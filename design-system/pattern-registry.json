@@ -1,0 +1,46 @@
+{
+  "$schema": "envision-pattern-registry@0.1",
+  "meta": { "note": "Composite patterns = multi-component compositions with structural + ownership contracts. lastReviewed 2026-07-16." },
+  "patterns": [
+    {
+      "id": "right-rail", "name": "RightRail", "figmaNodeId": "16:2", "figmaStatus": "ready-for-review",
+      "root": "RightRail", "requiredChildren": ["RightRail/Header", "RightRail/ScrollRegion", "RightRail/Footer"], "optionalChildren": ["RightRail/Tabs", "RightRail/EmptyState", "RightRail/ErrorState", "RightRail/Skeleton"],
+      "slots": ["body sections", "footer summary"], "childOrder": "header -> tabs -> scroll -> footer",
+      "scrollOwnership": "ScrollRegion", "stickyOwnership": "header+footer", "focusOwnership": "root (modal on mobile)", "stateOwnership": "root owns layout/loading/error boundary; sections own their data",
+      "responsive": "desktop persistent 392; mobile sheet/drawer", "errorBoundary": true, "loadingBoundary": true,
+      "nesting": "no nested RightRail; sections composable"
+    },
+    {
+      "id": "package-browser", "name": "PackageBrowser", "figmaStatus": "proposed", "root": "PackagesTab",
+      "requiredChildren": ["header", "PackageCard[]", "footer note"], "childOrder": "header -> cards -> note", "scrollOwnership": "rail scroll",
+      "note": "10 curated packages; card selects, Customize pill applies+switches to Customize tab."
+    },
+    {
+      "id": "material-selector", "name": "MaterialSelector / BottomSelectionTray", "figmaStatus": "audited", "root": "CabinetStyleTray",
+      "requiredChildren": ["head(title+close)", "carousel(6/batch)", "arrows"], "reusedFor": ["Cabinet Style", "Countertop", "Backsplash", "Hardware", "Faucet"],
+      "interaction": "role=dialog; Esc + outside pointerdown close (except .swatch keeps open for live recolor); staggered tile entrance (reduced-motion honored)", "scrollOwnership": "carousel track"
+    },
+    {
+      "id": "color-picker-modal", "name": "ColorPickerModal", "figmaStatus": "proposed", "root": "WallColorModal",
+      "requiredChildren": ["head(title+search+close)", "category sidebar", "content(count+sort+grid)", "footer(save+select)"], "childOrder": "head -> body(sidebar+grid) -> footer",
+      "interaction": "role=dialog aria-modal; swatch click previews (onPreview), double-click/Apply commits, cancel reverts; Apply disabled unless picked in library", "states": ["default", "search-results", "no-results", "preview", "committed"], "scrollOwnership": "grid"
+    },
+    {
+      "id": "global-nav", "name": "GlobalNav", "figmaStatus": "proposed", "root": "TopBar",
+      "requiredChildren": ["wordmark", "primary nav (5)", "notifications", "account"], "responsive": "desktop bar -> mobile nav", "stickyOwnership": "self", "navItems": ["Overview", "Design Center", "My Selections", "Build Progress", "Financing"]
+    },
+    {
+      "id": "dashboard-widget-grid", "name": "DashboardWidgetGrid", "figmaStatus": "proposed", "root": "Overview cards",
+      "requiredChildren": ["progress-card", "next-card", "key-date-card"], "responsive": "3->1 col at 1080", "note": "grid 1.5fr 1fr 1fr"
+    },
+    {
+      "id": "three-d-viewport-shell", "name": "ThreeDViewportShell", "figmaStatus": "proposed", "root": "SceneCanvas",
+      "requiredChildren": ["canvas", "loader/error overlay", "view controls", "room nav"], "stateOwnership": "byte-driven load; error boundary; controls disabled until ready",
+      "loadingBoundary": true, "errorBoundary": true, "note": "no fake interactive snapshot; reduced-motion honored; idles GPU (frameloop never) when covered"
+    },
+    {
+      "id": "mobile-selection-sheet", "name": "MobileSelectionSheet", "figmaStatus": "proposed", "root": "RightRail@mobile",
+      "note": "same API/data as RightRail; bottom sheet with detents, drag handle, focus trap, safe-area, sticky actions, Esc/back close"
+    }
+  ]
+}

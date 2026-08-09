@@ -1,0 +1,44 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Foundations/Typography" />
+
+export const Size = ({ token, px }) => (
+  <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, padding: '6px 0', borderBottom: '1px solid #edeae4' }}>
+    <code style={{ fontSize: 12, color: '#666', width: 200, flex: 'none' }}>{token}</code>
+    <div style={{ fontFamily: 'Inter, sans-serif', fontSize: `var(${token})`, fontWeight: 600, color: '#222', lineHeight: 1.2 }}>The quick brown fox — {px}px</div>
+  </div>
+);
+
+export const Weight = ({ token, name }) => (
+  <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, padding: '4px 0' }}>
+    <code style={{ fontSize: 12, color: '#666', width: 200, flex: 'none' }}>{token}</code>
+    <div style={{ fontFamily: 'Inter, sans-serif', fontSize: 18, fontWeight: `var(${token})`, color: '#222' }}>{name}</div>
+  </div>
+);
+
+# Typography
+
+**Inter** is the UI typeface; Playfair Display is reserved for hero display. Components set type
+**explicitly** from the scale (never `font: inherit`): e.g. Button and Tab are 14 / 600, Input 15,
+form labels 14, PackageCard title 18 / 700. Body baseline is 16; 12px is never used for labels,
+pricing or instructions.
+
+## Type scale (`--envision-t1-font-size-*`)
+<Size token="--envision-t1-font-size-11" px="11" />
+<Size token="--envision-t1-font-size-13" px="13" />
+<Size token="--envision-t1-font-size-14" px="14" />
+<Size token="--envision-t1-font-size-15" px="15" />
+<Size token="--envision-t1-font-size-16" px="16" />
+<Size token="--envision-t1-font-size-18" px="18" />
+<Size token="--envision-t1-font-size-20" px="20" />
+<Size token="--envision-t1-font-size-24" px="24" />
+<Size token="--envision-t1-font-size-32" px="32" />
+
+## Weights (`--envision-t1-font-weight-*`)
+<Weight token="--envision-t1-font-weight-400" name="Regular 400 — body" />
+<Weight token="--envision-t1-font-weight-500" name="Medium 500 — notes / secondary" />
+<Weight token="--envision-t1-font-weight-600" name="Semi Bold 600 — controls, titles" />
+<Weight token="--envision-t1-font-weight-700" name="Bold 700 — card titles, headings" />
+
+Line-height tokens: `--envision-t1-line-height-{110,120,135,150,160}`. Headings scale down on
+mobile; body stays stable (see Foundations → Responsive on the docs site).

@@ -1,0 +1,19 @@
+{
+  "homeowner": { "id": "ho-001", "displayName": "The Johnsons", "greetingName": "The Johnsons!" },
+  "builderBrand": { "id": "westlake", "name": "WESTLAKE HOMES", "brandMode": "westlake", "primaryColor": "#29594F", "accentColor": "#E67E22" },
+  "home": { "id": "home-042", "address": "Lot 42, Cedar Ridge", "planName": "The Aspen", "floorPlanImage": "/floor-plan.png", "lotMapImage": "/lot%20map.png", "heroMedia": "/home1.mp4" },
+  "progress": { "percentComplete": 20, "steps": [
+    { "id": "kitchen", "label": "Kitchen", "status": "in-progress", "active": true },
+    { "id": "primary-bath", "label": "Primary Bathroom", "status": "not-started", "active": false },
+    { "id": "secondary-bath", "label": "Secondary Bathroom", "status": "complete", "active": false },
+    { "id": "flooring", "label": "Flooring", "status": "not-started", "active": false },
+    { "id": "finishes", "label": "Interior Finishes", "status": "not-started", "active": false }
+  ]},
+  "keyDates": [
+    { "id": "kd1", "label": "Design selections due", "date": "Aug 15, 2026" },
+    { "id": "kd2", "label": "Pre-construction meeting", "date": "Sep 02, 2026" },
+    { "id": "kd3", "label": "Framing complete", "date": "Nov 10, 2026" },
+    { "id": "kd4", "label": "Estimated move-in", "date": "Mar 2027" }
+  ],
+  "notifications": { "unreadCount": 2 }
+}

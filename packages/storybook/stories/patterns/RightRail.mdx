@@ -1,0 +1,66 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/blocks';
+import * as RailStories from './RightRail.stories';
+
+<Meta of={RailStories} />
+
+# RightRail
+
+## Overview
+`<envision-right-rail>` is the configurator side-panel **shell**: a header with Customize / Packages
+tabs, a scrollable **slotted** body, and a sticky footer (total slot + Apply). It is the composite
+pattern that ties the product components together, and it demonstrates the system’s **responsive
+strategy**: the same component is a rail on desktop and a modal sheet on mobile.
+
+<Canvas of={RailStories.Rail} />
+
+## Anatomy
+`header (title + tablist)` · `body (default slot — OptionCards, groups)` · `footer (total slot + Apply)`.
+Body content is **slotted**, so the rail is a reusable shell — not coupled to the kitchen domain.
+
+## When to use / not to use
+- **Use** as the persistent configuration surface beside a live preview (the 3D visualizer).
+- **Not** as a generic drawer or modal for unrelated content — its structure (tabs + apply + total)
+  is specific to configuration.
+
+## States
+The registry enumerates 18 (loading, content-ready, empty, no-results, error, saving, saved,
+applying, applied, price-pending/updated, section-collapsed/expanded, unsaved-changes, …). The most
+important are shown here:
+<Canvas of={RailStories.Loading} />
+
+## Responsive behaviour — rail → sheet
+On desktop the rail is `role=complementary`, fixed width from `--envision-t3-right-rail-default-width`
+(392). At **≤1024px** it re-composes into a **modal sheet** — `role=dialog aria-modal`, focus moves
+in, **Tab is trapped** across header → slotted body → Apply, **Esc closes**, and focus returns to the
+opener. Same API, a real re-composition (not a shrunken rail). Switch the **Viewport** toolbar to
+Mobile, or open the sheet story directly:
+<Canvas of={RailStories.MobileSheet} />
+
+## Accessibility
+- Desktop: `role=complementary`, labelled by its heading.
+- Sheet: `role=dialog` + `aria-modal`; focus-in, focus-trap, Esc-to-close, return-focus — the modal
+  behaviour the app’s original rail was missing.
+- `loading` sets `aria-busy` on the body.
+
+## Events & API
+`apply` (footer action), `modechange` (Customize/Packages), `close` (sheet dismissed).
+<Controls of={RailStories.Rail} />
+
+## Token relationships
+`--envision-t3-right-rail-default-width` / `-color-background` / `-color-border`,
+`--envision-t2-spacing-container-*`, `--envision-t2-color-border-subtle-default`.
+
+## Implementation
+```html
+<envision-right-rail heading="Kitchen">
+  <envision-option-card title="Cabinet Style" note="Included"></envision-option-card>
+  <!-- … -->
+  <span slot="total">Upgrades <strong>+$4,280</strong></span>
+</envision-right-rail>
+```
+```tsx
+import { RightRail } from '@envision/react';
+<RightRail heading="Kitchen" onApply={save} onModechange={(e) => setMode(e.detail.mode)}>
+  <OptionCard title="Cabinet Style" note="Included" onOpen={openTray} />
+</RightRail>
+```

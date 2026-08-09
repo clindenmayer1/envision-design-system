@@ -1,0 +1,126 @@
+/* Tier 3 · Components — generated from DTCG. DO NOT EDIT. */
+:root {
+  --envision-theme-button-primary-color-background-default: var(--envision-theme-color-background-brand-default);
+  --envision-theme-button-primary-color-background-hover: var(--envision-theme-color-background-brand-hover);
+  --envision-theme-button-primary-color-background-pressed: var(--envision-theme-color-background-brand-pressed);
+  --envision-theme-button-primary-color-background-disabled: var(--envision-theme-color-background-disabled-default);
+  --envision-theme-button-primary-color-content-default: var(--envision-theme-color-content-on-brand-default);
+  --envision-theme-button-primary-color-content-disabled: var(--envision-theme-color-content-disabled-default);
+  --envision-theme-button-outline-color-content-default: var(--envision-theme-color-content-brand-default);
+  --envision-theme-button-outline-color-border-default: var(--envision-theme-color-border-brand-default);
+  --envision-theme-input-default-color-border-default: var(--envision-theme-color-border-default-default);
+  --envision-theme-input-default-color-border-hover: var(--envision-theme-color-ring-hover-default);
+  --envision-theme-input-default-color-border-focus: var(--envision-theme-color-border-focus-default);
+  --envision-theme-input-default-color-border-error: var(--envision-theme-color-border-error-default);
+  --envision-theme-tab-selected-color-content-default: var(--envision-theme-color-content-primary-default);
+  --envision-theme-tab-selected-color-indicator-default: var(--envision-theme-brand-color-primary-500);
+  --envision-theme-tab-default-color-content-default: var(--envision-theme-color-content-subtle-default);
+  --envision-theme-right-rail-default-width-desktop: 392px; /* Direct value (no Tier 2 layout-width role exists). Documente */
+  --envision-theme-right-rail-default-header-height-default: var(--envision-spacing-1100); /* ~64px header/tab band via Tier 1 (no Tier 2 role). Documente */
+  --envision-theme-right-rail-default-color-background-default: var(--envision-theme-color-background-surface-default);
+  --envision-theme-right-rail-default-color-border-default: var(--envision-theme-color-border-default-default);
+  --envision-theme-top-bar-default-height-default: var(--envision-spacing-1100); /* 64px. Tier 1 direct (no Tier 2 role). Documented exception. */
+  --envision-theme-bottom-tray-default-max-width-default: 900px; /* min(900px, 100% - 48px). Direct value. Documented exception. */
+  --envision-theme-bottom-tray-default-radius-default: var(--envision-theme-radius-panel-default);
+  --envision-theme-package-card-radius: var(--envision-theme-radius-container-default); /* Card radius 12. */
+  --envision-theme-package-card-border-width: var(--envision-theme-border-width-control-default); /* Card border 1. */
+  --envision-theme-package-card-border-width-selected: var(--envision-theme-border-width-focus-default); /* Selected border 2. */
+  --envision-theme-package-card-color-border-selected: var(--envision-theme-brand-color-primary-500); /* Selected border green. */
+  --envision-theme-package-card-color-background: var(--envision-theme-color-background-surface-default); /* Card surface #fff. */
+  --envision-theme-package-card-color-name: var(--envision-theme-color-content-primary-default); /* Name #222. */
+  --envision-theme-package-card-color-price: var(--envision-theme-color-content-primary-default); /* Price #222. */
+  --envision-theme-package-card-padding: var(--envision-theme-spacing-container-padding); /* Content padding 20. */
+  --envision-theme-package-card-gap: var(--envision-theme-spacing-layout-stack-gap); /* Content gap 16. */
+  --envision-theme-package-card-title-gap: var(--envision-theme-spacing-container-gap); /* Title-row gap 12. */
+  --envision-theme-package-card-swatch-gap: var(--envision-theme-spacing-control-gap); /* Swatch grid gap 8. */
+  --envision-theme-package-card-swatch-radius: var(--envision-theme-radius-container-xsmall); /* Swatch radius 3 (product). */
+  --envision-theme-package-card-check-size: var(--envision-spacing-700); /* Applied check 28. T3->T1 (no T2 size role) — documented. */
+  --envision-theme-package-card-badge-radius: var(--envision-theme-radius-pill-default); /* Trending badge pill. */
+  --envision-theme-package-card-badge-color-background: var(--envision-theme-color-background-brand-default); /* Badge green. */
+  --envision-theme-package-card-badge-color-content: var(--envision-theme-color-content-on-brand-default); /* Badge text #fff. */
+  --envision-theme-package-card-customize-height: var(--envision-spacing-900); /* Customize pill 40. T3->T1 — documented. */
+  --envision-theme-package-card-customize-radius: var(--envision-theme-radius-container-small); /* Customize radius 8. */
+  --envision-theme-package-card-customize-padding-inline: var(--envision-theme-spacing-control-padding-inline); /* Customize inline padding 16. */
+  --envision-theme-package-card-focus-color: var(--envision-theme-color-border-focus-default); /* Focus outline green. */
+  --envision-theme-package-card-focus-width: var(--envision-theme-border-width-focus-default); /* Focus 2. */
+  --envision-theme-package-card-focus-offset: var(--envision-spacing-50); /* Focus offset 2. T3->T1 — documented. */
+  --envision-theme-package-card-color-border: var(--envision-theme-color-border-container-subtle-default); /* Card border (0.09 black). */
+  --envision-theme-package-card-color-border-swatch: var(--envision-theme-color-border-swatch-default); /* Swatch border (0.07 black). */
+  --envision-theme-package-card-shadow: var(--envision-theme-shadow-card-default); /* Rest elevation. */
+  --envision-theme-package-card-shadow-hover: var(--envision-theme-shadow-card-hover-default); /* Hover elevation. */
+  --envision-theme-package-card-shadow-selected: var(--envision-theme-shadow-card-selected-default); /* Selected elevation. */
+  --envision-theme-package-card-check-shadow: var(--envision-theme-shadow-badge-default); /* Applied-check elevation. */
+  --envision-theme-package-card-title-font-size: var(--envision-font-size-650); /* Package tab title 19. */
+  --envision-theme-package-card-title-line-height: var(--envision-line-height-130); /* 1.3. */
+  --envision-theme-package-card-desc-line-height: var(--envision-line-height-145); /* 1.45. */
+  --envision-theme-package-card-note-line-height: var(--envision-line-height-140); /* 1.4. */
+  --envision-theme-package-card-color-image-bg: #ece9e3; /* Image well bg. Component-specific direct value — no reusable */
+  --envision-theme-package-card-color-placeholder: #9a9891; /* Thumb-fallback text. Component-specific direct value. */
+  --envision-theme-package-card-color-description: #6b6f6d; /* Description/subtitle gray. Component-specific direct value ( */
+  --envision-theme-package-card-color-customize: #333333; /* Customize label. Component-specific direct value. */
+  --envision-theme-package-card-color-customize-hover-border: #b9b4ab; /* Customize hover border. Component-specific direct value. */
+  --envision-theme-package-card-color-customize-hover-bg: #faf9f6; /* Customize hover surface. Component-specific direct value. */
+  --envision-theme-package-card-color-note-bg: #efece5; /* Fully-customizable note surface. Component-specific direct v */
+  --envision-theme-package-card-color-shimmer-mid: #f4f2ed; /* Loading shimmer highlight. Component-specific direct value. */
+  --envision-theme-package-card-badge-padding-inline: 13px; /* Badge inline padding. Component-specific direct value (off-s */
+  --envision-theme-package-card-badge-padding-block: var(--envision-theme-spacing-control-padding-block); /* Badge block padding 8. */
+  --envision-theme-package-card-note-text-gap: 3px; /* Note title/body gap. Component-specific direct value (off-sc */
+  --envision-theme-package-card-image-fade-duration: var(--envision-duration-image); /* Image fade 250ms. */
+  --envision-theme-package-card-shimmer-duration: var(--envision-duration-shimmer); /* Shimmer 1200ms. */
+  --envision-theme-package-card-image-ratio: 2.114; /* 351/166. Direct value — documented exception. */
+  --envision-theme-material-swatch-label-gap: var(--envision-theme-spacing-content-label-gap); /* Chip-to-label gap -> spacing/content/label-gap -> spacing/10 */
+  --envision-theme-material-swatch-radius: var(--envision-theme-radius-control-small); /* Chip radius -> radius/control/small -> radius/100 -> 4 (prod */
+  --envision-theme-material-swatch-chip-background: var(--envision-theme-color-background-surface-sunken-default); /* Chip placeholder surface (real fill is product data). */
+  --envision-theme-material-swatch-label-color: var(--envision-theme-color-content-secondary-default); /* Label color -> neutral/600. */
+  --envision-theme-material-swatch-chip-size: var(--envision-spacing-1100); /* Chip 64. T3->T1 (no T2 size role) — documented. */
+  --envision-theme-material-swatch-unavailable-opacity: 0.4; /* Unavailable dim. Component-specific direct value (source has */
+  --envision-theme-material-swatch-ring-hover-color: var(--envision-theme-color-ring-hover-default); /* Hover ring colour. */
+  --envision-theme-material-swatch-ring-hover-width: var(--envision-theme-border-width-emphasis-default); /* Hover ring width (2). */
+  --envision-theme-material-swatch-ring-selected-color: var(--envision-theme-color-ring-selected-default); /* Selected ring colour (taupe-600). */
+  --envision-theme-material-swatch-ring-selected-width: var(--envision-theme-border-width-emphasis-default); /* Selected ring width (3.5). */
+  --envision-theme-material-swatch-ring-selected-gap-color: var(--envision-theme-color-background-surface-default); /* Selected inner gap (white). */
+  --envision-theme-material-swatch-ring-selected-gap-width: var(--envision-theme-border-width-emphasis-default); /* Selected gap width (2). */
+  --envision-theme-option-card-ring-rest-default: var(--envision-theme-color-ring-rest-default);
+  --envision-theme-option-card-ring-hover-default: var(--envision-theme-color-ring-hover-default);
+  --envision-theme-option-card-ring-pressed-default: var(--envision-theme-color-ring-pressed-default);
+  --envision-theme-option-card-ring-selected-default: var(--envision-theme-color-ring-selected-default);
+  --envision-theme-option-card-padding: var(--envision-theme-spacing-container-padding-sm); /* Card inset (12). */
+  --envision-theme-option-card-radius: var(--envision-theme-radius-control-default); /* Card radius (6). */
+  --envision-theme-option-card-left-gap: var(--envision-theme-spacing-container-gap); /* Thumb-to-text gap (12). */
+  --envision-theme-option-card-ring-inset: var(--envision-theme-border-width-emphasis-default); /* Inner ring inset over surface (2). */
+  --envision-theme-option-card-ring-width: var(--envision-theme-border-width-ring-tile-default); /* Selection-ring spread (3.5). */
+  --envision-theme-option-card-color-ring-inset: var(--envision-theme-color-background-surface-warm-default); /* Inner inset color = card surface. */
+  --envision-theme-option-card-shadow-hover: var(--envision-theme-shadow-elevation-warm-default); /* Warm elevation on hover/active. */
+  --envision-theme-option-card-thumb-radius: var(--envision-theme-radius-control-small); /* Thumbnail radius (4). */
+  --envision-theme-option-card-thumb-shadow: var(--envision-theme-shadow-thumb-inset-default); /* Thumbnail inner hairline. */
+  --envision-theme-option-card-title-font-size: var(--envision-font-size-300); /* Title (14). */
+  --envision-theme-option-card-title-line-height: var(--envision-line-height-snug); /* Title line-height (1.2). */
+  --envision-theme-option-card-note-gap: var(--envision-theme-spacing-content-hairline-gap); /* Title-to-note gap (2). */
+  --envision-theme-option-card-note-font-size: var(--envision-font-size-200); /* Note (13). */
+  --envision-theme-option-card-note-line-height: var(--envision-line-height-loose); /* Note line-height (1.6). */
+  --envision-theme-option-card-chevron-font-size: var(--envision-font-size-700); /* Chevron glyph (20). */
+  --envision-theme-option-card-chevron-gap: var(--envision-theme-spacing-control-gap); /* Chevron left padding (8). */
+  --envision-theme-badge-promotional-color-background-default: var(--envision-theme-color-background-brand-default);
+  --envision-theme-badge-promotional-color-content-default: var(--envision-theme-color-content-on-brand-default);
+  --envision-theme-badge-neutral-color-background-default: var(--envision-theme-color-background-surface-sunken-default);
+  --envision-theme-badge-neutral-color-content-default: var(--envision-theme-color-content-primary-default);
+  --envision-theme-badge-info-color-background-default: var(--envision-theme-color-background-info-subtle-default);
+  --envision-theme-badge-info-color-content-default: var(--envision-theme-color-content-primary-default);
+  --envision-theme-badge-success-color-background-default: var(--envision-theme-color-background-success-subtle-default);
+  --envision-theme-badge-success-color-content-default: var(--envision-theme-color-content-primary-default);
+  --envision-theme-badge-warning-color-background-default: var(--envision-theme-color-background-warning-subtle-default);
+  --envision-theme-badge-warning-color-content-default: var(--envision-theme-color-content-primary-default);
+  --envision-theme-badge-critical-color-background-default: var(--envision-theme-color-background-error-subtle-default);
+  --envision-theme-badge-critical-color-content-default: var(--envision-theme-color-content-primary-default);
+  --envision-theme-badge-default-border-radius-default: var(--envision-theme-radius-pill-default); /* Pill radius. */
+  --envision-theme-badge-medium-spacing-padding-inline-default: var(--envision-theme-spacing-inset-control-default); /* Inline padding (12). */
+  --envision-theme-badge-medium-spacing-padding-block-default: var(--envision-theme-spacing-control-padding-block); /* Block padding (8). */
+  --envision-theme-badge-medium-spacing-gap-default: var(--envision-theme-spacing-control-gap-tight); /* Icon/label gap (4). */
+  --envision-theme-badge-medium-label-font-size-default: var(--envision-font-size-100); /* Label size (12). */
+  --envision-theme-material-symbol-color-default: var(--envision-theme-color-content-primary-default); /* Default icon color (inherits content ink). */
+  --envision-theme-material-symbol-color-subtle: var(--envision-theme-color-content-secondary-default); /* Secondary/subtle icon. */
+  --envision-theme-material-symbol-color-on-brand: var(--envision-theme-color-content-on-brand-default); /* Icon on brand fill (applied check). */
+  --envision-theme-material-symbol-size-dense: var(--envision-theme-size-icon-dense); /* Dense icon box (16). */
+  --envision-theme-material-symbol-size-default: var(--envision-theme-size-icon-default); /* Default icon box (20). */
+  --envision-theme-material-symbol-size-large: var(--envision-theme-size-icon-large); /* Large icon box (24). */
+}

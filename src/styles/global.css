@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&display=swap');
+/* Design-system tokens (generated from DTCG — Tier 1 -> Tier 2 -> Tier 3). Source of truth. */
+@import './tokens.css';
+
+:root {
+  /* Product aliases now RESOLVE THROUGH the design-system token chain (no raw values). */
+  --ink:       var(--envision-theme-color-content-primary-default);    /* -> neutral/800 #222 */
+  --ink-soft:  var(--envision-theme-color-content-secondary-default);  /* -> neutral/600 #666 */
+  --card-bg:   var(--envision-theme-color-background-surface-warm-default); /* -> neutral/50 */
+  --line:      var(--envision-color-brown-500);          /* T1 raw line (no T2 role — documented) */
+  --hairline:  var(--envision-theme-color-border-default-default);     /* -> neutral/200 */
+  --canvas-bg: var(--envision-theme-color-background-page-default);    /* -> neutral/150 */
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: var(--canvas-bg);
+  color: var(--ink);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button { font-family: inherit; }
+
+::-webkit-scrollbar { width: var(--envision-spacing-250); } /* 10 */
+::-webkit-scrollbar-thumb {
+  background: var(--envision-color-brown-a-25);
+  border-radius: var(--envision-radius-200); /* 8 */
+  border: var(--envision-border-width-200) solid var(--envision-color-neutral-0);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--envision-color-brown-a-40); }

@@ -1,0 +1,95 @@
+.scene-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #f3f0ea; /* matches the canvas clear colour — no flash before first frame */
+}
+
+.scene-canvas canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: none;
+  /* Lift the render's contrast a touch (NeutralToneMapping is intentionally flat). */
+  filter: contrast(1.06);
+}
+
+/* Preloader over the canvas — only visible while the initial assets load; fades out once
+   the real load completes. Backdrop matches the canvas so there's no flash. */
+.scene-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f0ea;
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 320ms ease;
+}
+.scene-loader--visible {
+  opacity: 1;
+  pointer-events: auto; /* block interaction while the scene is still loading */
+}
+.scene-loader__bar {
+  width: 200px;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(34, 34, 34, 0.1);
+  overflow: hidden;
+}
+.scene-loader__fill {
+  height: 100%;
+  width: 100%;
+  border-radius: 2px;
+  background: #29594F;
+  /* Width is scaleX = the REAL byte fraction (set inline). The short transition only smooths the
+     gap between one real byte update and the next — it never advances the bar on its own. */
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 180ms linear;
+}
+
+/* Error state — shown in place of the bar when an essential asset fails to load. */
+.scene-loader__error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  padding: 24px;
+}
+.scene-loader__error-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: #444;
+}
+.scene-loader__error-retry {
+  border: none;
+  background: #29594F;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 9px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.scene-loader__error-retry:hover {
+  background: #1f453d;
+}
+
+.scene-canvas__hint {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 18px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(34, 34, 34, 0.4);
+  pointer-events: none;
+  user-select: none;
+}

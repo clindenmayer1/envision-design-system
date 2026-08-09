@@ -1,0 +1,10 @@
+{
+  "packages": [
+    { "id": "summit", "name": "Summit", "description": "Crisp white shaker with calacatta counters.", "price": "Included", "popular": true, "config": { "cabinetStyle": "beadboard-shaker", "cabinetFinish": "white", "countertop": "calacatta", "backsplashStyle": "matching-stone", "flooring": "natural-oak", "hardwareStyle": "modern-bar-pull", "hardwareFinish": "silver", "faucetStyle": "high-arc-gooseneck", "faucetFinish": "silver", "wallColor": "pure-white" } },
+    { "id": "heritage", "name": "Heritage", "description": "Warm walnut cabinetry with statuario counters.", "price": "+$126/mo", "popular": true, "badge": "Trending", "config": { "cabinetStyle": "raised-panel", "cabinetFinish": "warm-walnut", "countertop": "statuario", "backsplashStyle": "matching-stone", "flooring": "white-oak", "hardwareStyle": "modern-bar-pull", "hardwareFinish": "brushed-brass", "faucetStyle": "high-arc-gooseneck", "faucetFinish": "brass", "wallColor": "white-dove" } },
+    { "id": "monarch", "name": "Monarch", "description": "Hale navy islands with brushed brass.", "price": "+$164/mo", "popular": true, "config": { "cabinetStyle": "raised-panel", "cabinetFinish": "hale-navy", "countertop": "statuario", "backsplashStyle": "matching-stone", "flooring": "white-oak", "hardwareStyle": "modern-bar-pull", "hardwareFinish": "brushed-brass", "faucetStyle": "high-arc-gooseneck", "faucetFinish": "brass", "wallColor": "chantilly-lace" } },
+    { "id": "canvas", "name": "Canvas", "description": "Minimal white on white, matte black accents.", "price": "+$92/mo", "config": { "cabinetStyle": "beadboard-shaker", "cabinetFinish": "white", "countertop": "calacatta", "backsplashStyle": "gloss-white", "flooring": "natural-oak", "hardwareStyle": "modern-bar-pull", "hardwareFinish": "matte-black", "faucetStyle": "high-arc-gooseneck", "faucetFinish": "silver", "wallColor": "pure-white" } }
+  ],
+  "selectedPackageId": "summit",
+  "customized": false
+}

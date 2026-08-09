@@ -1,0 +1,63 @@
+/* Figma spacing: section column gap 16; group internal gap 12; swatch wrap gap 12. */
+.cfg-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cfg-section__title {
+  /* Align text left edge to the card/swatch OUTLINE (which extends 3.5px past the box). */
+  margin: 0 0 0 -3.5px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.cfg-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Extra 4px breathing room between consecutive groups (swatch grid → next group's
+   label), without touching the section-title → first-group spacing. */
+.cfg-group + .cfg-group {
+  margin-top: 4px;
+}
+
+.cfg-group__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cfg-group__label {
+  /* Align text left edge to the card/swatch OUTLINE (which extends 3.5px past the box). */
+  margin: 0 0 0 -3.5px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555555;
+  line-height: 1.2;
+}
+
+.cfg-group__included {
+  /* Align right edge to the swatch grid's outline (extends 3.5px past the box). */
+  margin-right: -3.5px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555555;
+  line-height: 1.2;
+  text-align: right;
+}
+
+.cfg-group__included--upgrade {
+  color: #222222;
+}
+
+.cfg-group__swatches {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}

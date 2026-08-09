@@ -1,0 +1,693 @@
+{
+  "$description": "Envision Design System — TIER 1 PRIMITIVES (definitions / ingredients). Raw values with NO UI meaning. Never reference a semantic or component role here. Every value is evidence-based, extracted from the live envision-app codebase audit. DTCG-format. CSS custom property = --envision-t1-<path>. Do NOT consume these directly in components; consume Tier 2/3 aliases instead.",
+  "envision": {
+    "t1": {
+      "color": {
+        "$type": "color",
+        "green": {
+          "$description": "Brand green ramp. Core brand = 500 (#29594F, the single most-used accent in Envision: active tabs, selected package border, primary CTAs, progress arcs, loader fill). 600/700/800 reconcile the 3 inconsistent product hover-greens (#21493f, #234c43, #1f453d) into one ordered ramp.",
+          "50": {
+            "$value": "#EAF0EE"
+          },
+          "100": {
+            "$value": "#D3E0DC"
+          },
+          "200": {
+            "$value": "#A8C1B9"
+          },
+          "300": {
+            "$value": "#7AA096"
+          },
+          "400": {
+            "$value": "#4E7D71"
+          },
+          "500": {
+            "$value": "#29594F",
+            "$description": "Brand core. Evidence: --primary green across CTAs, tabs, selection, loader."
+          },
+          "600": {
+            "$value": "#234C43",
+            "$description": "Reconciled hover green (was #234c43/#21493f in product)."
+          },
+          "700": {
+            "$value": "#1F453D",
+            "$description": "Reconciled pressed green (was #1f453d in product)."
+          },
+          "800": {
+            "$value": "#163029"
+          },
+          "900": {
+            "$value": "#0E201B"
+          }
+        },
+        "neutral": {
+          "$description": "Warm neutral (ink + surface) ramp. Reconciles real token --ink #222222 (canonical) vs hardcoded fallback #2b2622, and --ink-soft #666666 vs #6c6359. 50/100/150/200 are the warm off-white surface/hairline family observed across cards and chrome.",
+          "0": {
+            "$value": "#FFFFFF",
+            "$description": "Pure white. Surfaces, CTA text, rail/topbar bg."
+          },
+          "50": {
+            "$value": "#FBF8F5",
+            "$description": "Warm card white. --card-bg. OptionCard, swatch-more."
+          },
+          "100": {
+            "$value": "#F3F0EA",
+            "$description": "Warm off-white. Scene canvas bg / Canvas clear color."
+          },
+          "150": {
+            "$value": "#EDEAE4",
+            "$description": "Canvas / app body bg. --canvas-bg."
+          },
+          "200": {
+            "$value": "#E7E3DC",
+            "$description": "Hairline. --hairline. Borders on rail/topbar/menus."
+          },
+          "300": {
+            "$value": "#DCDCD6",
+            "$description": "Muted fill. Avatar bg."
+          },
+          "400": {
+            "$value": "#B3B3AC",
+            "$description": "Disabled / not-started status gray."
+          },
+          "500": {
+            "$value": "#8A8A82",
+            "$description": "Subtle text (inactive tab, eyebrow, muted labels)."
+          },
+          "600": {
+            "$value": "#666666",
+            "$description": "Secondary text. --ink-soft (canonical)."
+          },
+          "700": {
+            "$value": "#555555",
+            "$description": "Strong secondary text (labels, captions)."
+          },
+          "800": {
+            "$value": "#222222",
+            "$description": "Primary ink. --ink (canonical). Titles, prices, body."
+          },
+          "900": {
+            "$value": "#141518",
+            "$description": "Near-black dark surface (studio panel base)."
+          },
+          "1000": {
+            "$value": "#000000",
+            "$description": "True black. Source for scrim/overlay alphas only."
+          }
+        },
+        "taupe": {
+          "$description": "Selection/interaction ring ramp. Envision expresses selection as layered box-shadow rings, not borders. rest->hover->pressed->selected across OptionCard, OptionSwatch, cab-tile, wall-color chip.",
+          "100": {
+            "$value": "#E2E2DD",
+            "$description": "Ring rest."
+          },
+          "300": {
+            "$value": "#ABAB9D",
+            "$description": "Ring hover."
+          },
+          "500": {
+            "$value": "#999988",
+            "$description": "Ring pressed/active."
+          },
+          "600": {
+            "$value": "#998574",
+            "$description": "Ring selected (warm)."
+          }
+        },
+        "brown": {
+          "$description": "Warm line/brown. --line #765D49. In product it appears almost exclusively as rgba(118,93,73, a) at ~9 alphas (borders, dividers, scrollbars, tints). Solid base + alpha ramp tokenized here.",
+          "500": {
+            "$value": "#765D49"
+          },
+          "a-07": {
+            "$value": "#765D4912",
+            "$description": "rgba(118,93,73,0.07) category hover tint."
+          },
+          "a-10": {
+            "$value": "#765D491A",
+            "$description": "0.10 close-button hover."
+          },
+          "a-12": {
+            "$value": "#765D491F",
+            "$description": "0.12 active category tint."
+          },
+          "a-14": {
+            "$value": "#765D4924",
+            "$description": "0.14 dividers/footers."
+          },
+          "a-16": {
+            "$value": "#765D4929",
+            "$description": "0.16 tray/modal card border."
+          },
+          "a-20": {
+            "$value": "#765D4933",
+            "$description": "0.20 search input border."
+          },
+          "a-25": {
+            "$value": "#765D4940",
+            "$description": "0.25 scrollbar thumb."
+          },
+          "a-40": {
+            "$value": "#765D4966",
+            "$description": "0.40 hover ring / active tile hover."
+          }
+        },
+        "success": {
+          "$description": "Success green (roomsel complete #3F9D5A).",
+          "50": {
+            "$value": "#EAF6EE"
+          },
+          "500": {
+            "$value": "#3F9D5A"
+          },
+          "600": {
+            "$value": "#35864C"
+          },
+          "700": {
+            "$value": "#2A6B3D"
+          }
+        },
+        "warning": {
+          "$description": "Warning amber (roomsel in-progress #C99A3A).",
+          "50": {
+            "$value": "#F9F3E6"
+          },
+          "500": {
+            "$value": "#C99A3A"
+          },
+          "600": {
+            "$value": "#A87F2C"
+          },
+          "700": {
+            "$value": "#856322"
+          }
+        },
+        "error": {
+          "$description": "Error/destructive red. NOTE: the current product has NO destructive-red UI; this ramp is added for accessibility and future destructive actions. Documented exception — validate before first production use.",
+          "50": {
+            "$value": "#FBECEA"
+          },
+          "500": {
+            "$value": "#C0392B"
+          },
+          "600": {
+            "$value": "#9E2E22"
+          },
+          "700": {
+            "$value": "#7D241B"
+          }
+        },
+        "accent-orange": {
+          "$description": "Notification-badge orange (#E67E22). Used for the topbar unread badge only.",
+          "500": {
+            "$value": "#E67E22"
+          }
+        },
+        "info": {
+          "$description": "Information blue (studio slider accent #6EA8FE). Also used for future info messaging.",
+          "50": {
+            "$value": "#EAF1FE"
+          },
+          "500": {
+            "$value": "#6EA8FE"
+          },
+          "600": {
+            "$value": "#3E82F0"
+          },
+          "700": {
+            "$value": "#2E63C2"
+          }
+        },
+        "overlay": {
+          "$description": "Scrim / overlay alphas derived from black and white. For image scrims (Overview hero), dark panels, disabled dimming.",
+          "black-04": {
+            "$value": "#0000000A",
+            "$description": "rgba(0,0,0,0.04)"
+          },
+          "black-06": {
+            "$value": "#0000000F",
+            "$description": "0.06 card border/shadow"
+          },
+          "black-08": {
+            "$value": "#00000014",
+            "$description": "0.08 hover shadow"
+          },
+          "black-07": {
+            "$value": "#00000012",
+            "$description": "0.07 swatch border"
+          },
+          "black-09": {
+            "$value": "#00000017",
+            "$description": "0.09 card border"
+          },
+          "black-14": {
+            "$value": "#00000024",
+            "$description": "0.14 menu shadow"
+          },
+          "black-18": {
+            "$value": "#0000002E",
+            "$description": "0.18 tray shadow / check shadow"
+          },
+          "black-25": {
+            "$value": "#00000040",
+            "$description": "0.25 dark overlay shadow"
+          },
+          "black-35": {
+            "$value": "#00000059",
+            "$description": "0.35 pose/studio shadow"
+          },
+          "black-45": {
+            "$value": "#00000073",
+            "$description": "0.45 hero scrim mid"
+          },
+          "black-70": {
+            "$value": "#000000B3",
+            "$description": "0.70 hero scrim base"
+          },
+          "white-08": {
+            "$value": "#FFFFFF14",
+            "$description": "0.08 dark-surface control"
+          },
+          "white-12": {
+            "$value": "#FFFFFF1F",
+            "$description": "0.12 dark-surface divider"
+          },
+          "white-18": {
+            "$value": "#FFFFFF2E",
+            "$description": "0.18 dark-surface input border"
+          }
+        }
+      },
+      "spacing": {
+        "$type": "dimension",
+        "$description": "Base spacing/size scale on a 4pt grid. Named on the 100-scale (100=4px). Includes evidence-based off-grid steps (150=6, 450=18, 550=22) observed in the product. -3.5px optical outline offset is a DOCUMENTED EXCEPTION, not tokenized.",
+        "0": {
+          "$value": "0px"
+        },
+        "25": {
+          "$value": "1px"
+        },
+        "50": {
+          "$value": "2px"
+        },
+        "100": {
+          "$value": "4px"
+        },
+        "150": {
+          "$value": "6px"
+        },
+        "200": {
+          "$value": "8px"
+        },
+        "250": {
+          "$value": "10px",
+          "$description": "Off-grid. Field vertical padding."
+        },
+        "300": {
+          "$value": "12px"
+        },
+        "350": {
+          "$value": "14px",
+          "$description": "Off-grid. Field inline padding (product search input)."
+        },
+        "400": {
+          "$value": "16px"
+        },
+        "450": {
+          "$value": "18px",
+          "$description": "Off-grid. Modal/note padding."
+        },
+        "500": {
+          "$value": "20px"
+        },
+        "550": {
+          "$value": "22px",
+          "$description": "Off-grid. Tray/modal head padding."
+        },
+        "600": {
+          "$value": "24px"
+        },
+        "700": {
+          "$value": "28px"
+        },
+        "800": {
+          "$value": "32px"
+        },
+        "900": {
+          "$value": "40px"
+        },
+        "1000": {
+          "$value": "48px"
+        },
+        "1100": {
+          "$value": "64px"
+        }
+      },
+      "radius": {
+        "$type": "dimension",
+        "$description": "Radius scale. 0/2/4/6/8/10/12/14/16 + pill + full observed in product.",
+        "0": {
+          "$value": "0px"
+        },
+        "50": {
+          "$value": "2px"
+        },
+        "75": {
+          "$value": "3px",
+          "$description": "Off-grid. Product package-swatch radius."
+        },
+        "100": {
+          "$value": "4px"
+        },
+        "150": {
+          "$value": "6px"
+        },
+        "200": {
+          "$value": "8px"
+        },
+        "250": {
+          "$value": "10px"
+        },
+        "300": {
+          "$value": "12px"
+        },
+        "350": {
+          "$value": "14px"
+        },
+        "400": {
+          "$value": "16px"
+        },
+        "pill": {
+          "$value": "999px"
+        },
+        "full": {
+          "$value": "999px",
+          "$description": "Circular. Avatars, badges, checks. 999px fully rounds any control bound to a square frame (in CSS, 50% also works for exact circles)."
+        }
+      },
+      "border-width": {
+        "$type": "dimension",
+        "0": {
+          "$value": "0px"
+        },
+        "100": {
+          "$value": "1px",
+          "$description": "Default hairline."
+        },
+        "150": {
+          "$value": "1.5px",
+          "$description": "Thin ring — checkbox/radio/swatch selection rings."
+        },
+        "200": {
+          "$value": "2px",
+          "$description": "Emphasis / focus ring / selected."
+        },
+        "350": {
+          "$value": "3.5px",
+          "$description": "Card/tile selection-ring spread (option card)."
+        }
+      },
+      "shadow": {
+        "$type": "shadow",
+        "$description": "Shadow/elevation primitives (a documented Tier-1 category in the source diagram). Stored as CSS box-shadow strings for the code pipeline.",
+        "card-rest": {
+          "$value": "0 4px 14px rgba(0,0,0,0.04)"
+        },
+        "card-hover": {
+          "$value": "0 6px 20px rgba(0,0,0,0.08)"
+        },
+        "card-selected": {
+          "$value": "0 6px 20px rgba(41,89,79,0.14)"
+        },
+        "badge-check": {
+          "$value": "0 2px 6px rgba(0,0,0,0.18)"
+        },
+        "thumb-inset": {
+          "$value": "inset 0 0 0 1px rgba(0,0,0,0.06)",
+          "$description": "Thumbnail inner hairline."
+        },
+        "option-hover": {
+          "$value": "0 2px 10px rgba(118,93,73,0.12)",
+          "$description": "Warm elevation on option-card hover/active."
+        }
+      },
+      "font-family": {
+        "$type": "fontFamily",
+        "sans": {
+          "$value": "Inter",
+          "$description": "Primary UI font. NOTE: product does not self-host Inter (system fallback risk) — handoff should add @font-face."
+        },
+        "display": {
+          "$value": "Playfair Display",
+          "$description": "Serif display. Overview hero name only."
+        },
+        "serif": {
+          "$value": "Georgia",
+          "$description": "Wordmark serif."
+        },
+        "mono": {
+          "$value": "ui-monospace",
+          "$description": "Debug/technical readouts."
+        }
+      },
+      "font-weight": {
+        "$type": "fontWeight",
+        "regular": {
+          "$value": 400
+        },
+        "medium": {
+          "$value": 500
+        },
+        "semibold": {
+          "$value": 600
+        },
+        "bold": {
+          "$value": 700
+        }
+      },
+      "font-size": {
+        "$type": "dimension",
+        "$description": "Rationalized type sizes (px). Product used many one-offs (9,10,10.5,11,11.5,12,13,14,15,16,18,19,20,22,40,56); consolidated to this scale. 10.5/11.5/19 retired in favor of nearest step.",
+        "50": {
+          "$value": "11px"
+        },
+        "100": {
+          "$value": "12px"
+        },
+        "200": {
+          "$value": "13px"
+        },
+        "300": {
+          "$value": "14px"
+        },
+        "400": {
+          "$value": "15px"
+        },
+        "500": {
+          "$value": "16px",
+          "$description": "Body baseline."
+        },
+        "600": {
+          "$value": "18px"
+        },
+        "650": {
+          "$value": "19px",
+          "$description": "Package tab title."
+        },
+        "700": {
+          "$value": "20px"
+        },
+        "800": {
+          "$value": "22px"
+        },
+        "900": {
+          "$value": "24px"
+        },
+        "1000": {
+          "$value": "28px"
+        },
+        "1100": {
+          "$value": "32px"
+        },
+        "1200": {
+          "$value": "40px"
+        },
+        "1300": {
+          "$value": "48px"
+        },
+        "1400": {
+          "$value": "56px"
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$description": "Unitless line-height multipliers.",
+        "tight": {
+          "$value": 1.1
+        },
+        "snug": {
+          "$value": 1.2
+        },
+        "130": {
+          "$value": 1.3,
+          "$description": "Package title."
+        },
+        "normal": {
+          "$value": 1.35
+        },
+        "140": {
+          "$value": 1.4,
+          "$description": "Note body."
+        },
+        "145": {
+          "$value": 1.45,
+          "$description": "Card description / subtitle."
+        },
+        "relaxed": {
+          "$value": 1.5
+        },
+        "loose": {
+          "$value": 1.6
+        }
+      },
+      "letter-spacing": {
+        "$type": "dimension",
+        "tightest": {
+          "$value": "-0.456px"
+        },
+        "none": {
+          "$value": "0px"
+        },
+        "wide": {
+          "$value": "0.6px",
+          "$description": "Eyebrow."
+        },
+        "wider": {
+          "$value": "2px",
+          "$description": "Wordmark."
+        },
+        "widest": {
+          "$value": "3px",
+          "$description": "Wordmark subtitle."
+        }
+      },
+      "duration": {
+        "$type": "duration",
+        "instant": {
+          "$value": "150ms",
+          "$description": "Micro-interaction (color/box-shadow). Product uniform 0.15s."
+        },
+        "fast": {
+          "$value": "180ms",
+          "$description": "Tray exit / loader fill."
+        },
+        "base": {
+          "$value": "200ms",
+          "$description": "Tile stagger / open."
+        },
+        "image": {
+          "$value": "250ms",
+          "$description": "Image opacity fade."
+        },
+        "slow": {
+          "$value": "260ms",
+          "$description": "Tray container open."
+        },
+        "shimmer": {
+          "$value": "1200ms",
+          "$description": "Loading shimmer loop."
+        },
+        "slower": {
+          "$value": "340ms",
+          "$description": "Carousel slide / loader fade."
+        }
+      },
+      "easing": {
+        "$type": "cubicBezier",
+        "standard": {
+          "$value": [
+            0.2,
+            0.8,
+            0.2,
+            1
+          ],
+          "$description": "Signature Envision ease (enter/move)."
+        },
+        "exit": {
+          "$value": [
+            0.4,
+            0,
+            1,
+            1
+          ],
+          "$description": "Accelerate-out (dismiss)."
+        },
+        "linear": {
+          "$value": [
+            0,
+            0,
+            1,
+            1
+          ]
+        }
+      },
+      "breakpoint": {
+        "$type": "dimension",
+        "$description": "Evidence-based breakpoints. Only 1024 and 1080 exist in product CSS; mobile/wide added for the responsive system.",
+        "mobile": {
+          "$value": "390px",
+          "$description": "Reference mobile width."
+        },
+        "tablet": {
+          "$value": "1024px",
+          "$description": "Real product breakpoint: row->column, rail full-width."
+        },
+        "dashboard": {
+          "$value": "1080px",
+          "$description": "Real product breakpoint: dashboard cards -> 1 column."
+        },
+        "desktop": {
+          "$value": "1280px"
+        },
+        "wide": {
+          "$value": "1440px"
+        }
+      },
+      "z-index": {
+        "$type": "number",
+        "$description": "Layer/stacking values from Layout audit.",
+        "base": {
+          "$value": 0
+        },
+        "overlay-page": {
+          "$value": 10,
+          "$description": "Overview opaque overlay."
+        },
+        "debug": {
+          "$value": 20
+        },
+        "room-nav": {
+          "$value": 25
+        },
+        "tray": {
+          "$value": 30
+        },
+        "menu": {
+          "$value": 30
+        },
+        "modal": {
+          "$value": 40
+        },
+        "pose": {
+          "$value": 1000
+        },
+        "studio": {
+          "$value": 9999
+        },
+        "toggle": {
+          "$value": 10000
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "$schema": "envision-state-model@0.1",
+  "meta": { "note": "Separated state categories with ownership, compatibility, entry/exit, visual response, a11y announcement, story. Evidence from envision-app audit.", "lastReviewed": "2026-07-16" },
+  "categories": {
+    "visual-interaction": {
+      "states": {
+        "rest":         { "owner": "any interactive", "visual": "base tokens", "aria": "-", "story": "Default" },
+        "hover":        { "owner": "pointer only", "entry": "pointerenter", "exit": "pointerleave", "visual": "hover tokens / ring hover", "aria": "-", "story": "Hover", "note": "not applicable to touch; documented for pointer" },
+        "focus-visible":{ "owner": "any focusable", "entry": "keyboard focus", "visual": "2px brand focus ring (t2.color.border.focus), not clipped/obscured", "aria": "-", "story": "Focus" },
+        "pressed":      { "owner": "buttons/cards", "entry": "pointerdown/Space", "visual": "pressed tokens / ring pressed", "story": "Pressed" },
+        "disabled":     { "owner": "any", "visual": "disabled tokens, reduced affordance", "aria": "aria-disabled/disabled, removed from tab order per rules", "story": "Disabled" }
+      },
+      "mutuallyExclusive": ["rest", "hover", "pressed"],
+      "compatible": ["focus-visible + hover", "disabled excludes hover/pressed"]
+    },
+    "product-selection": {
+      "states": {
+        "unselected": { "owner": "MaterialSwatch/OptionCard/PackageCard", "visual": "ring rest", "aria": "aria-pressed=false" },
+        "previewed":  { "owner": "ColorPickerModal/3D", "entry": "click swatch -> onPreview", "exit": "commit or cancel(revert)", "visual": "live 3D preview, not committed", "aria": "announce preview" },
+        "selected":   { "owner": "same", "entry": "commit/onSelect", "visual": "warm Ring/Selected + check (NOT color-only)", "aria": "aria-pressed=true / aria-current" },
+        "applied":    { "owner": "config/home", "entry": "BottomActionTray apply-to-home", "visual": "confirmed on model", "aria": "announce applied" },
+        "replaced":   { "owner": "config", "entry": "new selection supersedes", "visual": "previous cleared" }
+      },
+      "note": "Envision: exactly one tray open at a time (openTrayKey). Package default = summit. customized = config diff vs pkg.config."
+    },
+    "persistence": {
+      "states": {
+        "unsaved":     { "owner": "RightRail/SelectionSummary", "visual": "save affordance active", "aria": "-" },
+        "saving":      { "entry": "save click", "visual": "spinner", "aria": "aria-busy, 'Saving'" },
+        "saved":       { "entry": "save success", "visual": "check / '✓ Saved' (transient ~1300ms in product)", "aria": "polite 'Saved'" },
+        "save-failed": { "entry": "save error", "visual": "error affordance + retry", "aria": "assertive error" }
+      }
+    },
+    "async": {
+      "states": {
+        "idle":               { "owner": "any data region" },
+        "initial-loading":    { "owner": "ThreeDViewportShell/RightRail/cards", "visual": "byte-progress bar / skeleton / shimmer", "aria": "aria-busy + 'Loading'", "note": "3D: real bytes, cap 99% until 3 frames ready; GRACE 180ms before loader; FADE 340ms; WATCHDOG 20s" },
+        "incremental-loading":{ "visual": "shimmer on incoming items" },
+        "recalculating":      { "owner": "price", "entry": "selection change", "visual": "price-pending", "aria": "polite 'Recalculating price'" },
+        "success":            { "visual": "content" },
+        "empty":              { "owner": "lists/search", "visual": "empty-state message", "aria": "-", "example": "RightRail no options" },
+        "error":              { "owner": "any", "visual": "error state + retry", "aria": "assertive", "example": "3D: 'We couldn't load the 3D model.' + Try again (non-fading)" },
+        "retry":              { "entry": "retry click", "visual": "back to loading" }
+      },
+      "note": "no-results is an empty sub-state for search (ColorPickerModal 'No colors match {query}')."
+    },
+    "availability": {
+      "states": {
+        "available":   { "visual": "normal" },
+        "unavailable": { "owner": "MaterialSwatch/option", "visual": "dim 0.4 + non-color cue", "aria": "aria-disabled + reason" },
+        "locked":      { "visual": "lock icon", "aria": "reason" },
+        "coming-later":{ "visual": "badge", "aria": "reason" },
+        "removed":     { "visual": "hidden/deprecated" }
+      }
+    },
+    "validation": {
+      "states": {
+        "neutral":  { "owner": "Field" },
+        "required": { "visual": "asterisk before label", "aria": "aria-required" },
+        "invalid":  { "visual": "error border (t3.input.error) + error text", "aria": "aria-invalid + aria-describedby" },
+        "valid":    { "visual": "optional success cue" },
+        "warning":  { "visual": "warning treatment" }
+      }
+    }
+  },
+  "globalRules": [
+    "Selection, error, status, progress, save, availability, applied — NEVER communicated by color alone.",
+    "Focus ring always visible, never clipped or obscured.",
+    "One RightRail tray open at a time.",
+    "3D controls disabled until model ready."
+  ]
+}

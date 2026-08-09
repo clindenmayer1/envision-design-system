@@ -1,0 +1,45 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Foundations/Spacing & Radius" />
+
+export const Space = ({ token, px }) => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '4px 0' }}>
+    <code style={{ fontSize: 12, color: '#666', width: 180, flex: 'none' }}>{token}</code>
+    <div style={{ height: 16, width: `var(${token})`, background: '#29594f', borderRadius: 2 }} />
+    <span style={{ fontSize: 12, color: '#666' }}>{px}px</span>
+  </div>
+);
+
+export const Radius = ({ token, px }) => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '6px 0' }}>
+    <code style={{ fontSize: 12, color: '#666', width: 220, flex: 'none' }}>{token}</code>
+    <div style={{ width: 64, height: 44, background: '#edeae4', border: '2px solid #29594f', borderRadius: `var(${token})` }} />
+    <span style={{ fontSize: 12, color: '#666' }}>{px}</span>
+  </div>
+);
+
+# Spacing & Radius
+
+## Spacing — 4pt grid (`--envision-t1-spacing-*`)
+Layout gaps and control padding come from the spacing scale. Components bind semantic spacing roles
+(`--envision-t2-spacing-control-*`, `--envision-t2-spacing-container-*`) that resolve to these.
+
+<Space token="--envision-t1-spacing-4" px="4" />
+<Space token="--envision-t1-spacing-8" px="8" />
+<Space token="--envision-t1-spacing-12" px="12" />
+<Space token="--envision-t1-spacing-14" px="14" />
+<Space token="--envision-t1-spacing-16" px="16" />
+<Space token="--envision-t1-spacing-20" px="20" />
+<Space token="--envision-t1-spacing-24" px="24" />
+<Space token="--envision-t1-spacing-32" px="32" />
+
+## Radius (`--envision-t2-border-radius-*`)
+Radius is chosen per role — controls, cards, panels differ.
+
+<Radius token="--envision-t2-border-radius-control-sm" px="4 — control-sm (swatch, thumb)" />
+<Radius token="--envision-t2-border-radius-control" px="6 — control (input, option-card)" />
+<Radius token="--envision-t2-border-radius-container-sm" px="8 — container-sm (secondary button)" />
+<Radius token="--envision-t2-border-radius-container-md" px="10 — container-md (primary button)" />
+<Radius token="--envision-t2-border-radius-card" px="12 — card" />
+<Radius token="--envision-t2-border-radius-panel" px="16 — panel" />
+<Radius token="--envision-t2-border-radius-pill" px="pill — badge" />

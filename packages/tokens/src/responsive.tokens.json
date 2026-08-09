@@ -1,0 +1,145 @@
+{
+  "envision": {
+    "t2": {
+      "font-size": {
+        "display": {
+          "$type": "dimension",
+          "$value": "{envision.t1.font-size.56}",
+          "$extensions": {
+            "envision.responsive": {
+              "mobile": "{envision.t1.font-size.40}"
+            }
+          }
+        },
+        "h1": {
+          "$type": "dimension",
+          "$value": "{envision.t1.font-size.40}",
+          "$extensions": {
+            "envision.responsive": {
+              "mobile": "{envision.t1.font-size.32}"
+            }
+          }
+        },
+        "h2": {
+          "$type": "dimension",
+          "$value": "{envision.t1.font-size.32}",
+          "$extensions": {
+            "envision.responsive": {
+              "mobile": "{envision.t1.font-size.28}"
+            }
+          }
+        },
+        "h3": {
+          "$type": "dimension",
+          "$value": "{envision.t1.font-size.24}",
+          "$extensions": {
+            "envision.responsive": {
+              "mobile": "{envision.t1.font-size.22}"
+            }
+          }
+        },
+        "h4": {
+          "$type": "dimension",
+          "$value": "{envision.t1.font-size.20}",
+          "$extensions": {
+            "envision.responsive": {
+              "mobile": "{envision.t1.font-size.18}"
+            }
+          }
+        },
+        "h5": {
+          "$type": "dimension",
+          "$value": "{envision.t1.font-size.18}",
+          "$extensions": {
+            "envision.responsive": {
+              "mobile": "{envision.t1.font-size.16}"
+            }
+          }
+        },
+        "body-lg": {
+          "$type": "dimension",
+          "$value": "{envision.t1.font-size.16}",
+          "$extensions": {
+            "envision.responsive": {
+              "mobile": "{envision.t1.font-size.16}"
+            }
+          }
+        },
+        "body": {
+          "$type": "dimension",
+          "$value": "{envision.t1.font-size.15}",
+          "$extensions": {
+            "envision.responsive": {
+              "mobile": "{envision.t1.font-size.15}"
+            }
+          }
+        },
+        "body-sm": {
+          "$type": "dimension",
+          "$value": "{envision.t1.font-size.14}",
+          "$extensions": {
+            "envision.responsive": {
+              "mobile": "{envision.t1.font-size.14}"
+            }
+          }
+        },
+        "caption": {
+          "$type": "dimension",
+          "$value": "{envision.t1.font-size.12}",
+          "$extensions": {
+            "envision.responsive": {
+              "mobile": "{envision.t1.font-size.12}"
+            }
+          }
+        }
+      },
+      "layout": {
+        "right-rail-width": {
+          "$type": "dimension",
+          "$value": 392,
+          "$extensions": {
+            "envision.responsive": {
+              "mobile": 390
+            }
+          }
+        },
+        "top-bar-height": {
+          "$type": "dimension",
+          "$value": 64,
+          "$extensions": {
+            "envision.responsive": {
+              "mobile": 56
+            }
+          }
+        },
+        "page-gutter": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.40}",
+          "$extensions": {
+            "envision.responsive": {
+              "mobile": "{envision.t1.spacing.20}"
+            }
+          }
+        },
+        "card-grid-columns": {
+          "$type": "number",
+          "$value": 3,
+          "$extensions": {
+            "envision.responsive": {
+              "mobile": 1
+            }
+          }
+        },
+        "swatch-grid-columns": {
+          "$type": "number",
+          "$value": 6,
+          "$extensions": {
+            "envision.responsive": {
+              "mobile": 4
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "@envision/tokens",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Envision design tokens: Figma variables → DTCG → Style Dictionary → CSS custom properties (with the primitive→semantic→component alias chain + responsive @media overrides) and typed TS/JS exports.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/tokens.d.ts",
+      "import": "./dist/tokens.js"
+    },
+    "./css": "./dist/tokens.css",
+    "./css/responsive": "./dist/tokens.responsive.css",
+    "./css/primitives": "./dist/primitives.css",
+    "./css/semantic": "./dist/semantic.css",
+    "./css/components": "./dist/components.css"
+  },
+  "files": ["dist", "src", "lib", "sd.build.mjs", "TOKEN-PIPELINE.md"],
+  "scripts": {
+    "build": "node src/build-dtcg.mjs && node sd.build.mjs",
+    "test": "node test/tokens.test.mjs",
+    "verify": "npm run build && npm run test"
+  },
+  "devDependencies": {
+    "style-dictionary": "^4.4.0"
+  }
+}

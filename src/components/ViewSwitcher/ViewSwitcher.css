@@ -1,0 +1,47 @@
+/* One white rounded container: "View" label + numbered segments, active one highlighted. */
+.viewswitch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  background: #fff;
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.viewswitch__label {
+  padding: 0 6px 0 4px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+.viewswitch__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #6b6f6d;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.viewswitch__num:hover {
+  background: #f4f1ec;
+}
+
+.viewswitch__num--active,
+.viewswitch__num--active:hover {
+  background: #ece7df;
+  color: var(--ink);
+  font-weight: 600;
+}

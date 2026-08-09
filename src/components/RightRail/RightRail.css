@@ -1,0 +1,83 @@
+/* Figma: rail 416 wide, white. Tabs fixed at top; content scrolls beneath. */
+.rail {
+  width: 392px;
+  flex: 0 0 392px;
+  height: 100%;
+  background: #fff;
+  border-left: 1px solid var(--hairline);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Two tabs pinned at the top of the rail. */
+.rail__tabs {
+  flex: 0 0 auto;
+  display: flex;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--hairline);
+}
+.rail__tab {
+  position: relative;
+  flex: 1 1 0;
+  padding: 16px 0 14px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  color: #8a8a82;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+.rail__tab:hover {
+  color: var(--ink);
+}
+.rail__tab--active {
+  color: var(--ink);
+}
+.rail__tab--active::after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: -1px;
+  height: 2px;
+  border-radius: 1px;
+  background: #29594F;
+}
+
+.rail__scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Thin scrollbar that only shows while scrolling/hovering (thumb transparent until then).
+     The 8px it reserves is absorbed by the content's reduced right padding below, so the
+     visible gutter stays 32px on both sides in both tabs. */
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+.rail__scroll:hover,
+.rail__scroll:focus-within { scrollbar-color: rgba(118, 93, 73, 0.3) transparent; }
+.rail__scroll::-webkit-scrollbar { width: 8px; }
+.rail__scroll::-webkit-scrollbar-track { background: transparent; }
+.rail__scroll::-webkit-scrollbar-thumb { background: transparent; border-radius: 4px; }
+.rail__scroll:hover::-webkit-scrollbar-thumb,
+.rail__scroll:active::-webkit-scrollbar-thumb { background: rgba(118, 93, 73, 0.3); }
+
+/* Customize tab — equal 32px gutters; the thin scrollbar overlays the right padding. */
+.rail__customize {
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+@media (max-width: 1024px) {
+  .rail {
+    width: 100%;
+    flex: 1 1 auto;
+    border-left: none;
+    border-top: 1px solid var(--hairline);
+  }
+}

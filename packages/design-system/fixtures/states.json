@@ -1,0 +1,33 @@
+{
+  "$note": "Deterministic state fixtures for Storybook stories. Mock the 3D engine + APIs at the Storybook boundary; page stories must not hit production services.",
+  "loading": {
+    "threeD": { "state": "initial-loading", "percent": 42, "cached": false, "graceElapsed": true },
+    "rightRail": { "state": "loading", "skeletonRows": 4 },
+    "packageCard": { "imgState": "loading" },
+    "price": { "state": "recalculating" }
+  },
+  "empty": {
+    "rightRailSection": { "options": [], "message": "No options available for this selection." },
+    "savedDesigns": { "items": [], "message": "No saved designs yet." }
+  },
+  "noResults": {
+    "colorPicker": { "query": "zzzz", "total": 0, "message": "No colors match \"zzzz\"" }
+  },
+  "error": {
+    "threeD": { "state": "model-load-failure", "title": "We couldn't load the 3D model.", "action": "Try again", "fading": false },
+    "packageCard": { "imgState": "error", "message": "Preview coming soon" },
+    "save": { "state": "save-failed", "message": "Couldn't save. Retry." }
+  },
+  "maxContent": {
+    "packageCard": { "name": "The Grand Heritage Estate Signature Collection", "description": "Warm smoked-walnut cabinetry with statuario maximus counters, herringbone white-oak floors, brushed-brass hardware and a full-height matching-stone backsplash.", "materialCount": 6 },
+    "optionCard": { "title": "Thorsen Glass Uppers with Beadboard Lowers", "note": "Panel-ready appliance fronts · +$1,650" }
+  },
+  "pricing": {
+    "included": { "amount": 0, "label": "Included" },
+    "upcharge": { "amount": 1650, "label": "+$1,650" },
+    "monthly": { "amount": 126, "label": "+$126/mo" },
+    "pending": { "state": "pending", "label": "Calculating…" },
+    "total": { "upgradeTotal": 180, "label": "+$180/mo" },
+    "allIncluded": { "upgradeTotal": 0, "label": "All selections included" }
+  }
+}

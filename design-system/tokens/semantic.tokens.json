@@ -1,0 +1,804 @@
+{
+  "$description": "Envision Design System — TIER 2 SEMANTIC (roles). Maps Tier 1 primitives + Tier 2 brand to reusable UI meaning. Anatomy: envision/t2/{category}/{property}/{variant}/{state}. Trailing /default state omitted only where it has no meaning. Components MUST consume these (or Tier 3), never raw Tier 1. CSS prefix: --envision-t2-<path>. Split into two Figma collections: 'T2 · Semantic Color' (color group) and 'T2 · Semantic Layout' (spacing/radius/border/elevation/motion/z).",
+  "envision": {
+    "t2": {
+      "color": {
+        "$type": "color",
+        "content": {
+          "$description": "Text and icon colors. Split into text/icon only if icon must diverge; start unified.",
+          "primary": {
+            "default": {
+              "$value": "{envision.t1.color.neutral.800}",
+              "$description": "Primary ink. Titles, prices, body."
+            }
+          },
+          "secondary": {
+            "default": {
+              "$value": "{envision.t1.color.neutral.600}",
+              "$description": "Secondary text."
+            }
+          },
+          "tertiary": {
+            "default": {
+              "$value": "{envision.t1.color.neutral.700}",
+              "$description": "Strong labels/captions."
+            }
+          },
+          "subtle": {
+            "default": {
+              "$value": "{envision.t1.color.neutral.500}",
+              "$description": "Muted eyebrows, inactive tabs, metadata."
+            }
+          },
+          "placeholder": {
+            "default": {
+              "$value": "{envision.t1.color.neutral.400}",
+              "$description": "Input placeholder."
+            }
+          },
+          "brand": {
+            "default": {
+              "$value": "{envision.t2.brand.color.primary.500}",
+              "$description": "Link/brand text."
+            },
+            "hover": {
+              "$value": "{envision.t2.brand.color.primary.600}"
+            }
+          },
+          "on-brand": {
+            "default": {
+              "$value": "{envision.t2.brand.color.on-primary.default}",
+              "$description": "Text/icon on brand surfaces."
+            }
+          },
+          "disabled": {
+            "default": {
+              "$value": "{envision.t1.color.neutral.400}"
+            }
+          },
+          "error": {
+            "default": {
+              "$value": "{envision.t1.color.error.500}"
+            }
+          },
+          "success": {
+            "default": {
+              "$value": "{envision.t1.color.success.500}"
+            }
+          },
+          "warning": {
+            "default": {
+              "$value": "{envision.t1.color.warning.600}"
+            }
+          },
+          "info": {
+            "default": {
+              "$value": "{envision.t1.color.info.600}"
+            }
+          }
+        },
+        "background": {
+          "$description": "Surface fills.",
+          "page": {
+            "default": {
+              "$value": "{envision.t1.color.neutral.150}",
+              "$description": "App body / canvas backdrop."
+            }
+          },
+          "page-raised": {
+            "default": {
+              "$value": "#F4F3EF",
+              "$description": "Dashboard page bg (documented exception: not on the neutral ramp; a lighter canvas). Candidate to fold into neutral.125."
+            }
+          },
+          "surface": {
+            "default": {
+              "$value": "{envision.t1.color.neutral.0}",
+              "$description": "Card/panel/rail/topbar surface."
+            }
+          },
+          "surface-warm": {
+            "default": {
+              "$value": "{envision.t1.color.neutral.50}",
+              "$description": "Warm card (OptionCard)."
+            }
+          },
+          "surface-sunken": {
+            "default": {
+              "$value": "{envision.t1.color.neutral.100}",
+              "$description": "Image wells / scene bg."
+            }
+          },
+          "brand": {
+            "default": {
+              "$value": "{envision.t2.brand.color.primary.500}"
+            },
+            "hover": {
+              "$value": "{envision.t2.brand.color.primary.600}"
+            },
+            "pressed": {
+              "$value": "{envision.t2.brand.color.primary.700}"
+            }
+          },
+          "brand-subtle": {
+            "default": {
+              "$value": "{envision.t2.brand.color.primary.50}",
+              "$description": "Tinted selected row/hover."
+            }
+          },
+          "disabled": {
+            "default": {
+              "$value": "{envision.t1.color.neutral.300}"
+            }
+          },
+          "success-subtle": {
+            "default": {
+              "$value": "{envision.t1.color.success.50}"
+            }
+          },
+          "warning-subtle": {
+            "default": {
+              "$value": "{envision.t1.color.warning.50}"
+            }
+          },
+          "error-subtle": {
+            "default": {
+              "$value": "{envision.t1.color.error.50}"
+            }
+          },
+          "info-subtle": {
+            "default": {
+              "$value": "{envision.t1.color.info.50}"
+            }
+          },
+          "accent": {
+            "default": {
+              "$value": "{envision.t2.brand.color.accent.500}",
+              "$description": "Notification badge."
+            }
+          },
+          "overlay": {
+            "default": {
+              "$value": "{envision.t1.color.overlay.black-45}",
+              "$description": "Modal backdrop scrim."
+            }
+          },
+          "scrim-strong": {
+            "default": {
+              "$value": "{envision.t1.color.overlay.black-70}",
+              "$description": "Image scrim base (hero)."
+            }
+          },
+          "dark": {
+            "default": {
+              "$value": "{envision.t1.color.neutral.900}",
+              "$description": "Dark control surface (studio/pose)."
+            }
+          }
+        },
+        "border": {
+          "$description": "Border and outline colors.",
+          "default": {
+            "default": {
+              "$value": "{envision.t1.color.neutral.200}",
+              "$description": "Hairline. Cards, inputs, dividers."
+            }
+          },
+          "strong": {
+            "default": {
+              "$value": "{envision.t1.color.brown.a-16}",
+              "$description": "Tray/modal card border."
+            }
+          },
+          "brand": {
+            "default": {
+              "$value": "{envision.t2.brand.color.primary.500}"
+            }
+          },
+          "focus": {
+            "default": {
+              "$value": "{envision.t2.brand.color.primary.500}",
+              "$description": "Focus ring color (2px). See ring/selected for selection."
+            }
+          },
+          "selected": {
+            "default": {
+              "$value": "{envision.t1.color.taupe.600}",
+              "$description": "Selected item ring (warm)."
+            }
+          },
+          "disabled": {
+            "default": {
+              "$value": "{envision.t1.color.neutral.300}"
+            }
+          },
+          "error": {
+            "default": {
+              "$value": "{envision.t1.color.error.500}"
+            }
+          },
+          "success": {
+            "default": {
+              "$value": "{envision.t1.color.success.500}"
+            }
+          },
+          "container-subtle": {
+            "default": {
+              "$value": "{envision.t1.color.overlay.black-09}",
+              "$description": "Card container border (0.09 black)."
+            }
+          },
+          "swatch": {
+            "default": {
+              "$value": "{envision.t1.color.overlay.black-07}",
+              "$description": "Swatch preview border (0.07 black)."
+            }
+          }
+        },
+        "ring": {
+          "$description": "Interaction/selection ring ramp (box-shadow rings). Applies to OptionCard, OptionSwatch, cab-tile, wall chip.",
+          "rest": {
+            "default": {
+              "$value": "{envision.t1.color.taupe.100}"
+            }
+          },
+          "hover": {
+            "default": {
+              "$value": "{envision.t1.color.taupe.300}"
+            }
+          },
+          "pressed": {
+            "default": {
+              "$value": "{envision.t1.color.taupe.500}"
+            }
+          },
+          "selected": {
+            "default": {
+              "$value": "{envision.t1.color.taupe.600}"
+            }
+          },
+          "hover-warm": {
+            "default": {
+              "$value": "{envision.t1.color.brown.a-40}",
+              "$description": "Warm 40% hover ring (swatch/tile)."
+            }
+          }
+        },
+        "status": {
+          "$description": "Status foreground colors used as non-color-only indicators (paired with icon/text).",
+          "complete": {
+            "default": {
+              "$value": "{envision.t1.color.success.500}"
+            }
+          },
+          "in-progress": {
+            "default": {
+              "$value": "{envision.t1.color.warning.500}"
+            }
+          },
+          "not-started": {
+            "default": {
+              "$value": "{envision.t1.color.neutral.400}"
+            }
+          }
+        }
+      },
+      "shadow": {
+        "$type": "shadow",
+        "$description": "Semantic elevation (box-shadow) roles — a distinct Tier-2 category per the source diagram. -> Tier-1 shadow primitives.",
+        "card": {
+          "default": {
+            "$value": "{envision.t1.shadow.card-rest}"
+          }
+        },
+        "card-hover": {
+          "default": {
+            "$value": "{envision.t1.shadow.card-hover}"
+          }
+        },
+        "card-selected": {
+          "default": {
+            "$value": "{envision.t1.shadow.card-selected}"
+          }
+        },
+        "badge": {
+          "default": {
+            "$value": "{envision.t1.shadow.badge-check}"
+          }
+        },
+        "elevation-warm": {
+          "default": {
+            "$value": "{envision.t1.shadow.option-hover}"
+          }
+        },
+        "thumb-inset": {
+          "default": {
+            "$value": "{envision.t1.shadow.thumb-inset}"
+          }
+        }
+      },
+      "spacing": {
+        "$type": "dimension",
+        "$description": "Semantic spacing roles -> Tier 1 dimension. Drive Auto Layout gap/padding. Never use empty rectangles as spacers.",
+        "inline-icon-gap": {
+          "default": {
+            "$value": "{envision.t1.spacing.200}",
+            "$description": "Icon-to-label gap (8)."
+          }
+        },
+        "label-control-gap": {
+          "default": {
+            "$value": "{envision.t1.spacing.200}",
+            "$description": "Label to control (8)."
+          }
+        },
+        "helper-gap": {
+          "default": {
+            "$value": "{envision.t1.spacing.150}",
+            "$description": "Control to helper text (6)."
+          }
+        },
+        "inset-compact": {
+          "default": {
+            "$value": "{envision.t1.spacing.200}",
+            "$description": "Compact control inset (8)."
+          }
+        },
+        "inset-control": {
+          "default": {
+            "$value": "{envision.t1.spacing.300}",
+            "$description": "Standard control inset (12)."
+          }
+        },
+        "inset-card": {
+          "default": {
+            "$value": "{envision.t1.spacing.500}",
+            "$description": "Card inset (20)."
+          }
+        },
+        "inset-panel": {
+          "default": {
+            "$value": "{envision.t1.spacing.600}",
+            "$description": "Panel inset (24)."
+          }
+        },
+        "page-gutter": {
+          "default": {
+            "$value": "{envision.t1.spacing.800}",
+            "$description": "Page gutter (32). Topbar/tab pages use 32-40."
+          }
+        },
+        "section-gap": {
+          "default": {
+            "$value": "{envision.t1.spacing.900}",
+            "$description": "Between rail sections (40)."
+          }
+        },
+        "grid-gap": {
+          "default": {
+            "$value": "{envision.t1.spacing.600}",
+            "$description": "Card grid gap (24)."
+          }
+        },
+        "grid-gap-tight": {
+          "default": {
+            "$value": "{envision.t1.spacing.300}",
+            "$description": "Swatch grid gap (12)."
+          }
+        },
+        "stack-gap": {
+          "default": {
+            "$value": "{envision.t1.spacing.400}",
+            "$description": "Default vertical stack (16)."
+          }
+        },
+        "heading-body-gap": {
+          "default": {
+            "$value": "{envision.t1.spacing.300}",
+            "$description": "Heading to body (12)."
+          }
+        },
+        "$roles-note": "ROLE-BASED spacing tokens (purpose, not value). Each alias names WHY the value is used. No value-based duplicate scale — components/docs consume these roles. The flat entries above are the original purpose aliases; the nested groups below expand coverage.",
+        "layout": {
+          "page-margin": {
+            "$value": "{envision.t1.spacing.1100}",
+            "$description": "Page edge padding (64)."
+          },
+          "section-gap": {
+            "$value": "{envision.t1.spacing.900}",
+            "$description": "Between major sections (40)."
+          },
+          "section-gap-lg": {
+            "$value": "{envision.t1.spacing.1000}",
+            "$description": "Large section gap (48)."
+          },
+          "subsection-gap": {
+            "$value": "{envision.t1.spacing.700}",
+            "$description": "Between subsections (28)."
+          },
+          "page-gutter": {
+            "$value": "{envision.t1.spacing.800}",
+            "$description": "Page gutter (32)."
+          },
+          "grid-gap": {
+            "$value": "{envision.t1.spacing.600}",
+            "$description": "Card/grid gap (24)."
+          },
+          "stack-gap": {
+            "$value": "{envision.t1.spacing.400}",
+            "$description": "Default vertical stack (16)."
+          }
+        },
+        "control": {
+          "padding-inline": {
+            "$value": "{envision.t1.spacing.400}",
+            "$description": "Control inline padding (16)."
+          },
+          "padding-block": {
+            "$value": "{envision.t1.spacing.200}",
+            "$description": "Control block padding (8)."
+          },
+          "gap": {
+            "$value": "{envision.t1.spacing.200}",
+            "$description": "Control content gap (8)."
+          },
+          "gap-tight": {
+            "$value": "{envision.t1.spacing.100}",
+            "$description": "Tight control gap (4)."
+          }
+        },
+        "field": {
+          "padding-inline": {
+            "$value": "{envision.t1.spacing.350}",
+            "$description": "Text field inline padding (14, product value)."
+          },
+          "padding-block": {
+            "$value": "{envision.t1.spacing.250}",
+            "$description": "Text field block padding (10)."
+          }
+        },
+        "content": {
+          "label-gap": {
+            "$value": "{envision.t1.spacing.100}",
+            "$description": "Label to related element (4)."
+          },
+          "related-gap": {
+            "$value": "{envision.t1.spacing.150}",
+            "$description": "Between related items (6)."
+          },
+          "heading-gap": {
+            "$value": "{envision.t1.spacing.300}",
+            "$description": "Heading to body (12)."
+          },
+          "paragraph-gap": {
+            "$value": "{envision.t1.spacing.200}",
+            "$description": "Between paragraphs (8)."
+          },
+          "hairline-gap": {
+            "$value": "{envision.t1.spacing.50}",
+            "$description": "Micro gap (2)."
+          }
+        },
+        "container": {
+          "padding": {
+            "$value": "{envision.t1.spacing.500}",
+            "$description": "Card/container padding (20)."
+          },
+          "padding-sm": {
+            "$value": "{envision.t1.spacing.300}",
+            "$description": "Compact container padding (12)."
+          },
+          "padding-lg": {
+            "$value": "{envision.t1.spacing.600}",
+            "$description": "Panel padding (24)."
+          },
+          "padding-note": {
+            "$value": "{envision.t1.spacing.450}",
+            "$description": "Note/modal padding (18)."
+          },
+          "padding-head": {
+            "$value": "{envision.t1.spacing.550}",
+            "$description": "Tray/modal header padding (22)."
+          },
+          "gap": {
+            "$value": "{envision.t1.spacing.300}",
+            "$description": "Container content gap (12)."
+          }
+        }
+      },
+      "radius": {
+        "$type": "dimension",
+        "$description": "Semantic radius roles.",
+        "none": {
+          "default": {
+            "$value": "{envision.t1.radius.0}"
+          }
+        },
+        "control": {
+          "xsmall": {
+            "$value": "{envision.t1.radius.50}",
+            "$description": "Tiny control radius (2)."
+          },
+          "small": {
+            "$value": "{envision.t1.radius.100}",
+            "$description": "Small control radius (4)."
+          },
+          "default": {
+            "$value": "{envision.t1.radius.150}",
+            "$description": "Control radius (6) — buttons/inputs/tabs."
+          }
+        },
+        "card": {
+          "default": {
+            "$value": "{envision.t1.radius.300}",
+            "$description": "Cards (12)."
+          }
+        },
+        "panel": {
+          "default": {
+            "$value": "{envision.t1.radius.400}",
+            "$description": "Trays/panels (16)."
+          }
+        },
+        "modal": {
+          "default": {
+            "$value": "{envision.t1.radius.300}",
+            "$description": "Modal card (12)."
+          }
+        },
+        "pill": {
+          "default": {
+            "$value": "{envision.t1.radius.pill}"
+          }
+        },
+        "circular": {
+          "default": {
+            "$value": "{envision.t1.radius.full}"
+          }
+        },
+        "$roles-note": "ROLE-BASED radius tokens (purpose, not value). No value-based duplicate scale.",
+        "container": {
+          "xsmall": {
+            "$value": "{envision.t1.radius.75}",
+            "$description": "Swatch square radius (3, product value)."
+          },
+          "small": {
+            "$value": "{envision.t1.radius.200}",
+            "$description": "Small container (8)."
+          },
+          "medium": {
+            "$value": "{envision.t1.radius.250}",
+            "$description": "Medium container (10)."
+          },
+          "default": {
+            "$value": "{envision.t1.radius.300}",
+            "$description": "Card radius (12)."
+          },
+          "menu": {
+            "$value": "{envision.t1.radius.350}",
+            "$description": "Menu radius (14)."
+          },
+          "large": {
+            "$value": "{envision.t1.radius.400}",
+            "$description": "Panel/tray radius (16)."
+          }
+        }
+      },
+      "border-width": {
+        "$type": "dimension",
+        "none": {
+          "default": {
+            "$value": "{envision.t1.border-width.0}"
+          }
+        },
+        "default": {
+          "default": {
+            "$value": "{envision.t1.border-width.100}"
+          }
+        },
+        "thin": {
+          "default": {
+            "$value": "{envision.t1.border-width.150}",
+            "$description": "1.5px selection ring (checkbox/radio/swatch)."
+          }
+        },
+        "emphasis": {
+          "default": {
+            "$value": "{envision.t1.border-width.200}"
+          }
+        },
+        "focus": {
+          "default": {
+            "$value": "{envision.t1.border-width.200}"
+          }
+        },
+        "control": {
+          "default": {
+            "$value": "{envision.t1.border-width.100}",
+            "$description": "Control hairline border (1)."
+          },
+          "thin": {
+            "$value": "{envision.t1.border-width.150}",
+            "$description": "Selection-ring width (1.5)."
+          }
+        },
+        "ring-tile": {
+          "default": {
+            "$value": "{envision.t1.border-width.350}",
+            "$description": "Card/tile selection-ring spread (3.5)."
+          }
+        }
+      },
+      "elevation": {
+        "$type": "shadow",
+        "$description": "Composite elevation recipes -> Figma effect styles. Ordered base->overlay.",
+        "flat": {
+          "default": {
+            "$value": {
+              "color": "{envision.t1.color.overlay.black-06}",
+              "offsetX": "0px",
+              "offsetY": "1px",
+              "blur": "3px",
+              "spread": "0px"
+            },
+            "$description": "Subtle inputs/menus triggers."
+          }
+        },
+        "raised": {
+          "default": {
+            "$value": {
+              "color": "{envision.t1.color.overlay.black-04}",
+              "offsetX": "0px",
+              "offsetY": "4px",
+              "blur": "14px",
+              "spread": "0px"
+            },
+            "$description": "Resting card."
+          }
+        },
+        "raised-hover": {
+          "default": {
+            "$value": {
+              "color": "{envision.t1.color.overlay.black-08}",
+              "offsetX": "0px",
+              "offsetY": "6px",
+              "blur": "20px",
+              "spread": "0px"
+            },
+            "$description": "Hovered card."
+          }
+        },
+        "menu": {
+          "default": {
+            "$value": {
+              "color": "{envision.t1.color.overlay.black-14}",
+              "offsetX": "0px",
+              "offsetY": "10px",
+              "blur": "30px",
+              "spread": "0px"
+            },
+            "$description": "Dropdown/popover."
+          }
+        },
+        "tray": {
+          "default": {
+            "$value": {
+              "color": "{envision.t1.color.overlay.black-18}",
+              "offsetX": "0px",
+              "offsetY": "18px",
+              "blur": "48px",
+              "spread": "0px"
+            },
+            "$description": "Bottom tray / modal."
+          }
+        },
+        "overlay-dark": {
+          "default": {
+            "$value": {
+              "color": "{envision.t1.color.overlay.black-35}",
+              "offsetX": "0px",
+              "offsetY": "8px",
+              "blur": "30px",
+              "spread": "0px"
+            },
+            "$description": "Dark floating panels."
+          }
+        }
+      },
+      "motion": {
+        "$description": "Motion roles. Duration + easing.",
+        "micro": {
+          "duration": {
+            "$type": "duration",
+            "$value": "{envision.t1.duration.instant}"
+          },
+          "easing": {
+            "$type": "cubicBezier",
+            "$value": "{envision.t1.easing.standard}"
+          }
+        },
+        "panel": {
+          "duration": {
+            "$type": "duration",
+            "$value": "{envision.t1.duration.slow}"
+          },
+          "easing": {
+            "$type": "cubicBezier",
+            "$value": "{envision.t1.easing.standard}"
+          }
+        },
+        "dismiss": {
+          "duration": {
+            "$type": "duration",
+            "$value": "{envision.t1.duration.fast}"
+          },
+          "easing": {
+            "$type": "cubicBezier",
+            "$value": "{envision.t1.easing.exit}"
+          }
+        },
+        "loading": {
+          "duration": {
+            "$type": "duration",
+            "$value": "{envision.t1.duration.slower}"
+          },
+          "easing": {
+            "$type": "cubicBezier",
+            "$value": "{envision.t1.easing.linear}"
+          }
+        }
+      },
+      "layer": {
+        "$type": "number",
+        "$description": "Semantic z-index roles -> Tier 1.",
+        "base": {
+          "default": {
+            "$value": "{envision.t1.z-index.base}"
+          }
+        },
+        "sticky-nav": {
+          "default": {
+            "$value": "{envision.t1.z-index.room-nav}"
+          }
+        },
+        "tray": {
+          "default": {
+            "$value": "{envision.t1.z-index.tray}"
+          }
+        },
+        "menu": {
+          "default": {
+            "$value": "{envision.t1.z-index.menu}"
+          }
+        },
+        "modal": {
+          "default": {
+            "$value": "{envision.t1.z-index.modal}"
+          }
+        },
+        "toast": {
+          "default": {
+            "$value": "{envision.t1.z-index.pose}"
+          }
+        }
+      },
+      "size": {
+        "$type": "dimension",
+        "icon": {
+          "dense": {
+            "$value": "{envision.t1.spacing.400}",
+            "$description": "Dense icon box (16)."
+          },
+          "default": {
+            "$value": "{envision.t1.spacing.500}",
+            "$description": "Default icon box (20)."
+          },
+          "large": {
+            "$value": "{envision.t1.spacing.600}",
+            "$description": "Large icon box (24)."
+          }
+        }
+      }
+    }
+  }
+}

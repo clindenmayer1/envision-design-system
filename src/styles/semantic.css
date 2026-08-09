@@ -1,0 +1,151 @@
+/* Tier 2 · Semantic — generated from DTCG. DO NOT EDIT. */
+:root {
+  --envision-theme-color-content-primary-default: var(--envision-color-neutral-800); /* Primary ink. Titles, prices, body. */
+  --envision-theme-color-content-secondary-default: var(--envision-color-neutral-600); /* Secondary text. */
+  --envision-theme-color-content-tertiary-default: var(--envision-color-neutral-700); /* Strong labels/captions. */
+  --envision-theme-color-content-subtle-default: var(--envision-color-neutral-500); /* Muted eyebrows, inactive tabs, metadata. */
+  --envision-theme-color-content-placeholder-default: var(--envision-color-neutral-400); /* Input placeholder. */
+  --envision-theme-color-content-brand-default: var(--envision-theme-brand-color-primary-500); /* Link/brand text. */
+  --envision-theme-color-content-brand-hover: var(--envision-theme-brand-color-primary-600);
+  --envision-theme-color-content-on-brand-default: var(--envision-theme-brand-color-on-primary-default); /* Text/icon on brand surfaces. */
+  --envision-theme-color-content-disabled-default: var(--envision-color-neutral-400);
+  --envision-theme-color-content-error-default: var(--envision-color-error-500);
+  --envision-theme-color-content-success-default: var(--envision-color-success-500);
+  --envision-theme-color-content-warning-default: var(--envision-color-warning-600);
+  --envision-theme-color-content-info-default: var(--envision-color-info-600);
+  --envision-theme-color-background-page-default: var(--envision-color-neutral-150); /* App body / canvas backdrop. */
+  --envision-theme-color-background-page-raised-default: #F4F3EF; /* Dashboard page bg (documented exception: not on the neutral  */
+  --envision-theme-color-background-surface-default: var(--envision-color-neutral-0); /* Card/panel/rail/topbar surface. */
+  --envision-theme-color-background-surface-warm-default: var(--envision-color-neutral-50); /* Warm card (OptionCard). */
+  --envision-theme-color-background-surface-sunken-default: var(--envision-color-neutral-100); /* Image wells / scene bg. */
+  --envision-theme-color-background-brand-default: var(--envision-theme-brand-color-primary-500);
+  --envision-theme-color-background-brand-hover: var(--envision-theme-brand-color-primary-600);
+  --envision-theme-color-background-brand-pressed: var(--envision-theme-brand-color-primary-700);
+  --envision-theme-color-background-brand-subtle-default: var(--envision-theme-brand-color-primary-50); /* Tinted selected row/hover. */
+  --envision-theme-color-background-disabled-default: var(--envision-color-neutral-300);
+  --envision-theme-color-background-success-subtle-default: var(--envision-color-success-50);
+  --envision-theme-color-background-warning-subtle-default: var(--envision-color-warning-50);
+  --envision-theme-color-background-error-subtle-default: var(--envision-color-error-50);
+  --envision-theme-color-background-info-subtle-default: var(--envision-color-info-50);
+  --envision-theme-color-background-accent-default: var(--envision-theme-brand-color-accent-500); /* Notification badge. */
+  --envision-theme-color-background-overlay-default: var(--envision-color-overlay-black-45); /* Modal backdrop scrim. */
+  --envision-theme-color-background-scrim-strong-default: var(--envision-color-overlay-black-70); /* Image scrim base (hero). */
+  --envision-theme-color-background-dark-default: var(--envision-color-neutral-900); /* Dark control surface (studio/pose). */
+  --envision-theme-color-border-default-default: var(--envision-color-neutral-200); /* Hairline. Cards, inputs, dividers. */
+  --envision-theme-color-border-strong-default: var(--envision-color-brown-a-16); /* Tray/modal card border. */
+  --envision-theme-color-border-brand-default: var(--envision-theme-brand-color-primary-500);
+  --envision-theme-color-border-focus-default: var(--envision-theme-brand-color-primary-500); /* Focus ring color (2px). See ring/selected for selection. */
+  --envision-theme-color-border-selected-default: var(--envision-color-taupe-600); /* Selected item ring (warm). */
+  --envision-theme-color-border-disabled-default: var(--envision-color-neutral-300);
+  --envision-theme-color-border-error-default: var(--envision-color-error-500);
+  --envision-theme-color-border-success-default: var(--envision-color-success-500);
+  --envision-theme-color-border-container-subtle-default: var(--envision-color-overlay-black-09); /* Card container border (0.09 black). */
+  --envision-theme-color-border-swatch-default: var(--envision-color-overlay-black-07); /* Swatch preview border (0.07 black). */
+  --envision-theme-color-ring-rest-default: var(--envision-color-taupe-100);
+  --envision-theme-color-ring-hover-default: var(--envision-color-taupe-300);
+  --envision-theme-color-ring-pressed-default: var(--envision-color-taupe-500);
+  --envision-theme-color-ring-selected-default: var(--envision-color-taupe-600);
+  --envision-theme-color-ring-hover-warm-default: var(--envision-color-brown-a-40); /* Warm 40% hover ring (swatch/tile). */
+  --envision-theme-color-status-complete-default: var(--envision-color-success-500);
+  --envision-theme-color-status-in-progress-default: var(--envision-color-warning-500);
+  --envision-theme-color-status-not-started-default: var(--envision-color-neutral-400);
+  --envision-theme-shadow-card-default: var(--envision-shadow-card-rest);
+  --envision-theme-shadow-card-hover-default: var(--envision-shadow-card-hover);
+  --envision-theme-shadow-card-selected-default: var(--envision-shadow-card-selected);
+  --envision-theme-shadow-badge-default: var(--envision-shadow-badge-check);
+  --envision-theme-shadow-elevation-warm-default: var(--envision-shadow-option-hover);
+  --envision-theme-shadow-thumb-inset-default: var(--envision-shadow-thumb-inset);
+  --envision-theme-spacing-inline-icon-gap-default: var(--envision-spacing-200); /* Icon-to-label gap (8). */
+  --envision-theme-spacing-label-control-gap-default: var(--envision-spacing-200); /* Label to control (8). */
+  --envision-theme-spacing-helper-gap-default: var(--envision-spacing-150); /* Control to helper text (6). */
+  --envision-theme-spacing-inset-compact-default: var(--envision-spacing-200); /* Compact control inset (8). */
+  --envision-theme-spacing-inset-control-default: var(--envision-spacing-300); /* Standard control inset (12). */
+  --envision-theme-spacing-inset-card-default: var(--envision-spacing-500); /* Card inset (20). */
+  --envision-theme-spacing-inset-panel-default: var(--envision-spacing-600); /* Panel inset (24). */
+  --envision-theme-spacing-page-gutter-default: var(--envision-spacing-800); /* Page gutter (32). Topbar/tab pages use 32-40. */
+  --envision-theme-spacing-section-gap-default: var(--envision-spacing-900); /* Between rail sections (40). */
+  --envision-theme-spacing-grid-gap-default: var(--envision-spacing-600); /* Card grid gap (24). */
+  --envision-theme-spacing-grid-gap-tight-default: var(--envision-spacing-300); /* Swatch grid gap (12). */
+  --envision-theme-spacing-stack-gap-default: var(--envision-spacing-400); /* Default vertical stack (16). */
+  --envision-theme-spacing-heading-body-gap-default: var(--envision-spacing-300); /* Heading to body (12). */
+  --envision-theme-spacing-layout-page-margin: var(--envision-spacing-1100); /* Page edge padding (64). */
+  --envision-theme-spacing-layout-section-gap: var(--envision-spacing-900); /* Between major sections (40). */
+  --envision-theme-spacing-layout-section-gap-lg: var(--envision-spacing-1000); /* Large section gap (48). */
+  --envision-theme-spacing-layout-subsection-gap: var(--envision-spacing-700); /* Between subsections (28). */
+  --envision-theme-spacing-layout-page-gutter: var(--envision-spacing-800); /* Page gutter (32). */
+  --envision-theme-spacing-layout-grid-gap: var(--envision-spacing-600); /* Card/grid gap (24). */
+  --envision-theme-spacing-layout-stack-gap: var(--envision-spacing-400); /* Default vertical stack (16). */
+  --envision-theme-spacing-control-padding-inline: var(--envision-spacing-400); /* Control inline padding (16). */
+  --envision-theme-spacing-control-padding-block: var(--envision-spacing-200); /* Control block padding (8). */
+  --envision-theme-spacing-control-gap: var(--envision-spacing-200); /* Control content gap (8). */
+  --envision-theme-spacing-control-gap-tight: var(--envision-spacing-100); /* Tight control gap (4). */
+  --envision-theme-spacing-field-padding-inline: var(--envision-spacing-350); /* Text field inline padding (14, product value). */
+  --envision-theme-spacing-field-padding-block: var(--envision-spacing-250); /* Text field block padding (10). */
+  --envision-theme-spacing-content-label-gap: var(--envision-spacing-100); /* Label to related element (4). */
+  --envision-theme-spacing-content-related-gap: var(--envision-spacing-150); /* Between related items (6). */
+  --envision-theme-spacing-content-heading-gap: var(--envision-spacing-300); /* Heading to body (12). */
+  --envision-theme-spacing-content-paragraph-gap: var(--envision-spacing-200); /* Between paragraphs (8). */
+  --envision-theme-spacing-content-hairline-gap: var(--envision-spacing-50); /* Micro gap (2). */
+  --envision-theme-spacing-container-padding: var(--envision-spacing-500); /* Card/container padding (20). */
+  --envision-theme-spacing-container-padding-sm: var(--envision-spacing-300); /* Compact container padding (12). */
+  --envision-theme-spacing-container-padding-lg: var(--envision-spacing-600); /* Panel padding (24). */
+  --envision-theme-spacing-container-padding-note: var(--envision-spacing-450); /* Note/modal padding (18). */
+  --envision-theme-spacing-container-padding-head: var(--envision-spacing-550); /* Tray/modal header padding (22). */
+  --envision-theme-spacing-container-gap: var(--envision-spacing-300); /* Container content gap (12). */
+  --envision-theme-radius-none-default: var(--envision-radius-0);
+  --envision-theme-radius-control-xsmall: var(--envision-radius-50); /* Tiny control radius (2). */
+  --envision-theme-radius-control-small: var(--envision-radius-100); /* Small control radius (4). */
+  --envision-theme-radius-control-default: var(--envision-radius-150); /* Control radius (6) — buttons/inputs/tabs. */
+  --envision-theme-radius-card-default: var(--envision-radius-300); /* Cards (12). */
+  --envision-theme-radius-panel-default: var(--envision-radius-400); /* Trays/panels (16). */
+  --envision-theme-radius-modal-default: var(--envision-radius-300); /* Modal card (12). */
+  --envision-theme-radius-pill-default: var(--envision-radius-pill);
+  --envision-theme-radius-circular-default: var(--envision-radius-full);
+  --envision-theme-radius-container-xsmall: var(--envision-radius-75); /* Swatch square radius (3, product value). */
+  --envision-theme-radius-container-small: var(--envision-radius-200); /* Small container (8). */
+  --envision-theme-radius-container-medium: var(--envision-radius-250); /* Medium container (10). */
+  --envision-theme-radius-container-default: var(--envision-radius-300); /* Card radius (12). */
+  --envision-theme-radius-container-menu: var(--envision-radius-350); /* Menu radius (14). */
+  --envision-theme-radius-container-large: var(--envision-radius-400); /* Panel/tray radius (16). */
+  --envision-theme-border-width-none-default: var(--envision-border-width-0);
+  --envision-theme-border-width-default-default: var(--envision-border-width-100);
+  --envision-theme-border-width-thin-default: var(--envision-border-width-150); /* 1.5px selection ring (checkbox/radio/swatch). */
+  --envision-theme-border-width-emphasis-default: var(--envision-border-width-200);
+  --envision-theme-border-width-focus-default: var(--envision-border-width-200);
+  --envision-theme-border-width-control-default: var(--envision-border-width-100); /* Control hairline border (1). */
+  --envision-theme-border-width-control-thin: var(--envision-border-width-150); /* Selection-ring width (1.5). */
+  --envision-theme-border-width-ring-tile-default: var(--envision-border-width-350); /* Card/tile selection-ring spread (3.5). */
+  --envision-theme-motion-micro-duration: var(--envision-duration-instant);
+  --envision-theme-motion-micro-easing: var(--envision-easing-standard);
+  --envision-theme-motion-panel-duration: var(--envision-duration-slow);
+  --envision-theme-motion-panel-easing: var(--envision-easing-standard);
+  --envision-theme-motion-dismiss-duration: var(--envision-duration-fast);
+  --envision-theme-motion-dismiss-easing: var(--envision-easing-exit);
+  --envision-theme-motion-loading-duration: var(--envision-duration-slower);
+  --envision-theme-motion-loading-easing: var(--envision-easing-linear);
+  --envision-theme-layer-base-default: var(--envision-z-index-base);
+  --envision-theme-layer-sticky-nav-default: var(--envision-z-index-room-nav);
+  --envision-theme-layer-tray-default: var(--envision-z-index-tray);
+  --envision-theme-layer-menu-default: var(--envision-z-index-menu);
+  --envision-theme-layer-modal-default: var(--envision-z-index-modal);
+  --envision-theme-layer-toast-default: var(--envision-z-index-pose);
+  --envision-theme-size-icon-dense: var(--envision-spacing-400); /* Dense icon box (16). */
+  --envision-theme-size-icon-default: var(--envision-spacing-500); /* Default icon box (20). */
+  --envision-theme-size-icon-large: var(--envision-spacing-600); /* Large icon box (24). */
+  --envision-theme-responsive-font-size-display: 56px;
+  --envision-theme-responsive-font-size-h1: 40px;
+  --envision-theme-responsive-font-size-h2: 32px;
+  --envision-theme-responsive-font-size-h3: 24px;
+  --envision-theme-responsive-font-size-h4: 20px;
+  --envision-theme-responsive-font-size-h5: 18px;
+  --envision-theme-responsive-font-size-body-lg: 16px; /* Stable across devices. */
+  --envision-theme-responsive-font-size-body: 15px; /* Stable across devices. */
+  --envision-theme-responsive-font-size-body-sm: 14px; /* Stable across devices. */
+  --envision-theme-responsive-font-size-caption: 12px; /* Stable across devices. Do NOT use for essential instructions */
+  --envision-theme-responsive-layout-right-rail-width: 392px; /* Desktop persistent 392px side rail; mobile full-width panel. */
+  --envision-theme-responsive-layout-top-bar-height: 64px;
+  --envision-theme-responsive-layout-page-gutter: 40px;
+  --envision-theme-responsive-layout-viewport-height: 100vh; /* 3D canvas: full height desktop; 60vh band above stacked rail */
+  --envision-theme-responsive-layout-card-grid-columns: 3; /* Dashboard/packages grid columns. */
+  --envision-theme-responsive-layout-swatch-grid-columns: 6;
+}

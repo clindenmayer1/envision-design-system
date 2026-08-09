@@ -1,0 +1,50 @@
+{
+  "name": "envision",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Envision — a white-label homeowner / interactive home-design product (React 18 + React-Three-Fiber) and the production design system built for it (packages/*).",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "preview": "vite preview",
+    "lint": "eslint packages --no-error-on-unmatched-pattern",
+    "tokens": "npm run build --workspace @envision/tokens",
+    "test:tokens": "npm run test --workspace @envision/tokens",
+    "tokens:verify": "npm run verify --workspace @envision/tokens",
+    "components": "npm run build -w @envision/components && npm run test -w @envision/components",
+    "react": "npm run verify -w @envision/react",
+    "storybook": "npm run storybook -w @envision/storybook",
+    "build-storybook": "npm run build -w @envision/storybook",
+    "test": "npm run test:tokens && npm run test -w @envision/components && npm run test -w @envision/react",
+    "test:a11y": "npm run test:a11y -w @envision/components",
+    "test:stories": "npm run test:stories:ci -w @envision/storybook",
+    "visual": "npm run visual -w @envision/storybook",
+    "visual:update": "npm run visual:update -w @envision/storybook",
+    "quality": "npm run lint && npm run typecheck -w @envision/components && npm run typecheck -w @envision/react && npm run tokens:verify && npm run components && npm run react && npm run build-storybook"
+  },
+  "dependencies": {
+    "@envision/design-system": "*",
+    "@envision/tokens": "*",
+    "@react-three/drei": "^9.114.0",
+    "@react-three/fiber": "^8.17.10",
+    "leva": "^0.9.36",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.169.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/three": "^0.169.0",
+    "@vitejs/plugin-react": "^4.3.3",
+    "eslint": "^9.14.0",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.14.0",
+    "vite": "^5.4.10"
+  }
+}

@@ -1,0 +1,60 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction/Storybook vs the docs site" />
+
+# Storybook vs the documentation site
+
+Envision maintains two complementary surfaces. Keeping their responsibilities distinct is what
+lets each do its job well — and prevents the design system from becoming one sprawling, unmaintained
+wiki.
+
+## Storybook = the executable technical specification
+
+Storybook answers **“what is this component, exactly, and how does it behave?”** — at the level of
+truth where the answer is the running code.
+
+It owns:
+
+- the **live components** and every meaningful **state** (the state library),
+- the **API** (attributes, properties, events) via live Controls,
+- the per-component **accessibility contract**, exercised by the a11y panel and `play` functions,
+- **interaction** behaviour (keyboard, focus, activation) as runnable tests,
+- the **token relationships** each component consumes,
+- the frames a **visual-regression** tool snapshots.
+
+If a statement about a component can be *proven by running it*, it belongs in Storybook.
+
+## The documentation site = guidance, foundations & governance
+
+The dedicated design-system documentation site answers the **“why, when, and how do we adopt and
+evolve this?”** questions — the narrative and organisational layer around the components.
+
+It owns:
+
+- **Foundations & methodology** — the design principles, the 3-tier token architecture and naming
+  algorithm, Atomic-Design reasoning, the white-label model.
+- **Patterns & page recipes** — how components compose into real Envision screens, beyond a single
+  component in isolation.
+- **Accessibility guidance** — the program: how to test, manual-check checklists, conformance
+  posture (Storybook proves *per-component* a11y; the site explains the *practice*).
+- **Adoption & contribution** — how a team consumes the system, how to propose a component or
+  variant, coding standards.
+- **Governance, releases, changelog, decisions** — maturity model, versioning, ADRs, deprecation.
+- **System education** — onboarding, the “how Envision thinks” material.
+
+If a statement is about *judgement, process, or the system as a whole*, it belongs on the docs site.
+
+## The rule of thumb
+
+| Question | Home |
+|---|---|
+| “What states does Button have? What does `loading` do?” | **Storybook** |
+| “Is this accessible? Prove it.” | **Storybook** (a11y panel + play) |
+| “Which token does the outline border use?” | **Storybook** (Token relationships) |
+| “When should I use Button vs Link vs IconButton?” | Storybook (per-component *When to use*) → deeper rationale on the **docs site** |
+| “What are our design principles? How do tokens get named?” | **Docs site** |
+| “How do I propose a new component? What’s the release cadence?” | **Docs site** |
+| “How do these components compose into the Dashboard page?” | **Docs site** (page recipes) |
+
+**One-liner:** *Storybook is the spec you can run; the docs site is the system you reason about.*
+Each links to the other; neither duplicates the other.

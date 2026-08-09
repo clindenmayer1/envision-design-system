@@ -1,0 +1,706 @@
+{
+  "$description": "Envision Design System — TIER 3 COMPONENT tokens. Exist ONLY where a component has a real, durable requirement Tier 2 cannot represent. Anatomy: envision/t3/{component}/{variant}/{property}/{state}. RULES: Tier 3 aliases Tier 2 wherever possible; must NOT point directly to Tier 1 unless no valid semantic role exists (each such case documented). Do NOT create Tier 3 for convenience or to hide an architecture problem. CSS prefix: --envision-t3-<path>.",
+  "envision": {
+    "t3": {
+      "button": {
+        "$description": "Button aliases Tier 2 fully — included to make the Figma<->code contract explicit and to give engineering a stable name. No Tier 1 direct refs.",
+        "primary": {
+          "color-background": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t2.color.background.brand.default}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{envision.t2.color.background.brand.hover}"
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{envision.t2.color.background.brand.pressed}"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{envision.t2.color.background.disabled.default}"
+            }
+          },
+          "color-content": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t2.color.content.on-brand.default}"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{envision.t2.color.content.disabled.default}"
+            }
+          }
+        },
+        "outline": {
+          "color-content": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t2.color.content.brand.default}"
+            }
+          },
+          "color-border": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t2.color.border.brand.default}"
+            }
+          }
+        }
+      },
+      "input": {
+        "default": {
+          "color-border": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t2.color.border.default.default}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{envision.t2.color.ring.hover.default}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{envision.t2.color.border.focus.default}"
+            },
+            "error": {
+              "$type": "color",
+              "$value": "{envision.t2.color.border.error.default}"
+            }
+          }
+        }
+      },
+      "tab": {
+        "selected": {
+          "color-content": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t2.color.content.primary.default}"
+            }
+          },
+          "color-indicator": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t2.brand.color.primary.500}"
+            },
+            "$description": "2px underline."
+          }
+        },
+        "default": {
+          "color-content": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t2.color.content.subtle.default}"
+            }
+          }
+        }
+      },
+      "right-rail": {
+        "$description": "Justified Tier 3 — durable structural values Tier 2 does not carry.",
+        "default": {
+          "width": {
+            "desktop": {
+              "$type": "dimension",
+              "$value": "392px",
+              "$description": "Direct value (no Tier 2 layout-width role exists). Documented exception."
+            }
+          },
+          "header-height": {
+            "default": {
+              "$type": "dimension",
+              "$value": "{envision.t1.spacing.1100}",
+              "$description": "~64px header/tab band via Tier 1 (no Tier 2 role). Documented exception."
+            }
+          },
+          "color-background": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t2.color.background.surface.default}"
+            }
+          },
+          "color-border": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t2.color.border.default.default}"
+            }
+          }
+        }
+      },
+      "top-bar": {
+        "default": {
+          "height": {
+            "default": {
+              "$type": "dimension",
+              "$value": "{envision.t1.spacing.1100}",
+              "$description": "64px. Tier 1 direct (no Tier 2 role). Documented exception."
+            }
+          }
+        }
+      },
+      "bottom-tray": {
+        "default": {
+          "max-width": {
+            "default": {
+              "$type": "dimension",
+              "$value": "900px",
+              "$description": "min(900px, 100% - 48px). Direct value. Documented exception."
+            }
+          },
+          "radius": {
+            "default": {
+              "$type": "dimension",
+              "$value": "{envision.t2.radius.panel.default}"
+            }
+          }
+        }
+      },
+      "package-card": {
+        "$description": "Full Tier-3 contract derived from the real website PackagesTab.css. Each property aliases a Tier-2 role (or Tier-1 where no role exists — documented).",
+        "radius": {
+          "$type": "dimension",
+          "$value": "{envision.t2.radius.container.default}",
+          "$description": "Card radius 12."
+        },
+        "border-width": {
+          "$type": "dimension",
+          "$value": "{envision.t2.border-width.control.default}",
+          "$description": "Card border 1."
+        },
+        "border-width-selected": {
+          "$type": "dimension",
+          "$value": "{envision.t2.border-width.focus.default}",
+          "$description": "Selected border 2."
+        },
+        "color-border-selected": {
+          "$type": "color",
+          "$value": "{envision.t2.brand.color.primary.500}",
+          "$description": "Selected border green."
+        },
+        "color-background": {
+          "$type": "color",
+          "$value": "{envision.t2.color.background.surface.default}",
+          "$description": "Card surface #fff."
+        },
+        "color-name": {
+          "$type": "color",
+          "$value": "{envision.t2.color.content.primary.default}",
+          "$description": "Name #222."
+        },
+        "color-price": {
+          "$type": "color",
+          "$value": "{envision.t2.color.content.primary.default}",
+          "$description": "Price #222."
+        },
+        "padding": {
+          "$type": "dimension",
+          "$value": "{envision.t2.spacing.container.padding}",
+          "$description": "Content padding 20."
+        },
+        "gap": {
+          "$type": "dimension",
+          "$value": "{envision.t2.spacing.layout.stack-gap}",
+          "$description": "Content gap 16."
+        },
+        "title-gap": {
+          "$type": "dimension",
+          "$value": "{envision.t2.spacing.container.gap}",
+          "$description": "Title-row gap 12."
+        },
+        "swatch-gap": {
+          "$type": "dimension",
+          "$value": "{envision.t2.spacing.control.gap}",
+          "$description": "Swatch grid gap 8."
+        },
+        "swatch-radius": {
+          "$type": "dimension",
+          "$value": "{envision.t2.radius.container.xsmall}",
+          "$description": "Swatch radius 3 (product)."
+        },
+        "check-size": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.700}",
+          "$description": "Applied check 28. T3->T1 (no T2 size role) — documented."
+        },
+        "badge-radius": {
+          "$type": "dimension",
+          "$value": "{envision.t2.radius.pill.default}",
+          "$description": "Trending badge pill."
+        },
+        "badge-color-background": {
+          "$type": "color",
+          "$value": "{envision.t2.color.background.brand.default}",
+          "$description": "Badge green."
+        },
+        "badge-color-content": {
+          "$type": "color",
+          "$value": "{envision.t2.color.content.on-brand.default}",
+          "$description": "Badge text #fff."
+        },
+        "customize-height": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.900}",
+          "$description": "Customize pill 40. T3->T1 — documented."
+        },
+        "customize-radius": {
+          "$type": "dimension",
+          "$value": "{envision.t2.radius.container.small}",
+          "$description": "Customize radius 8."
+        },
+        "customize-padding-inline": {
+          "$type": "dimension",
+          "$value": "{envision.t2.spacing.control.padding-inline}",
+          "$description": "Customize inline padding 16."
+        },
+        "focus-color": {
+          "$type": "color",
+          "$value": "{envision.t2.color.border.focus.default}",
+          "$description": "Focus outline green."
+        },
+        "focus-width": {
+          "$type": "dimension",
+          "$value": "{envision.t2.border-width.focus.default}",
+          "$description": "Focus 2."
+        },
+        "focus-offset": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.50}",
+          "$description": "Focus offset 2. T3->T1 — documented."
+        },
+        "color-border": {
+          "$type": "color",
+          "$value": "{envision.t2.color.border.container-subtle.default}",
+          "$description": "Card border (0.09 black)."
+        },
+        "color-border-swatch": {
+          "$type": "color",
+          "$value": "{envision.t2.color.border.swatch.default}",
+          "$description": "Swatch border (0.07 black)."
+        },
+        "shadow": {
+          "$type": "shadow",
+          "$value": "{envision.t2.shadow.card.default}",
+          "$description": "Rest elevation."
+        },
+        "shadow-hover": {
+          "$type": "shadow",
+          "$value": "{envision.t2.shadow.card-hover.default}",
+          "$description": "Hover elevation."
+        },
+        "shadow-selected": {
+          "$type": "shadow",
+          "$value": "{envision.t2.shadow.card-selected.default}",
+          "$description": "Selected elevation."
+        },
+        "check-shadow": {
+          "$type": "shadow",
+          "$value": "{envision.t2.shadow.badge.default}",
+          "$description": "Applied-check elevation."
+        },
+        "title-font-size": {
+          "$type": "dimension",
+          "$value": "{envision.t1.font-size.650}",
+          "$description": "Package tab title 19."
+        },
+        "title-line-height": {
+          "$type": "number",
+          "$value": "{envision.t1.line-height.130}",
+          "$description": "1.3."
+        },
+        "desc-line-height": {
+          "$type": "number",
+          "$value": "{envision.t1.line-height.145}",
+          "$description": "1.45."
+        },
+        "note-line-height": {
+          "$type": "number",
+          "$value": "{envision.t1.line-height.140}",
+          "$description": "1.4."
+        },
+        "color-image-bg": {
+          "$type": "color",
+          "$value": "#ece9e3",
+          "$description": "Image well bg. Component-specific direct value — no reusable T2 role (product warm-gray)."
+        },
+        "color-placeholder": {
+          "$type": "color",
+          "$value": "#9a9891",
+          "$description": "Thumb-fallback text. Component-specific direct value."
+        },
+        "color-description": {
+          "$type": "color",
+          "$value": "#6b6f6d",
+          "$description": "Description/subtitle gray. Component-specific direct value (product variant of secondary)."
+        },
+        "color-customize": {
+          "$type": "color",
+          "$value": "#333333",
+          "$description": "Customize label. Component-specific direct value."
+        },
+        "color-customize-hover-border": {
+          "$type": "color",
+          "$value": "#b9b4ab",
+          "$description": "Customize hover border. Component-specific direct value."
+        },
+        "color-customize-hover-bg": {
+          "$type": "color",
+          "$value": "#faf9f6",
+          "$description": "Customize hover surface. Component-specific direct value."
+        },
+        "color-note-bg": {
+          "$type": "color",
+          "$value": "#efece5",
+          "$description": "Fully-customizable note surface. Component-specific direct value."
+        },
+        "color-shimmer-mid": {
+          "$type": "color",
+          "$value": "#f4f2ed",
+          "$description": "Loading shimmer highlight. Component-specific direct value."
+        },
+        "badge-padding-inline": {
+          "$type": "dimension",
+          "$value": "13px",
+          "$description": "Badge inline padding. Component-specific direct value (off-scale)."
+        },
+        "badge-padding-block": {
+          "$type": "dimension",
+          "$value": "{envision.t2.spacing.control.padding-block}",
+          "$description": "Badge block padding 8."
+        },
+        "note-text-gap": {
+          "$type": "dimension",
+          "$value": "3px",
+          "$description": "Note title/body gap. Component-specific direct value (off-scale)."
+        },
+        "image-fade-duration": {
+          "$type": "duration",
+          "$value": "{envision.t1.duration.image}",
+          "$description": "Image fade 250ms."
+        },
+        "shimmer-duration": {
+          "$type": "duration",
+          "$value": "{envision.t1.duration.shimmer}",
+          "$description": "Shimmer 1200ms."
+        },
+        "image-ratio": {
+          "$type": "number",
+          "$value": 2.114,
+          "$description": "351/166. Direct value — documented exception."
+        }
+      },
+      "material-swatch": {
+        "$description": "Full component contract. label-gap = chip-to-label distance (verified: vertical column gap between chip and its label).",
+        "label-gap": {
+          "$type": "dimension",
+          "$value": "{envision.t2.spacing.content.label-gap}",
+          "$description": "Chip-to-label gap -> spacing/content/label-gap -> spacing/100 -> 4."
+        },
+        "radius": {
+          "$type": "dimension",
+          "$value": "{envision.t2.radius.control.small}",
+          "$description": "Chip radius -> radius/control/small -> radius/100 -> 4 (product value; corrected from 16)."
+        },
+        "chip-background": {
+          "$type": "color",
+          "$value": "{envision.t2.color.background.surface-sunken.default}",
+          "$description": "Chip placeholder surface (real fill is product data)."
+        },
+        "label-color": {
+          "$type": "color",
+          "$value": "{envision.t2.color.content.secondary.default}",
+          "$description": "Label color -> neutral/600."
+        },
+        "chip-size": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.1100}",
+          "$description": "Chip 64. T3->T1 (no T2 size role) — documented."
+        },
+        "unavailable-opacity": {
+          "$type": "number",
+          "$value": 0.4,
+          "$description": "Unavailable dim. Component-specific direct value (source has no opacity Tier-1 category)."
+        },
+        "ring": {
+          "hover": {
+            "color": {
+              "$value": "{envision.t2.color.ring.hover.default}",
+              "$description": "Hover ring colour."
+            },
+            "width": {
+              "$value": "{envision.t2.border-width.emphasis.default}",
+              "$description": "Hover ring width (2)."
+            }
+          },
+          "selected": {
+            "color": {
+              "$value": "{envision.t2.color.ring.selected.default}",
+              "$description": "Selected ring colour (taupe-600)."
+            },
+            "width": {
+              "$value": "{envision.t2.border-width.emphasis.default}",
+              "$description": "Selected ring width (3.5)."
+            },
+            "gap-color": {
+              "$value": "{envision.t2.color.background.surface.default}",
+              "$description": "Selected inner gap (white)."
+            },
+            "gap-width": {
+              "$value": "{envision.t2.border-width.emphasis.default}",
+              "$description": "Selected gap width (2)."
+            }
+          }
+        }
+      },
+      "option-card": {
+        "ring": {
+          "rest": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t2.color.ring.rest.default}"
+            }
+          },
+          "hover": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t2.color.ring.hover.default}"
+            }
+          },
+          "pressed": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t2.color.ring.pressed.default}"
+            }
+          },
+          "selected": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t2.color.ring.selected.default}"
+            }
+          }
+        },
+        "padding": {
+          "$value": "{envision.t2.spacing.container.padding-sm}",
+          "$description": "Card inset (12)."
+        },
+        "radius": {
+          "$value": "{envision.t2.radius.control.default}",
+          "$description": "Card radius (6)."
+        },
+        "left-gap": {
+          "$value": "{envision.t2.spacing.container.gap}",
+          "$description": "Thumb-to-text gap (12)."
+        },
+        "ring-inset": {
+          "$value": "{envision.t2.border-width.emphasis.default}",
+          "$description": "Inner ring inset over surface (2)."
+        },
+        "ring-width": {
+          "$value": "{envision.t2.border-width.ring-tile.default}",
+          "$description": "Selection-ring spread (3.5)."
+        },
+        "color-ring-inset": {
+          "$value": "{envision.t2.color.background.surface-warm.default}",
+          "$description": "Inner inset color = card surface."
+        },
+        "shadow-hover": {
+          "$value": "{envision.t2.shadow.elevation-warm.default}",
+          "$description": "Warm elevation on hover/active."
+        },
+        "thumb-radius": {
+          "$value": "{envision.t2.radius.control.small}",
+          "$description": "Thumbnail radius (4)."
+        },
+        "thumb-shadow": {
+          "$value": "{envision.t2.shadow.thumb-inset.default}",
+          "$description": "Thumbnail inner hairline."
+        },
+        "title-font-size": {
+          "$value": "{envision.t1.font-size.300}",
+          "$description": "Title (14)."
+        },
+        "title-line-height": {
+          "$value": "{envision.t1.line-height.snug}",
+          "$description": "Title line-height (1.2)."
+        },
+        "note-gap": {
+          "$value": "{envision.t2.spacing.content.hairline-gap}",
+          "$description": "Title-to-note gap (2)."
+        },
+        "note-font-size": {
+          "$value": "{envision.t1.font-size.200}",
+          "$description": "Note (13)."
+        },
+        "note-line-height": {
+          "$value": "{envision.t1.line-height.loose}",
+          "$description": "Note line-height (1.6)."
+        },
+        "chevron-font-size": {
+          "$value": "{envision.t1.font-size.700}",
+          "$description": "Chevron glyph (20)."
+        },
+        "chevron-gap": {
+          "$value": "{envision.t2.spacing.control.gap}",
+          "$description": "Chevron left padding (8)."
+        }
+      },
+      "badge": {
+        "promotional": {
+          "color": {
+            "background": {
+              "default": {
+                "$value": "{envision.t2.color.background.brand.default}"
+              }
+            },
+            "content": {
+              "default": {
+                "$value": "{envision.t2.color.content.on-brand.default}"
+              }
+            }
+          }
+        },
+        "neutral": {
+          "color": {
+            "background": {
+              "default": {
+                "$value": "{envision.t2.color.background.surface-sunken.default}"
+              }
+            },
+            "content": {
+              "default": {
+                "$value": "{envision.t2.color.content.primary.default}"
+              }
+            }
+          }
+        },
+        "info": {
+          "color": {
+            "background": {
+              "default": {
+                "$value": "{envision.t2.color.background.info-subtle.default}"
+              }
+            },
+            "content": {
+              "default": {
+                "$value": "{envision.t2.color.content.primary.default}"
+              }
+            }
+          }
+        },
+        "success": {
+          "color": {
+            "background": {
+              "default": {
+                "$value": "{envision.t2.color.background.success-subtle.default}"
+              }
+            },
+            "content": {
+              "default": {
+                "$value": "{envision.t2.color.content.primary.default}"
+              }
+            }
+          }
+        },
+        "warning": {
+          "color": {
+            "background": {
+              "default": {
+                "$value": "{envision.t2.color.background.warning-subtle.default}"
+              }
+            },
+            "content": {
+              "default": {
+                "$value": "{envision.t2.color.content.primary.default}"
+              }
+            }
+          }
+        },
+        "critical": {
+          "color": {
+            "background": {
+              "default": {
+                "$value": "{envision.t2.color.background.error-subtle.default}"
+              }
+            },
+            "content": {
+              "default": {
+                "$value": "{envision.t2.color.content.primary.default}"
+              }
+            }
+          }
+        },
+        "default": {
+          "border": {
+            "radius": {
+              "default": {
+                "$value": "{envision.t2.radius.pill.default}",
+                "$description": "Pill radius."
+              }
+            }
+          }
+        },
+        "medium": {
+          "spacing": {
+            "padding-inline": {
+              "default": {
+                "$value": "{envision.t2.spacing.inset-control.default}",
+                "$description": "Inline padding (12)."
+              }
+            },
+            "padding-block": {
+              "default": {
+                "$value": "{envision.t2.spacing.control.padding-block}",
+                "$description": "Block padding (8)."
+              }
+            },
+            "gap": {
+              "default": {
+                "$value": "{envision.t2.spacing.control.gap-tight}",
+                "$description": "Icon/label gap (4)."
+              }
+            }
+          },
+          "label": {
+            "font-size": {
+              "default": {
+                "$value": "{envision.t1.font-size.100}",
+                "$description": "Label size (12)."
+              }
+            }
+          }
+        }
+      },
+      "material-symbol": {
+        "$type": "color",
+        "color": {
+          "default": {
+            "$value": "{envision.t2.color.content.primary.default}",
+            "$description": "Default icon color (inherits content ink)."
+          },
+          "subtle": {
+            "$value": "{envision.t2.color.content.secondary.default}",
+            "$description": "Secondary/subtle icon."
+          },
+          "on-brand": {
+            "$value": "{envision.t2.color.content.on-brand.default}",
+            "$description": "Icon on brand fill (applied check)."
+          }
+        },
+        "size": {
+          "$type": "dimension",
+          "dense": {
+            "$value": "{envision.t2.size.icon.dense}",
+            "$description": "Dense icon box (16)."
+          },
+          "default": {
+            "$value": "{envision.t2.size.icon.default}",
+            "$description": "Default icon box (20)."
+          },
+          "large": {
+            "$value": "{envision.t2.size.icon.large}",
+            "$description": "Large icon box (24)."
+          }
+        }
+      }
+    }
+  }
+}

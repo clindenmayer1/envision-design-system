@@ -1,0 +1,67 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/blocks';
+import * as InputStories from './Input.stories';
+
+<Meta of={InputStories} />
+
+# Input
+
+## Overview
+`<envision-input>` is a labelled text field. The `<label>`, `<input>`, and helper/error messages
+live in one shadow root, so association (`for`/`id`/`aria-describedby`) works within scope.
+
+<Canvas of={InputStories.Default} />
+
+## Anatomy
+`label` (persistent) · `leadingIcon?` · `input` · `trailingIcon?` · `helperText?` / `errorMessage?`.
+
+## When to use / not to use
+- **Use** for free-text entry: name, email, search, price, numeric input.
+- **Not** for a fixed set of options (use Radio / a select), booleans (Checkbox/Switch), or long
+  multi-line content.
+
+## States
+`empty · filled · hover · focus-visible · invalid · disabled · read-only · required`.
+<Canvas of={InputStories.StateMatrix} />
+
+## Validation / error
+`invalid` shows `errorMessage`, sets `aria-invalid`, and points `aria-describedby` at the error.
+<Canvas of={InputStories.Invalid} />
+
+## Behaviour
+Standard text editing. `type="price"` renders a text input with a **decimal inputmode** (locale
+formatting is content/product responsibility, not the control’s). Emits composed `input` / `change`.
+
+## Accessibility
+- Persistent `<label>` associated by id — **a placeholder is never a label**.
+- `required` → visible + `aria-required`; `invalid` → `aria-invalid` + associated error via
+  `aria-describedby`; helper text is likewise associated.
+- Focus-within shows the 2px brand ring.
+
+## Content considerations
+Labels state the field, not instructions (“Email”, with helper text for guidance). Errors are
+specific and recoverable (“Enter a valid email address.”). 12px is never used for labels.
+
+## API
+<Controls of={InputStories.Default} />
+
+**Events:** `input`, `change` (composed).
+
+## Token relationships
+| Part | Token |
+|---|---|
+| Border (default/hover/focus/error) | `--envision-t3-input-default-color-border-*` |
+| Surface | `--envision-t2-color-background-surface-default` |
+| Placeholder | `--envision-t2-color-content-placeholder-default` |
+| Radius | `--envision-t2-border-radius-control` (6) |
+| Type | `--envision-t1-font-size-15` |
+| Error text | `--envision-t2-color-content-error-default` |
+
+## Implementation
+```html
+<envision-input label="Email" type="email" required
+  error-message="Enter a valid email." invalid></envision-input>
+```
+```tsx
+import { Input } from '@envision/react';
+<Input label="Email" type="email" required invalid errorMessage="Enter a valid email." />
+```
