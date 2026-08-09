@@ -22,19 +22,23 @@ internally inconsistent).
 | font-size | **14px** | 15px | `inherit` (~16) ✗ | `t1.font-size.14` |
 | font-weight | **600** | 600 | unset (~400) ✗ | `t1.font-weight.600` |
 | radius | 10 (primary) / 8 (Customize) ⚑ | 6 | 6 ✗ | `t2.border-radius.container-md` (10) |
-| padding block | **14** | 8 | 8 ✗ | `t1.spacing.14` |
+| padding block | 14 (website) → **16** ⚑⚑ | 8 | 8 ✗ | `t1.spacing.16` |
 | padding inline | 16 | 16 | 16 ✓ | (unchanged) |
 | gap / border | 8 / 1 | 8 / 1 | 8 / 1 ✓ | (unchanged) |
 
 ⚑ Website primary CTA is radius 10; the Customize secondary was 8. Normalized the Button family to
 **10** (the prominent CTA). Outline/ghost inherit the same radius.
 
+⚑⚑ Spacing normalization (rule of 8s): the off-grid `10` and `14` spacing steps were removed from the
+scale (`10→12`, `14→16`). This intentionally supersedes the website's exact `14` block padding —
+a deliberate system improvement over the original, not a fidelity miss.
+
 ## Tab  (RightRail tabs)
 | Property | Website | Component (before) | → Target |
 |---|---|---|---|
 | font-size | **14px** | `inherit` ✗ | `t1.font-size.14` |
 | font-weight | **600** | unset ✗ | `t1.font-weight.600` |
-| padding | **16px 0 14px** | 8/12 ✗ | `t1.spacing.16` top / 0 inline / `t1.spacing.14` bottom |
+| padding | 16px 0 14px → **16 0 16** ⚑⚑ | 8/12 ✗ | `t1.spacing.16` top / 0 inline / `t1.spacing.16` bottom |
 | inactive color | **#8a8a82** (content/tertiary) | `t3.tab.default` (#666) ✗ | `t2.color.content.tertiary` |
 | selected color | #222 (content/primary) | `t3.tab.selected` ✓ | (unchanged) |
 | indicator | 2px, radius 1px | 2px ✓ | (unchanged) |

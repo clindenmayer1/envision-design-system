@@ -49,7 +49,7 @@ const styles = css`
     border: var(--envision-t2-border-width-default, 1px) solid transparent;
     /* Website primary CTA radius = 10 (container-md), not the shared control radius. */
     border-radius: var(--envision-t2-border-radius-container-md, 10px);
-    padding-block: var(--envision-t1-spacing-14, 14px);
+    padding-block: var(--envision-t1-spacing-16, 16px);
     padding-inline: var(--envision-t2-spacing-control-padding-inline, 1rem);
     transition: background-color var(--envision-t2-motion-micro-duration, 150ms)
         cubic-bezier(0.2, 0.8, 0.2, 1),

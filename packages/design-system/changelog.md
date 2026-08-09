@@ -2,6 +2,24 @@
 
 Format: [version] — date. Keep-a-changelog style. Maturity in parentheses.
 
+## [Unreleased]
+
+### Changed — Spacing scale (rule of 8s)
+- Removed the off-grid **`spacing/10`** and **`spacing/14`** primitives from the T1 scale.
+  Re-pointed every alias: `10 → 12`, `14 → 16` (field-padding-block/inline, navigation-item
+  padding-block, search-field padding-block/inline). Button block padding `14 → 16`; Tab padding
+  `16 0 14 → 16 0 16`. Applied in the token snapshot, Figma variables, components, and docs.
+  This intentionally supersedes the website's exact `14` button padding (see FIDELITY-AUDIT ⚑⚑).
+  *Open:* the product app's older step-named tokens still carry off-grid `250 = 10px` / `350 = 14px`.
+
+### Changed — Component generalization (name by function, not feature)
+- **`RoomSelector` → `Dropdown`** and **`CabinetStyleTray` → `Tray`**: generic organisms; the feature
+  (rooms / cabinets) is now an **instance**, not a component.
+- **Thumb aspect ratio is a variable, not a variant**: added `thumb/aspect-ratio` (`square` 1:1,
+  `portrait` 3:4). `SelectionTray` (which used a `Shape` *variant*) soft-deprecated in favor of `Tray`.
+- Naming audit of the remaining components (kept `MaterialSwatch`, `OptionCard`, `PackageCard`,
+  `RightRail` with recorded reasons). See `REUSABLE-COMPONENTS.md`.
+
 ## [0.1.0] — 2026-07-16 (Candidate)
 
 ### Added — Foundations

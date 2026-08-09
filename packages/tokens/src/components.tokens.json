@@ -492,7 +492,7 @@
         },
         "padding-block": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.10}"
+          "$value": "{envision.t1.spacing.12}"
         }
       },
       "navigation": {
@@ -504,11 +504,11 @@
       "search-field": {
         "padding-inline": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.14}"
+          "$value": "{envision.t1.spacing.16}"
         },
         "padding-block": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.10}"
+          "$value": "{envision.t1.spacing.12}"
         }
       },
       "dialog": {

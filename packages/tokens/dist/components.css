@@ -29,10 +29,10 @@
   --envision-t3-form-field-gap: var(--envision-t1-spacing-6);
   --envision-t3-navigation-item-gap: var(--envision-t1-spacing-12);
   --envision-t3-navigation-item-padding-inline: var(--envision-t1-spacing-12);
-  --envision-t3-navigation-item-padding-block: var(--envision-t1-spacing-10);
+  --envision-t3-navigation-item-padding-block: var(--envision-t1-spacing-12);
   --envision-t3-navigation-gap: var(--envision-t1-spacing-2);
-  --envision-t3-search-field-padding-inline: var(--envision-t1-spacing-14);
-  --envision-t3-search-field-padding-block: var(--envision-t1-spacing-10);
+  --envision-t3-search-field-padding-inline: var(--envision-t1-spacing-16);
+  --envision-t3-search-field-padding-block: var(--envision-t1-spacing-12);
   --envision-t3-dialog-gap: var(--envision-t1-spacing-20);
   --envision-t3-dialog-padding: var(--envision-t1-spacing-24);
   --envision-t3-dialog-footer-gap: var(--envision-t1-spacing-12);

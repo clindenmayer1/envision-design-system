@@ -308,17 +308,9 @@
           "$type": "dimension",
           "$value": 8
         },
-        "10": {
-          "$type": "dimension",
-          "$value": 10
-        },
         "12": {
           "$type": "dimension",
           "$value": 12
-        },
-        "14": {
-          "$type": "dimension",
-          "$value": 14
         },
         "16": {
           "$type": "dimension",

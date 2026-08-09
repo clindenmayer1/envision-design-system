@@ -73,9 +73,7 @@ spacing/2|dimension|2
 spacing/4|dimension|4
 spacing/6|dimension|6
 spacing/8|dimension|8
-spacing/10|dimension|10
 spacing/12|dimension|12
-spacing/14|dimension|14
 spacing/16|dimension|16
 spacing/18|dimension|18
 spacing/20|dimension|20
@@ -240,8 +238,8 @@ spacing/control-padding-inline|dimension|=envision.t1.spacing.16
 spacing/control-padding-block|dimension|=envision.t1.spacing.8
 spacing/control-gap|dimension|=envision.t1.spacing.8
 spacing/control-gap-tight|dimension|=envision.t1.spacing.4
-spacing/field-padding-inline|dimension|=envision.t1.spacing.14
-spacing/field-padding-block|dimension|=envision.t1.spacing.10
+spacing/field-padding-inline|dimension|=envision.t1.spacing.16
+spacing/field-padding-block|dimension|=envision.t1.spacing.12
 spacing/label-gap|dimension|=envision.t1.spacing.4
 spacing/related-gap|dimension|=envision.t1.spacing.6
 spacing/heading-gap|dimension|=envision.t1.spacing.12
@@ -387,10 +385,10 @@ thumbnail/color/border|color|#FFFFFF
 form-field/gap|dimension|=envision.t1.spacing.6
 navigation-item/gap|dimension|=envision.t1.spacing.12
 navigation-item/padding-inline|dimension|=envision.t1.spacing.12
-navigation-item/padding-block|dimension|=envision.t1.spacing.10
+navigation-item/padding-block|dimension|=envision.t1.spacing.12
 navigation/gap|dimension|=envision.t1.spacing.2
-search-field/padding-inline|dimension|=envision.t1.spacing.14
-search-field/padding-block|dimension|=envision.t1.spacing.10
+search-field/padding-inline|dimension|=envision.t1.spacing.16
+search-field/padding-block|dimension|=envision.t1.spacing.12
 dialog/gap|dimension|=envision.t1.spacing.20
 dialog/padding|dimension|=envision.t1.spacing.24
 dialog/footer/gap|dimension|=envision.t1.spacing.12

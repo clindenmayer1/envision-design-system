@@ -386,11 +386,11 @@
         },
         "field-padding-inline": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.14}"
+          "$value": "{envision.t1.spacing.16}"
         },
         "field-padding-block": {
           "$type": "dimension",
-          "$value": "{envision.t1.spacing.10}"
+          "$value": "{envision.t1.spacing.12}"
         },
         "label-gap": {
           "$type": "dimension",

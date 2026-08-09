@@ -28,7 +28,7 @@ const styles = css`
     font-weight: var(--envision-t1-font-weight-600, 600);
     cursor: pointer;
     /* Website tab padding: 16 top / 0 sides / 14 bottom. */
-    padding: var(--envision-t1-spacing-16, 16px) 0 var(--envision-t1-spacing-14, 14px);
+    padding: var(--envision-t1-spacing-16, 16px) 0 var(--envision-t1-spacing-16, 16px);
     color: var(--envision-t2-color-content-tertiary-default, #8a8a82);
     border-block-end: 2px solid transparent;
   }

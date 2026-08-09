@@ -94,8 +94,8 @@
   --envision-t2-spacing-control-padding-block: var(--envision-t1-spacing-8);
   --envision-t2-spacing-control-gap: var(--envision-t1-spacing-8);
   --envision-t2-spacing-control-gap-tight: var(--envision-t1-spacing-4);
-  --envision-t2-spacing-field-padding-inline: var(--envision-t1-spacing-14);
-  --envision-t2-spacing-field-padding-block: var(--envision-t1-spacing-10);
+  --envision-t2-spacing-field-padding-inline: var(--envision-t1-spacing-16);
+  --envision-t2-spacing-field-padding-block: var(--envision-t1-spacing-12);
   --envision-t2-spacing-label-gap: var(--envision-t1-spacing-4);
   --envision-t2-spacing-related-gap: var(--envision-t1-spacing-6);
   --envision-t2-spacing-heading-gap: var(--envision-t1-spacing-12);
