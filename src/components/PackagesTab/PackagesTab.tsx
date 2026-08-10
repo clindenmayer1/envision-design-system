@@ -8,6 +8,7 @@
  * as manual customization (no competing apply system).
  */
 import { useState } from 'react'
+import { Badge } from '@envision/react'
 import { PACKAGES, packageSwatches, packageThumbUrl, type KitchenPackage } from '../../three/packages'
 import './PackagesTab.css'
 
@@ -59,10 +60,12 @@ function PackageCard({ pkg, selected, onSelect, onCustomize }: {
             {imgState === 'error' && <span>Preview coming soon</span>}
           </div>
         )}
-        {pkg.popular && <span className="pkg-card__badge">{pkg.badge ?? 'Popular'}</span>}
+        {pkg.popular && (
+          <Badge className="pkg-card__badge" tone="brand" label={pkg.badge ?? 'Popular'} />
+        )}
         {selected && (
           <span className="pkg-card__check" role="img" aria-label="Applied">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#29594F" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12l5 5 9-10" />
             </svg>
           </span>
@@ -123,7 +126,7 @@ export default function PackagesTab({ selectedPackageId, onSelect, onCustomize }
       </div>
 
       <div className="pkg-tab__note">
-        <svg className="pkg-tab__note-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2e3230" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <svg className="pkg-tab__note-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
           <line x1="4" y1="8" x2="20" y2="8" /><line x1="4" y1="16" x2="20" y2="16" />
           <circle cx="9" cy="8" r="2" fill="#fff" /><circle cx="15" cy="16" r="2" fill="#fff" />
         </svg>

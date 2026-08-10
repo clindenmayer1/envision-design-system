@@ -4,6 +4,7 @@
  * section-based customization experience exactly. Packages shows the curated package cards.
  */
 import { useState } from 'react'
+import { Tab } from '@envision/react'
 import ConfiguratorSection from '../ConfiguratorSection/ConfiguratorSection'
 import PackagesTab from '../PackagesTab/PackagesTab'
 import RailFooter from '../RailFooter/RailFooter'
@@ -14,6 +15,9 @@ import type { ConfigKey, KitchenConfig, SectionId } from '../../types'
 import './RightRail.css'
 
 type RailTab = 'customize' | 'packages'
+
+/** The scroll region is the tabpanel both tabs control. */
+const PANEL_ID = 'rail-panel'
 
 interface Props {
   config: KitchenConfig
@@ -38,27 +42,21 @@ export default function RightRail({ config, onChange, onSectionFocus, onOpenTray
   return (
     <aside className="rail">
       <div className="rail__tabs" role="tablist" aria-label="Configurator">
-        <button
-          type="button"
-          role="tab"
-          aria-selected={tab === 'customize'}
-          className={`rail__tab${tab === 'customize' ? ' rail__tab--active' : ''}`}
-          onClick={() => setTab('customize')}
-        >
-          Customize
-        </button>
-        <button
-          type="button"
-          role="tab"
-          aria-selected={tab === 'packages'}
-          className={`rail__tab${tab === 'packages' ? ' rail__tab--active' : ''}`}
-          onClick={() => setTab('packages')}
-        >
-          Packages
-        </button>
+        <Tab
+          label="Customize"
+          panel={PANEL_ID}
+          selected={tab === 'customize'}
+          onSelect={() => setTab('customize')}
+        />
+        <Tab
+          label="Packages"
+          panel={PANEL_ID}
+          selected={tab === 'packages'}
+          onSelect={() => setTab('packages')}
+        />
       </div>
 
-      <div className="rail__scroll">
+      <div className="rail__scroll" id={PANEL_ID} role="tabpanel" aria-label={tab === 'customize' ? 'Customize' : 'Packages'}>
         {tab === 'customize' ? (
           <div className="rail__customize">
             {SECTIONS.map((section) => (

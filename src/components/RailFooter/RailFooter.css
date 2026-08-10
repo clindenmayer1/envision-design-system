@@ -1,21 +1,26 @@
 /* Pinned bottom bar — sits below .rail__scroll in the rail's flex column.
    Two rows: [upgrades · Save] on top, full-width Select CTA below (the 416px
-   rail is too narrow to fit all three side-by-side without clipping). */
+   rail is too narrow to fit all three side-by-side without clipping).
+
+   DESIGN SYSTEM APPLIED: migrated to canonical @envision/tokens roles. The Select CTA is now
+   <envision-button variant="primary" full-width>, so every rule that painted it is gone. */
 .railfooter {
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 14px 20px 16px;
-  background: #faf9f6;
-  border-top: 1px solid var(--hairline);
+  gap: var(--envision-t2-spacing-container-gap);
+  /* 14 / 20 / 16. T2 has no 14 or 16 container-padding role, so the block values use T1 steps
+     rather than borrowing a control role that means something else. */
+  padding: var(--envision-t1-spacing-14) var(--envision-t2-spacing-container-padding) var(--envision-t1-spacing-16);
+  background: var(--envision-t2-color-background-surface-warm-default);
+  border-top: var(--envision-t2-border-width-default) solid var(--envision-t2-color-border-default-default);
 }
 
 .railfooter__top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
+  gap: var(--envision-t1-spacing-14);
 }
 
 .railfooter__upgrades {
@@ -23,43 +28,44 @@
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
-  gap: 1px;
+  gap: 1px; /* structural hairline offset, not a spacing decision */
   flex: 0 0 auto;
   /* Lock to the two-line (label + total) height so the "All selections included"
      single-line state doesn't shrink the footer. */
-  min-height: 38px;
+  min-height: 38px; /* structural: locks the two-line height */
   text-align: right;
 }
 .railfooter__label {
-  font-size: 12px;
-  font-weight: 500;
-  color: #8a8a82;
+  font-size: var(--envision-t1-font-size-12);
+  font-weight: var(--envision-t1-font-weight-500);
+  color: var(--envision-t2-color-content-secondary-default);
   white-space: nowrap;
 }
 .railfooter__total {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--ink);
+  font-size: var(--envision-t1-font-size-18);
+  font-weight: var(--envision-t1-font-weight-700);
+  color: var(--envision-t2-color-content-primary-default);
   line-height: 1.15;
 }
 .railfooter__included {
-  font-size: 14px;
-  font-weight: 500;
-  color: #8a8a82;
+  font-size: var(--envision-t1-font-size-14);
+  font-weight: var(--envision-t1-font-weight-500);
+  color: var(--envision-t2-color-content-secondary-default);
   white-space: nowrap;
 }
 
 .railfooter__save {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  /* legacy 7px was off the 4pt grid; snapped to the 8px control gap. */
+  gap: var(--envision-t2-spacing-control-gap);
   flex: 0 0 auto;
   padding: 0;
   border: none;
   background: transparent;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--ink);
+  font-size: var(--envision-t1-font-size-13);
+  font-weight: var(--envision-t1-font-weight-600);
+  color: var(--envision-t2-color-content-primary-default);
   white-space: nowrap;
   cursor: pointer;
 }
@@ -67,22 +73,11 @@
   flex: 0 0 auto;
 }
 .railfooter__save:hover {
-  color: #29594f;
+  color: var(--envision-t2-color-content-brand-default);
+}
+.railfooter__save:focus-visible {
+  outline: var(--envision-t2-border-width-focus) solid var(--envision-t2-color-border-focus-default);
+  outline-offset: var(--envision-t1-spacing-4);
+  border-radius: var(--envision-t2-border-radius-control-sm);
 }
 
-.railfooter__select {
-  width: 100%;
-  padding: 14px 16px;
-  border: none;
-  border-radius: 10px;
-  background: #29594f;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 600;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: background 0.15s ease;
-}
-.railfooter__select:hover {
-  background: #21493f;
-}

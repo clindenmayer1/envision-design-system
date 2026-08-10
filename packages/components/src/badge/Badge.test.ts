@@ -39,4 +39,18 @@ describe('envision-badge', () => {
     const labelledDot = await mount({ shape: 'dot', label: 'Unread' });
     expect(labelledDot.shadowRoot!.querySelector('.badge')!.getAttribute('aria-label')).toBe('Unread');
   });
+
+  it('renders a status label as visible text when there is no count', async () => {
+    const el = await mount({ tone: 'brand', label: 'Popular' });
+    expect(el.shadowRoot!.querySelector('.text')!.textContent).toBe('Popular');
+    expect(badge(el).getAttribute('role')).toBeNull();
+    expect(badge(el).getAttribute('aria-label')).toBeNull();
+  });
+
+  it('keeps the count visible and label as accessible name when both are set', async () => {
+    const el = await mount({ count: '4', label: '4 unread' });
+    expect(el.shadowRoot!.querySelector('.num')!.textContent).toBe('4');
+    expect(el.shadowRoot!.querySelector('.text')!.textContent).toBe('');
+    expect(badge(el).getAttribute('aria-label')).toBe('4 unread');
+  });
 });

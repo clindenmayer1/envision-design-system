@@ -1,49 +1,36 @@
-/* Figma: rail 416 wide, white. Tabs fixed at top; content scrolls beneath. */
+/* Right rail — DESIGN SYSTEM APPLIED.
+   Migrated from raw values and the legacy --hairline/--ink aliases to the canonical
+   @envision/tokens layer (--envision-t2-* semantic roles, --envision-t3-right-rail-* component
+   tokens). Every rendered value is preserved.
+
+   The two tabs are now <envision-tab> from @envision/components. This file owns only the tablist
+   wrapper and the equal-width layout, applied through the component's exposed ::part(tab) rather
+   than by reaching into its shadow root. */
 .rail {
-  width: 392px;
-  flex: 0 0 392px;
+  /* responsive component token: 392px desktop, 390px in the ≤1024px sheet */
+  width: var(--envision-t3-right-rail-default-width);
+  flex: 0 0 var(--envision-t3-right-rail-default-width);
   height: 100%;
-  background: #fff;
-  border-left: 1px solid var(--hairline);
+  background: var(--envision-t3-right-rail-default-color-background);
+  border-left: var(--envision-t2-border-width-default) solid var(--envision-t3-right-rail-default-color-border);
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
-/* Two tabs pinned at the top of the rail. */
+/* Tablist pinned at the top of the rail. */
 .rail__tabs {
   flex: 0 0 auto;
   display: flex;
-  padding: 0 16px;
-  border-bottom: 1px solid var(--hairline);
+  padding: 0 var(--envision-t2-spacing-control-padding-inline);
+  border-bottom: var(--envision-t2-border-width-default) solid var(--envision-t3-right-rail-default-color-border);
 }
-.rail__tab {
-  position: relative;
+/* Equal-width tabs, matching the Figma Tabs `Fitted` variant. */
+.rail__tabs envision-tab {
   flex: 1 1 0;
-  padding: 16px 0 14px;
-  border: none;
-  background: transparent;
-  font-size: 14px;
-  font-weight: 600;
-  color: #8a8a82;
-  cursor: pointer;
-  transition: color 0.15s ease;
 }
-.rail__tab:hover {
-  color: var(--ink);
-}
-.rail__tab--active {
-  color: var(--ink);
-}
-.rail__tab--active::after {
-  content: '';
-  position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: -1px;
-  height: 2px;
-  border-radius: 1px;
-  background: #29594F;
+.rail__tabs envision-tab::part(tab) {
+  width: 100%;
 }
 
 .rail__scroll {
@@ -57,20 +44,23 @@
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;
 }
+/* T1 exception: a scrollbar thumb is browser chrome, not a border, surface or content role, so no
+   T2 role fits. brown/200 is the ramp step the legacy rgba(118,93,73,0.3) composites to on white,
+   preserving the rendered colour exactly. */
 .rail__scroll:hover,
-.rail__scroll:focus-within { scrollbar-color: rgba(118, 93, 73, 0.3) transparent; }
-.rail__scroll::-webkit-scrollbar { width: 8px; }
+.rail__scroll:focus-within { scrollbar-color: var(--envision-t1-color-brown-200) transparent; }
+.rail__scroll::-webkit-scrollbar { width: var(--envision-t1-spacing-8); }
 .rail__scroll::-webkit-scrollbar-track { background: transparent; }
-.rail__scroll::-webkit-scrollbar-thumb { background: transparent; border-radius: 4px; }
+.rail__scroll::-webkit-scrollbar-thumb { background: transparent; border-radius: var(--envision-t2-border-radius-control-sm); }
 .rail__scroll:hover::-webkit-scrollbar-thumb,
-.rail__scroll:active::-webkit-scrollbar-thumb { background: rgba(118, 93, 73, 0.3); }
+.rail__scroll:active::-webkit-scrollbar-thumb { background: var(--envision-t1-color-brown-200); }
 
 /* Customize tab — equal 32px gutters; the thin scrollbar overlays the right padding. */
 .rail__customize {
-  padding: 24px 32px;
+  padding: var(--envision-t2-spacing-inset-panel) var(--envision-t2-spacing-page-gutter);
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: var(--envision-t2-spacing-section-gap);
 }
 
 @media (max-width: 1024px) {
@@ -78,6 +68,6 @@
     width: 100%;
     flex: 1 1 auto;
     border-left: none;
-    border-top: 1px solid var(--hairline);
+    border-top: var(--envision-t2-border-width-default) solid var(--envision-t3-right-rail-default-color-border);
   }
 }

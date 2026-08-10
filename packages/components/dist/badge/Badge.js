@@ -45,6 +45,8 @@ const styles = css `
     border-radius: 50%;
   }
   :host([shape='dot']) .num { display: none; }
+  :host([shape='dot']) .text { display: none; }
+  .text:empty { display: none; }
 `;
 const TONES = ['neutral', 'brand', 'info', 'success', 'warning', 'error'];
 const SHAPES = ['count', 'dot'];
@@ -53,6 +55,7 @@ export class EnvisionBadge extends EnvisionElement {
     static observedAttributes = ['tone', 'shape', 'count', 'max', 'label'];
     #badge;
     #num;
+    #text;
     get tone() { return this.getEnum('tone', TONES, 'neutral'); }
     set tone(v) { this.setStr('tone', v); }
     get shape() { return this.getEnum('shape', SHAPES, 'count'); }
@@ -72,9 +75,10 @@ export class EnvisionBadge extends EnvisionElement {
     }
     render() {
         const root = this.shadowRoot;
-        root.innerHTML = `<span class="badge" part="badge"><span class="num" part="count"></span></span>`;
+        root.innerHTML = `<span class="badge" part="badge"><span class="text" part="label"></span><span class="num" part="count"></span></span>`;
         this.#badge = root.querySelector('.badge');
         this.#num = root.querySelector('.num');
+        this.#text = root.querySelector('.text');
     }
     updated() {
         // tone → token custom-property switch (drives .badge background/content)
@@ -84,10 +88,21 @@ export class EnvisionBadge extends EnvisionElement {
         // count → clamped display ("99+")
         const display = this.#displayCount();
         this.#num.textContent = display;
+        // A status Badge (Figma: Badge with a Label) shows its label as TEXT; a notification Badge
+        // shows a count. Label text renders only when there is no count, so counted and dot badges
+        // are unchanged and `label` keeps acting purely as their accessible name.
+        const showsText = this.shape !== 'dot' && this.count == null && !!this.label;
+        this.#text.textContent = showsText ? this.label : '';
         // accessible name: explicit label wins; else count phrase; dot with no label is decorative
         const name = this.label ??
             (this.shape === 'count' && this.count != null ? `${this.count} ${this.count === 1 ? 'item' : 'items'}` : null);
-        if (name) {
+        if (showsText) {
+            // The visible text IS the accessible name; a live region would re-announce it on insert.
+            this.#badge.removeAttribute('role');
+            this.#badge.removeAttribute('aria-label');
+            this.#badge.removeAttribute('aria-hidden');
+        }
+        else if (name) {
             this.#badge.setAttribute('role', 'status');
             this.#badge.setAttribute('aria-label', name);
             this.#badge.removeAttribute('aria-hidden');

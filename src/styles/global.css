@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&display=swap');
-/* Design-system tokens (generated from DTCG — Tier 1 -> Tier 2 -> Tier 3). Source of truth. */
+/* PRODUCTION design system, published from Figma via @envision/tokens.
+   Emits --envision-t1/t2/t3-*. This is the canonical source of truth and the migration target. */
+@import '@envision/tokens/css';
+@import '@envision/tokens/css/responsive';
+/* LEGACY app-local token layer (--envision-* / --envision-theme-*), still used by every screen
+   outside the Design Center rail. Retired screen by screen. */
 @import './tokens.css';
 
 :root {

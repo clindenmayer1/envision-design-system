@@ -4,6 +4,7 @@
  * running upgrade total, a "Save this design" text button, and the primary
  * "Select this design" CTA.
  */
+import { Button } from '@envision/react'
 import './RailFooter.css'
 
 interface Props {
@@ -40,9 +41,13 @@ export default function RailFooter({ upgradeTotal = 4280, onSave, onSelect }: Pr
           )}
         </div>
       </div>
-      <button type="button" className="railfooter__select" onClick={onSelect}>
-        Select this design
-      </button>
+      <Button
+        className="railfooter__select"
+        variant="primary"
+        fullWidth
+        label="Select this design"
+        onClick={onSelect}
+      />
     </div>
   )
 }
