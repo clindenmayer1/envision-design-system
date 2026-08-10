@@ -2,18 +2,18 @@
 .viewswitch {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 3px 8px;
-  background: #fff;
-  border: 1px solid var(--hairline);
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  gap: var(--envision-t2-spacing-control-gap-tight);
+  padding: 3px var(--envision-t2-spacing-control-gap);
+  background: var(--envision-t2-color-background-surface-default);
+  border: var(--envision-t2-border-width-default) solid var(--hairline);
+  border-radius: var(--envision-t2-border-radius-control);
+  box-shadow: var(--envision-t2-elevation-flat);
 }
 
 .viewswitch__label {
-  padding: 0 6px 0 4px;
-  font-size: 13px;
-  font-weight: 500;
+  padding: 0 6px 0 var(--envision-t2-spacing-control-gap-tight);
+  font-size: var(--envision-t1-font-size-13);
+  font-weight: var(--envision-t1-font-weight-500);
   letter-spacing: 0.01em;
   color: var(--ink);
 }
@@ -26,13 +26,13 @@
   height: 28px;
   padding: 0;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--envision-t2-border-radius-control-sm);
   background: transparent;
   color: #6b6f6d;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: var(--envision-t1-font-size-13);
+  font-weight: var(--envision-t1-font-weight-500);
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: background var(--envision-t2-motion-micro-duration) ease, color var(--envision-t2-motion-micro-duration) ease;
 }
 
 .viewswitch__num:hover {
@@ -43,5 +43,5 @@
 .viewswitch__num--active:hover {
   background: #ece7df;
   color: var(--ink);
-  font-weight: 600;
+  font-weight: var(--envision-t1-font-weight-600);
 }

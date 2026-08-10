@@ -10,9 +10,9 @@
   flex-direction: column;
   background: rgba(20, 21, 24, 0.96);
   color: #f2f2f2;
-  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  border-left: var(--envision-t2-border-width-default) solid rgba(255, 255, 255, 0.12);
   box-shadow: -8px 0 30px rgba(0, 0, 0, 0.35);
-  font-size: 11px;
+  font-size: var(--envision-t1-font-size-11);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -21,11 +21,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 14px;
-  font-size: 13px;
-  font-weight: 600;
+  padding: var(--envision-t2-spacing-container-gap) 14px;
+  font-size: var(--envision-t1-font-size-13);
+  font-weight: var(--envision-t1-font-weight-600);
   letter-spacing: 0.02em;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: var(--envision-t2-border-width-default) solid rgba(255, 255, 255, 0.12);
   background: rgba(0, 0, 0, 0.25);
 }
 
@@ -33,12 +33,12 @@
   border: none;
   background: transparent;
   color: #c9cdd4;
-  font-size: 20px;
+  font-size: var(--envision-t1-font-size-20);
   line-height: 1;
   cursor: pointer;
-  padding: 0 4px;
+  padding: 0 var(--envision-t2-spacing-control-gap-tight);
 }
-.studio__close:hover { color: #fff; }
+.studio__close:hover { color: var(--envision-t2-color-content-on-primary-default); }
 
 /* Always-visible button to open the lighting controller (no URL needed). */
 .studio-toggle {
@@ -47,12 +47,12 @@
   bottom: 16px;
   z-index: 10000;
   padding: 9px 14px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 8px;
-  background: #141518;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 600;
+  border: var(--envision-t2-border-width-default) solid rgba(0, 0, 0, 0.15);
+  border-radius: var(--envision-t2-border-radius-container-sm);
+  background: var(--envision-t2-color-background-dark-default);
+  color: var(--envision-t2-color-content-on-primary-default);
+  font-size: var(--envision-t1-font-size-12);
+  font-weight: var(--envision-t1-font-weight-600);
   letter-spacing: 0.02em;
   cursor: pointer;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
@@ -62,20 +62,20 @@
 .studio__scroll {
   flex: 1 1 auto;
   overflow-y: auto;
-  padding: 6px 12px 24px;
+  padding: 6px var(--envision-t2-spacing-container-gap) var(--envision-t2-spacing-container-padding-head);
 }
 
 .studio__group {
   margin-top: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 8px;
+  border-top: var(--envision-t2-border-width-default) solid rgba(255, 255, 255, 0.08);
+  padding-top: var(--envision-t2-spacing-control-gap);
 }
 
 .studio__grouptitle {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: var(--envision-t2-spacing-control-gap);
   margin: 0 0 6px;
   font-size: 10.5px;
   letter-spacing: 0.08em;
@@ -86,7 +86,7 @@
 .studio__groupreset {
   flex: none;
   padding: 1px 6px;
-  border: 1px solid #3a4150;
+  border: var(--envision-t2-border-width-default) solid #3a4150;
   border-radius: 5px;
   background: transparent;
   color: #9fa6b2;
@@ -105,7 +105,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: var(--envision-t2-spacing-control-gap);
   min-height: 24px;
   padding: 2px 0;
 }
@@ -150,8 +150,8 @@
   width: 34px;
   height: 20px;
   padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
+  border: var(--envision-t2-border-width-default) solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--envision-t2-border-radius-control-sm);
   background: none;
   cursor: pointer;
 }
@@ -172,11 +172,11 @@
 .studio__buttons button {
   text-align: left;
   padding: 7px 10px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 6px;
+  border: var(--envision-t2-border-width-default) solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--envision-t2-border-radius-control);
   background: rgba(255, 255, 255, 0.06);
   color: #eef1f5;
-  font-size: 11px;
+  font-size: var(--envision-t1-font-size-11);
   cursor: pointer;
 }
 

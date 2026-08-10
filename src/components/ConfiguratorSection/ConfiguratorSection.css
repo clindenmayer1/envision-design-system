@@ -2,14 +2,14 @@
 .cfg-section {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--envision-t2-spacing-container-padding-note);
 }
 
 .cfg-section__title {
   /* Align text left edge to the card/swatch OUTLINE (which extends 3.5px past the box). */
   margin: 0 0 0 -3.5px;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: var(--envision-t1-font-size-18);
+  font-weight: var(--envision-t1-font-weight-600);
   color: var(--ink);
   line-height: 1.2;
 }
@@ -17,47 +17,47 @@
 .cfg-group {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--envision-t2-spacing-container-gap);
 }
 
 /* Extra 4px breathing room between consecutive groups (swatch grid → next group's
    label), without touching the section-title → first-group spacing. */
 .cfg-group + .cfg-group {
-  margin-top: 4px;
+  margin-top: var(--envision-t2-spacing-control-gap-tight);
 }
 
 .cfg-group__header {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 12px;
+  gap: var(--envision-t2-spacing-container-gap);
 }
 
 .cfg-group__label {
   /* Align text left edge to the card/swatch OUTLINE (which extends 3.5px past the box). */
   margin: 0 0 0 -3.5px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #555555;
+  font-size: var(--envision-t1-font-size-14);
+  font-weight: var(--envision-t1-font-weight-600);
+  color: var(--envision-t2-color-content-tertiary-default);
   line-height: 1.2;
 }
 
 .cfg-group__included {
   /* Align right edge to the swatch grid's outline (extends 3.5px past the box). */
   margin-right: -3.5px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #555555;
+  font-size: var(--envision-t1-font-size-14);
+  font-weight: var(--envision-t1-font-weight-600);
+  color: var(--envision-t2-color-content-tertiary-default);
   line-height: 1.2;
   text-align: right;
 }
 
 .cfg-group__included--upgrade {
-  color: #222222;
+  color: var(--envision-t2-color-content-primary-default);
 }
 
 .cfg-group__swatches {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 12px;
+  gap: var(--envision-t2-spacing-container-gap);
 }

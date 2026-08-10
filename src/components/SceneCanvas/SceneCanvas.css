@@ -3,7 +3,7 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  background: #f3f0ea; /* matches the canvas clear colour — no flash before first frame */
+  background: var(--envision-t2-color-background-disabled-default); /* matches the canvas clear colour — no flash before first frame */
 }
 
 .scene-canvas canvas {
@@ -23,7 +23,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f3f0ea;
+  background: var(--envision-t2-color-background-disabled-default);
   z-index: 2;
   opacity: 0;
   pointer-events: none;
@@ -36,20 +36,20 @@
 .scene-loader__bar {
   width: 200px;
   height: 3px;
-  border-radius: 2px;
+  border-radius: var(--envision-t2-border-radius-control-xs);
   background: rgba(34, 34, 34, 0.1);
   overflow: hidden;
 }
 .scene-loader__fill {
   height: 100%;
   width: 100%;
-  border-radius: 2px;
-  background: #29594F;
+  border-radius: var(--envision-t2-border-radius-control-xs);
+  background: var(--envision-t2-color-background-brand-default);
   /* Width is scaleX = the REAL byte fraction (set inline). The short transition only smooths the
      gap between one real byte update and the next — it never advances the bar on its own. */
   transform-origin: left center;
   transform: scaleX(0);
-  transition: transform 180ms linear;
+  transition: transform var(--envision-t2-motion-dismiss-duration) linear;
 }
 
 /* Error state — shown in place of the bar when an essential asset fails to load. */
@@ -59,26 +59,26 @@
   align-items: center;
   gap: 14px;
   text-align: center;
-  padding: 24px;
+  padding: var(--envision-t2-spacing-container-padding-head);
 }
 .scene-loader__error-title {
   margin: 0;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: var(--envision-t1-font-size-15);
+  font-weight: var(--envision-t1-font-weight-500);
   color: #444;
 }
 .scene-loader__error-retry {
   border: none;
-  background: #29594F;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 9px 20px;
-  border-radius: 8px;
+  background: var(--envision-t2-color-background-brand-default);
+  color: var(--envision-t2-color-content-on-primary-default);
+  font-size: var(--envision-t1-font-size-14);
+  font-weight: var(--envision-t1-font-weight-600);
+  padding: 9px var(--envision-t2-spacing-container-padding);
+  border-radius: var(--envision-t2-border-radius-container-sm);
   cursor: pointer;
 }
 .scene-loader__error-retry:hover {
-  background: #1f453d;
+  background: var(--envision-t2-color-background-brand-pressed);
 }
 
 .scene-canvas__hint {
@@ -86,7 +86,7 @@
   left: 50%;
   transform: translateX(-50%);
   bottom: 18px;
-  font-size: 11px;
+  font-size: var(--envision-t1-font-size-11);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(34, 34, 34, 0.4);

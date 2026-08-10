@@ -50,9 +50,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 24px;
+  gap: var(--envision-t2-spacing-container-padding-head);
   max-width: 520px;
-  color: #fff;
+  color: var(--envision-t2-color-content-on-primary-default);
 }
 .ov__hero-head {
   display: flex;
@@ -60,69 +60,69 @@
   gap: 18px;
 }
 .ov__eyebrow {
-  margin-bottom: 4px; /* +4px between the eyebrow and the name, on top of the 18px column gap */
-  font-size: 22px;
-  font-weight: 400;
+  margin-bottom: var(--envision-t2-spacing-control-gap-tight); /* +4px between the eyebrow and the name, on top of the 18px column gap */
+  font-size: var(--envision-t1-font-size-22);
+  font-weight: var(--envision-t1-font-weight-400);
   color: rgba(255, 255, 255, 0.92);
 }
 .ov__name {
   margin: 0;
   font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
-  font-size: 56px;
-  font-weight: 500;
+  font-size: var(--envision-t1-font-size-56);
+  font-weight: var(--envision-t1-font-weight-500);
   line-height: 1.05;
 }
 .ov__sub {
   margin: 0;
-  font-size: 18px;
-  font-weight: 400;
+  font-size: var(--envision-t1-font-size-18);
+  font-weight: var(--envision-t1-font-weight-400);
   line-height: 1.45;
   color: rgba(255, 255, 255, 0.9);
 }
 .ov__start {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--envision-t2-spacing-container-gap);
   align-self: flex-start;
-  padding: 16px 24px;
+  padding: var(--envision-t2-spacing-container-padding-note) var(--envision-t2-spacing-container-padding-head);
   border: none;
-  border-radius: 8px;
-  background: #29594F;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
+  border-radius: var(--envision-t2-border-radius-container-sm);
+  background: var(--envision-t2-color-background-brand-default);
+  color: var(--envision-t2-color-content-on-primary-default);
+  font-size: var(--envision-t1-font-size-16);
+  font-weight: var(--envision-t1-font-weight-600);
   cursor: pointer;
 }
 .ov__start:hover {
-  background: #234c43;
+  background: var(--envision-t2-color-background-brand-hover);
 }
 
 /* Content */
 .ov__content {
   flex: 0 0 auto;
-  padding: 24px;
+  padding: var(--envision-t2-spacing-container-padding-head);
 }
 .ov__cards {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr;
-  gap: 24px;
+  gap: var(--envision-t2-spacing-container-padding-head);
   align-items: stretch; /* all three cards share the tallest card's height */
 }
 
 .ov-card {
   display: flex;
   flex-direction: column;
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 14px;
-  padding: 24px;
+  background: var(--envision-t2-color-background-surface-default);
+  border: var(--envision-t2-border-width-default) solid rgba(0, 0, 0, 0.06);
+  border-radius: var(--envision-t2-border-radius-container-menu);
+  padding: var(--envision-t2-spacing-container-padding-head);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
 }
 .ov-card__title {
-  margin: 0 0 20px;
-  font-size: 18px;
-  font-weight: 600;
-  color: #222222;
+  margin: 0 0 var(--envision-t2-spacing-container-padding);
+  font-size: var(--envision-t1-font-size-18);
+  font-weight: var(--envision-t1-font-weight-600);
+  color: var(--envision-t2-color-content-primary-default);
 }
 .ov-card__title--icon {
   display: flex;
@@ -134,14 +134,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: var(--envision-t2-spacing-container-padding);
 }
 
 /* Progress card */
 .ov-progress {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: var(--envision-t2-spacing-subsection-gap);
 }
 .ov-ring {
   position: relative;
@@ -158,15 +158,15 @@
   justify-content: center;
 }
 .ov-ring__pct {
-  font-size: 40px;
-  font-weight: 600;
-  color: #222222;
+  font-size: var(--envision-t1-font-size-40);
+  font-weight: var(--envision-t1-font-weight-600);
+  color: var(--envision-t2-color-content-primary-default);
   line-height: 1;
 }
 .ov-ring__cap {
-  margin-top: 4px;
-  font-size: 14px;
-  color: #555555;
+  margin-top: var(--envision-t2-spacing-control-gap-tight);
+  font-size: var(--envision-t1-font-size-14);
+  color: var(--envision-t2-color-content-tertiary-default);
 }
 
 .ov-sel {
@@ -179,9 +179,9 @@
 .ov-sel__row {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 8px;
-  border-radius: 8px;
+  gap: var(--envision-t2-spacing-container-gap);
+  padding: var(--envision-t2-spacing-control-gap);
+  border-radius: var(--envision-t2-border-radius-container-sm);
 }
 .ov-sel__row--active {
   background: #f2f3ee;
@@ -191,45 +191,45 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  border: 1.5px solid rgba(0, 0, 0, 0.28);
+  border: var(--envision-t2-border-width-thin) solid rgba(0, 0, 0, 0.28);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .ov-sel__circle--done {
-  background: #29594F;
-  border-color: #29594F;
+  background: var(--envision-t2-color-background-brand-default);
+  border-color: var(--envision-t2-color-border-brand-default);
 }
 .ov-sel__num {
   flex: 0 0 auto;
-  font-size: 13px;
-  font-weight: 500;
-  color: #555555;
+  font-size: var(--envision-t1-font-size-13);
+  font-weight: var(--envision-t1-font-weight-500);
+  color: var(--envision-t2-color-content-tertiary-default);
 }
 .ov-sel__row--active .ov-sel__num {
-  color: #222222;
+  color: var(--envision-t2-color-content-primary-default);
 }
 .ov-sel__name {
   flex: 1 1 auto;
-  font-size: 14px;
-  font-weight: 500;
-  color: #222222;
+  font-size: var(--envision-t1-font-size-14);
+  font-weight: var(--envision-t1-font-weight-500);
+  color: var(--envision-t2-color-content-primary-default);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .ov-sel__row--active .ov-sel__name {
-  font-weight: 600;
-  color: #222222;
+  font-weight: var(--envision-t1-font-weight-600);
+  color: var(--envision-t2-color-content-primary-default);
 }
 .ov-sel__status {
   flex: 0 0 auto;
-  font-size: 12px;
-  font-weight: 500;
-  color: #555555;
+  font-size: var(--envision-t1-font-size-12);
+  font-weight: var(--envision-t1-font-weight-500);
+  color: var(--envision-t2-color-content-tertiary-default);
 }
 .ov-sel__status--active {
-  color: #29594F;
+  color: var(--envision-t2-color-content-brand-default);
 }
 .ov-sel__chev {
   flex: 0 0 auto;
@@ -242,13 +242,13 @@
   flex-direction: column;
 }
 .ov-card--next .ov-card__title--icon {
-  margin-bottom: 20px;
+  margin-bottom: var(--envision-t2-spacing-container-padding);
 }
 .ov-next__thumb {
   position: relative;
   flex: 1 1 0; /* fill remaining card height without forcing the card taller */
   min-height: 0;
-  border-radius: 10px;
+  border-radius: var(--envision-t2-border-radius-container-md);
   overflow: hidden;
   line-height: 0;
 }
@@ -271,28 +271,28 @@
   justify-content: center;
   gap: 10px;
   border: none;
-  background: #29594F;
-  color: #fff;
-  font-size: 15px;
-  font-weight: 600;
+  background: var(--envision-t2-color-background-brand-default);
+  color: var(--envision-t2-color-content-on-primary-default);
+  font-size: var(--envision-t1-font-size-15);
+  font-weight: var(--envision-t1-font-weight-600);
   line-height: 1;
   cursor: pointer;
 }
 .ov-next__cta:hover {
-  background: #234c43;
+  background: var(--envision-t2-color-background-brand-hover);
 }
 
 /* Key Dates */
 .ov-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--envision-t2-spacing-control-gap);
   padding: 0;
   border: none;
   background: transparent;
-  color: #29594F;
-  font-size: 12px;
-  font-weight: 600;
+  color: var(--envision-t2-color-content-brand-default);
+  font-size: var(--envision-t1-font-size-12);
+  font-weight: var(--envision-t1-font-weight-600);
   cursor: pointer;
 }
 .ov-dates {
@@ -312,15 +312,15 @@
   padding: 15px 0;
 }
 .ov-dates__row--div {
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: var(--envision-t2-border-width-default) solid rgba(0, 0, 0, 0.08);
 }
 .ov-dates__label {
-  font-size: 14px;
-  font-weight: 600;
-  color: #222222;
+  font-size: var(--envision-t1-font-size-14);
+  font-weight: var(--envision-t1-font-weight-600);
+  color: var(--envision-t2-color-content-primary-default);
 }
 .ov-dates__date {
-  font-size: 14px;
+  font-size: var(--envision-t1-font-size-14);
   color: #6b6f6d;
 }
 
