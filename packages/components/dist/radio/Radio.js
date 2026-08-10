@@ -17,21 +17,21 @@ import { emitChange } from '../base/internals.js';
  */
 const styles = css `
   :host { display: inline-flex; }
-  .root { display: inline-flex; align-items: center; gap: var(--envision-t2-spacing-control-gap, 0.5rem); font-family: inherit; font-size: var(--envision-t1-font-size-14, 14px); color: var(--envision-t2-color-content-primary-default, #222); cursor: pointer; }
+  .root { display: inline-flex; align-items: center; gap: var(--envision-t2-spacing-control-gap); font-family: inherit; font-size: var(--envision-t1-font-size-14); color: var(--envision-t2-color-content-primary-default); cursor: pointer; }
   input {
     appearance: none; -webkit-appearance: none; margin: 0;
     inline-size: 1.15rem; block-size: 1.15rem;
     display: grid; place-content: center;
-    border: var(--envision-t2-border-width-emphasis, 2px) solid var(--envision-t2-color-border-default-default, #8a8a82);
+    border: var(--envision-t2-border-width-emphasis) solid var(--envision-t2-color-border-default-default);
     border-radius: 50%;
-    background: var(--envision-t2-color-background-surface-default, #fff);
+    background: var(--envision-t2-color-background-surface-default);
     cursor: pointer;
   }
-  input::after { content: ''; inline-size: 0.6rem; block-size: 0.6rem; border-radius: 50%; background: var(--envision-t2-color-background-brand-default, #29594f); opacity: 0; }
-  input:checked { border-color: var(--envision-t2-color-border-brand-default, #29594f); }
+  input::after { content: ''; inline-size: 0.6rem; block-size: 0.6rem; border-radius: 50%; background: var(--envision-t2-color-background-brand-default); opacity: 0; }
+  input:checked { border-color: var(--envision-t2-color-border-brand-default); }
   input:checked::after { opacity: 1; }
-  input:focus-visible { outline: var(--envision-t2-border-width-focus, 2px) solid var(--envision-t2-color-border-focus-default, #29594f); outline-offset: 2px; }
-  :host([disabled]) .root { cursor: not-allowed; color: var(--envision-t2-color-content-disabled-default, #8a8a82); }
+  input:focus-visible { outline: var(--envision-t2-border-width-focus) solid var(--envision-t2-color-border-focus-default); outline-offset: 2px; }
+  :host([disabled]) .root { cursor: not-allowed; color: var(--envision-t2-color-content-disabled-default); }
   :host([disabled]) input { cursor: not-allowed; opacity: 0.5; }
 `;
 export class EnvisionRadio extends EnvisionElement {

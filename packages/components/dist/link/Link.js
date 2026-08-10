@@ -18,21 +18,21 @@ const styles = css `
   a {
     display: inline;
     align-items: center;
-    gap: var(--envision-t2-spacing-control-gap-tight, 0.25rem);
-    color: var(--envision-t2-color-content-brand-default, #29594f);
+    gap: var(--envision-t2-spacing-control-gap-tight);
+    color: var(--envision-t2-color-content-brand-default);
     text-decoration: none;
-    border-radius: var(--envision-t2-border-radius-control-xs, 4px);
+    border-radius: var(--envision-t2-border-radius-control-xs);
     cursor: pointer;
   }
   :host([variant='inline']) a { text-decoration: underline; text-underline-offset: 0.15em; }
-  a:hover { color: var(--envision-t2-color-content-brand-hover, #1f463d); text-decoration: underline; }
+  a:hover { color: var(--envision-t2-color-content-brand-hover); text-decoration: underline; }
   a:focus-visible {
-    outline: var(--envision-t2-border-width-focus, 2px) solid var(--envision-t2-color-border-focus-default, #29594f);
+    outline: var(--envision-t2-border-width-focus) solid var(--envision-t2-color-border-focus-default);
     outline-offset: 2px;
   }
   :host([variant='standalone']) a { display: inline-flex; }
   :host([disabled]) a {
-    color: var(--envision-t2-color-content-disabled-default, #8a8a82);
+    color: var(--envision-t2-color-content-disabled-default);
     text-decoration: none;
     cursor: not-allowed;
     pointer-events: none;

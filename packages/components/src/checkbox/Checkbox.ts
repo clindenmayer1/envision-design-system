@@ -20,10 +20,10 @@ const styles = css`
   .root {
     display: inline-flex;
     align-items: center;
-    gap: var(--envision-t2-spacing-control-gap, 0.5rem);
+    gap: var(--envision-t2-spacing-control-gap);
     font-family: inherit;
-    font-size: var(--envision-t1-font-size-14, 14px);
-    color: var(--envision-t2-color-content-primary-default, #222);
+    font-size: var(--envision-t1-font-size-14);
+    color: var(--envision-t2-color-content-primary-default);
     cursor: pointer;
   }
   input {
@@ -34,36 +34,36 @@ const styles = css`
     block-size: 1.15rem;
     display: grid;
     place-content: center;
-    border: var(--envision-t2-border-width-emphasis, 2px) solid
-      var(--envision-t2-color-border-default-default, #8a8a82);
-    border-radius: var(--envision-t2-border-radius-control-sm, 4px);
-    background: var(--envision-t2-color-background-surface-default, #fff);
+    border: var(--envision-t2-border-width-emphasis) solid
+      var(--envision-t2-color-border-default-default);
+    border-radius: var(--envision-t2-border-radius-control-sm);
+    background: var(--envision-t2-color-background-surface-default);
     cursor: pointer;
-    transition: background-color var(--envision-t2-motion-micro-duration, 150ms) cubic-bezier(0.2, 0.8, 0.2, 1),
-      border-color var(--envision-t2-motion-micro-duration, 150ms) cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: background-color var(--envision-t2-motion-micro-duration) cubic-bezier(0.2, 0.8, 0.2, 1),
+      border-color var(--envision-t2-motion-micro-duration) cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   @media (prefers-reduced-motion: reduce) { input { transition: none; } }
   input::after {
     content: '';
     inline-size: 0.34rem;
     block-size: 0.62rem;
-    border: solid var(--envision-t2-color-content-on-brand-default, #fff);
+    border: solid var(--envision-t2-color-content-on-brand-default);
     border-width: 0 2px 2px 0;
     transform: rotate(45deg) translateY(-1px);
     opacity: 0;
   }
   input:checked {
-    background: var(--envision-t2-color-background-brand-default, #29594f);
-    border-color: var(--envision-t2-color-border-brand-default, #29594f);
+    background: var(--envision-t2-color-background-brand-default);
+    border-color: var(--envision-t2-color-border-brand-default);
   }
   input:checked::after { opacity: 1; }
   input:focus-visible {
-    outline: var(--envision-t2-border-width-focus, 2px) solid var(--envision-t2-color-border-focus-default, #29594f);
+    outline: var(--envision-t2-border-width-focus) solid var(--envision-t2-color-border-focus-default);
     outline-offset: 2px;
   }
-  :host([invalid]) input { border-color: var(--envision-t2-color-border-error-default, #b00020); }
-  :host([disabled]) .root { cursor: not-allowed; color: var(--envision-t2-color-content-disabled-default, #8a8a82); }
-  :host([disabled]) input { cursor: not-allowed; border-color: var(--envision-t2-color-border-disabled-default, #e7e3dc); background: var(--envision-t2-color-background-surface-sunken-default, #fbf8f5); }
+  :host([invalid]) input { border-color: var(--envision-t2-color-border-error-default); }
+  :host([disabled]) .root { cursor: not-allowed; color: var(--envision-t2-color-content-disabled-default); }
+  :host([disabled]) input { cursor: not-allowed; border-color: var(--envision-t2-color-border-disabled-default); background: var(--envision-t2-color-background-surface-sunken-default); }
 `;
 
 export class EnvisionCheckbox extends EnvisionElement {

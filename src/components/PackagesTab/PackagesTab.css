@@ -189,7 +189,7 @@
   transition: background var(--envision-t2-motion-micro-duration) ease, border-color var(--envision-t2-motion-micro-duration) ease;
 }
 .pkg-card__customize:hover {
-  border-color: var(--envision-t1-color-taupe-400);
+  border-color: var(--envision-t1-color-taupe-300);
   background: var(--envision-t2-color-background-surface-warm-default);
 }
 

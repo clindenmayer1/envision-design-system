@@ -9,9 +9,9 @@
   display: flex;
   flex-direction: column;
   gap: var(--envision-t2-spacing-container-gap);
-  /* 14 / 20 / 16. T2 has no 14 or 16 container-padding role, so the block values use T1 steps
-     rather than borrowing a control role that means something else. */
-  padding: var(--envision-t1-spacing-14) var(--envision-t2-spacing-container-padding) var(--envision-t1-spacing-16);
+  /* 16 / 20 / 16. This system retired the off-grid 14px step (rule of 8s: 14 -> 16), so the block
+     padding uses 16. T2 has no 16 container-padding role, hence the T1 step. */
+  padding: var(--envision-t1-spacing-16) var(--envision-t2-spacing-container-padding) var(--envision-t1-spacing-16);
   background: var(--envision-t2-color-background-surface-warm-default);
   border-top: var(--envision-t2-border-width-default) solid var(--envision-t2-color-border-default-default);
 }
@@ -20,7 +20,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--envision-t1-spacing-14);
+  /* legacy 14px row gap; 14 was retired by the rule of 8s, so 16. */
+  gap: var(--envision-t2-spacing-stack-gap);
 }
 
 .railfooter__upgrades {

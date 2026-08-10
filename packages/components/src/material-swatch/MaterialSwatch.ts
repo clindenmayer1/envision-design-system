@@ -19,25 +19,25 @@ const styles = css`
   :host { display: inline-flex; }
   .swatch {
     position: relative;
-    inline-size: var(--envision-t3-material-swatch-chip-size, 3rem);
-    block-size: var(--envision-t3-material-swatch-chip-size, 3rem);
+    inline-size: var(--envision-t3-material-swatch-chip-size);
+    block-size: var(--envision-t3-material-swatch-chip-size);
     padding: 0;
     border: none;
-    border-radius: var(--envision-t2-border-radius-control-sm, 4px);
-    background: var(--envision-t3-material-swatch-chip-background, #edeae4) var(--ev-fill, none);
+    border-radius: var(--envision-t2-border-radius-control-sm);
+    background: var(--envision-t3-material-swatch-chip-background) var(--ev-fill, none);
     background-size: cover;
     background-position: center;
     cursor: pointer;
-    box-shadow: 0 0 0 var(--envision-t3-material-swatch-ring-hover-width, 2px) transparent;
-    transition: box-shadow var(--envision-t2-motion-micro-duration, 150ms) cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 0 0 var(--envision-t3-material-swatch-ring-hover-width) transparent;
+    transition: box-shadow var(--envision-t2-motion-micro-duration) cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   @media (prefers-reduced-motion: reduce) { .swatch { transition: none; } }
-  .swatch:hover { box-shadow: 0 0 0 var(--envision-t3-material-swatch-ring-hover-width, 2px) var(--envision-t3-material-swatch-ring-hover-color, #ababa0); }
+  .swatch:hover { box-shadow: 0 0 0 var(--envision-t3-material-swatch-ring-hover-width) var(--envision-t3-material-swatch-ring-hover-color); }
   :host([selected]) .swatch {
-    box-shadow: 0 0 0 var(--envision-t3-material-swatch-ring-selected-gap-width, 2px) var(--envision-t3-material-swatch-ring-selected-gap-color, #fff),
-      0 0 0 calc(var(--envision-t3-material-swatch-ring-selected-gap-width, 2px) + var(--envision-t3-material-swatch-ring-selected-width, 2px)) var(--envision-t3-material-swatch-ring-selected-color, #29594f);
+    box-shadow: 0 0 0 var(--envision-t3-material-swatch-ring-selected-gap-width) var(--envision-t3-material-swatch-ring-selected-gap-color),
+      0 0 0 calc(var(--envision-t3-material-swatch-ring-selected-gap-width) + var(--envision-t3-material-swatch-ring-selected-width)) var(--envision-t3-material-swatch-ring-selected-color);
   }
-  .swatch:focus-visible { outline: var(--envision-t2-border-width-focus, 2px) solid var(--envision-t2-color-border-focus-default, #29594f); outline-offset: 3px; }
+  .swatch:focus-visible { outline: var(--envision-t2-border-width-focus) solid var(--envision-t2-color-border-focus-default); outline-offset: 3px; }
   .check {
     position: absolute;
     inset-block-end: -0.25rem;
@@ -45,8 +45,8 @@ const styles = css`
     inline-size: 1.1rem;
     block-size: 1.1rem;
     border-radius: 50%;
-    background: var(--envision-t2-color-background-brand-default, #29594f);
-    color: var(--envision-t2-color-content-on-brand-default, #fff);
+    background: var(--envision-t2-color-background-brand-default);
+    color: var(--envision-t2-color-content-on-brand-default);
     display: none;
     align-items: center;
     justify-content: center;
@@ -55,9 +55,9 @@ const styles = css`
     font-feature-settings: 'liga';
   }
   :host([selected]) .check { display: inline-flex; }
-  :host([unavailable]) .swatch { cursor: not-allowed; opacity: var(--envision-t3-material-swatch-unavailable-opacity, 0.4); }
+  :host([unavailable]) .swatch { cursor: not-allowed; opacity: var(--envision-t3-material-swatch-unavailable-opacity); }
   :host([unavailable]) .diag { position: absolute; inset: 0; }
-  :host([unavailable]) .diag::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top left, transparent 47%, currentColor 47%, currentColor 53%, transparent 53%); color: var(--envision-t2-color-content-tertiary-default, #8a8a82); }
+  :host([unavailable]) .diag::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top left, transparent 47%, currentColor 47%, currentColor 53%, transparent 53%); color: var(--envision-t2-color-content-tertiary-default); }
   .swatch.loading { animation: ev-shimmer 1.2s ease-in-out infinite; }
   @keyframes ev-shimmer { 50% { opacity: 0.55; } }
 `;

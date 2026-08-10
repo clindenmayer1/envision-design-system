@@ -21,24 +21,24 @@ const styles = css`
   :host {
     display: flex;
     flex-direction: column;
-    inline-size: var(--envision-t3-right-rail-default-width, 392px);
+    inline-size: var(--envision-t3-right-rail-default-width);
     max-block-size: 100%;
-    background: var(--envision-t3-right-rail-default-color-background, #fff);
-    border-inline-start: 1px solid var(--envision-t3-right-rail-default-color-border, #e7e3dc);
+    background: var(--envision-t3-right-rail-default-color-background);
+    border-inline-start: 1px solid var(--envision-t3-right-rail-default-color-border);
   }
-  .header { flex: none; padding: var(--envision-t2-spacing-container-padding, 1rem); border-block-end: 1px solid var(--envision-t2-color-border-subtle-default, #edeae4); }
-  .title { margin: 0 0 0.5rem; font-family: inherit; font-size: var(--envision-t1-font-size-18, 18px); font-weight: var(--envision-t1-font-weight-600, 600); color: var(--envision-t2-color-content-primary-default, #222); }
+  .header { flex: none; padding: var(--envision-t2-spacing-container-padding); border-block-end: 1px solid var(--envision-t2-color-border-subtle-default); }
+  .title { margin: 0 0 0.5rem; font-family: inherit; font-size: var(--envision-t1-font-size-18); font-weight: var(--envision-t1-font-weight-600); color: var(--envision-t2-color-content-primary-default); }
   .tabs { display: flex; gap: 0.5rem; }
-  .body { flex: 1; overflow-y: auto; padding: var(--envision-t2-spacing-container-padding, 1rem); display: flex; flex-direction: column; gap: var(--envision-t2-spacing-container-gap, 0.75rem); }
-  .footer { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: var(--envision-t2-spacing-container-padding, 1rem); border-block-start: 1px solid var(--envision-t2-color-border-subtle-default, #edeae4); }
-  .total { font-variant-numeric: tabular-nums; color: var(--envision-t2-color-content-primary-default, #222); }
+  .body { flex: 1; overflow-y: auto; padding: var(--envision-t2-spacing-container-padding); display: flex; flex-direction: column; gap: var(--envision-t2-spacing-container-gap); }
+  .footer { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: var(--envision-t2-spacing-container-padding); border-block-start: 1px solid var(--envision-t2-color-border-subtle-default); }
+  .total { font-variant-numeric: tabular-nums; color: var(--envision-t2-color-content-primary-default); }
   :host([loading]) .body { opacity: 0.6; }
 
   /* Sheet (mobile) presentation: a modal dialog with a backdrop. */
-  :host([data-sheet]) { position: fixed; inset-block: 0; inset-inline-end: 0; inline-size: min(92vw, 420px); z-index: 40; box-shadow: -8px 0 24px rgba(34,32,28,0.24); transform: translateX(100%); transition: transform var(--envision-t2-motion-panel-duration, 240ms) cubic-bezier(0.2,0.8,0.2,1); }
+  :host([data-sheet]) { position: fixed; inset-block: 0; inset-inline-end: 0; inline-size: min(92vw, 420px); z-index: 40; /* elevation has no token (see PackageCard) */ box-shadow: -8px 0 24px rgba(34,32,28,0.24); transform: translateX(100%); transition: transform var(--envision-t2-motion-panel-duration) cubic-bezier(0.2,0.8,0.2,1); }
   :host([data-sheet][open]) { transform: translateX(0); }
   @media (prefers-reduced-motion: reduce) { :host([data-sheet]) { transition: none; } }
-  .backdrop { display: none; position: fixed; inset: 0; background: rgba(34,32,28,0.4); z-index: 39; }
+  .backdrop { display: none; position: fixed; inset: 0; background: var(--envision-t2-color-background-overlay-default); z-index: 39; }
   :host([data-sheet][open]) .backdrop { display: block; }
 `;
 

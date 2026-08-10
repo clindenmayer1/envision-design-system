@@ -28,21 +28,21 @@ const styles = css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--envision-t3-badge-medium-gap-default, 0.25rem);
+    gap: var(--envision-t3-badge-medium-gap-default);
     font-family: inherit;
-    font-weight: var(--envision-t1-font-weight-600, 600);
-    font-size: var(--envision-t3-badge-medium-font-size-default, 0.75rem);
+    font-weight: var(--envision-t1-font-weight-600);
+    font-size: var(--envision-t3-badge-medium-font-size-default);
     font-variant-numeric: tabular-nums;
     line-height: 1;
-    padding-block: var(--envision-t3-badge-medium-padding-block-default, 0.125rem);
-    padding-inline: var(--envision-t3-badge-medium-padding-inline-default, 0.5rem);
-    border-radius: var(--envision-t2-border-radius-pill, 999px);
-    background: var(--ev-badge-bg, var(--envision-t3-badge-neutral-color-background-default, #edeae4));
-    color: var(--ev-badge-fg, var(--envision-t3-badge-neutral-color-content-default, #555));
+    padding-block: var(--envision-t3-badge-medium-padding-block-default);
+    padding-inline: var(--envision-t3-badge-medium-padding-inline-default);
+    border-radius: var(--envision-t2-border-radius-pill);
+    background: var(--ev-badge-bg, var(--envision-t3-badge-neutral-color-background-default));
+    color: var(--ev-badge-fg, var(--envision-t3-badge-neutral-color-content-default));
   }
   :host([shape='dot']) .badge {
-    inline-size: var(--envision-t3-badge-notification-dot-size, 0.5rem);
-    block-size: var(--envision-t3-badge-notification-dot-size, 0.5rem);
+    inline-size: var(--envision-t3-badge-notification-dot-size);
+    block-size: var(--envision-t3-badge-notification-dot-size);
     padding: 0;
     border-radius: 50%;
   }

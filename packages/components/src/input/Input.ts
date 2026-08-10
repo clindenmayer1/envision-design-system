@@ -19,22 +19,22 @@ import { tryAttachInternals, setFormValue, emitChange, emitInput } from '../base
  */
 const styles = css`
   :host { display: block; }
-  .field { display: flex; flex-direction: column; gap: var(--envision-t2-spacing-control-gap-tight, 0.25rem); font: inherit; }
-  .label { color: var(--envision-t2-color-content-primary-default, #222); display: inline-flex; gap: 0.25rem; }
-  .req { color: var(--envision-t2-color-content-error-default, #b00020); }
+  .field { display: flex; flex-direction: column; gap: var(--envision-t2-spacing-control-gap-tight); font: inherit; }
+  .label { color: var(--envision-t2-color-content-primary-default); display: inline-flex; gap: 0.25rem; }
+  .req { color: var(--envision-t2-color-content-error-default); }
   .control {
     display: flex;
     align-items: center;
-    gap: var(--envision-t2-spacing-control-gap-tight, 0.25rem);
-    border: var(--envision-t2-border-width-default, 1px) solid var(--envision-t3-input-default-color-border-default, #8a8a82);
-    border-radius: var(--envision-t2-border-radius-control, 8px);
-    background: var(--envision-t2-color-background-surface-default, #fff);
-    padding-inline: var(--envision-t2-spacing-control-padding-inline, 0.75rem);
+    gap: var(--envision-t2-spacing-control-gap-tight);
+    border: var(--envision-t2-border-width-default) solid var(--envision-t3-input-default-color-border-default);
+    border-radius: var(--envision-t2-border-radius-control);
+    background: var(--envision-t2-color-background-surface-default);
+    padding-inline: var(--envision-t2-spacing-control-padding-inline);
   }
-  .control:hover { border-color: var(--envision-t3-input-default-color-border-hover, #666); }
+  .control:hover { border-color: var(--envision-t3-input-default-color-border-hover); }
   .control:focus-within {
-    border-color: var(--envision-t3-input-default-color-border-focus, #29594f);
-    outline: var(--envision-t2-border-width-focus, 2px) solid var(--envision-t2-color-border-focus-default, #29594f);
+    border-color: var(--envision-t3-input-default-color-border-focus);
+    outline: var(--envision-t2-border-width-focus) solid var(--envision-t2-color-border-focus-default);
     outline-offset: 1px;
   }
   input {
@@ -44,19 +44,19 @@ const styles = css`
     outline: none;
     background: transparent;
     font-family: inherit;
-    font-size: var(--envision-t1-font-size-15, 15px);
-    color: var(--envision-t2-color-content-primary-default, #222);
-    padding-block: var(--envision-t2-spacing-control-padding-block, 0.5rem);
+    font-size: var(--envision-t1-font-size-15);
+    color: var(--envision-t2-color-content-primary-default);
+    padding-block: var(--envision-t2-spacing-control-padding-block);
   }
-  input::placeholder { color: var(--envision-t2-color-content-placeholder-default, #8a8a82); }
-  .icon { font-family: 'Material Symbols Outlined', sans-serif; line-height: 1; color: var(--envision-t2-color-content-tertiary-default, #8a8a82); font-feature-settings: 'liga'; }
+  input::placeholder { color: var(--envision-t2-color-content-placeholder-default); }
+  .icon { font-family: 'Material Symbols Outlined', sans-serif; line-height: 1; color: var(--envision-t2-color-content-tertiary-default); font-feature-settings: 'liga'; }
   .icon:empty { display: none; }
-  .msg { font-size: 0.8125em; color: var(--envision-t2-color-content-secondary-default, #666); }
-  .msg.error { color: var(--envision-t2-color-content-error-default, #b00020); }
+  .msg { font-size: 0.8125em; color: var(--envision-t2-color-content-secondary-default); }
+  .msg.error { color: var(--envision-t2-color-content-error-default); }
   .msg:empty { display: none; }
-  :host([invalid]) .control { border-color: var(--envision-t3-input-default-color-border-error, #b00020); }
-  :host([disabled]) .control { background: var(--envision-t2-color-background-surface-sunken-default, #fbf8f5); border-color: var(--envision-t2-color-border-disabled-default, #e7e3dc); }
-  :host([disabled]) input { cursor: not-allowed; color: var(--envision-t2-color-content-disabled-default, #8a8a82); }
+  :host([invalid]) .control { border-color: var(--envision-t3-input-default-color-border-error); }
+  :host([disabled]) .control { background: var(--envision-t2-color-background-surface-sunken-default); border-color: var(--envision-t2-color-border-disabled-default); }
+  :host([disabled]) input { cursor: not-allowed; color: var(--envision-t2-color-content-disabled-default); }
 `;
 
 const TYPES = ['text', 'email', 'search', 'number', 'price', 'password'] as const;

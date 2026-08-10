@@ -21,30 +21,30 @@ const styles = css`
     block-size: 2.5rem;
     padding: 0;
     border: none;
-    border-radius: var(--envision-t2-border-radius-control, 8px);
+    border-radius: var(--envision-t2-border-radius-control);
     background: transparent;
-    color: var(--envision-t2-color-content-secondary-default, #666);
+    color: var(--envision-t2-color-content-secondary-default);
     cursor: pointer;
-    transition: background-color var(--envision-t2-motion-micro-duration, 150ms) cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: background-color var(--envision-t2-motion-micro-duration) cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
   :host([size='sm']) .btn { inline-size: 2rem; block-size: 2rem; }
   :host([size='lg']) .btn { inline-size: 3rem; block-size: 3rem; }
 
-  .btn:hover { background: var(--envision-t2-color-background-brand-subtle-default, rgba(41, 89, 79, 0.08)); }
-  :host([variant='subtle']) .btn { color: var(--envision-t2-color-content-tertiary-default, #8a8a82); }
+  .btn:hover { background: var(--envision-t2-color-background-brand-subtle-default); }
+  :host([variant='subtle']) .btn { color: var(--envision-t2-color-content-tertiary-default); }
 
   :host([selected]) .btn {
-    background: var(--envision-t2-color-background-brand-default, #29594f);
-    color: var(--envision-t2-color-content-on-brand-default, #fff);
+    background: var(--envision-t2-color-background-brand-default);
+    color: var(--envision-t2-color-content-on-brand-default);
   }
 
   .btn:focus-visible {
-    outline: var(--envision-t2-border-width-focus, 2px) solid var(--envision-t2-color-border-focus-default, #29594f);
+    outline: var(--envision-t2-border-width-focus) solid var(--envision-t2-color-border-focus-default);
     outline-offset: 2px;
   }
 
-  :host([disabled]) .btn { cursor: not-allowed; color: var(--envision-t2-color-content-disabled-default, #8a8a82); background: transparent; }
+  :host([disabled]) .btn { cursor: not-allowed; color: var(--envision-t2-color-content-disabled-default); background: transparent; }
 
   .icon {
     font-family: 'Material Symbols Outlined', sans-serif;

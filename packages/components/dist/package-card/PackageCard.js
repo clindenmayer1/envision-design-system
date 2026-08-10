@@ -19,40 +19,40 @@ const styles = css `
   .card {
     display: flex;
     flex-direction: column;
-    border-radius: var(--envision-t3-package-card-default-radius, 12px);
-    background: var(--envision-t2-color-background-surface-default, #fff);
+    border-radius: var(--envision-t3-package-card-default-radius);
+    background: var(--envision-t2-color-background-surface-default);
     border: 1px solid transparent;
     overflow: hidden;
-    box-shadow: 0 1px 3px rgba(34, 32, 28, 0.08);
+    /* elevation has no token: Figma defines it as effect styles, which the variable export cannot see */ box-shadow: 0 1px 3px rgba(34, 32, 28, 0.08);
   }
-  :host([selected]) .card { border-color: var(--envision-t3-package-card-selected-color-border, #29594f); box-shadow: 0 0 0 2px var(--envision-t3-package-card-selected-color-border, #29594f); }
+  :host([selected]) .card { border-color: var(--envision-t3-package-card-selected-color-border); box-shadow: 0 0 0 2px var(--envision-t3-package-card-selected-color-border); }
   .select {
     appearance: none; border: none; background: transparent; text-align: start; cursor: pointer; padding: 0;
-    display: flex; flex-direction: column; gap: var(--envision-t3-package-card-header-gap, 0.5rem);
+    display: flex; flex-direction: column; gap: var(--envision-t3-package-card-header-gap);
   }
-  .select:focus-visible { outline: var(--envision-t2-border-width-focus, 2px) solid var(--envision-t2-color-border-focus-default, #29594f); outline-offset: -2px; }
+  .select:focus-visible { outline: var(--envision-t2-border-width-focus) solid var(--envision-t2-color-border-focus-default); outline-offset: -2px; }
   .media {
-    position: relative; aspect-ratio: var(--envision-t3-package-card-default-image-ratio, 4 / 3);
-    background: var(--envision-t3-package-card-media-color-background, #edeae4);
+    position: relative; aspect-ratio: var(--envision-t3-package-card-default-image-ratio);
+    background: var(--envision-t3-package-card-media-color-background);
     background-size: cover; background-position: center;
   }
   .media.loading::after { content: ''; position: absolute; inset: 0; animation: ev-shimmer 1.2s ease-in-out infinite; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); }
   @keyframes ev-shimmer { 100% { transform: translateX(0); } 50% { opacity: 0.5; } }
-  .media.error { display: flex; align-items: center; justify-content: center; color: var(--envision-t2-color-content-tertiary-default, #8a8a82); font-family: 'Material Symbols Outlined', sans-serif; font-size: 2rem; font-feature-settings: 'liga'; }
+  .media.error { display: flex; align-items: center; justify-content: center; color: var(--envision-t2-color-content-tertiary-default); font-family: 'Material Symbols Outlined', sans-serif; font-size: 2rem; font-feature-settings: 'liga'; }
   .popular { position: absolute; inset-block-start: 0.5rem; inset-inline-start: 0.5rem; }
-  .info { padding: var(--envision-t3-package-card-content-gap, 0.75rem); display: flex; flex-direction: column; gap: 0.25rem; }
+  .info { padding: var(--envision-t3-package-card-content-gap); display: flex; flex-direction: column; gap: 0.25rem; }
   /* Website package title = 19 (off-scale) -> nearest 18; bold. Price = 13. */
-  .name { font-family: inherit; font-size: var(--envision-t1-font-size-18, 18px); font-weight: var(--envision-t1-font-weight-700, 700); color: var(--envision-t2-color-content-primary-default, #222); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-  .price { font-size: var(--envision-t1-font-size-13, 13px); color: var(--envision-t2-color-content-secondary-default, #666); font-variant-numeric: tabular-nums; }
-  .footer { display: flex; align-items: center; justify-content: space-between; gap: var(--envision-t3-package-card-footer-gap, 0.5rem); padding: 0 var(--envision-t3-package-card-content-gap, 0.75rem) var(--envision-t3-package-card-content-gap, 0.75rem); }
+  .name { font-family: inherit; font-size: var(--envision-t1-font-size-18); font-weight: var(--envision-t1-font-weight-700); color: var(--envision-t2-color-content-primary-default); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .price { font-size: var(--envision-t1-font-size-13); color: var(--envision-t2-color-content-secondary-default); font-variant-numeric: tabular-nums; }
+  .footer { display: flex; align-items: center; justify-content: space-between; gap: var(--envision-t3-package-card-footer-gap); padding: 0 var(--envision-t3-package-card-content-gap) var(--envision-t3-package-card-content-gap); }
   /* Customize = neutral secondary button (hairline border + dark text + surface fill), matching
      the web's Customize pill — NOT the brand-green t3.button.outline tokens (see AUDIT.md §B). */
   /* Customize = website secondary pill: hairline border, radius 8 (container-sm), 13/600 text. */
-  .customize { appearance: none; border: 1px solid var(--envision-t2-color-border-default-default, #e7e3dc); background: var(--envision-t2-color-background-surface-default, #fff); color: var(--envision-t2-color-content-primary-default, #222); border-radius: var(--envision-t2-border-radius-container-sm, 8px); padding: 0.375rem 0.75rem; font-family: inherit; font-size: var(--envision-t1-font-size-13, 13px); font-weight: var(--envision-t1-font-weight-600, 600); cursor: pointer; }
-  .customize:hover { border-color: var(--envision-t2-color-border-strong-default, #b9b4ab); background: var(--envision-t2-color-background-surface-warm-default, #fbf8f5); }
-  .customize:focus-visible { outline: var(--envision-t2-border-width-focus, 2px) solid var(--envision-t2-color-border-focus-default, #29594f); outline-offset: 2px; }
+  .customize { appearance: none; border: 1px solid var(--envision-t2-color-border-default-default); background: var(--envision-t2-color-background-surface-default); color: var(--envision-t2-color-content-primary-default); border-radius: var(--envision-t2-border-radius-container-sm); padding: 0.375rem 0.75rem; font-family: inherit; font-size: var(--envision-t1-font-size-13); font-weight: var(--envision-t1-font-weight-600); cursor: pointer; }
+  .customize:hover { border-color: var(--envision-t2-color-border-strong-default); background: var(--envision-t2-color-background-surface-warm-default); }
+  .customize:focus-visible { outline: var(--envision-t2-border-width-focus) solid var(--envision-t2-color-border-focus-default); outline-offset: 2px; }
   .mats { display: inline-flex; gap: 0.25rem; }
-  .mat { inline-size: 1rem; block-size: 1rem; border-radius: 50%; border: 1px solid rgba(0,0,0,0.1); }
+  .mat { inline-size: 1rem; block-size: 1rem; border-radius: 50%; border: 1px solid var(--envision-t2-color-border-subtle-default); }
 `;
 export class EnvisionPackageCard extends EnvisionElement {
     static styles = styles;

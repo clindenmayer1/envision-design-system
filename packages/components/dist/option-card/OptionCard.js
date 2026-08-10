@@ -20,30 +20,30 @@ const styles = css `
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    gap: var(--envision-t3-option-card-text-gap, 0.75rem);
+    gap: var(--envision-t3-option-card-text-gap);
     text-align: start;
-    padding: var(--envision-t1-spacing-12, 12px);
+    padding: var(--envision-t1-spacing-12);
     border: none;
-    border-radius: var(--envision-t2-border-radius-control, 6px);
-    background: var(--envision-t2-color-background-surface-warm-default, #fbf8f5);
+    border-radius: var(--envision-t2-border-radius-control);
+    background: var(--envision-t2-color-background-surface-warm-default);
     cursor: pointer;
-    box-shadow: 0 0 0 1px var(--envision-t3-option-card-ring-rest, #e7e3dc);
-    transition: box-shadow var(--envision-t2-motion-micro-duration, 150ms) cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 0 0 1px var(--envision-t3-option-card-ring-rest);
+    transition: box-shadow var(--envision-t2-motion-micro-duration) cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   @media (prefers-reduced-motion: reduce) { .card { transition: none; } }
-  .card:hover { box-shadow: 0 0 0 1px var(--envision-t3-option-card-ring-hover, #ababa0); }
-  .card:active { box-shadow: 0 0 0 2px var(--envision-t3-option-card-ring-pressed, #998574); }
-  :host([active]) .card { box-shadow: 0 0 0 2px var(--envision-t3-option-card-ring-selected, #29594f); }
-  .card:focus-visible { outline: var(--envision-t2-border-width-focus, 2px) solid var(--envision-t2-color-border-focus-default, #29594f); outline-offset: 2px; }
+  .card:hover { box-shadow: 0 0 0 1px var(--envision-t3-option-card-ring-hover); }
+  .card:active { box-shadow: 0 0 0 2px var(--envision-t3-option-card-ring-pressed); }
+  :host([active]) .card { box-shadow: 0 0 0 2px var(--envision-t3-option-card-ring-selected); }
+  .card:focus-visible { outline: var(--envision-t2-border-width-focus) solid var(--envision-t2-color-border-focus-default); outline-offset: 2px; }
   /* Website thumb = 72px, radius 4 (control-sm). */
-  .thumb { inline-size: 72px; block-size: 72px; flex: none; border-radius: var(--envision-t2-border-radius-control-sm, 4px); background: var(--envision-t2-color-background-surface-sunken-default, #edeae4) var(--ev-thumb, none); background-size: cover; background-position: center; }
+  .thumb { inline-size: 72px; block-size: 72px; flex: none; border-radius: var(--envision-t2-border-radius-control-sm); background: var(--envision-t2-color-background-surface-sunken-default) var(--ev-thumb, none); background-size: cover; background-position: center; }
   .body { flex: 1; min-inline-size: 0; display: flex; flex-direction: column; gap: 0.125rem; }
   /* Website title = 14 / 600 / 1.2; note = 13 / 500 / 1.6. */
-  .title { font-family: inherit; font-size: var(--envision-t1-font-size-14, 14px); font-weight: var(--envision-t1-font-weight-600, 600); line-height: var(--envision-t1-line-height-120, 1.2); color: var(--envision-t2-color-content-primary-default, #222); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .note { font-size: var(--envision-t1-font-size-13, 13px); font-weight: var(--envision-t1-font-weight-500, 500); line-height: var(--envision-t1-line-height-160, 1.6); color: var(--envision-t2-color-content-secondary-default, #666); }
-  .note.upgrade { color: var(--envision-t2-color-content-brand-default, #29594f); font-weight: var(--envision-t1-font-weight-600, 600); }
-  .note.pending { color: var(--envision-t2-color-content-secondary-default, #666); font-style: italic; }
-  .chev { flex: none; font-family: 'Material Symbols Outlined', sans-serif; font-size: var(--envision-t1-font-size-20, 20px); color: var(--envision-t2-color-content-tertiary-default, #8a8a82); font-feature-settings: 'liga'; }
+  .title { font-family: inherit; font-size: var(--envision-t1-font-size-14); font-weight: var(--envision-t1-font-weight-600); line-height: var(--envision-t1-line-height-120); color: var(--envision-t2-color-content-primary-default); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .note { font-size: var(--envision-t1-font-size-13); font-weight: var(--envision-t1-font-weight-500); line-height: var(--envision-t1-line-height-160); color: var(--envision-t2-color-content-secondary-default); }
+  .note.upgrade { color: var(--envision-t2-color-content-brand-default); font-weight: var(--envision-t1-font-weight-600); }
+  .note.pending { color: var(--envision-t2-color-content-secondary-default); font-style: italic; }
+  .chev { flex: none; font-family: 'Material Symbols Outlined', sans-serif; font-size: var(--envision-t1-font-size-20); color: var(--envision-t2-color-content-tertiary-default); font-feature-settings: 'liga'; }
   :host([loading]) .card { opacity: 0.6; pointer-events: none; }
 `;
 export class EnvisionOptionCard extends EnvisionElement {

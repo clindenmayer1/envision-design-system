@@ -24,21 +24,21 @@ const styles = css`
     background: transparent;
     /* Explicit type to match the website tabs (14px / 600). */
     font-family: inherit;
-    font-size: var(--envision-t1-font-size-14, 14px);
-    font-weight: var(--envision-t1-font-weight-600, 600);
+    font-size: var(--envision-t1-font-size-14);
+    font-weight: var(--envision-t1-font-weight-600);
     cursor: pointer;
     /* Website tab padding: 16 top / 0 sides / 14 bottom. */
-    padding: var(--envision-t1-spacing-16, 16px) 0 var(--envision-t1-spacing-16, 16px);
-    color: var(--envision-t2-color-content-tertiary-default, #8a8a82);
+    padding: var(--envision-t1-spacing-16) 0 var(--envision-t1-spacing-16);
+    color: var(--envision-t2-color-content-tertiary-default);
     border-block-end: 2px solid transparent;
   }
-  .tab:hover { color: var(--envision-t2-color-content-primary-default, #222); }
+  .tab:hover { color: var(--envision-t2-color-content-primary-default); }
   :host([selected]) .tab {
-    color: var(--envision-t3-tab-selected-color-content-default, #29594f);
-    border-block-end-color: var(--envision-t3-tab-selected-color-indicator-default, #29594f);
+    color: var(--envision-t3-tab-selected-color-content-default);
+    border-block-end-color: var(--envision-t3-tab-selected-color-indicator-default);
   }
-  .tab:focus-visible { outline: var(--envision-t2-border-width-focus, 2px) solid var(--envision-t2-color-border-focus-default, #29594f); outline-offset: 2px; }
-  :host([disabled]) .tab { color: var(--envision-t2-color-content-disabled-default, #8a8a82); cursor: not-allowed; }
+  .tab:focus-visible { outline: var(--envision-t2-border-width-focus) solid var(--envision-t2-color-border-focus-default); outline-offset: 2px; }
+  :host([disabled]) .tab { color: var(--envision-t2-color-content-disabled-default); cursor: not-allowed; }
 `;
 
 export class EnvisionTab extends EnvisionElement {

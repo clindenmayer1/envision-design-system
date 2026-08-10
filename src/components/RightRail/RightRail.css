@@ -45,15 +45,14 @@
   scrollbar-color: transparent transparent;
 }
 /* T1 exception: a scrollbar thumb is browser chrome, not a border, surface or content role, so no
-   T2 role fits. brown/200 is the ramp step the legacy rgba(118,93,73,0.3) composites to on white,
-   preserving the rendered colour exactly. */
+   T2 role fits. brown/a-25 is the nearest ramp step to the legacy rgba(118,93,73,0.3). */
 .rail__scroll:hover,
-.rail__scroll:focus-within { scrollbar-color: var(--envision-t1-color-brown-200) transparent; }
+.rail__scroll:focus-within { scrollbar-color: var(--envision-t1-color-brown-a-25) transparent; }
 .rail__scroll::-webkit-scrollbar { width: var(--envision-t1-spacing-8); }
 .rail__scroll::-webkit-scrollbar-track { background: transparent; }
 .rail__scroll::-webkit-scrollbar-thumb { background: transparent; border-radius: var(--envision-t2-border-radius-control-sm); }
 .rail__scroll:hover::-webkit-scrollbar-thumb,
-.rail__scroll:active::-webkit-scrollbar-thumb { background: var(--envision-t1-color-brown-200); }
+.rail__scroll:active::-webkit-scrollbar-thumb { background: var(--envision-t1-color-brown-a-25); }
 
 /* Customize tab — equal 32px gutters; the thin scrollbar overlays the right padding. */
 .rail__customize {

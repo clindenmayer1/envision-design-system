@@ -22,20 +22,20 @@ function ensureStyles(): void {
     envision-label { display: inline-block; }
     envision-label .envision-label__text {
       font-family: inherit;
-      font-size: var(--envision-t1-font-size-14, 14px);
-      color: var(--envision-t2-color-content-primary-default, #222);
+      font-size: var(--envision-t1-font-size-14);
+      color: var(--envision-t2-color-content-primary-default);
       display: inline-flex;
       align-items: center;
-      gap: var(--envision-t2-spacing-control-gap-tight, 0.25rem);
+      gap: var(--envision-t2-spacing-control-gap-tight);
     }
     envision-label .envision-label__req {
-      color: var(--envision-t2-color-content-error-default, #b00020);
+      color: var(--envision-t2-color-content-error-default);
     }
     envision-label .envision-label__help {
       font-family: 'Material Symbols Outlined', sans-serif;
       font-size: 1em;
       line-height: 1;
-      color: var(--envision-t2-color-content-tertiary-default, #8a8a82);
+      color: var(--envision-t2-color-content-tertiary-default);
       font-feature-settings: 'liga';
     }
   `;

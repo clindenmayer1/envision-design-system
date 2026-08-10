@@ -17,7 +17,7 @@ import { tryAttachInternals, setFormValue, emitChange } from '../base/internals.
  */
 const styles = css`
   :host { display: inline-flex; }
-  .root { display: inline-flex; align-items: center; gap: var(--envision-t2-spacing-control-gap, 0.5rem); font-family: inherit; font-size: var(--envision-t1-font-size-14, 14px); color: var(--envision-t2-color-content-primary-default, #222); cursor: pointer; }
+  .root { display: inline-flex; align-items: center; gap: var(--envision-t2-spacing-control-gap); font-family: inherit; font-size: var(--envision-t1-font-size-14); color: var(--envision-t2-color-content-primary-default); cursor: pointer; }
   .track {
     position: relative;
     inline-size: 2.25rem;
@@ -32,10 +32,10 @@ const styles = css`
     margin: 0;
     inline-size: 100%;
     block-size: 100%;
-    border-radius: var(--envision-t2-border-radius-pill, 999px);
-    background: var(--envision-t2-color-border-default-default, #8a8a82);
+    border-radius: var(--envision-t2-border-radius-pill);
+    background: var(--envision-t2-color-border-default-default);
     cursor: pointer;
-    transition: background-color var(--envision-t2-motion-micro-duration, 150ms) cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: background-color var(--envision-t2-motion-micro-duration) cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   .thumb {
     position: absolute;
@@ -44,15 +44,15 @@ const styles = css`
     inline-size: 0.875rem;
     block-size: 0.875rem;
     border-radius: 50%;
-    background: var(--envision-t2-color-content-on-brand-default, #fff);
+    background: var(--envision-t2-color-content-on-brand-default);
     pointer-events: none;
-    transition: transform var(--envision-t2-motion-micro-duration, 150ms) cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: transform var(--envision-t2-motion-micro-duration) cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   @media (prefers-reduced-motion: reduce) { input, .thumb { transition: none; } }
-  input:checked { background: var(--envision-t2-color-background-brand-default, #29594f); }
+  input:checked { background: var(--envision-t2-color-background-brand-default); }
   :host([checked]) .thumb { transform: translateX(1rem); }
-  input:focus-visible { outline: var(--envision-t2-border-width-focus, 2px) solid var(--envision-t2-color-border-focus-default, #29594f); outline-offset: 2px; }
-  :host([disabled]) .root { cursor: not-allowed; color: var(--envision-t2-color-content-disabled-default, #8a8a82); }
+  input:focus-visible { outline: var(--envision-t2-border-width-focus) solid var(--envision-t2-color-border-focus-default); outline-offset: 2px; }
+  :host([disabled]) .root { cursor: not-allowed; color: var(--envision-t2-color-content-disabled-default); }
   :host([disabled]) input { cursor: not-allowed; opacity: 0.5; }
 `;
 
