@@ -2,6 +2,20 @@
   "envision": {
     "t2": {
       "color": {
+        "accent": {
+          "500": {
+            "$type": "color",
+            "$value": "{envision.t1.color.accent-orange.500}"
+          }
+        },
+        "content": {
+          "on-primary": {
+            "default": {
+              "$type": "color",
+              "$value": "{envision.t1.color.neutral.0}"
+            }
+          }
+        },
         "primary": {
           "50": {
             "$type": "color",
@@ -42,20 +56,6 @@
           "900": {
             "$type": "color",
             "$value": "{envision.t1.color.green.900}"
-          }
-        },
-        "accent": {
-          "500": {
-            "$type": "color",
-            "$value": "{envision.t1.color.accent-orange.500}"
-          }
-        },
-        "content": {
-          "on-primary": {
-            "default": {
-              "$type": "color",
-              "$value": "{envision.t1.color.neutral.0}"
-            }
           }
         }
       },

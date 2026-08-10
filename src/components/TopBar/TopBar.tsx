@@ -41,7 +41,7 @@ export default function TopBar({ active, onChange }: Props) {
             <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
             <path d="M13.7 21a2 2 0 0 1-3.4 0" />
           </svg>
-          <span className="topbar__badge">2</span>
+          <span className="topbar__badge" role="status" aria-label="2 notifications">2</span>
         </button>
         <button type="button" className="topbar__account" aria-label="Account">
           <span className="topbar__avatar">TJ</span>

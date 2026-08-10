@@ -116,5 +116,65 @@ export interface TabProps extends EnvisionReactBaseProps {
 }
 export const Tab = createComponent<TabProps>('envision-tab');
 
+/* --------------------------------------------------------------------------------------------
+ * Product components. Identical thin bridge to everything above: camelCase props become
+ * kebab-case attributes, `on*` props become custom-element listeners, no behaviour is duplicated.
+ * `option` / `options` / `pkg` are product-data OBJECTS, so they are assigned as element
+ * properties through a ref rather than serialised to attributes.
+ * ------------------------------------------------------------------------------------------ */
+
+export interface MaterialSwatchProps extends EnvisionReactBaseProps {
+  name?: string;
+  finish?: string;
+  /** Display string such as "Included" or "+$120"; the caller formats it. */
+  price?: string;
+  /** Texture URL (preferred) or a solid product colour. Product data, never a token. */
+  image?: string;
+  color?: string;
+  selected?: boolean;
+  unavailable?: boolean;
+  onSelect?: EventHandler;
+}
+export const MaterialSwatch = createComponent<MaterialSwatchProps>('envision-material-swatch');
+
+export interface OptionCardProps extends EnvisionReactBaseProps {
+  title?: string;
+  note?: string;
+  /** This row's tray is open. */
+  active?: boolean;
+  loading?: boolean;
+  pricePending?: boolean;
+  thumbImage?: string;
+  thumbColor?: string;
+  /** Fired when the row is activated; the host opens the matching tray. */
+  onOpen?: EventHandler;
+}
+export const OptionCard = createComponent<OptionCardProps>('envision-option-card');
+
+export interface PackageCardProps extends EnvisionReactBaseProps {
+  name?: string;
+  price?: string;
+  image?: string;
+  popular?: boolean;
+  selected?: boolean;
+  onSelect?: EventHandler;
+  onCustomize?: EventHandler;
+}
+export const PackageCard = createComponent<PackageCardProps>('envision-package-card');
+
+export interface RightRailProps extends EnvisionReactBaseProps {
+  mode?: 'customize' | 'packages';
+  /** Optional; with no heading the rail reserves no title space. */
+  heading?: string;
+  loading?: boolean;
+  /** Force sheet presentation; otherwise automatic below 1024px. */
+  sheet?: boolean;
+  open?: boolean;
+  onModechange?: EventHandler;
+  onApply?: EventHandler;
+  onClose?: EventHandler;
+}
+export const RightRail = createComponent<RightRailProps>('envision-right-rail');
+
 export { createComponent } from './createComponent.js';
 export type { EnvisionReactBaseProps } from './createComponent.js';

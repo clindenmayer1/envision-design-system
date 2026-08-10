@@ -2,6 +2,42 @@
   "envision": {
     "t2": {
       "font-size": {
+        "body": {
+          "$type": "dimension",
+          "$value": "{envision.t1.font-size.15}",
+          "$extensions": {
+            "envision.responsive": {
+              "mobile": "{envision.t1.font-size.15}"
+            }
+          }
+        },
+        "body-lg": {
+          "$type": "dimension",
+          "$value": "{envision.t1.font-size.16}",
+          "$extensions": {
+            "envision.responsive": {
+              "mobile": "{envision.t1.font-size.16}"
+            }
+          }
+        },
+        "body-sm": {
+          "$type": "dimension",
+          "$value": "{envision.t1.font-size.14}",
+          "$extensions": {
+            "envision.responsive": {
+              "mobile": "{envision.t1.font-size.14}"
+            }
+          }
+        },
+        "caption": {
+          "$type": "dimension",
+          "$value": "{envision.t1.font-size.12}",
+          "$extensions": {
+            "envision.responsive": {
+              "mobile": "{envision.t1.font-size.12}"
+            }
+          }
+        },
         "display": {
           "$type": "dimension",
           "$value": "{envision.t1.font-size.56}",
@@ -55,72 +91,9 @@
               "mobile": "{envision.t1.font-size.16}"
             }
           }
-        },
-        "body-lg": {
-          "$type": "dimension",
-          "$value": "{envision.t1.font-size.16}",
-          "$extensions": {
-            "envision.responsive": {
-              "mobile": "{envision.t1.font-size.16}"
-            }
-          }
-        },
-        "body": {
-          "$type": "dimension",
-          "$value": "{envision.t1.font-size.15}",
-          "$extensions": {
-            "envision.responsive": {
-              "mobile": "{envision.t1.font-size.15}"
-            }
-          }
-        },
-        "body-sm": {
-          "$type": "dimension",
-          "$value": "{envision.t1.font-size.14}",
-          "$extensions": {
-            "envision.responsive": {
-              "mobile": "{envision.t1.font-size.14}"
-            }
-          }
-        },
-        "caption": {
-          "$type": "dimension",
-          "$value": "{envision.t1.font-size.12}",
-          "$extensions": {
-            "envision.responsive": {
-              "mobile": "{envision.t1.font-size.12}"
-            }
-          }
         }
       },
       "layout": {
-        "right-rail-width": {
-          "$type": "dimension",
-          "$value": 392,
-          "$extensions": {
-            "envision.responsive": {
-              "mobile": 390
-            }
-          }
-        },
-        "top-bar-height": {
-          "$type": "dimension",
-          "$value": 64,
-          "$extensions": {
-            "envision.responsive": {
-              "mobile": 56
-            }
-          }
-        },
-        "page-gutter": {
-          "$type": "dimension",
-          "$value": "{envision.t1.spacing.40}",
-          "$extensions": {
-            "envision.responsive": {
-              "mobile": "{envision.t1.spacing.20}"
-            }
-          }
-        },
         "card-grid-columns": {
           "$type": "number",
           "$value": 3,
@@ -130,12 +103,39 @@
             }
           }
         },
+        "page-gutter": {
+          "$type": "dimension",
+          "$value": "{envision.t1.spacing.500}",
+          "$extensions": {
+            "envision.responsive": {
+              "mobile": "{envision.t1.spacing.250}"
+            }
+          }
+        },
+        "right-rail-width": {
+          "$type": "dimension",
+          "$value": 392,
+          "$extensions": {
+            "envision.responsive": {
+              "mobile": 390
+            }
+          }
+        },
         "swatch-grid-columns": {
           "$type": "number",
           "$value": 6,
           "$extensions": {
             "envision.responsive": {
               "mobile": 4
+            }
+          }
+        },
+        "top-bar-height": {
+          "$type": "dimension",
+          "$value": 64,
+          "$extensions": {
+            "envision.responsive": {
+              "mobile": 56
             }
           }
         }

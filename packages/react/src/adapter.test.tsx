@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { flushSync } from 'react-dom';
-import { Button, Checkbox, Input } from './index.js';
+import { Button, Checkbox, Input, MaterialSwatch, OptionCard, PackageCard, RightRail } from './index.js';
 
 /** Render synchronously so useLayoutEffect (which applies attrs/events) has committed. */
 function render(node: React.ReactElement): HTMLElement {
@@ -60,5 +60,32 @@ describe('@envision/react thin adapter', () => {
     expect(el.getAttribute('type')).toBe('email');
     expect(el.hasAttribute('required')).toBe(true);
     expect(el.getAttribute('helper-text')).toBe('Work email');
+  });
+
+  it('wraps the four product components, so React consumes the whole library', () => {
+    const c = render(
+      <>
+        <MaterialSwatch name="Calacatta" finish="Polished" selected />
+        <OptionCard title="Cabinets" note="Included" thumbColor="#eee" />
+        <PackageCard name="Summit" price="Included" popular />
+        <RightRail mode="packages" />
+      </>,
+    );
+    expect(c.querySelector('envision-material-swatch')!.getAttribute('name')).toBe('Calacatta');
+    expect(c.querySelector('envision-material-swatch')!.hasAttribute('selected')).toBe(true);
+    expect(c.querySelector('envision-option-card')!.getAttribute('thumb-color')).toBe('#eee');
+    expect(c.querySelector('envision-package-card')!.hasAttribute('popular')).toBe(true);
+    expect(c.querySelector('envision-right-rail')!.getAttribute('mode')).toBe('packages');
+  });
+
+  it('forwards product-component events (PackageCard select and customize)', () => {
+    const seen: string[] = [];
+    const c = render(
+      <PackageCard name="Summit" onSelect={() => seen.push('select')} onCustomize={() => seen.push('customize')} />,
+    );
+    const el = c.querySelector('envision-package-card') as HTMLElement;
+    el.shadowRoot!.querySelector<HTMLButtonElement>('.select')!.click();
+    el.shadowRoot!.querySelector<HTMLButtonElement>('.customize')!.click();
+    expect(seen).toEqual(['select', 'customize']);
   });
 });

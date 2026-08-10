@@ -3,8 +3,8 @@
    (--envision-t1/t2/t3-*). Structure and every rendered value are preserved.
 
    The "Popular" pill is now <envision-badge tone="brand">, so only its placement lives here.
-   Shadows stay literal: this design system exports no elevation tokens (Figma defines elevation
-   as effect styles, which the variable export cannot see). */
+   Elevation now comes from the system: the Figma Elevation/* effect styles are published as
+   --envision-t2-elevation-* through the same pipeline as every other token. */
 .pkg-tab {
   padding: var(--envision-t2-spacing-subsection-gap) var(--envision-t2-spacing-page-gutter) var(--envision-t2-spacing-page-gutter); /* 28 32 32 */
   display: flex;
@@ -45,7 +45,7 @@
   border: var(--envision-t2-border-width-default) solid var(--envision-t2-color-border-subtle-default);
   border-radius: var(--envision-t2-border-radius-card); /* 12 */
   overflow: hidden;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--envision-t2-elevation-raised);
   cursor: pointer;
   transition: border-color var(--envision-t2-motion-micro-duration) ease, box-shadow var(--envision-t2-motion-micro-duration) ease;
 }
@@ -54,12 +54,12 @@
   outline-offset: var(--envision-t2-spacing-hairline-gap); /* 2 */
 }
 .pkg-card:hover {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--envision-t2-elevation-raised-hover);
 }
 .pkg-card--selected {
   border-color: var(--envision-t3-package-card-selected-color-border);
   border-width: var(--envision-t2-border-width-emphasis); /* 2 */
-  box-shadow: 0 6px 20px rgba(41, 89, 79, 0.14);
+  box-shadow: var(--envision-t2-elevation-raised-hover);
 }
 
 /* Image (real 3D snapshot) */
@@ -107,14 +107,14 @@
   position: absolute;
   top: var(--envision-t2-spacing-container-gap);
   right: var(--envision-t2-spacing-container-gap);
-  width: var(--envision-t1-spacing-28); /* 28 */
-  height: var(--envision-t1-spacing-28);
+  width: var(--envision-t1-spacing-350); /* 28 */
+  height: var(--envision-t1-spacing-350);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--envision-t2-border-radius-circular); /* 50% */
   background: var(--envision-t2-color-background-surface-default);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+  box-shadow: var(--envision-t2-elevation-flat);
 }
 
 /* Content */
@@ -143,7 +143,7 @@
   color: var(--envision-t2-color-content-primary-default);
 }
 .pkg-card__desc {
-  margin: calc(-1 * var(--envision-t1-spacing-8)) 0 0; /* -8 optical offset (tokenized) */
+  margin: calc(-1 * var(--envision-t1-spacing-100)) 0 0; /* -8 optical offset (tokenized) */
   font-size: var(--envision-t1-font-size-13); /* 13 */
   line-height: 1.45; /* 1.45 */
   color: var(--envision-t2-color-content-secondary-default);
@@ -176,7 +176,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--envision-t2-spacing-control-gap); /* 8 */
-  height: var(--envision-t1-spacing-40); /* 40 */
+  height: var(--envision-t1-spacing-500); /* 40 */
   padding: 0 var(--envision-t2-spacing-control-padding-inline); /* 0 16 */
   border: var(--envision-t2-border-width-default) solid var(--envision-t2-color-border-default-default);
   border-radius: var(--envision-t2-border-radius-container-sm); /* 8 */
@@ -189,7 +189,7 @@
   transition: background var(--envision-t2-motion-micro-duration) ease, border-color var(--envision-t2-motion-micro-duration) ease;
 }
 .pkg-card__customize:hover {
-  border-color: var(--envision-t1-color-taupe-300);
+  border-color: var(--envision-t2-color-border-ring-hover-default);
   background: var(--envision-t2-color-background-surface-warm-default);
 }
 

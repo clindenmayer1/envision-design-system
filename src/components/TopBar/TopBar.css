@@ -1,13 +1,25 @@
+/* TopBar — DESIGN SYSTEM ADOPTED (migration group 2).
+   Structure is application-specific (there is no TopBar component in the shipping system), so it
+   is preserved and every styling decision now resolves through the design system:
+   T2 semantic roles, T3 component tokens where one exists, T1 only for the wordmark's type steps
+   and the top-bar height, which the system publishes as raw primitives.
+
+   Two DS adoptions were evaluated and NOT taken, each logged rather than forced:
+   the notification count cannot use <envision-badge> (no accent tone), and the primary nav keeps
+   its own geometry rather than adopting <envision-tab>:
+   the DS Tab is 16/0/14 with a full-width indicator, the top bar is a 6px-underlined text link at
+   a 40px rhythm. Swapping it would restyle the product, so it is logged as a parity question in
+   docs/ds-adoption-matrix.md rather than silently changed. */
 .topbar {
   position: relative;
-  height: 64px;
-  flex: 0 0 64px;
+  height: var(--envision-t2-layout-top-bar-height);
+  flex: 0 0 var(--envision-t2-layout-top-bar-height);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 40px;
-  background: #fff;
-  border-bottom: 1px solid var(--hairline);
+  padding: 0 var(--envision-t2-spacing-section-gap);
+  background: var(--envision-t2-color-background-surface-default);
+  border-bottom: var(--envision-t2-border-width-default) solid var(--envision-t2-color-border-default-default);
 }
 
 /* Brand wordmark (WESTLAKE / — HOMES —) */
@@ -18,18 +30,18 @@
   line-height: 1;
 }
 .topbar__brand-name {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 22px;
-  font-weight: 500;
-  letter-spacing: 2px;
-  color: var(--ink);
+  font-family: var(--envision-t2-font-family-wordmark), 'Times New Roman', serif;
+  font-size: var(--envision-t1-font-size-22);
+  font-weight: var(--envision-t1-font-weight-500);
+  letter-spacing: var(--envision-t1-letter-spacing-2);
+  color: var(--envision-t2-color-content-primary-default);
 }
 .topbar__brand-sub {
-  margin-top: 3px;
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 3px;
-  color: #8a8a82;
+  margin-top: 3px; /* structural optical offset, below the 4pt half-step */
+  font-size: var(--envision-t1-font-size-9);
+  font-weight: var(--envision-t1-font-weight-500);
+  letter-spacing: var(--envision-t1-letter-spacing-3);
+  color: var(--envision-t2-color-content-subtle-default);
 }
 
 /* Centered menu — absolutely centered so it stays put regardless of side widths. */
@@ -39,25 +51,30 @@
   transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: var(--envision-t2-spacing-section-gap);
 }
 .topbar__link {
   position: relative;
-  padding: 0 0 6px;
+  padding: 0 0 var(--envision-t2-spacing-related-gap);
   border: none;
   background: transparent;
-  font-size: 14px;
-  font-weight: 500;
-  color: #6b6f6d;
+  font-size: var(--envision-t1-font-size-14);
+  font-weight: var(--envision-t1-font-weight-500);
+  color: var(--envision-t2-color-content-secondary-default);
   cursor: pointer;
-  transition: color 0.15s ease;
+  transition: color var(--envision-t2-motion-micro-duration) ease;
 }
 .topbar__link:hover {
-  color: var(--ink);
+  color: var(--envision-t2-color-content-primary-default);
 }
 .topbar__link--active {
-  color: var(--ink);
-  font-weight: 600;
+  color: var(--envision-t2-color-content-primary-default);
+  font-weight: var(--envision-t1-font-weight-600);
+}
+.topbar__link:focus-visible {
+  outline: var(--envision-t2-border-width-focus) solid var(--envision-t2-color-border-focus-default);
+  outline-offset: var(--envision-t2-spacing-control-gap-tight);
+  border-radius: var(--envision-t2-border-radius-control-sm);
 }
 .topbar__link--active::after {
   content: '';
@@ -65,16 +82,16 @@
   left: 0;
   right: 0;
   bottom: 0;
-  height: 2px;
-  border-radius: 1px;
-  background: #29594F;
+  height: var(--envision-t2-border-width-emphasis);
+  border-radius: var(--envision-t2-border-radius-control-xs);
+  background: var(--envision-t3-tab-selected-color-indicator-default);
 }
 
 /* Right cluster: bell + badge, avatar, chevron */
 .topbar__right {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: var(--envision-t2-spacing-container-padding-note);
 }
 .topbar__bell {
   position: relative;
@@ -82,48 +99,63 @@
   padding: 0;
   border: none;
   background: transparent;
-  color: #2e3230;
+  color: var(--envision-t2-color-content-primary-default);
   cursor: pointer;
 }
+.topbar__bell:focus-visible {
+  outline: var(--envision-t2-border-width-focus) solid var(--envision-t2-color-border-focus-default);
+  outline-offset: var(--envision-t2-spacing-control-gap-tight);
+  border-radius: var(--envision-t2-border-radius-control-sm);
+}
+/* COVERAGE GAP (see docs/ds-adoption-matrix.md): <envision-badge> exposes neutral/brand/info/
+   success/warning/error, so it cannot express the product's ACCENT notification badge, and
+   tone="brand" would turn it green. The system does publish the right value as a T3 token, so the
+   count stays bespoke and consumes it directly until Badge gains the accent tone that the Figma
+   NotificationBadge already defines. */
 .topbar__badge {
   position: absolute;
   top: -6px;
   right: -7px;
   min-width: 17px;
   height: 17px;
-  padding: 0 4px;
+  padding: 0 var(--envision-t2-spacing-control-gap-tight);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 9px;
-  background: #e67e22;
-  color: #fff;
-  font-size: 10px;
-  font-weight: 600;
+  border-radius: var(--envision-t2-border-radius-pill);
+  background: var(--envision-t3-notification-badge-accent-color-background);
+  color: var(--envision-t2-color-content-on-brand-default);
+  font-size: 10px; /* app-specific micro label, below the published type scale */
+  font-weight: var(--envision-t1-font-weight-600);
   line-height: 1;
 }
 
 .topbar__account {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--envision-t2-spacing-control-gap);
   padding: 0;
   border: none;
   background: transparent;
   cursor: pointer;
-  color: #5a5e5c;
+  color: var(--envision-t2-color-content-secondary-default);
+}
+.topbar__account:focus-visible {
+  outline: var(--envision-t2-border-width-focus) solid var(--envision-t2-color-border-focus-default);
+  outline-offset: var(--envision-t2-spacing-control-gap-tight);
+  border-radius: var(--envision-t2-border-radius-control-sm);
 }
 .topbar__avatar {
-  width: 34px;
+  width: 34px; /* app-specific avatar size: the system publishes no avatar sizing role */
   height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: #dcdcd6;
-  color: #3a3a34;
-  font-size: 12px;
-  font-weight: 600;
+  border-radius: var(--envision-t2-border-radius-circular);
+  background: var(--envision-t3-avatar-color-background);
+  color: var(--envision-t2-color-content-primary-default);
+  font-size: var(--envision-t1-font-size-12);
+  font-weight: var(--envision-t1-font-weight-600);
 }
 .topbar__chevron {
   display: block;
