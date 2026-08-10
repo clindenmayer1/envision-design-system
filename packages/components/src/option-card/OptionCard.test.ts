@@ -51,4 +51,15 @@ describe('envision-option-card', () => {
     const thumb = el.shadowRoot!.querySelector('.thumb') as HTMLElement;
     expect(thumb.style.background.toLowerCase()).toContain('abcdef'); // current option (b) color
   });
+
+  it('accepts slotted media so the product can render a live 3D preview in the thumb', async () => {
+    const el = await mount();
+    const media = document.createElement('div');
+    media.slot = 'media'; media.id = 'live-3d';
+    el.appendChild(media);
+    await flush();
+    const slot = el.shadowRoot!.querySelector('slot[name="media"]') as HTMLSlotElement;
+    expect(slot).toBeTruthy();
+    expect(slot.assignedElements().map((n) => n.id)).toContain('live-3d');
+  });
 });

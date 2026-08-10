@@ -36,6 +36,9 @@ const styles = css `
   :host([active]) .card { box-shadow: 0 0 0 2px var(--envision-t3-option-card-ring-selected); }
   .card:focus-visible { outline: var(--envision-t2-border-width-focus) solid var(--envision-t2-color-border-focus-default); outline-offset: 2px; }
   /* Website thumb = 72px, radius 4 (control-sm). */
+  /* Product media (a live 3D preview) is slotted; the component still owns the frame. */
+  .thumb ::slotted(*) { inline-size: 100%; block-size: 100%; display: block; }
+  :host([thumb-shape='portrait']) .thumb { aspect-ratio: 4 / 5; block-size: auto; }
   .thumb { inline-size: 72px; block-size: 72px; flex: none; border-radius: var(--envision-t2-border-radius-control-sm); background: var(--envision-t2-color-background-surface-sunken-default) var(--ev-thumb, none); background-size: cover; background-position: center; }
   .body { flex: 1; min-inline-size: 0; display: flex; flex-direction: column; gap: 0.125rem; }
   /* Website title = 14 / 600 / 1.2; note = 13 / 500 / 1.6. */
@@ -48,7 +51,7 @@ const styles = css `
 `;
 export class EnvisionOptionCard extends EnvisionElement {
     static styles = styles;
-    static observedAttributes = ['title', 'note', 'active', 'loading', 'price-pending', 'thumb-image', 'thumb-color'];
+    static observedAttributes = ['title', 'note', 'active', 'loading', 'price-pending', 'thumb-image', 'thumb-color', 'thumb-shape'];
     #card;
     #thumb;
     #title;
@@ -83,7 +86,7 @@ export class EnvisionOptionCard extends EnvisionElement {
         const root = this.shadowRoot;
         root.innerHTML = `
       <button class="card" part="card" type="button">
-        <span class="thumb" part="thumb" aria-hidden="true"></span>
+        <span class="thumb" part="thumb" aria-hidden="true"><slot name="media"></slot></span>
         <span class="body">
           <span class="title" part="title"></span>
           <span class="note" part="note"></span>

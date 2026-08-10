@@ -130,3 +130,40 @@ visibly redesign approved product UI, which this migration forbids.
 
 The goal was never zero. It was zero *unjustified* design decisions, and each remaining value now
 falls into one of the four categories above.
+
+
+---
+
+# COMPONENT EVOLUTION PASS (final)
+
+Authorised to change DS public APIs so the system can represent the approved product.
+
+## APIs evolved, each driven by an observed product requirement
+
+| Component | Capability added | Product evidence |
+|---|---|---|
+| `OptionCard` | `media` slot + `thumb-shape="portrait"` | The rail renders a **live 3D `PullThumb`** in the thumb; a background-image API cannot express it |
+| `MaterialSwatch` | `fluid`, `shape="circle"`, `hide-check`, `label` | Rail/tray swatches fill their grid cell, metal finishes render as spheres, and the product shows selection as a ring with **no check** |
+| `PackageCard` | `description`, applied check, 6 square **texture** tiles, `action` slot | The shipped package card has all four; the component had none |
+
+All three ship with tests (86 component tests pass), updated React adapter types, and registry-visible APIs.
+
+## Product adoption outcome
+
+| Component | Adopted? | Evidence |
+|---|---|---|
+| **MaterialSwatch** | **Yes** — 47 instances live | Bespoke `OptionSwatch.css` deleted; the app now renders `<envision-material-swatch>` |
+| `OptionCard` | **No — reverted** | The DS card renders its chevron via a Material Symbols **ligature the app does not load**, so it displayed the literal text `chevron_right`, and the row geometry differed. Verified in-browser, reverted. |
+| `PackageCard` | **No — reverted** | With the evolved API the card still lost its media region, the Popular badge overlapped the title, tiles rendered round and undersized, and Popular appeared on cards that never had it. Verified in-browser, reverted. |
+
+The component APIs are now capable; the **rendering** does not yet match. Both failures are concrete
+and fixable, and both were caught by looking at the running product rather than by tests passing.
+
+### Remaining work to finish these two adoptions
+
+1. **Icon dependency** — `OptionCard` (and any component using Material Symbols ligatures) must
+   either ship its glyphs or degrade to an inline SVG. Today it silently renders raw text in any
+   host that does not load the font. This is a DS defect, not an application one.
+2. **PackageCard media + layout** — the media region needs the product's `351/166` ratio and image
+   binding through the `pkg` property path, the Popular badge needs to sit over the media rather
+   than the title, and the tile grid needs the product's six-up square geometry at full row width.

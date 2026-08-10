@@ -19,5 +19,9 @@ export const Switch = createComponent('envision-switch');
 export const Input = createComponent('envision-input');
 export const Radio = createComponent('envision-radio');
 export const Tab = createComponent('envision-tab');
+export const MaterialSwatch = createComponent('envision-material-swatch');
+export const OptionCard = createComponent('envision-option-card');
+export const PackageCard = createComponent('envision-package-card');
+export const RightRail = createComponent('envision-right-rail');
 export { createComponent } from './createComponent.js';
 //# sourceMappingURL=index.js.map

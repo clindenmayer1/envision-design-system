@@ -1,6 +1,7 @@
+import { cssSource } from '../base/css.js';
 import { describe, it, expect } from 'vitest';
 import '../index.js';
-import type { EnvisionMaterialSwatch } from './MaterialSwatch.js';
+import { EnvisionMaterialSwatch } from './MaterialSwatch.js';
 
 const flush = () => new Promise<void>((r) => setTimeout(r, 0));
 async function mount(setup: (el: EnvisionMaterialSwatch) => void = () => {}): Promise<EnvisionMaterialSwatch> {
@@ -38,5 +39,19 @@ describe('envision-material-swatch', () => {
     el.click();
     await flush();
     expect(fired).toBe(0);
+  });
+
+  it('supports the product use cases that forced the API: fluid, circular, check-less, labelled', async () => {
+    const el = await mount((e) => {
+      e.setAttribute('fluid', '');
+      e.setAttribute('shape', 'circle');
+      e.setAttribute('hide-check', '');
+      e.setAttribute('label', 'Brushed Brass');
+    });
+    const css = cssSource(EnvisionMaterialSwatch.styles);
+    expect(css).toContain(':host([fluid]) .swatch');      // fills its grid cell
+    expect(css).toContain(":host([shape='circle'])");      // rendered metal spheres
+    expect(css).toContain(':host([hide-check]) .check');   // ring-only selection
+    expect(el.shadowRoot!.querySelector('.label')!.textContent).toBe('Brushed Brass');
   });
 });

@@ -104,6 +104,66 @@ export interface TabProps extends EnvisionReactBaseProps {
     onSelect?: EventHandler;
 }
 export declare const Tab: import("react").ForwardRefExoticComponent<TabProps & EnvisionReactBaseProps & import("react").RefAttributes<HTMLElement>>;
+export interface MaterialSwatchProps extends EnvisionReactBaseProps {
+    name?: string;
+    finish?: string;
+    /** Display string such as "Included" or "+$120"; the caller formats it. */
+    price?: string;
+    /** Texture URL (preferred) or a solid product colour. Product data, never a token. */
+    image?: string;
+    color?: string;
+    selected?: boolean;
+    unavailable?: boolean;
+    /** Fill the grid cell instead of the fixed chip size (rail + trays). */
+    fluid?: boolean;
+    /** 'circle' presents rendered spherical materials such as metal finishes. */
+    shape?: 'square' | 'circle';
+    /** Show selection as the ring alone, with no check badge. */
+    hideCheck?: boolean;
+    /** Optional visible caption under the swatch. */
+    label?: string;
+    onSelect?: EventHandler;
+}
+export declare const MaterialSwatch: import("react").ForwardRefExoticComponent<MaterialSwatchProps & EnvisionReactBaseProps & import("react").RefAttributes<HTMLElement>>;
+export interface OptionCardProps extends EnvisionReactBaseProps {
+    title?: string;
+    note?: string;
+    /** This row's tray is open. */
+    active?: boolean;
+    loading?: boolean;
+    pricePending?: boolean;
+    thumbImage?: string;
+    thumbColor?: string;
+    /** 'portrait' matches the product's door/faucet tiles. */
+    thumbShape?: 'square' | 'portrait';
+    /** Fired when the row is activated; the host opens the matching tray. */
+    onOpen?: EventHandler;
+}
+export declare const OptionCard: import("react").ForwardRefExoticComponent<OptionCardProps & EnvisionReactBaseProps & import("react").RefAttributes<HTMLElement>>;
+export interface PackageCardProps extends EnvisionReactBaseProps {
+    name?: string;
+    description?: string;
+    price?: string;
+    image?: string;
+    popular?: boolean;
+    selected?: boolean;
+    onSelect?: EventHandler;
+    onCustomize?: EventHandler;
+}
+export declare const PackageCard: import("react").ForwardRefExoticComponent<PackageCardProps & EnvisionReactBaseProps & import("react").RefAttributes<HTMLElement>>;
+export interface RightRailProps extends EnvisionReactBaseProps {
+    mode?: 'customize' | 'packages';
+    /** Optional; with no heading the rail reserves no title space. */
+    heading?: string;
+    loading?: boolean;
+    /** Force sheet presentation; otherwise automatic below 1024px. */
+    sheet?: boolean;
+    open?: boolean;
+    onModechange?: EventHandler;
+    onApply?: EventHandler;
+    onClose?: EventHandler;
+}
+export declare const RightRail: import("react").ForwardRefExoticComponent<RightRailProps & EnvisionReactBaseProps & import("react").RefAttributes<HTMLElement>>;
 export { createComponent } from './createComponent.js';
 export type { EnvisionReactBaseProps } from './createComponent.js';
 //# sourceMappingURL=index.d.ts.map

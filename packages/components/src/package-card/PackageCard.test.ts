@@ -55,6 +55,24 @@ describe('envision-package-card (audit fix: real buttons, not a div-as-button)',
     const el = await mount((e) => {
       e.pkg = { id: 'p1', name: 'Big', materials: Array.from({ length: 9 }, (_, i) => ({ id: String(i), name: `m${i}`, color: '#ccc' })) };
     });
-    expect(el.shadowRoot!.querySelectorAll('.mat').length).toBe(5);
+    expect(el.shadowRoot!.querySelectorAll('.mat').length).toBe(6);
+  });
+
+  it('renders the package description (product anatomy)', async () => {
+    const el = await mount((e) => { e.pkg = { id: 'p', name: 'Summit', description: 'White cabinets, Calacatta, and chrome.' }; });
+    expect(el.shadowRoot!.querySelector('.desc')!.textContent).toBe('White cabinets, Calacatta, and chrome.');
+  });
+
+  it('confirms the applied state with a check, so selection is never colour-only', async () => {
+    const el = await mount((e) => { e.pkg = { id: 'p', name: 'Summit' }; });
+    const applied = el.shadowRoot!.querySelector('.applied') as HTMLElement;
+    expect(applied.getAttribute('aria-label')).toBe('Applied');
+    el.selected = true; await flush();
+    expect(cssSource(EnvisionPackageCard.styles)).toContain(':host([selected]) .applied');
+  });
+
+  it('previews a material texture when the product supplies one', async () => {
+    const el = await mount((e) => { e.pkg = { id: 'p', name: 'S', materials: [{ id: 'a', name: 'Oak', image: '/t/oak.jpg' }] }; });
+    expect(el.shadowRoot!.querySelector<HTMLElement>('.mat')!.style.backgroundImage).toContain('/t/oak.jpg');
   });
 });

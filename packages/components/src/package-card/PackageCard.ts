@@ -44,6 +44,16 @@ const styles = css`
   .popular { position: absolute; inset-block-start: 0.5rem; inset-inline-start: 0.5rem; }
   .info { padding: var(--envision-t3-package-card-content-gap); display: flex; flex-direction: column; gap: 0.25rem; }
   /* Website package title = 19 (off-scale) -> nearest 18; bold. Price = 13. */
+  .desc { font-size: var(--envision-t1-font-size-13); line-height: 1.45; color: var(--envision-t2-color-content-secondary-default); }
+  .desc:empty { display: none; }
+  .applied { position: absolute; inset-block-start: 0.75rem; inset-inline-end: 0.75rem;
+    inline-size: var(--envision-t1-spacing-350); block-size: var(--envision-t1-spacing-350);
+    display: none; align-items: center; justify-content: center;
+    border-radius: var(--envision-t2-border-radius-circular);
+    background: var(--envision-t2-color-background-surface-default);
+    color: var(--envision-t2-color-content-brand-default);
+    box-shadow: var(--envision-t2-elevation-flat); }
+  :host([selected]) .applied { display: inline-flex; }
   .name { font-family: inherit; font-size: var(--envision-t1-font-size-18); font-weight: var(--envision-t1-font-weight-700); color: var(--envision-t2-color-content-primary-default); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .price { font-size: var(--envision-t1-font-size-13); color: var(--envision-t2-color-content-secondary-default); font-variant-numeric: tabular-nums; }
   .footer { display: flex; align-items: center; justify-content: space-between; gap: var(--envision-t3-package-card-footer-gap); padding: 0 var(--envision-t3-package-card-content-gap) var(--envision-t3-package-card-content-gap); }
@@ -59,13 +69,14 @@ const styles = css`
 
 export class EnvisionPackageCard extends EnvisionElement {
   static styles = styles;
-  static observedAttributes = ['selected', 'name', 'image', 'price', 'popular'];
+  static observedAttributes = ['selected', 'name', 'image', 'price', 'popular', 'description'];
 
   #select!: HTMLButtonElement;
   #media!: HTMLSpanElement;
   #name!: HTMLSpanElement;
   #price!: HTMLSpanElement;
   #popularWrap!: HTMLSpanElement;
+  #desc!: HTMLSpanElement;
   #customize!: HTMLButtonElement;
   #mats!: HTMLSpanElement;
   #pkg: KitchenPackage | null = null;
@@ -82,15 +93,17 @@ export class EnvisionPackageCard extends EnvisionElement {
     root.innerHTML = `
       <article class="card" part="card">
         <button class="select" part="select" type="button">
-          <span class="media" part="media"><span class="popular" part="popular" hidden></span></span>
+          <span class="media" part="media"><span class="popular" part="popular" hidden></span>
+            <span class="applied" part="applied" role="img" aria-label="Applied"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></span></span>
           <span class="info">
             <span class="name" part="name"></span>
             <span class="price" part="price"></span>
+            <span class="desc" part="description"></span>
           </span>
         </button>
         <div class="footer">
           <span class="mats" part="materials" aria-hidden="true"></span>
-          <button class="customize" part="customize" type="button">Customize</button>
+          <slot name="action"><button class="customize" part="customize" type="button">Customize</button></slot>
         </div>
       </article>`;
     this.#select = root.querySelector('.select')!;
@@ -98,6 +111,7 @@ export class EnvisionPackageCard extends EnvisionElement {
     this.#name = root.querySelector('.name')!;
     this.#price = root.querySelector('.price')!;
     this.#popularWrap = root.querySelector('.popular')!;
+    this.#desc = root.querySelector('.desc')!;
     this.#customize = root.querySelector('.customize')!;
     this.#mats = root.querySelector('.mats')!;
     this.#select.addEventListener('click', () => this.dispatchEvent(new CustomEvent('select', { bubbles: true, composed: true, detail: { id: this.#id() } })));
@@ -112,6 +126,7 @@ export class EnvisionPackageCard extends EnvisionElement {
 
     this.#name.textContent = name;
     this.#price.textContent = price;
+    this.#desc.textContent = this.#pkg?.description ?? this.getStr('description') ?? '';
     this.#select.setAttribute('aria-pressed', this.selected ? 'true' : 'false');
     this.#select.setAttribute('aria-label', `Select ${name}${popular ? ', popular' : ''}${price ? ', ' + price : ''}`);
     this.#customize.setAttribute('aria-label', `Customize ${name}`);
@@ -135,9 +150,11 @@ export class EnvisionPackageCard extends EnvisionElement {
   }
 
   #renderMats(): void {
-    const mats = (this.#pkg?.materials ?? []).slice(0, 5); // cap preview (max-materials state)
+    const mats = (this.#pkg?.materials ?? []).slice(0, 6); // cap preview (max-materials state)
     this.#mats.innerHTML = mats
-      .map((m) => `<span class="mat" style="background:${m.color ?? '#ccc'}"></span>`)
+      .map((m) => m.image
+        ? `<span class="mat" style="background-image:url(&quot;${m.image}&quot;)"></span>`
+        : `<span class="mat" style="background:${m.color ?? 'transparent'}"></span>`)
       .join('');
   }
 }

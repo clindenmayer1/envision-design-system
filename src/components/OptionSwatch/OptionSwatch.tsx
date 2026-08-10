@@ -1,8 +1,14 @@
-/* A single 64px swatch chip + label (Figma: bordered chip, selected badge). */
+/* Material swatch — now the production design-system component.
+ *
+ * The bespoke implementation is gone. <envision-material-swatch> gained the capabilities this
+ * screen proved were needed: fluid sizing so it fills the rail/tray grid cell, a circular shape
+ * for rendered metal spheres, and ring-only selection (the product deliberately shows no check).
+ * Only the sphere-rendering side effect stays here, because that is product rendering logic.
+ */
 import { useEffect, useState } from 'react'
+import { MaterialSwatch } from '@envision/react'
 import type { Option } from '../../types'
 import { isMetalFinish, getMetalSwatch, peekMetalSwatch } from './metalSwatchRenderer'
-import './OptionSwatch.css'
 
 interface Props {
   option: Option
@@ -11,8 +17,6 @@ interface Props {
 }
 
 export default function OptionSwatch({ option, selected, onSelect }: Props) {
-  // Hardware finishes render as a real reflective sphere (offscreen, cached by id) instead of
-  // a flat baked tile. Everything else keeps the flat colour / veneer-thumbnail chip.
   const isMetal = isMetalFinish(option.id)
   const [sphere, setSphere] = useState<string | undefined>(() => (isMetal ? peekMetalSwatch(option.id) : undefined))
   useEffect(() => {
@@ -24,28 +28,15 @@ export default function OptionSwatch({ option, selected, onSelect }: Props) {
   }, [isMetal, option.id])
 
   return (
-    <button
-      type="button"
-      className={`swatch${isMetal ? ' swatch--sphere' : ''}`}
-      onClick={() => onSelect(option.id)}
-      aria-pressed={selected}
-      title={option.label}
-    >
-      {/* Selected/hover state is the same dark outline-ring as the tray tiles (no checkmark),
-          driven by aria-pressed in CSS. Metal finishes show a rendered sphere; wood finishes
-          show their veneer thumbnail; the rest show a flat colour. */}
-      <span
-        className="swatch__chip"
-        style={
-          isMetal
-            ? sphere
-              ? { backgroundImage: `url(${sphere})`, backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }
-              : undefined
-            : option.texture
-              ? { backgroundImage: `url(${option.texture})`, backgroundSize: 'cover', backgroundPosition: 'center' }
-              : { background: option.swatch ?? option.color ?? '#ccc' }
-        }
-      />
-    </button>
+    <MaterialSwatch
+      fluid
+      hideCheck
+      shape={isMetal ? 'circle' : 'square'}
+      name={option.label}
+      image={isMetal ? sphere : option.texture}
+      color={option.swatch ?? option.color}
+      selected={selected}
+      onSelect={() => onSelect(option.id)}
+    />
   )
 }

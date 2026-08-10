@@ -133,6 +133,14 @@ export interface MaterialSwatchProps extends EnvisionReactBaseProps {
   color?: string;
   selected?: boolean;
   unavailable?: boolean;
+  /** Fill the grid cell instead of the fixed chip size (rail + trays). */
+  fluid?: boolean;
+  /** 'circle' presents rendered spherical materials such as metal finishes. */
+  shape?: 'square' | 'circle';
+  /** Show selection as the ring alone, with no check badge. */
+  hideCheck?: boolean;
+  /** Optional visible caption under the swatch. */
+  label?: string;
   onSelect?: EventHandler;
 }
 export const MaterialSwatch = createComponent<MaterialSwatchProps>('envision-material-swatch');
@@ -146,6 +154,8 @@ export interface OptionCardProps extends EnvisionReactBaseProps {
   pricePending?: boolean;
   thumbImage?: string;
   thumbColor?: string;
+  /** 'portrait' matches the product's door/faucet tiles. */
+  thumbShape?: 'square' | 'portrait';
   /** Fired when the row is activated; the host opens the matching tray. */
   onOpen?: EventHandler;
 }
@@ -153,6 +163,7 @@ export const OptionCard = createComponent<OptionCardProps>('envision-option-card
 
 export interface PackageCardProps extends EnvisionReactBaseProps {
   name?: string;
+  description?: string;
   price?: string;
   image?: string;
   popular?: boolean;

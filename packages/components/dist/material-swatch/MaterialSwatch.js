@@ -14,7 +14,16 @@ import { css } from '../base/css.js';
  * `option` is an object PROPERTY (objects can't be attributes); selected/unavailable are attributes.
  */
 const styles = css `
-  :host { display: inline-flex; }
+:host { display: inline-flex; flex-direction: column; align-items: center; gap: var(--envision-t3-material-swatch-label-gap); }
+  /* Fluid: the swatch fills its grid cell instead of the fixed chip size (Envision rail + trays). */
+  :host([fluid]) { inline-size: 100%; min-inline-size: 0; }
+  :host([fluid]) .swatch { inline-size: 100%; block-size: auto; aspect-ratio: 1 / 1; }
+  /* Rendered spherical materials (metal finishes) present as a circle. */
+  :host([shape='circle']) .swatch { border-radius: 50%; background-size: contain; background-repeat: no-repeat; }
+  /* Some surfaces show selection as the ring alone, with no check. */
+  :host([hide-check]) .check { display: none !important; }
+  .label { inline-size: 100%; text-align: center; font-size: var(--envision-t1-font-size-11); color: var(--envision-t2-color-content-secondary-default); }
+  .label:empty { display: none; }
   .swatch {
     position: relative;
     inline-size: var(--envision-t3-material-swatch-chip-size);
@@ -61,9 +70,10 @@ const styles = css `
 `;
 export class EnvisionMaterialSwatch extends EnvisionElement {
     static styles = styles;
-    static observedAttributes = ['selected', 'unavailable', 'name', 'finish', 'price', 'image', 'color'];
+    static observedAttributes = ['selected', 'unavailable', 'name', 'finish', 'price', 'image', 'color', 'fluid', 'shape', 'hide-check', 'label'];
     #btn;
     #check;
+    #label;
     #option = null;
     get option() { return this.#option; }
     set option(v) { this.#option = v; this.requestUpdate(); }
@@ -92,7 +102,8 @@ export class EnvisionMaterialSwatch extends EnvisionElement {
     };
     render() {
         const root = this.shadowRoot;
-        root.innerHTML = `<button class="swatch" part="swatch" type="button"><span class="diag" aria-hidden="true"></span><span class="check" part="check" aria-hidden="true">check</span></button>`;
+        root.innerHTML = `<button class="swatch" part="swatch" type="button"><span class="diag" aria-hidden="true"></span><span class="check" part="check" aria-hidden="true">check</span></button><span class="label" part="label"></span>`;
+        this.#label = root.querySelector('.label');
         this.#btn = root.querySelector('.swatch');
         this.#check = root.querySelector('.check');
     }
@@ -111,6 +122,8 @@ export class EnvisionMaterialSwatch extends EnvisionElement {
         this.#btn.setAttribute('aria-label', parts.join(', '));
         this.#btn.setAttribute('aria-pressed', this.selected ? 'true' : 'false');
         this.#btn.disabled = this.unavailable;
+        // optional caption; the swatch keeps its own accessible name regardless
+        this.#label.textContent = this.getStr('label') ?? '';
         void this.#check;
     }
 }

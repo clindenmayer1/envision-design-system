@@ -19,6 +19,8 @@ export interface MaterialOption {
 export interface KitchenPackage {
     id: string;
     name: string;
+    /** One-line summary shown on the card. */
+    description?: string;
     image?: string;
     priceLabel?: string;
     popular?: boolean;
