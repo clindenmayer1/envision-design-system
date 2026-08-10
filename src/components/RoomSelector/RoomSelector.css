@@ -10,9 +10,9 @@
   gap: 10px;
   min-width: 160px;
   justify-content: space-between;
-  border: var(--envision-t2-border-width-default) solid var(--hairline);
+  border: var(--envision-t2-border-width-default) solid var(--envision-t2-color-border-default-default);
   background: var(--envision-t2-color-background-surface-default);
-  color: var(--ink);
+  color: var(--envision-t2-color-content-primary-default);
   font-size: var(--envision-t1-font-size-13);
   font-weight: var(--envision-t1-font-weight-600);
   letter-spacing: 0.01em;
@@ -43,7 +43,7 @@
   padding: 6px;
   list-style: none;
   background: var(--envision-t2-color-background-surface-default);
-  border: var(--envision-t2-border-width-default) solid var(--hairline);
+  border: var(--envision-t2-border-width-default) solid var(--envision-t2-color-border-default-default);
   border-radius: var(--envision-t2-border-radius-container-md);
   box-shadow: var(--envision-t2-elevation-menu);
   max-height: 60vh;
@@ -64,7 +64,7 @@
   text-align: left;
 }
 .roomsel__row:hover {
-  background: #f4f1ec;
+  background: var(--envision-t2-color-background-surface-sunken-default);
 }
 .roomsel__row--active {
   background: #efece5;
@@ -73,7 +73,7 @@
 .roomsel__room {
   font-size: var(--envision-t1-font-size-13);
   font-weight: var(--envision-t1-font-weight-500);
-  color: var(--ink);
+  color: var(--envision-t2-color-content-primary-default);
 }
 
 .roomsel__status {

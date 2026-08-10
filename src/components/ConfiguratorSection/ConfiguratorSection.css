@@ -10,7 +10,7 @@
   margin: 0 0 0 -3.5px;
   font-size: var(--envision-t1-font-size-18);
   font-weight: var(--envision-t1-font-weight-600);
-  color: var(--ink);
+  color: var(--envision-t2-color-content-primary-default);
   line-height: 1.2;
 }
 

@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--envision-theme-material-swatch-label-gap); /* T3 -> T2 spacing/content/label-gap -> T1 spacing/100 -> 4 */
+  gap: var(--envision-t2-spacing-control-gap-tight); /* T3 -> T2 spacing/content/label-gap -> T1 spacing/100 -> 4 */
   width: 100%;
   min-width: 0;
   padding: 0;
@@ -17,8 +17,8 @@
   width: 100%;
   aspect-ratio: 1 / 1;
   border: none;
-  border-radius: var(--envision-theme-radius-control-small); /* -> T1 radius/100 -> 4 (product value) */
-  transition: box-shadow var(--envision-duration-instant) ease; /* 150ms */
+  border-radius: var(--envision-t2-border-radius-control-sm); /* -> T1 radius/100 -> 4 (product value) */
+  transition: box-shadow var(--envision-t2-motion-micro-duration) ease; /* 150ms */
 }
 
 /* Metal finishes are rendered as a reflective sphere on a transparent chip → circular
@@ -31,21 +31,21 @@
    the chip with a small gap (no checkmark). Hover = faded ring; selected = solid
    ink ring (wins on hover via source order). */
 .swatch:hover .swatch__chip {
-  box-shadow: 0 0 0 var(--envision-theme-material-swatch-ring-hover-width) var(--envision-theme-material-swatch-ring-hover-color); /* hover ring -> brown/a-40 */
+  box-shadow: 0 0 0 var(--envision-t2-border-width-emphasis) var(--envision-t2-color-border-ring-hover-default); /* hover ring -> brown/a-40 */
 }
 
 .swatch[aria-pressed='true'] .swatch__chip {
-  box-shadow: 0 0 0 var(--envision-theme-material-swatch-ring-selected-gap-width) var(--envision-theme-material-swatch-ring-selected-gap-color),
-              0 0 0 var(--envision-theme-material-swatch-ring-selected-width) var(--envision-theme-material-swatch-ring-selected-color); /* selected offset ring: white gap + taupe-600 */
+  box-shadow: 0 0 0 var(--envision-t2-border-width-emphasis) var(--envision-t2-color-background-surface-default),
+              0 0 0 var(--envision-t2-border-width-emphasis) var(--envision-t2-color-border-ring-selected-default); /* selected offset ring: white gap + taupe-600 */
 }
 
 .swatch__label {
   width: 100%;
   text-align: center;
-  font-size: var(--envision-font-size-50);       /* 11 */
-  font-weight: var(--envision-font-weight-medium); /* 500 */
+  font-size: var(--envision-t1-font-size-11);       /* 11 */
+  font-weight: var(--envision-t1-font-weight-500); /* 500 */
   line-height: 1.15; /* off-scale label line-height — documented exception */
-  color: var(--ink); /* -> --envision-theme-color-content-primary-default */
+  color: var(--envision-t2-color-content-primary-default); /* -> --envision-theme-color-content-primary-default */
 }
 
 /* The 12th chip in the wall-colour row: a light chip like the others with a "more" chevron,
@@ -56,15 +56,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--card-bg, #fbf8f5);
-  color: var(--ink-soft, #6c6359);
-  box-shadow: 0 0 0 1.5px #e2e2dd;
-  transition: box-shadow 0.15s ease, color 0.15s ease;
+  background: var(--card-bg, var(--envision-t2-color-background-surface-warm-default));
+  color: var(--ink-soft, var(--envision-t2-color-content-secondary-default));
+  box-shadow: 0 0 0 var(--envision-t2-border-width-thin) var(--envision-t2-color-border-ring-rest-default);
+  transition: box-shadow var(--envision-t2-motion-micro-duration) ease, color var(--envision-t2-motion-micro-duration) ease;
 }
 .swatch--more:hover .swatch__chip--more {
-  box-shadow: 0 0 0 1.5px #abab9d;
-  color: var(--ink, #2b2622);
+  box-shadow: 0 0 0 var(--envision-t2-border-width-thin) var(--envision-t2-color-border-ring-hover-default);
+  color: var(--ink, var(--envision-t2-color-content-primary-default));
 }
 .swatch--more:active .swatch__chip--more {
-  box-shadow: 0 0 0 1.5px #999988;
+  box-shadow: 0 0 0 var(--envision-t2-border-width-thin) var(--envision-t2-color-border-ring-selected-default);
 }

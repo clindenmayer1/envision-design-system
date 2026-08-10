@@ -85,3 +85,48 @@ Adapters first (blocks 5, 8, 9, 10), then in the order the user set, adjusted fo
 - No hex, px, shadow or type literal where the system publishes a role.
 - Visual parity verified against the running product; drift is a bug, not an improvement.
 - No new component layer, no parallel React implementations.
+
+
+---
+
+# FINAL DISPOSITIONS
+
+Every application component now has an explicit state. Measured by `scripts/ds-adoption-audit.mjs`.
+
+| State | Components |
+|---|---|
+| **A** migrated to a DS component | RightRail tabs (`Tab`), RailFooter CTA (`Button`), PackagesTab badges (`Badge`), ConfiguratorSection |
+| **B** app composition using DS parts + tokens | RightRail, RailFooter, PackagesTab, ConfiguratorSection |
+| **C** tokenised app structure | TopBar, Overview, WallColorModal, CabinetStyleTray, StudioPanel, RoomSelector, ViewSwitcher, Layout, PoseReadout, SceneCanvas, DebugTargetsPanel, PullThumb |
+| **D** DS coverage gap | Dropdown/Menu · Modal/Dialog · Tray/Sheet |
+| **E** parity exception | OptionCard · OptionSwatch · PackagesTab card · TopBar nav · TopBar notification badge |
+
+## Parity exceptions, with evidence
+
+The three product components in the shipping system **cannot yet express the shipped product**.
+All three have zero slots, so the application cannot inject its own content:
+
+| Component | Why adoption would redesign the product |
+|---|---|
+| `envision-option-card` | No slot. The app renders a **live 3D `PullThumb`** inside the thumb; adopting it would silently drop 3D door/pull previews. Also single thumb geometry vs the app's portrait/square variants. |
+| `envision-material-swatch` | Fixed 64px vs the app's fluid `width:100%` + `aspect-ratio` grid cell; adds a **green check badge** the product deliberately does not use ("ring only, no checkmark"); no circular variant for the rendered metal spheres; renders no label. |
+| `envision-package-card` | No description, no applied-check, 5 round colour dots instead of the product's 6 square **texture** tiles, price stacked rather than baseline-aligned. |
+| TopBar primary nav | `envision-tab` is 16/0/14 with a full-width indicator; the nav is a 6px-underlined link at a 40px rhythm. |
+| TopBar notification count | `envision-badge` publishes no `accent` tone; `brand` would render it green instead of orange. |
+
+These are **DS capability gaps, not application problems**. Each is a missing slot, variant or tone
+on a component that was built to a simplified spec. Closing them is a design decision about the
+components' public API, so they are logged rather than forced — adopting any of them today would
+visibly redesign approved product UI, which this migration forbids.
+
+## Remaining raw values, classified
+
+| Category | Count | Disposition |
+|---|---|---|
+| Structural geometry | ~120 | 3D viewport maths, canvas sizing, absolute positioning, optical offsets. No system role applies. |
+| Product/content data | ~35 | Material colours, texture URLs, package imagery. Content, not tokens (SYSTEM_SPEC §4). |
+| Off-grid values the system retired | 44 | 3/5/6/7/9/10/14/22px. The system's scale has no such steps; snapping would move the product. |
+| Genuine missing roles | ~16 | Ring insets, scrim tints and a 10px micro-label with no published role. Logged as gaps. |
+
+The goal was never zero. It was zero *unjustified* design decisions, and each remaining value now
+falls into one of the four categories above.

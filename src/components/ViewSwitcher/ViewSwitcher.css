@@ -5,7 +5,7 @@
   gap: var(--envision-t2-spacing-control-gap-tight);
   padding: 3px var(--envision-t2-spacing-control-gap);
   background: var(--envision-t2-color-background-surface-default);
-  border: var(--envision-t2-border-width-default) solid var(--hairline);
+  border: var(--envision-t2-border-width-default) solid var(--envision-t2-color-border-default-default);
   border-radius: var(--envision-t2-border-radius-control);
   box-shadow: var(--envision-t2-elevation-flat);
 }
@@ -15,7 +15,7 @@
   font-size: var(--envision-t1-font-size-13);
   font-weight: var(--envision-t1-font-weight-500);
   letter-spacing: 0.01em;
-  color: var(--ink);
+  color: var(--envision-t2-color-content-primary-default);
 }
 
 .viewswitch__num {
@@ -36,12 +36,12 @@
 }
 
 .viewswitch__num:hover {
-  background: #f4f1ec;
+  background: var(--envision-t2-color-background-surface-sunken-default);
 }
 
 .viewswitch__num--active,
 .viewswitch__num--active:hover {
   background: #ece7df;
-  color: var(--ink);
+  color: var(--envision-t2-color-content-primary-default);
   font-weight: var(--envision-t1-font-weight-600);
 }

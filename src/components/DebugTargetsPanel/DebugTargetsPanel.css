@@ -1,9 +1,9 @@
 .debug {
   width: 200px;
   background: rgba(255, 255, 255, 0.92);
-  border: var(--envision-t2-border-width-default) solid var(--hairline);
+  border: var(--envision-t2-border-width-default) solid var(--envision-t2-color-border-default-default);
   border-radius: var(--envision-t2-border-radius-container-md);
-  color: var(--ink);
+  color: var(--envision-t2-color-content-primary-default);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
   overflow: hidden;
@@ -34,22 +34,22 @@
 
 .debug__meta {
   font-size: 10.5px;
-  color: var(--ink-soft);
+  color: var(--envision-t2-color-content-placeholder-default);
 }
 
 .debug__body {
   padding: 6px var(--envision-t2-spacing-container-gap) var(--envision-t2-spacing-container-gap);
-  border-top: var(--envision-t2-border-width-default) solid var(--hairline);
+  border-top: var(--envision-t2-border-width-default) solid var(--envision-t2-color-border-default-default);
 }
 
 .debug__mode {
   font-size: var(--envision-t1-font-size-11);
-  color: var(--ink-soft);
+  color: var(--envision-t2-color-content-placeholder-default);
   margin: 6px 0 var(--envision-t2-spacing-control-gap);
 }
-.debug__mode b { color: var(--ink); }
+.debug__mode b { color: var(--envision-t2-color-content-primary-default); }
 
 .debug__list { list-style: none; margin: 0; padding: 0; }
 .debug__row { display: flex; justify-content: space-between; padding: 2px 0; font-size: var(--envision-t1-font-size-11-5); }
-.debug__key { color: var(--ink-soft); }
-.debug__val { color: var(--ink); font-variant-numeric: tabular-nums; }
+.debug__key { color: var(--envision-t2-color-content-placeholder-default); }
+.debug__val { color: var(--envision-t2-color-content-primary-default); font-variant-numeric: tabular-nums; }
