@@ -1,5 +1,6 @@
 import { EnvisionElement } from '../base/element.js';
 import { css } from '../base/css.js';
+import { ICON } from '../base/icons.js';
 /**
  * Envision OptionCard — `<envision-option-card>`. Selection-row opener in the RightRail.
  *
@@ -46,7 +47,7 @@ const styles = css `
   .note { font-size: var(--envision-t1-font-size-13); font-weight: var(--envision-t1-font-weight-500); line-height: var(--envision-t1-line-height-160); color: var(--envision-t2-color-content-secondary-default); }
   .note.upgrade { color: var(--envision-t2-color-content-brand-default); font-weight: var(--envision-t1-font-weight-600); }
   .note.pending { color: var(--envision-t2-color-content-secondary-default); font-style: italic; }
-  .chev { flex: none; font-family: 'Material Symbols Outlined', sans-serif; font-size: var(--envision-t1-font-size-20); color: var(--envision-t2-color-content-tertiary-default); font-feature-settings: 'liga'; }
+  .chev { inline-size: 1.25rem; block-size: 1.25rem; flex: none; font-size: var(--envision-t1-font-size-20); color: var(--envision-t2-color-content-tertiary-default); font-feature-settings: 'liga'; }
   :host([loading]) .card { opacity: 0.6; pointer-events: none; }
 `;
 export class EnvisionOptionCard extends EnvisionElement {
@@ -91,7 +92,7 @@ export class EnvisionOptionCard extends EnvisionElement {
           <span class="title" part="title"></span>
           <span class="note" part="note"></span>
         </span>
-        <span class="chev" part="chevron" aria-hidden="true">chevron_right</span>
+        <span class="chev" part="chevron" aria-hidden="true">${ICON.chevronRight}</span>
       </button>`;
         this.#card = root.querySelector('.card');
         this.#thumb = root.querySelector('.thumb');

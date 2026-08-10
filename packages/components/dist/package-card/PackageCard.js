@@ -1,5 +1,6 @@
 import { EnvisionElement } from '../base/element.js';
 import { css } from '../base/css.js';
+import { ICON } from '../base/icons.js';
 /**
  * Envision PackageCard — `<envision-package-card>`. Curated design package card.
  *
@@ -32,15 +33,18 @@ const styles = css `
   }
   .select:focus-visible { outline: var(--envision-t2-border-width-focus) solid var(--envision-t2-color-border-focus-default); outline-offset: -2px; }
   .media {
-    position: relative; aspect-ratio: var(--envision-t3-package-card-default-image-ratio);
+    inline-size: 100%; position: relative; aspect-ratio: var(--envision-t3-package-card-default-image-ratio);
     background: var(--envision-t3-package-card-media-color-background);
     background-size: cover; background-position: center;
   }
   .media.loading::after { content: ''; position: absolute; inset: 0; animation: ev-shimmer 1.2s ease-in-out infinite; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); }
   @keyframes ev-shimmer { 100% { transform: translateX(0); } 50% { opacity: 0.5; } }
-  .media.error { display: flex; align-items: center; justify-content: center; color: var(--envision-t2-color-content-tertiary-default); font-family: 'Material Symbols Outlined', sans-serif; font-size: 2rem; font-feature-settings: 'liga'; }
+  .media.error { display: flex; align-items: center; justify-content: center; color: var(--envision-t2-color-content-tertiary-default); font-size: 2rem; font-feature-settings: 'liga'; }
   .popular { position: absolute; inset-block-start: 0.5rem; inset-inline-start: 0.5rem; }
-  .info { padding: var(--envision-t3-package-card-content-gap); display: flex; flex-direction: column; gap: 0.25rem; }
+  .info { padding: var(--envision-t3-package-card-content-gap); display: flex; flex-direction: column; gap: var(--envision-t2-spacing-control-gap-tight); }
+  .headrow { display: flex; align-items: baseline; justify-content: space-between; gap: var(--envision-t2-spacing-container-gap); }
+  .headrow .name { flex: 1 1 auto; min-inline-size: 0; }
+  .headrow .price { flex: 0 0 auto; }
   /* Website package title = 19 (off-scale) -> nearest 18; bold. Price = 13. */
   .desc { font-size: var(--envision-t1-font-size-13); line-height: 1.45; color: var(--envision-t2-color-content-secondary-default); }
   .desc:empty { display: none; }
@@ -61,12 +65,15 @@ const styles = css `
   .customize { appearance: none; border: 1px solid var(--envision-t2-color-border-default-default); background: var(--envision-t2-color-background-surface-default); color: var(--envision-t2-color-content-primary-default); border-radius: var(--envision-t2-border-radius-container-sm); padding: 0.375rem 0.75rem; font-family: inherit; font-size: var(--envision-t1-font-size-13); font-weight: var(--envision-t1-font-weight-600); cursor: pointer; }
   .customize:hover { border-color: var(--envision-t2-color-border-strong-default); background: var(--envision-t2-color-background-surface-warm-default); }
   .customize:focus-visible { outline: var(--envision-t2-border-width-focus) solid var(--envision-t2-color-border-focus-default); outline-offset: 2px; }
-  .mats { display: inline-flex; gap: 0.25rem; }
-  .mat { inline-size: 1rem; block-size: 1rem; border-radius: 50%; border: 1px solid var(--envision-t2-color-border-subtle-default); }
+  /* Square texture tile filling its grid column — the product previews real materials. */
+  .mat { aspect-ratio: 1 / 1; border-radius: var(--envision-t2-border-radius-container-xs);
+    border: var(--envision-t2-border-width-default) solid var(--envision-t2-color-border-subtle-default);
+    background-size: cover; background-position: center; }
+  .mats { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--envision-t2-spacing-control-gap); flex: 1 1 auto; min-inline-size: 0; }
 `;
 export class EnvisionPackageCard extends EnvisionElement {
     static styles = styles;
-    static observedAttributes = ['selected', 'name', 'image', 'price', 'popular', 'description'];
+    static observedAttributes = ['selected', 'name', 'image', 'price', 'popular', 'description', 'badge-label'];
     #select;
     #media;
     #name;
@@ -89,8 +96,10 @@ export class EnvisionPackageCard extends EnvisionElement {
           <span class="media" part="media"><span class="popular" part="popular" hidden></span>
             <span class="applied" part="applied" role="img" aria-label="Applied"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></span></span>
           <span class="info">
-            <span class="name" part="name"></span>
-            <span class="price" part="price"></span>
+            <span class="headrow">
+              <span class="name" part="name"></span>
+              <span class="price" part="price"></span>
+            </span>
             <span class="desc" part="description"></span>
           </span>
         </button>
@@ -122,8 +131,9 @@ export class EnvisionPackageCard extends EnvisionElement {
         this.#select.setAttribute('aria-label', `Select ${name}${popular ? ', popular' : ''}${price ? ', ' + price : ''}`);
         this.#customize.setAttribute('aria-label', `Customize ${name}`);
         this.#popularWrap.hidden = !popular;
+        const label = this.#pkg?.badgeLabel ?? this.getStr('badge-label') ?? 'Popular';
         if (popular && !this.#popularWrap.firstChild) {
-            this.#popularWrap.innerHTML = `<envision-badge tone="brand" label="Popular"><span slot="label">Popular</span></envision-badge>`;
+            this.#popularWrap.innerHTML = `<envision-badge tone="brand" label="${label}"><span slot="label">${label}</span></envision-badge>`;
         }
         this.#loadImage(image);
         this.#renderMats();
@@ -138,7 +148,7 @@ export class EnvisionPackageCard extends EnvisionElement {
         this.#media.classList.add('loading');
         const img = new Image();
         img.onload = () => { this.#media.classList.remove('loading', 'error'); this.#media.style.backgroundImage = `url("${src}")`; };
-        img.onerror = () => { this.#media.classList.remove('loading'); this.#media.classList.add('error'); this.#media.textContent = 'broken_image'; };
+        img.onerror = () => { this.#media.classList.remove('loading'); this.#media.classList.add('error'); this.#media.innerHTML = ICON.brokenImage; };
         img.src = src;
     }
     #renderMats() {

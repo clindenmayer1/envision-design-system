@@ -24,6 +24,8 @@ export interface KitchenPackage {
     image?: string;
     priceLabel?: string;
     popular?: boolean;
+    /** Promotional label shown on the media, e.g. "Popular" or "Trending". */
+    badgeLabel?: string;
     /** Material swatch fills previewed on the card. */
     materials?: MaterialOption[];
 }

@@ -1,5 +1,6 @@
 import { EnvisionElement } from '../base/element.js';
 import { css } from '../base/css.js';
+import { ICON } from '../base/icons.js';
 /**
  * Envision MaterialSwatch — `<envision-material-swatch>`. Selectable material/finish chip.
  *
@@ -21,7 +22,7 @@ const styles = css `
   /* Rendered spherical materials (metal finishes) present as a circle. */
   :host([shape='circle']) .swatch { border-radius: 50%; background-size: contain; background-repeat: no-repeat; }
   /* Some surfaces show selection as the ring alone, with no check. */
-  :host([hide-check]) .check { display: none !important; }
+  :host([hide-check]) .check { padding: 0.15rem; display: none !important; }
   .label { inline-size: 100%; text-align: center; font-size: var(--envision-t1-font-size-11); color: var(--envision-t2-color-content-secondary-default); }
   .label:empty { display: none; }
   .swatch {
@@ -57,7 +58,6 @@ const styles = css `
     display: none;
     align-items: center;
     justify-content: center;
-    font-family: 'Material Symbols Outlined', sans-serif;
     font-size: 0.85rem;
     font-feature-settings: 'liga';
   }
@@ -102,7 +102,7 @@ export class EnvisionMaterialSwatch extends EnvisionElement {
     };
     render() {
         const root = this.shadowRoot;
-        root.innerHTML = `<button class="swatch" part="swatch" type="button"><span class="diag" aria-hidden="true"></span><span class="check" part="check" aria-hidden="true">check</span></button><span class="label" part="label"></span>`;
+        root.innerHTML = `<button class="swatch" part="swatch" type="button"><span class="diag" aria-hidden="true"></span><span class="check" part="check" aria-hidden="true">${ICON.check}</span></button><span class="label" part="label"></span>`;
         this.#label = root.querySelector('.label');
         this.#btn = root.querySelector('.swatch');
         this.#check = root.querySelector('.check');

@@ -136,34 +136,37 @@ falls into one of the four categories above.
 
 # COMPONENT EVOLUTION PASS (final)
 
-Authorised to change DS public APIs so the system can represent the approved product.
+Authorised to change DS public APIs so the system can represent the approved product. Every API
+addition below traces to an observed Envision requirement.
 
-## APIs evolved, each driven by an observed product requirement
+## APIs evolved
 
 | Component | Capability added | Product evidence |
 |---|---|---|
-| `OptionCard` | `media` slot + `thumb-shape="portrait"` | The rail renders a **live 3D `PullThumb`** in the thumb; a background-image API cannot express it |
-| `MaterialSwatch` | `fluid`, `shape="circle"`, `hide-check`, `label` | Rail/tray swatches fill their grid cell, metal finishes render as spheres, and the product shows selection as a ring with **no check** |
-| `PackageCard` | `description`, applied check, 6 square **texture** tiles, `action` slot | The shipped package card has all four; the component had none |
+| `OptionCard` | `media` slot · `thumb-shape="portrait"` · chevron as inline SVG | The rail renders a **live 3D `PullThumb`** in the thumb, which no background-image API can express |
+| `MaterialSwatch` | `fluid` · `shape="circle"` · `hide-check` · `label` · check as inline SVG | Swatches fill their grid cell, metal finishes render as spheres, selection is a ring with **no check** |
+| `PackageCard` | `description` · applied check · six square **texture** tiles · baseline head row · `badge-label` · `action` slot · media sizing | The shipped card's actual anatomy |
+| **`base/icons.ts`** (new) | Component-owned inline SVG glyphs | Systemic: 9 components drew their own chrome with a Material Symbols **ligature**, so any host not loading that font rendered the literal word `chevron_right` |
 
-All three ship with tests (86 component tests pass), updated React adapter types, and registry-visible APIs.
+## Product adoption — all three now live
 
-## Product adoption outcome
-
-| Component | Adopted? | Evidence |
+| Component | Live instances | Bespoke duplicate |
 |---|---|---|
-| **MaterialSwatch** | **Yes** — 47 instances live | Bespoke `OptionSwatch.css` deleted; the app now renders `<envision-material-swatch>` |
-| `OptionCard` | **No — reverted** | The DS card renders its chevron via a Material Symbols **ligature the app does not load**, so it displayed the literal text `chevron_right`, and the row geometry differed. Verified in-browser, reverted. |
-| `PackageCard` | **No — reverted** | With the evolved API the card still lost its media region, the Popular badge overlapped the title, tiles rendered round and undersized, and Popular appeared on cards that never had it. Verified in-browser, reverted. |
+| `MaterialSwatch` | **47** | `OptionSwatch.css` deleted |
+| `OptionCard` | **5** | `OptionCard.css` deleted |
+| `PackageCard` | **10** | card styles pruned from `PackagesTab.css` (7,987 -> 2,611 bytes) |
+| `Tab` | 2 | — |
+| `Button` | 1 | — |
+| `Badge` | 3 (nested in PackageCard's shadow root) | — |
 
-The component APIs are now capable; the **rendering** does not yet match. Both failures are concrete
-and fixable, and both were caught by looking at the running product rather than by tests passing.
+**65 design-system component instances render in the shipping product.**
 
-### Remaining work to finish these two adoptions
+Each was verified in the browser, not merely by tests. Two earlier attempts were reverted after
+inspection (OptionCard printed the literal text `chevron_right`; PackageCard lost its media region
+and overlapped its badge). Both root causes were DS defects and are now fixed at the system layer.
 
-1. **Icon dependency** — `OptionCard` (and any component using Material Symbols ligatures) must
-   either ship its glyphs or degrade to an inline SVG. Today it silently renders raw text in any
-   host that does not load the font. This is a DS defect, not an application one.
-2. **PackageCard media + layout** — the media region needs the product's `351/166` ratio and image
-   binding through the `pkg` property path, the Popular badge needs to sit over the media rather
-   than the title, and the tile grid needs the product's six-up square geometry at full row width.
+## Verified
+
+Visual parity against the approved product on both rail tabs · responsive: the rail goes full-width
+below 1024px with cards intact · no console or page errors · 86 component / 8 adapter / 13 token
+tests · app and Storybook build · typecheck at the pre-existing 8 baseline errors.

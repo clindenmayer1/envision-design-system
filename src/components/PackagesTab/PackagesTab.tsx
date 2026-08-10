@@ -7,8 +7,8 @@
  * Selecting a package applies its full config to the live model via the same selection path
  * as manual customization (no competing apply system).
  */
-import { useState } from 'react'
-import { Badge } from '@envision/react'
+import { useEffect, useRef } from 'react'
+import { PackageCard as DSPackageCard } from '@envision/react'
 import { PACKAGES, packageSwatches, packageThumbUrl, type KitchenPackage } from '../../three/packages'
 import './PackagesTab.css'
 
@@ -28,80 +28,34 @@ function PackageCard({ pkg, selected, onSelect, onCustomize }: {
   onSelect: (pkg: KitchenPackage) => void
   onCustomize: (pkg: KitchenPackage) => void
 }) {
-  const [imgState, setImgState] = useState<'loading' | 'ready' | 'error'>('loading')
-  const swatches = packageSwatches(pkg)
-  // Selecting the card applies the package to the 3D model.
-  const select = () => onSelect(pkg)
+  // The design-system card owns anatomy, states, image lifecycle and semantics. It gained a
+  // description, an applied check and six square TEXTURE tiles because this screen proved the
+  // product needs them. `materials` is product DATA, so it is set as an element property.
+  const ref = useRef<HTMLElement>(null)
+  useEffect(() => {
+    const el = ref.current as (HTMLElement & { pkg?: unknown }) | null
+    if (!el) return
+    el.pkg = {
+      id: pkg.id,
+      name: `${pkg.name} Package`,
+      description: pkg.description,
+      priceLabel: pkg.price,
+      image: packageThumbUrl(pkg),
+      popular: pkg.popular,
+      badgeLabel: pkg.badge,
+      materials: packageSwatches(pkg).map((sw, i) => ({
+        id: String(i), name: '', image: sw.texture, color: sw.color,
+      })),
+    }
+  }, [pkg])
+
   return (
-    <section
-      className={`pkg-card${selected ? ' pkg-card--selected' : ''}`}
-      role="button"
-      tabIndex={0}
-      aria-pressed={selected}
-      onClick={select}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault()
-          select()
-        }
-      }}
-    >
-      <div className="pkg-card__image">
-        <img
-          src={packageThumbUrl(pkg)}
-          alt={`${pkg.name} kitchen`}
-          onLoad={() => setImgState('ready')}
-          onError={() => setImgState('error')}
-          style={{ opacity: imgState === 'ready' ? 1 : 0 }}
-          draggable={false}
-        />
-        {imgState !== 'ready' && (
-          <div className={`pkg-card__thumbfallback${imgState === 'loading' ? ' pkg-card__thumbfallback--loading' : ''}`}>
-            {imgState === 'error' && <span>Preview coming soon</span>}
-          </div>
-        )}
-        {pkg.popular && (
-          <Badge className="pkg-card__badge" tone="brand" label={pkg.badge ?? 'Popular'} />
-        )}
-        {selected && (
-          <span className="pkg-card__check" role="img" aria-label="Applied">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12l5 5 9-10" />
-            </svg>
-          </span>
-        )}
-      </div>
-
-      <div className="pkg-card__content">
-        <div className="pkg-card__titlerow">
-          <h3 className="pkg-card__name">{pkg.name} Package</h3>
-          <span className="pkg-card__price">{pkg.price}</span>
-        </div>
-        <p className="pkg-card__desc">{pkg.description}</p>
-
-        <div className="pkg-card__swatchrow">
-          <div className="pkg-card__swatches" aria-hidden>
-            {swatches.map((s, i) => (
-              <span
-                key={i}
-                className="pkg-card__swatch"
-                style={s.texture ? { backgroundImage: `url(${s.texture})` } : { background: s.color ?? '#ccc' }}
-              />
-            ))}
-          </div>
-          <button
-            type="button"
-            className="pkg-card__customize"
-            onClick={(e) => {
-              e.stopPropagation()
-              onCustomize(pkg)
-            }}
-          >
-            Customize
-          </button>
-        </div>
-      </div>
-    </section>
+    <DSPackageCard
+      ref={ref}
+      selected={selected}
+      onSelect={() => onSelect(pkg)}
+      onCustomize={() => onCustomize(pkg)}
+    />
   )
 }
 
