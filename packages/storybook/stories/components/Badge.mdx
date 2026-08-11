@@ -61,10 +61,16 @@ Badge is intrinsically sized and does not change across breakpoints. It is posit
 ## Token relationships
 | Part | Token |
 |---|---|
-| Status fills | `--envision-t1-color-success / warning / error / info` |
-| Brand fill | `--envision-t2-color-background-brand` |
-| Text on fill | `--envision-t2-color-content-on-brand` |
+| Tone fill / text | `--envision-t3-badge-{tone}-color-background-default` / `-color-content-default`, resolved at runtime from the `tone` attribute |
+| Default tone | `--envision-t3-badge-neutral-color-background-default` / `-color-content-default` |
+| Padding / gap | `--envision-t3-badge-medium-padding-block-default` · `-padding-inline-default` · `-gap-default` |
+| Type | `--envision-t3-badge-medium-font-size-default` / `--envision-t1-font-weight-600` |
+| Dot size | `--envision-t3-badge-notification-dot-size` |
 | Radius | `--envision-t2-border-radius-pill` |
+
+The tone tokens are the one place in the system where a custom property name is **built at
+runtime** rather than written literally, because tone is a prop. A naive "which tokens are unused?"
+search reports all of them as dead; they are not.
 
 ## Implementation
 ```html

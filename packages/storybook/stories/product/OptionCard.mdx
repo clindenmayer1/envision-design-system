@@ -72,11 +72,14 @@ Its content wraps rather than truncating, so long material names stay readable.
 ## Token relationships
 | Part | Token |
 |---|---|
-| Ring states | `--envision-t3-option-card-ring-rest / -hover / -pressed / -selected` |
-| Surface | `--envision-t2-color-background-surface-warm` |
+| Ring states | `--envision-t3-option-card-ring-rest` / `-ring-hover` / `-ring-pressed` / `-ring-selected` |
+| Surface | `--envision-t2-color-background-surface-warm-default` |
 | Padding | `--envision-t2-spacing-inset-control` (12) |
 | Text gap | `--envision-t3-option-card-text-gap` |
-| Shadow | `--envision-t3-option-card-color-shadow` |
+
+The ring is drawn as a `box-shadow` spread rather than a border, so it does not affect layout when
+the state changes. `--envision-t3-option-card-color-shadow` is published but **not consumed** by
+this component — a leftover from an earlier design.
 
 ## Implementation
 ```tsx

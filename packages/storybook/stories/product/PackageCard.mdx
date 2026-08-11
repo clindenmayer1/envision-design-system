@@ -74,8 +74,8 @@ separately. Both are real buttons, so `Enter` and `Space` work natively on each.
 
 ## Responsive
 The card fills its grid cell; the **grid** decides column count. Media holds its aspect ratio via
-`--envision-t3-package-card-image-ratio`, so cards stay uniform as the grid reflows from three
-columns to one below 1080px.
+`--envision-t3-package-card-default-image-ratio`, so cards stay uniform as the grid reflows from
+three columns to one below 1080px.
 
 ## API
 <Controls of={PackageCardStories.Default} />
@@ -85,12 +85,17 @@ columns to one below 1080px.
 ## Token relationships
 | Part | Token |
 |---|---|
-| Surface / border | `--envision-t3-package-card-color-background` / `-color-border` |
-| Selected border | `--envision-t3-package-card-color-border-selected` |
-| Radius | `--envision-t3-package-card-radius` |
-| Padding / gaps | `--envision-t3-package-card-padding` / `-gap` |
-| Media ratio | `--envision-t3-package-card-image-ratio` |
-| Badge | `--envision-t3-package-card-badge-*` |
+| Surface | `--envision-t2-color-background-surface-default` / `-surface-warm-default` |
+| Border / selected | `--envision-t2-color-border-default-default` · `-border-strong-default` · `--envision-t2-border-width-default` |
+| Radius | `--envision-t2-border-radius-container-sm` · `-container-xs` · `-circular` |
+| Content gap | `--envision-t3-package-card-content-gap` |
+| Spacing | `--envision-t2-spacing-container-gap` · `-control-gap` · `-control-gap-tight` |
+| Elevation | `--envision-t2-elevation-flat` |
+| Focus | `--envision-t2-color-border-focus-default` / `--envision-t2-border-width-focus` |
+
+Note this component consumes almost entirely **T2 semantic roles**, with a single T3 token
+(`content-gap`). The `--envision-t3-package-card-*` family visible in the legacy application
+stylesheet is a **different, older set** and is not what ships.
 
 ## Implementation
 ```tsx
