@@ -17,7 +17,9 @@ export const TabRow = ({ legend, value, onChange, options }) => (
     >
       {legend}
     </span>
-    <div role="tablist" aria-label={legend} style={{ display: 'flex', gap: T('t2-spacing-section-gap') }}>
+    {/* Tab gap matches how the system composes a tablist: RightRail uses .tabs { gap: 0.5rem }
+        and the Tablist story uses 8px. */}
+    <div role="tablist" aria-label={legend} style={{ display: 'flex', gap: T('t2-spacing-control-gap') }}>
       {/* createElement, not JSX: MDX routes unknown hyphenated tags through its component map,
           which turns <envision-tab> into an undefined _component reference. */}
       {options.map(([v, label]) =>
@@ -37,12 +39,16 @@ export const ButtonPlayground = () => {
   const [size, setSize] = useState('md');
   return (
     <div style={{ margin: `${T('t2-spacing-section-gap')} 0` }}>
+      {/* One tab bar, composed the way the system composes one: tabs share a hairline rail
+          (RightRail header, Tab "Tablist" story) rather than floating free. */}
       <div
         style={{
           display: 'flex',
           flexWrap: 'wrap',
           alignItems: 'center',
-          gap: T('t2-spacing-section-gap-lg'),
+          gap: T('t2-spacing-subsection-gap'),
+          padding: `0 ${T('t2-spacing-control-gap')}`,
+          borderBottom: `${T('t2-border-width-default')} solid ${T('t2-color-border-subtle-default')}`,
           marginBottom: T('t2-spacing-stack-gap'),
         }}
       >
