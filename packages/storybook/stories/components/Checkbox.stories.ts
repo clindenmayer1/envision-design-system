@@ -5,7 +5,7 @@ import { fn } from '@storybook/test';
 interface Args { checked: boolean; label: string; disabled: boolean; required: boolean; invalid: boolean; onChange: (e: Event) => void; }
 
 const meta: Meta<Args> = {
-  title: 'Components/Checkbox',
+  title: 'Components/Inputs & Selection/Checkbox',
   component: 'envision-checkbox',
   tags: ['autodocs'],
   argTypes: {

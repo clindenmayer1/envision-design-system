@@ -10,7 +10,7 @@ interface Args {
 }
 
 const meta: Meta<Args> = {
-  title: 'Components/Tab',
+  title: 'Components/Navigation/RightRail/Tab',
   component: 'envision-tab',
   tags: ['autodocs'],
   argTypes: {

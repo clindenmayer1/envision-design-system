@@ -1,0 +1,80 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/blocks';
+import * as LabelStories from './Label.stories';
+
+<Meta of={LabelStories} />
+
+# Label
+
+## Overview
+`<envision-label>` is a reusable **field or control label**. It exists as its own component so the
+required-asterisk treatment, type style and help affordance are defined once and composed into
+anything that needs labelling, rather than re-authored per control.
+
+<Canvas of={LabelStories.Default} />
+
+## Architecture exception: this component renders into the light DOM
+Every other Envision component uses Shadow DOM. Label deliberately does not, and the reason is a
+platform constraint rather than a preference:
+
+> `for` / `id` matching is **scoped to a single tree**. A `<label for="…">` inside a shadow root
+> cannot associate with a control that lives in the document's light DOM.
+
+Form-label association therefore requires light DOM, so Label injects a single document-level
+stylesheet and renders normally. The self-labelling controls — **Input**, **Checkbox**, **Radio**,
+**Switch** — keep their `<label>` and `<input>` together inside one shadow root, which is why they
+do not need this component and are unaffected by the exception.
+
+This is recorded in the Component Architecture Document; it is a documented deviation, not drift.
+
+## Anatomy
+`required asterisk?` → `text` → `help icon?`. The asterisk is rendered **before** the text and is
+`aria-hidden`, because the requirement must be announced by the control, not by a decorative glyph.
+
+## When to use
+- Labelling a control that **cannot label itself**: a custom field, a group of swatches, a
+  composite control assembled in product code.
+- Labelling a **group** — a fieldset legend equivalent — where the group has no single input.
+
+## When not to use
+- With **Input, Checkbox, Radio or Switch** — they already render their own label. Adding this one
+  produces two labels and an ambiguous accessible name.
+- As a **heading**. Headings are a content role with their own type styles; a label describes a
+  control.
+- As **helper text**. Helper text is a separate role with its own spacing token.
+
+## Required
+<Canvas of={LabelStories.Required} />
+The asterisk is presentational only. The associated control **must** also carry `aria-required`,
+or the requirement is visible but not announced. Drawing the asterisk without setting the ARIA is
+the most common way this component gets misused.
+
+## Help icon
+<Canvas of={LabelStories.WithHelpIcon} />
+`helpIcon` marks that supplementary guidance exists. The guidance itself belongs in helper text or
+a tooltip; the icon is an affordance, not the explanation.
+
+## Accessibility
+- Association is via `<label for={htmlFor}>`, so `htmlFor` must match a real control `id`.
+- The asterisk is `aria-hidden`; requirement state comes from `aria-required` on the control.
+- Label text is persistent. Envision does not use placeholder-as-label — a placeholder disappears
+  on input and fails 3.3.2.
+
+## Responsive
+Body-scale type that does not shrink on mobile. Labels stay above their control at every
+breakpoint; Envision does not use inline label columns that collapse.
+
+## API
+<Controls of={LabelStories.Default} />
+
+## Implementation
+```html
+<envision-label text="Room" html-for="room-select" required></envision-label>
+<select id="room-select" aria-required="true"></select>
+```
+```tsx
+import { Label } from '@envision/react';
+<Label text="Room" htmlFor="room-select" required />
+```
+
+## Related
+**Input** (labels itself) · **Checkbox**, **Radio**, **Switch** (label themselves).

@@ -1,0 +1,88 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/blocks';
+import * as CheckboxStories from './Checkbox.stories';
+
+<Meta of={CheckboxStories} />
+
+# Checkbox
+
+## Overview
+`<envision-checkbox>` is **boolean selection** — on or off, independent of any other checkbox. It
+wraps a **real native `<input type="checkbox">`** inside its shadow root, so role, checked state,
+`Space` to toggle and focus behaviour come from the platform rather than from ARIA we maintain.
+Form participation goes through `ElementInternals` where the browser supports it.
+
+<Canvas of={CheckboxStories.Default} />
+
+## Anatomy
+`container` → `input` (native, visually replaced) · `box` (the drawn control) · `check` glyph ·
+`label`. The label and input live together in one shadow root, which is why Checkbox does not need
+the separate `Label` component to associate them.
+
+## When to use
+- **Independent on/off choices**, especially several of them: filter lists, opt-ins, "apply to all
+  rooms".
+- A single acknowledgement that must be **submitted with a form** rather than acted on instantly.
+
+## When not to use
+- **A setting that takes effect immediately** → use **Switch**. Checkbox implies a pending state
+  that gets saved; Switch implies the change already happened.
+- **One choice out of several** → use **Radio**.
+- **Choosing a material or a design option** → use **MaterialSwatch** or **SelectionCard**; those
+  carry product imagery and pricing that a checkbox cannot express.
+
+## States
+<Canvas of={CheckboxStories.States} />
+`checked` · `unchecked` · `focus-visible` · `disabled` · `error`.
+
+The check is drawn as **geometry** — a rotated tick — not as a colour fill. That is deliberate:
+Envision principle 3 says selection is never colour-only, so the checked state survives greyscale
+and forced-colors.
+
+<Story of={CheckboxStories.Checked} /> <Story of={CheckboxStories.Disabled} />
+
+## Error state
+<Canvas of={CheckboxStories.Error} />
+`invalid` paints the error border and is the visual half of validation. The **message** is the
+field's responsibility, not the checkbox's — pair it with helper text that is programmatically
+associated, or the error is invisible to a screen reader.
+
+## Behaviour
+`Space` toggles. Clicking the label toggles, because the label is bound to the input inside the
+same shadow root. `disabled` blocks activation and removes the control from the tab order.
+
+## Accessibility
+- Native `<input type="checkbox">` supplies `role=checkbox` and the checked state.
+- `required` must also be reflected to the control as `aria-required`, not only drawn.
+- `invalid` should be accompanied by an associated message; the border alone is colour-only.
+- Focus ring is the shared 2px brand ring, visible and unclipped.
+
+## Responsive
+Intrinsic size; the control does not scale by breakpoint. Where layout allows, keep the hit target
+at 44px or larger by giving the row padding rather than by enlarging the box.
+
+## API
+<Controls of={CheckboxStories.Default} />
+
+**Events:** `change` (composed), carrying the new `checked` value.
+
+## Token relationships
+| Part | Token |
+|---|---|
+| Checked fill | `--envision-t2-color-background-brand` |
+| Checked border | `--envision-t2-color-border-brand` |
+| Rest border | `--envision-t2-color-border-default` |
+| Check glyph | `--envision-t2-color-content-on-brand` |
+| Radius | `--envision-t2-border-radius-control` |
+
+## Implementation
+```html
+<envision-checkbox label="Apply to every room" checked></envision-checkbox>
+```
+```tsx
+import { Checkbox } from '@envision/react';
+<Checkbox label="Apply to every room" checked={all} onChange={setAll} />
+```
+
+## Related
+**Switch** (immediate toggle) · **Radio** (one of a set) · **Label** (for controls that cannot
+label themselves).

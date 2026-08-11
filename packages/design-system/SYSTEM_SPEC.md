@@ -93,7 +93,7 @@ Pages = Shell + Template + Regions + Component instances, driven by an approved 
 
 ## 12. Storybook requirements
 
-Organize `Foundations/ Components/ Product Components/ Patterns/ Templates/ Pages/`. Every public component: default + each variant/size/state + long/min/max content + desktop/mobile + a11y + interaction + visual-regression. Reuse child stories in composite/page stories. Deterministic fixtures; mock 3D + APIs at the Storybook boundary. Assumptions (framework/TS/styling/tokens transform/versions) in `STORYBOOK.md` — **provisional until engineering confirms the stack**.
+Organize `Foundations/ Components/ Patterns/ Templates/ Pages/`, with `Components/` subdivided by the canonical component taxonomy — `Actions`, `Inputs & Selection`, `Navigation`, `Data Display`, `Feedback & Guidance`, `Panels`, `Status & Progress`, in that fixed order, alphabetised within each. The taxonomy is declared once in `component-registry.json` (`meta.componentTaxonomy` + per-component `category`) and derived everywhere else; `scripts/verify-taxonomy.mjs` enforces it. Component taxonomy is independent of token taxonomy and of the `architecture` axis (control-primitive / product-component / composite-pattern / internal-subcomponent) — a component's category never implies a token namespace. Every public component: default + each variant/size/state + long/min/max content + desktop/mobile + a11y + interaction + visual-regression. Reuse child stories in composite/page stories. Deterministic fixtures; mock 3D + APIs at the Storybook boundary. Assumptions (framework/TS/styling/tokens transform/versions) in `STORYBOOK.md` — **provisional until engineering confirms the stack**.
 
 ## 13. Governance & Definition of Done
 

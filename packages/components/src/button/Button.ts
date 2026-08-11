@@ -49,7 +49,11 @@ const styles = css`
     border: var(--envision-t2-border-width-default) solid transparent;
     /* Website primary CTA radius = 10 (container-md), not the shared control radius. */
     border-radius: var(--envision-t2-border-radius-container-md);
-    padding-block: var(--envision-t1-spacing-16);
+    /* Block padding is 16 (Figma Button binds paddingTop/Bottom to spacing/container-padding-note;
+       every variant master is 49 tall). This previously read var(--envision-t1-spacing-16), a
+       px-named token that does not exist in this step-named scale — the declaration was invalid,
+       so the button rendered with NO vertical padding at all. */
+    padding-block: var(--envision-t2-spacing-container-padding-note);
     padding-inline: var(--envision-t2-spacing-control-padding-inline);
     transition: background-color var(--envision-t2-motion-micro-duration)
         cubic-bezier(0.2, 0.8, 0.2, 1),

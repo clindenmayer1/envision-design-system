@@ -10,7 +10,7 @@ interface Args {
 }
 
 const meta: Meta<Args> = {
-  title: 'Components/Link',
+  title: 'Components/Navigation/Link',
   component: 'envision-link',
   tags: ['autodocs'],
   argTypes: {

@@ -16,7 +16,7 @@ const body = () => html`
 `;
 
 const meta: Meta = {
-  title: 'Patterns/RightRail',
+  title: 'Components/Panels/RightRail',
   component: 'envision-right-rail',
   tags: ['autodocs'],
   parameters: {

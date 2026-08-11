@@ -1,0 +1,64 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Foundations/Iconography" />
+
+# Iconography
+
+Envision uses **one icon family, one configuration**: Material Symbols Outlined. One family is a
+hard rule (`CLAUDE.md`) — mixing icon sets is the fastest way to make a system look assembled
+rather than designed.
+
+## Two delivery paths, and why both exist
+
+This is the part worth understanding, because it caused a real production defect.
+
+### 1. Component-owned glyphs are inline SVG
+Chrome that a component draws **itself** — the chevron on `OptionCard`, the check on
+`MaterialSwatch` and `PackageCard`, the broken-image fallback — is an **inline SVG** defined in
+`packages/components/src/base/icons.ts`. It ships inside the component.
+
+```ts
+export const ICON = {
+  chevronRight: svg('<path d="M9 6l6 6-6 6"/>'),
+  check: svg('<path d="M5 12l5 5 9-10"/>', 'stroke-width="3"'),
+  brokenImage: svg('…'),
+} as const;
+```
+
+### 2. Consumer-supplied icons are Material Symbols ligatures
+Icons the **product chooses** — `IconButton`'s `icon` prop, Button's leading/trailing icons — are
+Material Symbols names rendered as ligatures.
+
+### The defect that forced the split
+Nine components originally drew their own chrome with a **ligature**. A ligature is text: if the
+host page has not loaded the Material Symbols font, the browser renders the literal characters. So
+in any host that did not load the font, `OptionCard` displayed the word **`chevron_right`** where
+its chevron should be.
+
+A component's own chrome cannot depend on the host loading a font. Component-owned glyphs moved to
+inline SVG; consumer-supplied icons legitimately remain ligatures, because the consumer is already
+choosing to use Material Symbols.
+
+## Known limitation
+Six components still render **consumer-supplied** icons as ligatures. That is by design, but it
+means a host that does not load Material Symbols will see icon names in those slots. Either load
+the font, or pass no icon.
+
+Storybook loads the font in `.storybook/preview-head.html`. That is also, unhelpfully, the source
+of the visual-regression nondeterminism documented in `playwright.config.ts` — the fonts come over
+the network, so glyph rendering depends on timing. Self-hosting them is the fix.
+
+## Rules
+- **Never use an icon outside the approved Material Symbols set.** No one-off SVGs in product code.
+- **Icons are decorative unless they are the only content.** A labelled button's icon is
+  `aria-hidden`; an `IconButton` needs `accessibleName`.
+- **Meaningful icons need 3:1 contrast** (WCAG 1.4.11), not the 4.5:1 that small text needs. This
+  distinction matters: `content/subtle` sits at 3.5:1 and is correct for icons, and darkening it to
+  pass a text threshold would have collapsed a whole content tier.
+- **An icon never carries state alone.** Selection and status pair the icon with a ring, text or
+  shape.
+
+## Sizing
+Icons inherit their size from type context via `font-size`, and their colour via `currentColor`.
+There is no icon-size token scale; an icon in a 14px label is 14px. That keeps optical alignment
+correct without a parallel scale to maintain.

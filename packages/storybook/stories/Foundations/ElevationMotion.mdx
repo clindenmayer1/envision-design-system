@@ -1,0 +1,91 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Foundations/Elevation & Motion" />
+
+# Elevation & Motion
+
+Both of these foundations are **role-named, not scale-named**. There is no `elevation-1` or
+`duration-fast` in the semantic layer — there is `menu`, `tray`, `micro`, `panel`. You pick the
+role that matches what the element *is*, and the value follows. That is what stops a system from
+accumulating six barely-different shadows.
+
+## Elevation
+
+Seven published roles. Each is a real shadow from the product, reconciled during the audit rather
+than generated from a formula, which is why the ramp is not evenly spaced — a menu and a tray sit
+at genuinely different depths in this product.
+
+<div style={{ display: 'grid', gap: '32px', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', padding: '24px 4px 32px' }}>
+  {[
+    ['flat', 'Resting cards and rows. The lowest lift the system has that is still not flat.'],
+    ['raised', 'A card that has lifted — hoverable surfaces at rest.'],
+    ['raised-hover', 'The hover partner of raised. Only ever paired with it.'],
+    ['menu', 'Dropdowns and popovers. Above the page, not covering it.'],
+    ['tray', 'The bottom selection tray. Two-layer shadow: spread plus contact.'],
+    ['overlay-dark', 'Content over the 3D viewport, where the backdrop is unpredictable.'],
+    ['card-warm', 'Warm-tinted card shadow. Brown-based, not black — Envision is a warm palette.'],
+  ].map(([name, use]) => (
+    <div key={name}>
+      <div
+        style={{
+          height: 84,
+          borderRadius: 'var(--envision-t2-border-radius-card)',
+          background: 'var(--envision-t2-color-background-surface-default)',
+          boxShadow: `var(--envision-t2-elevation-${name})`,
+          marginBottom: 12,
+        }}
+      />
+      <div style={{ fontWeight: 600, fontSize: 14 }}>{name}</div>
+      <div style={{ fontSize: 13, opacity: 0.75, lineHeight: 1.5 }}>{use}</div>
+      <code style={{ fontSize: 11 }}>--envision-t2-elevation-{name}</code>
+    </div>
+  ))}
+</div>
+
+### Why `card-warm` exists
+Every other shadow is black at low alpha. `card-warm` is **brown** (`rgba(118, 93, 73, .12)`),
+because a neutral black shadow on Envision's warm surfaces reads as grey and dirty. It is the one
+place the shadow ramp acknowledges the palette. Use it on warm surfaces; use `raised` on white.
+
+### Rules
+- **Elevation is not a z-index.** Layering order is the `z-index` foundation; elevation is only the
+  shadow. An element can be visually flat and still on top.
+- **Never author a shadow inline.** If no role fits, that is a system gap to raise, not a value to
+  invent.
+- Elevation lives in Figma as **effect styles**, which is why it is absent from the variable
+  export and is snapshotted separately in the token pipeline.
+
+## Motion
+
+Four semantic durations, all aliasing the primitive duration scale.
+
+| Role | Value | Use |
+|---|---|---|
+| `--envision-t2-motion-micro-duration` | 150ms | Hover, focus, colour and small state changes |
+| `--envision-t2-motion-dismiss-duration` | 180ms | Things leaving — closing a tray, dismissing |
+| `--envision-t2-motion-panel-duration` | 260ms | Panels and trays arriving |
+| `--envision-t2-motion-loading-duration` | 340ms | Shimmer and loading rhythm |
+
+### Easing
+The signature ease is **`cubic-bezier(.2, .8, .2, 1)`** — a fast start with a long settle. It is
+applied directly in components today; the semantic layer publishes **durations only**, no easing
+tokens. That is a known gap, and it is the reason four dead `--envision-theme-*-easing` definitions
+were removed from the legacy layer rather than repointed: there was nothing to point them at.
+
+### Dismiss is faster than arrival
+180ms out against 260ms in, on purpose. Something arriving deserves to be noticed; something
+leaving should get out of the way. Matching the two makes the interface feel sluggish.
+
+### Reduced motion is not optional
+Every animated component wraps its transition in a `prefers-reduced-motion` guard:
+
+```css
+transition: background-color var(--envision-t2-motion-micro-duration) cubic-bezier(.2, .8, .2, 1);
+
+@media (prefers-reduced-motion: reduce) {
+  transition: none;
+}
+```
+
+Motion in Envision is always **supportive** — it explains where a panel came from. Nothing in the
+product depends on motion to be understood, so removing it costs nothing.

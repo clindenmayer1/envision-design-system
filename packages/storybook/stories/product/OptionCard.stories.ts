@@ -8,7 +8,7 @@ const options = [
 ];
 
 const meta: Meta = {
-  title: 'Product Components/OptionCard',
+  title: 'Components/Inputs & Selection/OptionCard',
   component: 'envision-option-card',
   tags: ['autodocs'],
   parameters: {

@@ -5,7 +5,7 @@ import { fn } from '@storybook/test';
 interface Args { checked: boolean; label: string; disabled: boolean; onChange: (e: Event) => void; }
 
 const meta: Meta<Args> = {
-  title: 'Components/Switch',
+  title: 'Components/Inputs & Selection/Switch',
   component: 'envision-switch',
   tags: ['autodocs'],
   argTypes: {

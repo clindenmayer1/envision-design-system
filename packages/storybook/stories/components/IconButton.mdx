@@ -1,0 +1,89 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/blocks';
+import * as IconButtonStories from './IconButton.stories';
+
+<Meta of={IconButtonStories} />
+
+# IconButton
+
+## Overview
+`<envision-icon-button>` is an **icon-only action**: close, back, save, overflow, and the 3D
+viewport controls. It is a square 2.5rem control with no visible text, which makes
+`accessibleName` **required** rather than optional — without it the control is anonymous to
+assistive technology.
+
+<Canvas of={IconButtonStories.Default} />
+
+## Anatomy
+`container` → `icon`. Optionally a `tooltip` on hover and focus. There is no label slot by design;
+if you need visible text, you need **Button**.
+
+## When to use
+- The action is **universally understood from its glyph** (close, back, play) or is repeated so
+  often that a label would be noise — the viewport controls.
+- Space is genuinely constrained: toolbars, card corners, the top bar.
+
+## When not to use
+- **The primary action on a surface** → use **Button** with a label. An unlabelled primary action
+  is a guessing game.
+- **Navigation** → use **Link**.
+- **A toggle that represents a setting** → use **Switch**. `selected` here means "this tool is
+  active", not "this preference is on".
+
+## Variants
+<Canvas of={IconButtonStories.Variants} />
+`standard` is the default chrome. `subtle` drops the resting background for dense clusters where
+several buttons sit side by side.
+
+## Toggle
+<Canvas of={IconButtonStories.Toggle} />
+When the button represents an on/off tool, set `selected`. The component then exposes
+`aria-pressed`, which is what tells a screen reader this is a toggle rather than a one-shot action.
+Selection is carried by background **and** icon fill, not colour alone.
+
+## States
+`default` · `hover` · `focus-visible` · `selected` · `disabled`.
+<Story of={IconButtonStories.Disabled} />
+
+## Behaviour
+`Enter` and `Space` activate. A `tooltip`, when present, appears on hover and on keyboard focus —
+focus parity matters, a hover-only tooltip is invisible to keyboard users — and dismisses on `Esc`
+per WCAG 1.4.13.
+
+## Accessibility
+- `accessibleName` becomes `aria-label`. It is required; treat a missing one as a build error.
+- `aria-pressed` is set when the button is a toggle, so state is announced.
+- The tooltip is supplementary, never the only source of the name. The name must exist even if the
+  tooltip never opens.
+- Icon-only controls need a 44px target where layout permits; grow the frame, keep the glyph size.
+
+## Responsive
+Fixed 2.5rem control. On touch surfaces, add surrounding padding to reach the 44px target rather
+than scaling the button, which would break alignment with adjacent controls.
+
+## API
+<Controls of={IconButtonStories.Default} />
+
+## Token relationships
+| Part | Token |
+|---|---|
+| Icon colour | `--envision-t2-color-content-*` |
+| Selected background | `--envision-t2-color-background-brand` / `-brand-subtle` |
+| Radius | `--envision-t2-border-radius-control` |
+| Focus ring | `--envision-t2-color-border-focus` |
+
+## Implementation
+```html
+<envision-icon-button icon="close" accessible-name="Close"></envision-icon-button>
+```
+```tsx
+import { IconButton } from '@envision/react';
+<IconButton icon="close" accessibleName="Close" onClick={close} />
+```
+
+## Realistic Envision example
+The 3D viewport controls — a cluster of subtle icon buttons over the canvas:
+<Canvas of={IconButtonStories.RealUseCase_ViewportControls} />
+
+## Related
+**Button** (labelled action) · **Badge** (count attached to an icon button) · **Tooltip**
+(specified, not yet implemented).

@@ -1,0 +1,82 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/blocks';
+import * as RadioStories from './Radio.stories';
+
+<Meta of={RadioStories} />
+
+# Radio
+
+## Overview
+`<envision-radio>` is **one selection out of a set**. It wraps a native `<input type="radio">` for
+role and checked state, and adds the group behaviour the platform cannot provide across custom
+elements.
+
+<Canvas of={RadioStories.Group} />
+
+## Why this component coordinates its own group
+Native radios group by `name` **within a single tree scope**. Each `<envision-radio>` is a separate
+custom element with its own shadow root, so the browser sees each input in a different tree and
+will not group them. Left alone, every radio would be independently checkable — the classic
+failure of radio-in-a-web-component.
+
+This component therefore coordinates the group itself, within the shared root node:
+
+- selecting one radio **deselects same-name siblings**
+- `Arrow` / `Home` / `End` implement the **APG roving-tabindex** pattern, so the group is a single
+  tab stop and arrows move within it
+
+This is documented in the Component Architecture Document. It is the reason Radio has more logic
+than Checkbox despite looking simpler.
+
+## Anatomy
+`container` → `input` (native, visually replaced) · `dot` · `label`. The selected state is a
+**filled inner dot** — shape, not colour alone.
+
+## When to use
+- **Two to about five mutually exclusive options**, all worth showing at once.
+- The choice is a **setting or mode**, not a product selection.
+
+## When not to use
+- **Independent on/off choices** → use **Checkbox**.
+- **A single immediate toggle** → use **Switch**.
+- **Choosing a material, finish or package** → use **MaterialSwatch**, **SelectionCard** or
+  **PackageCard**. Those carry imagery and price; a radio carries a word.
+- **Many options** → a select or menu is more appropriate than a long radio list.
+
+## States
+`selected` · `unselected` · `focus-visible` · `disabled`.
+<Canvas of={RadioStories.WithDisabledOption} />
+A disabled option stays in the group for context but is skipped by arrow navigation.
+
+## Behaviour
+`Arrow` keys move within the group and select as they go. `Space` selects the focused radio. The
+group is one tab stop: `Tab` enters it at the selected radio and `Tab` again leaves it.
+
+## Accessibility
+- Native `<input type="radio">` supplies role and checked state.
+- Roving tabindex means assistive technology announces the group position correctly.
+- Every radio in a group needs the same `name`; a mismatched `name` silently creates two groups.
+- The group itself should have an accessible name — wrap it in a `fieldset`/`legend` or label the
+  container, since Radio labels only the individual option.
+
+## Responsive
+Options stack vertically at every breakpoint. Envision does not reflow radio groups into columns,
+because arrow-key order and visual order must agree.
+
+## API
+<Controls of={RadioStories.Group} />
+
+**Events:** `change` (composed), carrying the selected `value`.
+
+## Implementation
+```html
+<envision-radio name="view" value="plan" label="Floor plan" checked></envision-radio>
+<envision-radio name="view" value="3d" label="3D"></envision-radio>
+```
+```tsx
+import { Radio } from '@envision/react';
+<Radio name="view" value="plan" label="Floor plan" checked={v === 'plan'} onChange={setV} />
+```
+
+## Related
+**Checkbox** (independent choices) · **Switch** (immediate toggle) · **RightRail/Tab** (switching
+views rather than setting a value).

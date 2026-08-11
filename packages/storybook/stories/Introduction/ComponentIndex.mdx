@@ -1,0 +1,88 @@
+import { Meta } from '@storybook/blocks';
+import registry from '@envision/design-system/component-registry.json';
+
+<Meta title="Introduction/Component index" />
+
+# Component index
+
+Every component the system registers, grouped by the canonical taxonomy. This page is generated
+from `component-registry.json` at build time — it is the registry, not a copy of it, so it cannot
+drift from the source of truth.
+
+**Implemented** means a production custom element ships in `@envision/components` with a React
+adapter in `@envision/react`. **Specified** means the registry defines the component's contract but
+no code exists yet. **Inventory** means the component is built in the Figma library but has no
+registry specification — identity and category only.
+
+<div>
+  {(() => {
+    const order = registry.meta.componentTaxonomy.order;
+    const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const shipping = new Set([
+      'badge','button','checkbox','icon-button','input','label','link',
+      'material-swatch','option-card','package-card','radio','right-rail','switch','tab',
+    ]);
+    const status = (c) =>
+      shipping.has(c.id) ? 'Implemented' : c.specified === false ? 'Inventory' : 'Specified';
+    const pub = registry.components.filter((c) => c.public);
+    return order.map((cat) => {
+      const rows = pub
+        .filter((c) => c.category === cat)
+        .sort((a, b) => norm(a.displayName).localeCompare(norm(b.displayName)));
+      return (
+        <section key={cat}>
+          <h2>{cat}</h2>
+          <table>
+            <thead>
+              <tr><th>Component</th><th>Status</th><th>Maturity</th><th>Figma</th><th>Purpose</th></tr>
+            </thead>
+            <tbody>
+              {rows.map((c) => (
+                <tr key={c.id}>
+                  <td><strong>{c.displayName}</strong></td>
+                  <td>{status(c)}</td>
+                  <td>{c.maturity}</td>
+                  <td>{c.figmaStatus}</td>
+                  <td>{c.purpose ?? '—'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+      );
+    });
+  })()}
+</div>
+
+## Internal subcomponents
+
+Implementation-level primitives. They are deliberately **not** members of any public category and
+are not intended for direct use.
+
+<div>
+  {registry.components.filter((c) => !c.public).map((c) => (
+    <p key={c.id}><code>{c.displayName}</code> — {c.purpose ?? 'internal composition primitive'}</p>
+  ))}
+</div>
+
+## Counts
+
+<div>
+  {(() => {
+    const pub = registry.components.filter((c) => c.public).length;
+    const internal = registry.components.length - pub;
+    return (
+      <p>
+        <strong>{pub}</strong> public components + <strong>{internal}</strong> internal
+        subcomponents = <strong>{registry.components.length}</strong> registered entries.
+      </p>
+    );
+  })()}
+</div>
+
+## Why specified components have no stories
+
+Envision registers a component's contract before it is built, so that product teams can see what is
+coming and so the Figma library and the code inventory can be reconciled. A component with no
+stories is not an omission in this Storybook — it is a component that does not exist yet. Building
+a story for it would require inventing the component, which the system forbids.

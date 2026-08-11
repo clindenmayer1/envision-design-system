@@ -17,7 +17,7 @@ interface Args {
 }
 
 const meta: Meta<Args> = {
-  title: 'Components/Input',
+  title: 'Components/Inputs & Selection/Field',
   component: 'envision-input',
   tags: ['autodocs'],
   argTypes: {

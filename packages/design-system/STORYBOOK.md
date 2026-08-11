@@ -32,14 +32,53 @@ Figma variant prop → `select`; boolean prop → `boolean`; text prop → `text
 Default · each variant · each size · disabled · loading · selected · invalid · long content · minimal content · leading icon · trailing icon · icon-only · desktop viewport · mobile viewport · high-stress combos · relevant interaction scenarios.
 
 ## Organization
+
+Components are grouped by the canonical component taxonomy. That taxonomy has one source of
+truth — `component-registry.json` → `meta.componentTaxonomy.order` for the category list and
+order, and `category` on each component for membership. The Storybook sidebar derives from it;
+it does not keep its own list. `scripts/verify-taxonomy.mjs` fails the build if the two drift.
+
+The seven categories are held in the order below (they are not alphabetised); components are
+alphabetised within each category.
+
 ```
-Foundations/    (color, type, spacing, elevation, motion, icons — token docs)
-Components/      (Button, IconButton, Link, Label, Input, Checkbox, Radio, Switch, Badge, Tab, Tooltip, MenuItem, ProgressIndicator, MaterialSymbol)
-Product Components/ (OptionCard, MaterialSwatch, PackageCard, SelectionSummary, PriceAdjustment, ViewPresetControl, RoomSelector, ProgressCard, KeyDateCard, BottomActionTray)
-Patterns/        (RightRail, GlobalNav, PackageBrowser, MaterialSelector, ColorPickerModal, ThreeDViewportShell, DashboardWidgetGrid, MobileSelectionSheet)
-Templates/       (Dashboard, DesignCenter, Visualizer, BrowseSelections, ReviewSelections)
-Pages/           (Dashboard, DesignCenter — full page stories)
+Foundations/          (color, type, spacing, elevation, motion, icons — token docs)
+Components/
+  Actions/            (BottomActionTray, Button, IconButton, Notification Bell)
+  Inputs & Selection/ (Checkbox, ColorPickerModal, Field, Finish Group, FloorPlanCard, Label,
+                       LotMapCard, MaterialSwatch, OptionCard, PackageCard, Radio, RoomSelector,
+                       SelectionCard, Selection Indicator, Selection Tray, Style Tile, Switch,
+                       ViewPresetControl)
+  Navigation/         (GlobalNav, Link, MenuItem, RightRail/Tab, Tabs, Top Bar)
+  Data Display/       (Avatar, Badge, Card / Header, Divider, MaterialSymbol, Notification Badge,
+                       PriceAdjustment, SelectionSummary, Table, Thumbnail)
+  Feedback & Guidance/(Tooltip)
+  Panels/             (Dialog, Home Hero, RightRail, ThreeDViewportShell, Tray)
+  Status & Progress/  (Card / What's Next, KeyDateCard, Key Date Row, ProgressCard,
+                       ProgressIndicator, Room Progress Item)
+Patterns/             (PackageBrowser, MaterialSelector, DashboardWidgetGrid, MobileSelectionSheet)
+Templates/            (Dashboard, DesignCenter, Visualizer, BrowseSelections, ReviewSelections)
+Pages/                (Dashboard, DesignCenter — full page stories)
 ```
+
+50 public components + 2 internal. Alphabetisation compares names with spaces and punctuation
+ignored, so `SelectionCard` precedes `Selection Indicator`.
+
+Most of these have no story yet. 18 entries carry `specified: false` — they are built in the
+Figma library but have no registry specification, so they appear in the taxonomy and nowhere in
+the sidebar until they are specified and implemented. That is expected, not a gap in this file.
+
+Every sidebar leaf is the registry `displayName`, so the sidebar reads exactly as the taxonomy is
+published. Two of them differ from the shipping code name — `Field` renders `<envision-input>` /
+React `Input`, and `RightRail/Tab` renders `<envision-tab>` / React `Tab`. The registry's
+`codeName` records that relationship; the component APIs are unchanged.
+
+`RightRail/Tab` contains a slash, which Storybook reads as a path separator, so it renders as a
+nested `RightRail` group inside `Navigation` holding a single `Tab` story. That is the published
+component name and it is preserved verbatim.
+
+Internal subcomponents (`_CardSurface`, `_MaterialThumb`) are not members of any category and get
+no top-level sidebar entry.
 
 ## Rules
 - Reuse child stories/args inside composite + page stories — don't recreate child states.

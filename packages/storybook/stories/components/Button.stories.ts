@@ -16,7 +16,7 @@ interface ButtonArgs {
 }
 
 const meta: Meta<ButtonArgs> = {
-  title: 'Components/Button',
+  title: 'Components/Actions/Button',
   component: 'envision-button',
   tags: ['autodocs'],
   argTypes: {

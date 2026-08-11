@@ -7,7 +7,7 @@ const oak = { id: 'oak', name: 'White Oak', finish: 'Natural', priceLabel: 'Incl
 const navy = { id: 'navy', name: 'Deep Navy', finish: 'Satin', priceLabel: '+$180', color: '#26364a' };
 
 const meta: Meta = {
-  title: 'Product Components/MaterialSwatch',
+  title: 'Components/Inputs & Selection/MaterialSwatch',
   component: 'envision-material-swatch',
   tags: ['autodocs'],
   parameters: { docs: { description: { component: 'Selectable material/finish chip — `<envision-material-swatch>`. The fill is **product data** (image/texture/colour), set inline, never a token. Selection is signalled by a **ring + check** (not colour-only); the accessible name is material + finish + price. `option` is a JS property.' } } },

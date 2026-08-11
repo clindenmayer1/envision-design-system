@@ -23,7 +23,9 @@ const styles = css `
     align-items: center;
     gap: var(--envision-t3-option-card-text-gap);
     text-align: start;
-    padding: var(--envision-t1-spacing-12);
+    /* Figma Card / Option binds all four paddings to spacing/inset-control (12). This previously
+       read var(--envision-t1-spacing-12), which does not exist — the card lost its padding. */
+    padding: var(--envision-t2-spacing-inset-control);
     border: none;
     border-radius: var(--envision-t2-border-radius-control);
     background: var(--envision-t2-color-background-surface-warm-default);

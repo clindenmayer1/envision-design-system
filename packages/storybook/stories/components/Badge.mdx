@@ -1,0 +1,90 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/blocks';
+import * as BadgeStories from './Badge.stories';
+
+<Meta of={BadgeStories} />
+
+# Badge
+
+## Overview
+`<envision-badge>` is a **count or status indicator**. It labels something else — a bell, a row, a
+package — and is never interactive itself. It renders a `<span>` in a shadow root, so it can sit
+inside a button (the notification bell) without nesting an interactive element.
+
+<Canvas of={BadgeStories.Default} />
+
+## Anatomy
+`container` → `count` **or** `label` text, or nothing at all in `dot` shape. The pill radius and
+tone colour come from tokens; the number is clamped by `max`.
+
+## When to use
+- An **unread or pending count** attached to a control: the notification bell.
+- A short **status word** on a row or card: `Included`, `Popular`, `Pending`.
+
+## When not to use
+- **As a button.** Badge is not interactive; put it inside the control it describes.
+- **For a price or a price delta** → those are content roles with their own type styles, not badges.
+- **As the only carrier of meaning.** See Accessibility below.
+
+## Tones
+<Canvas of={BadgeStories.Tones} />
+Tones are `neutral` · `brand` · `info` · `success` · `warning` · `error`.
+
+There is a **documented naming reconciliation** here (`AUDIT.md`): the emitted T3 tokens are named
+`neutral / info / success / warning / critical / promotional`, so the component maps
+`error → critical` and `brand → promotional`. The prop vocabulary is the registry's; the token
+vocabulary is the system's. Neither was renamed to match the other, because both are published.
+
+## Shapes
+`count` renders the number. `dot` renders a bare dot for "something is new" with no quantity.
+<Canvas of={BadgeStories.Dot} />
+
+## Count clamping
+Counts above `max` (default 99) render as `99+`, so the pill geometry stays stable.
+<Canvas of={BadgeStories.CountClamping} />
+
+## States
+`default` only. Badge has no interaction states because it is not interactive.
+
+## Accessibility
+- A bare number is meaningless to a screen reader out of context. Pass `label` to supply the
+  accessible name (`3 unread notifications`), or place adjacent text that conveys the meaning.
+- Tone is **colour**. Per Envision principle 3, colour never carries meaning alone — the count,
+  the label, or the adjacent text must say what the tone implies.
+- `dot` shape has no text at all, so `label` is effectively required for it.
+
+## Responsive
+Badge is intrinsically sized and does not change across breakpoints. It is positioned by its host.
+
+## API
+<Controls of={BadgeStories.Default} />
+
+## Token relationships
+| Part | Token |
+|---|---|
+| Status fills | `--envision-t1-color-success / warning / error / info` |
+| Brand fill | `--envision-t2-color-background-brand` |
+| Text on fill | `--envision-t2-color-content-on-brand` |
+| Radius | `--envision-t2-border-radius-pill` |
+
+## Implementation
+```html
+<envision-badge tone="error" count="3" label="3 unread notifications"></envision-badge>
+<envision-badge tone="brand" shape="dot" label="New"></envision-badge>
+```
+```tsx
+import { Badge } from '@envision/react';
+<Badge tone="error" count={3} label="3 unread notifications" />
+```
+
+## Realistic Envision example
+The top-bar notification bell — badge positioned on an `IconButton`:
+<Canvas of={BadgeStories.RealUseCase_NotificationBell} />
+
+## Known gap
+The shipped product's notification count is **accent orange**, and Badge publishes no `accent`
+tone — `brand` would render it green. The top bar therefore consumes the T3 token directly rather
+than adopting Badge. This is logged in `docs/ds-adoption-matrix.md` as a component API gap, not an
+application defect.
+
+## Related
+**IconButton** (the usual host) · **PackageCard** (uses Badge internally for `Popular`).

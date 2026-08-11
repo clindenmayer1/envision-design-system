@@ -1,0 +1,86 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/blocks';
+import * as LinkStories from './Link.stories';
+
+<Meta of={LinkStories} />
+
+# Link
+
+## Overview
+`<envision-link>` is **navigation** — it takes you somewhere. It renders a real `<a href>`, so
+`Enter` activation, middle-click, open-in-new-tab and the browser's own affordances all work
+without reimplementation.
+
+The distinction from Button is not visual, it is semantic: **Link changes location, Button changes
+state.** If the user ends up somewhere else, it is a link.
+
+<Canvas of={LinkStories.Default} />
+
+## Anatomy
+`anchor` → `label` · `direction icon?`. The direction icon is RTL-aware, so it mirrors rather than
+pointing the wrong way in a right-to-left locale.
+
+## When to use
+- Moving between **pages or views**: back to the dashboard, view all packages.
+- **Inline in prose**, where the surrounding sentence supplies the context.
+
+## When not to use
+- **Committing an action** (apply, save, select) → use **Button**, even if it looks like a link.
+- **Opening a tray or modal** → that is a state change on the current view → **Button** or
+  **IconButton**.
+- As a **tab** → use **RightRail/Tab**.
+
+## Variants
+`inline` flows inside a sentence and takes the surrounding type. `standalone` becomes an
+inline-flex block for use on its own line, typically with the direction icon.
+<Canvas of={LinkStories.InlineInProse} />
+<Canvas of={LinkStories.Standalone} />
+
+## States
+`default` · `hover` (underline) · `focus-visible` · `visited` (optional) · `disabled` (optional).
+
+Hover adds an **underline** rather than only changing colour, so the affordance is not colour-only.
+
+## Disabled is deliberately constrained
+<Canvas of={LinkStories.Disabled} />
+A disabled link is an anti-pattern for real navigation — a destination either exists or it does
+not. Where the product genuinely needs it, the component does the honest thing: it **drops the
+`href`**, removes the element from the tab order, sets `aria-disabled`, and blocks activation.
+Prefer removing the link, or rendering plain text, over disabling it.
+
+## Behaviour
+`Enter` activates, natively. No click handler is required for navigation; the `href` is the
+contract.
+
+## Accessibility
+- The accessible name is `label`. "Click here" and "Read more" fail 2.4.4 out of context — name
+  the destination.
+- Focus ring is the shared 2px brand ring.
+- Links that open a new tab should say so in the label; Envision does not rely on an icon alone.
+
+## Responsive
+Inline links inherit the surrounding type at every breakpoint. Standalone links keep a 44px target
+where layout permits by increasing the row spacing, not the font size.
+
+## API
+<Controls of={LinkStories.Default} />
+
+## Token relationships
+| Part | Token |
+|---|---|
+| Text | `--envision-t2-color-content-brand-default` |
+| Hover | `--envision-t2-color-content-brand-hover` |
+| Focus ring | `--envision-t2-color-border-focus` |
+| Icon gap | `--envision-t2-spacing-control-gap-tight` |
+
+## Implementation
+```html
+<envision-link href="/dashboard" label="Back to dashboard" variant="standalone" direction-icon></envision-link>
+```
+```tsx
+import { Link } from '@envision/react';
+<Link href="/dashboard" label="Back to dashboard" variant="standalone" directionIcon />
+```
+
+## Related
+**Button** (action, not navigation) · **RightRail/Tab** (switching panels in place) · **MenuItem**
+(specified, not yet implemented).

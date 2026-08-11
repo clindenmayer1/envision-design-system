@@ -11,7 +11,7 @@ interface Args {
 }
 
 const meta: Meta<Args> = {
-  title: 'Components/Badge',
+  title: 'Components/Data Display/Badge',
   component: 'envision-badge',
   tags: ['autodocs'],
   argTypes: {

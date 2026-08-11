@@ -34,17 +34,28 @@ const preview: Preview = {
       // WCAG 2.2 AA is the Envision target (ACCESSIBILITY.md).
       config: { rules: [{ id: 'color-contrast', enabled: true }] },
     },
+    // Sidebar organisation follows the canonical component taxonomy published by the design
+    // system (component-registry.json → meta.componentTaxonomy). The seven categories are held
+    // in that fixed order; components inside each are alphabetised by Storybook's default
+    // comparator, which is what the trailing '*' delegates to.
     options: {
       storySort: {
         order: [
           'Introduction',
-          ['Overview', 'Using this Storybook', 'Storybook vs the docs site'],
+          ['Overview', 'How Envision is documented', 'Using this Storybook', 'Component index'],
           'Foundations',
-          ['Color', 'Typography', 'Spacing & Radius', 'Elevation & Motion'],
+          ['Color', 'Typography', 'Spacing & Radius', 'Border', 'Elevation & Motion', 'Iconography'],
           'Components',
-          ['Button', 'IconButton', 'Link', 'Label', 'Input', 'Checkbox', 'Radio', 'Switch', 'Badge', 'Tab'],
-          'Product Components',
-          'Patterns',
+          [
+            'Actions',
+            'Inputs & Selection',
+            'Navigation',
+            'Data Display',
+            'Feedback & Guidance',
+            'Panels',
+            'Status & Progress',
+            '*',
+          ],
           '*',
         ],
       },

@@ -10,7 +10,7 @@ const pkg = { id: 'heritage', name: 'Heritage Package', priceLabel: '+$126/mo', 
 const pkgPopular = { ...pkg, id: 'modern', name: 'Modern Farmhouse', popular: true };
 
 const meta: Meta = {
-  title: 'Product Components/PackageCard',
+  title: 'Components/Inputs & Selection/PackageCard',
   component: 'envision-package-card',
   tags: ['autodocs'],
   parameters: {

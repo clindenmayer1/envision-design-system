@@ -4,7 +4,7 @@ import { html } from 'lit';
 interface Args { text: string; htmlFor: string; required: boolean; helpIcon: boolean; }
 
 const meta: Meta<Args> = {
-  title: 'Components/Label',
+  title: 'Components/Inputs & Selection/Label',
   component: 'envision-label',
   tags: ['autodocs'],
   argTypes: {

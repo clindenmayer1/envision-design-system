@@ -25,7 +25,9 @@
     "test:stories": "npm run test:stories:ci -w @envision/storybook",
     "visual": "npm run visual -w @envision/storybook",
     "visual:update": "npm run visual:update -w @envision/storybook",
-    "quality": "npm run lint && npm run typecheck -w @envision/components && npm run typecheck -w @envision/react && npm run tokens:verify && npm run components && npm run react && npm run build-storybook"
+    "quality": "npm run lint && npm run typecheck -w @envision/components && npm run typecheck -w @envision/react && npm run tokens:verify && npm run taxonomy:verify && npm run tokens:refs && npm run components && npm run react && npm run build-storybook",
+    "taxonomy:verify": "node scripts/verify-taxonomy.mjs",
+    "tokens:refs": "node scripts/verify-token-refs.mjs"
   },
   "dependencies": {
     "@envision/components": "*",

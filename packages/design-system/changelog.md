@@ -4,6 +4,54 @@ Format: [version] — date. Keep-a-changelog style. Maturity in parentheses.
 
 ## [Unreleased]
 
+### Changed — Canonical component taxonomy (organisation + metadata only)
+- Adopted a seven-category taxonomy for public components, held in a fixed order:
+  **Actions · Inputs & Selection · Navigation · Data Display · Feedback & Guidance · Panels ·
+  Status & Progress**. Components are alphabetised within each category.
+- **One source of truth**: `component-registry.json` declares the list and order in
+  `meta.componentTaxonomy.order`, and membership in `category` on each component. Storybook and
+  every other consumer derive from it; nobody keeps a parallel list.
+  `scripts/verify-taxonomy.mjs` (wired into `npm run quality`) fails the build on drift.
+- The pre-existing `category` field held an **architectural** classification
+  (`control-primitive` / `product-component` / `composite-pattern` / `internal-subcomponent`).
+  That axis was preserved verbatim under the new key **`architecture`**; it was not deleted or
+  folded into the taxonomy. The two axes are independent, as are component taxonomy and token
+  taxonomy — a component's category never implies a token namespace.
+- Internal subcomponents (`_CardSurface`, `_MaterialThumb`) carry `category: null` alongside
+  `public: false`. They are not members of any public category.
+- **Registry inventory extended from 34 to 52 entries.** 18 components were built in the Figma
+  library but had never been registered: Avatar, Card / Header, Card / What's Next, Dialog,
+  Divider, Finish Group, Home Hero, Key Date Row, Notification Badge, Notification Bell,
+  Room Progress Item, Selection Indicator, Selection Tray, Style Tile, Table, Thumbnail, Top Bar,
+  Tray. They are recorded as **inventory records** (`specified: false`): identity, Figma master
+  name, owning page and category only. `architecture`, props, states and accessibility are left
+  `null`/absent because they have never been defined — the records make the library countable
+  without fabricating a specification. Inventory is now **50 public + 2 internal = 52**.
+- Three placements revised on review, each removing an inconsistency rather than expressing a
+  preference: **`Notification Badge` → Data Display** (it now sits beside `Badge`, which it
+  duplicates; the two had already drifted to different tone vocabularies, `Critical` vs `Error`,
+  and splitting them across categories concealed that). **`Dialog` → Panels** (a generic dialog is
+  a bounded region hosting arbitrary content, and `ColorPickerModal`, also a dialog, is
+  categorised by purpose — leaving `Dialog` under Feedback made the rule inconsistent with
+  itself). **`Notification Bell` → Actions** (a trigger that opens a panel, not a move between
+  destinations). Feedback & Guidance is now Tooltip alone, which is intended.
+- Storybook sidebar restructured to `Components/<Category>/<displayName>`, derived from the
+  registry; the former `Product Components/` and `Patterns/RightRail` groupings are retired.
+  Leaves use the published component name, so `Field` and `RightRail/Tab` appear under those
+  names even though they ship as `<envision-input>` / `Input` and `<envision-tab>` / `Tab`
+  (`codeName` records the relationship; no API changed). Storybook reads the slash in
+  `RightRail/Tab` as a path separator, so it renders as a nested group — the published name is
+  preserved verbatim.
+- 66 visual-regression baselines renamed to the new story ids. The images are byte-identical —
+  they were moved, never regenerated.
+- Figma: the COMPONENTS section is grouped by the same seven categories using divider pages plus
+  page order, with a `-- INTERNAL (private primitives)` group. All **44** component pages are
+  categorised; no holding group remains. Placement was decided by reading each page's **real
+  master component name**, not its page title — several pages own a master under a different name
+  (`Card / Option` owns `OptionCard`, `Dropdown` owns the component recorded above as
+  `RoomSelector`, `Tabs` owns both `Tab` and `Tabs`). No component, variant, property, instance,
+  style or variable binding was touched.
+
 ### Changed — Spacing scale (rule of 8s)
 - Removed the off-grid **`spacing/10`** and **`spacing/14`** primitives from the T1 scale.
   Re-pointed every alias: `10 → 12`, `14 → 16` (field-padding-block/inline, navigation-item
