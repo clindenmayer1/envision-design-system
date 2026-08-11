@@ -1,7 +1,86 @@
 import { Meta, Canvas, Controls, Story } from '@storybook/blocks';
+import { useState, createElement } from 'react';
 import * as ButtonStories from './Button.stories';
 
 <Meta of={ButtonStories} />
+
+export const T = (n) => `var(--envision-${n})`;
+
+export const TabRow = ({ legend, value, onChange, options }) => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: T('t2-spacing-control-gap') }}>
+    <span
+      style={{
+        fontSize: T('t2-font-size-body-sm'),
+        fontWeight: T('t1-font-weight-600'),
+        color: T('t2-color-content-secondary-default'),
+      }}
+    >
+      {legend}
+    </span>
+    <div role="tablist" aria-label={legend} style={{ display: 'flex', gap: T('t2-spacing-section-gap') }}>
+      {/* createElement, not JSX: MDX routes unknown hyphenated tags through its component map,
+          which turns <envision-tab> into an undefined _component reference. */}
+      {options.map(([v, label]) =>
+        createElement('envision-tab', {
+          key: v,
+          label,
+          selected: value === v ? '' : undefined,
+          onClick: () => onChange(v),
+        }),
+      )}
+    </div>
+  </div>
+);
+
+export const ButtonPlayground = () => {
+  const [variant, setVariant] = useState('primary');
+  const [size, setSize] = useState('md');
+  return (
+    <div style={{ margin: `${T('t2-spacing-section-gap')} 0` }}>
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          gap: T('t2-spacing-section-gap-lg'),
+          marginBottom: T('t2-spacing-stack-gap'),
+        }}
+      >
+        <TabRow
+          legend="Type"
+          value={variant}
+          onChange={setVariant}
+          options={[['primary', 'Primary'], ['outline', 'Outline'], ['ghost', 'Ghost']]}
+        />
+        <TabRow
+          legend="Size"
+          value={size}
+          onChange={setSize}
+          options={[['sm', 'Small'], ['md', 'Medium'], ['lg', 'Large']]}
+        />
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: T('t2-spacing-stack-gap'),
+          minHeight: '8rem',
+          padding: T('t2-spacing-inset-panel'),
+          border: `${T('t2-border-width-default')} solid ${T('t2-color-border-default-default')}`,
+          borderRadius: T('t2-border-radius-panel'),
+          background: T('t2-color-background-surface-default'),
+        }}
+      >
+        {createElement('envision-button', { variant, size, label: 'Apply design' })}
+        <code style={{ fontSize: T('t1-font-size-12'), color: T('t2-color-content-tertiary-default') }}>
+          {`<envision-button variant="${variant}" size="${size}" label="Apply design">`}
+        </code>
+      </div>
+    </div>
+  );
+};
 
 # Button
 
@@ -11,7 +90,11 @@ import * as ButtonStories from './Button.stories';
 semantics come from the platform. It is styled entirely with production tokens and reconciled to
 the shipped website (14px / 600, brand-CTA radius 10, outline = neutral hairline secondary).
 
-<Canvas of={ButtonStories.Default} />
+Switch Type and Size below and the button updates in place, with the controls kept above the frame
+so the change is always in view. The control strip is built from real `<envision-tab>` elements in
+two tablists, so the documentation is composed from the system it documents.
+
+<ButtonPlayground />
 
 ## Anatomy
 `container` → `leadingIcon?` · `label` · `trailingIcon?`. The label is the button’s accessible
