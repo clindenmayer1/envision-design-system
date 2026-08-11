@@ -4,6 +4,30 @@ Format: [version] — date. Keep-a-changelog style. Maturity in parentheses.
 
 ## [Unreleased]
 
+### Added — Button size scale (system-first)
+- Button had a `size` prop (`sm`/`md`/`lg`) that **the design system never defined**: the Figma
+  Button set had no Size axis, no per-size tokens existed, and the `sm`/`lg` rules were six raw
+  ratios (`0.6`, `0.75`, `1.35`, `1.25`, `0.875em`, `1.0625em`) — exactly the arbitrary values
+  `CLAUDE.md` rule 2 forbids. Because those ratios scaled from `control-padding-block` (8) while
+  `md` used `container-padding-note` (16), **`lg` rendered smaller than `md`** (44px vs 51px) and
+  `sm` shared `md`'s font size.
+- Fixed in system order rather than in code: **Figma variables → snapshot → tokens → component**.
+  - 9 new T3 variables in `T3 · Components`, following the existing `badge/medium/*` precedent:
+    `button/{small,medium,large}/{padding-block,padding-inline,font-size}/default`, each aliasing
+    a published T2 role or T1 step (12/12/12 · 16/16/14 · 20/24/16).
+  - The Figma Button set gains a **Size** variant (15 → 45 variants, Medium first so it stays the
+    default and no existing instance moves). Component property references were carried across the
+    clones; all 45 retain the `Label` text property.
+  - `Button.ts` now consumes those tokens and the six ratios are deleted.
+- Resolved geometry is **40 / 51 / 61** tall (Figma masters 38 / 49 / 59 plus the component's 1px
+  transparent border on each edge). `md` is unchanged, so no shipped button moved.
+- Registry records `size.figmaProp = "Size"` and `figmaProperties.Size`.
+- **Second demonstration of the visual-suite weakness:** `sm` changed 28→40px and `lg` 44→61px, and
+  `playwright --update-snapshots` left the baseline untouched because the delta stayed under
+  `maxDiffPixelRatio: 0.01`. The baseline had to be deleted to force regeneration. The threshold
+  still cannot be tightened until the Google-Fonts dependency is removed (see
+  `playwright.config.ts`).
+
 ### Changed — Canonical component taxonomy (organisation + metadata only)
 - Adopted a seven-category taxonomy for public components, held in a fixed order:
   **Actions · Inputs & Selection · Navigation · Data Display · Feedback & Guidance · Panels ·

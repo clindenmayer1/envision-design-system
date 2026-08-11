@@ -10,6 +10,9 @@
   --envision-t3-avatar-color-background: var(--envision-t1-color-neutral-300);
   --envision-t3-badge-medium-font-size-default: var(--envision-t1-font-size-12);
   --envision-t3-badge-notification-dot-size: var(--envision-t1-spacing-150);
+  --envision-t3-button-large-font-size-default: var(--envision-t1-font-size-16);
+  --envision-t3-button-medium-font-size-default: var(--envision-t1-font-size-14);
+  --envision-t3-button-small-font-size-default: var(--envision-t1-font-size-12);
   --envision-t3-cabinet-style-tray-gap: var(--envision-t1-spacing-250);
   --envision-t3-cabinet-style-tray-padding: var(--envision-t1-spacing-300);
   --envision-t3-dialog-footer-gap: var(--envision-t1-spacing-150);
@@ -58,9 +61,15 @@
   --envision-t3-badge-success-color-content-default: var(--envision-t2-color-content-primary-default);
   --envision-t3-badge-warning-color-background-default: var(--envision-t2-color-background-warning-subtle-default);
   --envision-t3-badge-warning-color-content-default: var(--envision-t2-color-content-primary-default);
+  --envision-t3-button-large-padding-block-default: var(--envision-t2-spacing-container-padding);
+  --envision-t3-button-large-padding-inline-default: var(--envision-t2-spacing-container-padding-lg);
+  --envision-t3-button-medium-padding-block-default: var(--envision-t2-spacing-container-padding-note);
+  --envision-t3-button-medium-padding-inline-default: var(--envision-t2-spacing-control-padding-inline);
   --envision-t3-button-primary-color-background-disabled: var(--envision-t2-color-background-disabled-default);
   --envision-t3-button-primary-color-content-default: var(--envision-t2-color-content-on-brand-default);
   --envision-t3-button-primary-color-content-disabled: var(--envision-t2-color-content-disabled-default);
+  --envision-t3-button-small-padding-block-default: var(--envision-t2-spacing-inset-control);
+  --envision-t3-button-small-padding-inline-default: var(--envision-t2-spacing-inset-control);
   --envision-t3-input-default-color-border-default: var(--envision-t2-color-border-default-default);
   --envision-t3-input-default-color-border-error: var(--envision-t2-color-border-error-default);
   --envision-t3-input-default-color-border-hover: var(--envision-t2-color-border-ring-hover-default);

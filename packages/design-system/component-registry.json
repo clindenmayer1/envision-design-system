@@ -76,7 +76,12 @@
         ],
         "Label": "text",
         "Leading icon": "boolean",
-        "Trailing icon": "boolean"
+        "Trailing icon": "boolean",
+        "Size": [
+          "Medium",
+          "Small",
+          "Large"
+        ]
       },
       "props": [
         {
@@ -92,7 +97,9 @@
           "type": "'sm'|'md'|'lg'",
           "required": false,
           "default": "md",
-          "storybookControl": "select"
+          "storybookControl": "select",
+          "figmaProp": "Size",
+          "note": "sm|md|lg map to the Figma Size variant Small|Medium|Large. Geometry comes from t3.button.{small,medium,large}.* — no ratios."
         },
         {
           "name": "label",
@@ -157,7 +164,10 @@
         "t3.button.outline.*",
         "t2.radius.control",
         "t2.spacing.inline-icon-gap",
-        "t2.color.border.focus"
+        "t2.color.border.focus",
+        "t3.button.small.padding-block/padding-inline/font-size",
+        "t3.button.medium.padding-block/padding-inline/font-size",
+        "t3.button.large.padding-block/padding-inline/font-size"
       ],
       "responsive": "Hug by default; fullWidth in constrained/mobile footers.",
       "keyboard": "Enter/Space activate. Focusable. Not focusable when disabled.",

@@ -41,19 +41,18 @@ const styles = css `
     width: 100%;
     /* Explicit type to match the website (14px / 600), not inherited. */
     font-family: inherit;
-    font-size: var(--envision-t1-font-size-14);
+    font-size: var(--envision-t3-button-medium-font-size-default);
     font-weight: var(--envision-t1-font-weight-600);
     line-height: 1.2;
     cursor: pointer;
     border: var(--envision-t2-border-width-default) solid transparent;
     /* Website primary CTA radius = 10 (container-md), not the shared control radius. */
     border-radius: var(--envision-t2-border-radius-container-md);
-    /* Block padding is 16 (Figma Button binds paddingTop/Bottom to spacing/container-padding-note;
-       every variant master is 49 tall). This previously read var(--envision-t1-spacing-16), a
-       px-named token that does not exist in this step-named scale — the declaration was invalid,
-       so the button rendered with NO vertical padding at all. */
-    padding-block: var(--envision-t2-spacing-container-padding-note);
-    padding-inline: var(--envision-t2-spacing-control-padding-inline);
+    /* Size geometry comes from the T3 button size tokens, which the Figma Button set binds to its
+       Size variant. Medium is the base and is applied here rather than on a :host([size]) rule, so
+       a button with no size attribute is a medium. */
+    padding-block: var(--envision-t3-button-medium-padding-block-default);
+    padding-inline: var(--envision-t3-button-medium-padding-inline-default);
     transition: background-color var(--envision-t2-motion-micro-duration)
         cubic-bezier(0.2, 0.8, 0.2, 1),
       border-color var(--envision-t2-motion-micro-duration) cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -62,9 +61,20 @@ const styles = css `
     .btn { transition: none; }
   }
 
-  /* size: relative scaling over the base control padding (no per-size tokens exist yet) */
-  :host([size='sm']) .btn { padding-block: calc(var(--envision-t2-spacing-control-padding-block) * 0.6); padding-inline: calc(var(--envision-t2-spacing-control-padding-inline) * 0.75); font-size: 0.875em; }
-  :host([size='lg']) .btn { padding-block: calc(var(--envision-t2-spacing-control-padding-block) * 1.35); padding-inline: calc(var(--envision-t2-spacing-control-padding-inline) * 1.25); font-size: 1.0625em; }
+  /* size — every value is a published T3 token bound to the Figma Button's Size variant.
+     Previously these were calc() ratios (0.6 / 0.75 / 1.35 / 1.25 / 0.875em / 1.0625em) over a
+     DIFFERENT base than medium used, which made large render SMALLER than medium and gave small
+     the same font size as medium. Resolved geometry is now 38 / 49 / 59 tall, matching Figma. */
+  :host([size='sm']) .btn {
+    padding-block: var(--envision-t3-button-small-padding-block-default);
+    padding-inline: var(--envision-t3-button-small-padding-inline-default);
+    font-size: var(--envision-t3-button-small-font-size-default);
+  }
+  :host([size='lg']) .btn {
+    padding-block: var(--envision-t3-button-large-padding-block-default);
+    padding-inline: var(--envision-t3-button-large-padding-inline-default);
+    font-size: var(--envision-t3-button-large-font-size-default);
+  }
 
   /* variant: primary */
   :host([variant='primary']) .btn {

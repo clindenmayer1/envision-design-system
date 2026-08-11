@@ -37,6 +37,21 @@ surface fill) — this matches the website’s secondary buttons, **not** a bran
 ## Sizes
 <Canvas of={ButtonStories.Sizes} />
 
+Three sizes, backed by the Figma Button's **Size** variant and driven entirely by T3 tokens.
+
+| size | padding block / inline | font-size | rendered height |
+|---|---|---|---|
+| `sm` | 12 / 12 | 12 | 40px |
+| `md` (default) | 16 / 16 | 14 | 51px |
+| `lg` | 20 / 24 | 16 | 61px |
+
+Every value aliases an existing scale step, so the sizes sit on the 4pt grid. Heights are 2px
+taller than the Figma masters (38 / 49 / 59) because the component carries a 1px transparent border
+on all variants, so `primary` and `outline` align on a shared baseline.
+
+`md` is the base and is applied to `.btn` directly, not through a `:host([size])` rule — a button
+with no `size` attribute is a medium.
+
 ## States
 - **default / hover / focus-visible / pressed** — from the platform + tokens; the focus ring is a
   2px brand ring (`--envision-t2-color-border-focus-default`).
@@ -71,8 +86,8 @@ wrap — long labels stay on one line; if a label is long, shorten the copy rath
 | Outline border | `--envision-t2-color-border-default-default` (hairline) |
 | Outline / ghost text | `--envision-t2-color-content-primary` / `-brand` |
 | Radius (CTA) | `--envision-t2-border-radius-container-md` (10) |
-| Padding | `--envision-t2-spacing-container-padding-note` block (16, per the Figma binding) / `--envision-t2-spacing-control-padding-inline` |
-| Type | `--envision-t1-font-size-14` / `--envision-t1-font-weight-600` |
+| Padding | `--envision-t3-button-{small,medium,large}-padding-block/-inline-default` |
+| Type | `--envision-t3-button-{small,medium,large}-font-size-default` / `--envision-t1-font-weight-600` |
 | Focus ring | `--envision-t2-color-border-focus-default` |
 
 ## Implementation
