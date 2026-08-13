@@ -6,6 +6,8 @@ import tokensCss from '@envision/tokens/css?raw';
 
 # Tokens
 
+<FigmaButton />
+
 Every token the system publishes, read from the **generated** `dist/tokens.css` at build time. This
 page parses the Style Dictionary output rather than restating it, so it cannot drift: if a token is
 added, renamed or removed, this page changes with the next build.
@@ -18,19 +20,22 @@ export const T = (n) => `var(--envision-${n})`;
 
 export const FIGMA_FILE = 'https://www.figma.com/design/ZnnaoZcKjKhDxXFvfHr6fA/Envision-Design-System';
 
-{/* Navigation, so this is a Link and not a Button — the system's own rule, stated on the Button
-    page: "Navigation between pages/views -> use Link." */}
-export const SourceLink = () => (
-  <p style={{ margin: `0 0 ${T('t2-spacing-stack-gap')}` }}>
-    {createElement('envision-link', {
-      href: FIGMA_FILE,
+{/* A real <envision-button> at large size, placed directly under the title so the jump to Figma
+    is the first thing on the page. Envision's guidance is that navigation uses Link, but a
+    quiet inline link between two paragraphs was missed entirely, and a cross-surface jump to the
+    source of truth deserves to be the most prominent control here. The trade-off is deliberate:
+    Button renders a real <button>, so the navigation happens in the click handler rather than
+    through an href, and it opens in a new tab so the reader does not lose the page. */}
+export const FigmaButton = () => (
+  <div style={{ margin: `${T('t2-spacing-stack-gap')} 0 ${T('t2-spacing-section-gap')}` }}>
+    {createElement('envision-button', {
+      variant: 'primary',
+      size: 'lg',
       label: 'View these tokens in Figma',
-      variant: 'standalone',
-      'direction-icon': '',
-      target: '_blank',
-      rel: 'noreferrer',
+      'trailing-icon': 'arrow_forward',
+      onClick: () => window.open(FIGMA_FILE, '_blank', 'noopener,noreferrer'),
     })}
-  </p>
+  </div>
 );
 
 {/* Click to copy. The token name copies as var(--…), the form you paste into CSS; the resolved
@@ -155,7 +160,6 @@ export const TokenExplorer = () => {
 
   return (
     <div>
-      <SourceLink />
       <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: T('t2-spacing-subsection-gap'), padding: `0 ${T('t2-spacing-control-gap')}`, borderBottom: `${T('t2-border-width-default')} solid ${T('t2-color-border-subtle-default')}`, marginBottom: T('t2-spacing-stack-gap') }}>
         <TabRow legend="Tier" value={tier} onChange={setTier} options={[['all', 'All'], ['t1', 'T1 Primitive'], ['t2', 'T2 Semantic'], ['t3', 'T3 Component']]} />
         <TabRow legend="Type" value={kind} onChange={setKind} options={[['all', 'All'], ['color', 'Color'], ['dimension', 'Dimension'], ['elevation', 'Elevation'], ['duration', 'Motion']]} />
