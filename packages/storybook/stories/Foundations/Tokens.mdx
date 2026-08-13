@@ -1,0 +1,199 @@
+import { Meta } from '@storybook/blocks';
+import { useState, useRef, useEffect, useMemo, createElement } from 'react';
+import tokensCss from '@envision/tokens/css?raw';
+
+<Meta title="Foundations/Tokens" />
+
+# Tokens
+
+Every token the system publishes, read from the **generated** `dist/tokens.css` at build time. This
+page parses the Style Dictionary output rather than restating it, so it cannot drift: if a token is
+added, renamed or removed, this page changes with the next build.
+
+The **chain** column is why `outputReferences: true` matters in `sd.build.mjs`. Style Dictionary
+keeps the alias intact in the CSS instead of flattening it to a raw value, so a component token can
+be traced back through its semantic role to the primitive it ultimately resolves to.
+
+export const T = (n) => `var(--envision-${n})`;
+
+export const parseTokens = (css) => {
+  const raw = {};
+  const order = [];
+  for (const m of css.matchAll(/^\s*--([a-z0-9-]+)\s*:\s*([^;]+);/gm)) {
+    if (!raw[m[1]]) order.push(m[1]);
+    raw[m[1]] = m[2].trim();
+  }
+  const chainOf = (name, seen = []) => {
+    const v = raw[name];
+    if (v === undefined || seen.length > 12) return { resolved: v, chain: seen };
+    const alias = /^var\(\s*--([a-z0-9-]+)\s*\)$/.exec(v);
+    if (!alias) return { resolved: v, chain: seen };
+    return chainOf(alias[1], [...seen, alias[1]]);
+  };
+  const kindOf = (v) => {
+    if (/^(#|rgb|hsl|oklch)/i.test(v)) return 'color';
+    if (/^-?[\d.]+(px|rem|em|%)$/.test(v)) return 'dimension';
+    if (/^-?[\d.]+m?s$/.test(v)) return 'duration';
+    if (/rgba?\(/.test(v) && /\dpx/.test(v)) return 'elevation';
+    if (/^-?[\d.]+$/.test(v)) return 'number';
+    return 'other';
+  };
+  return order
+    .filter((n) => n.startsWith('envision-t'))
+    .map((name) => {
+      const { resolved, chain } = chainOf(name);
+      return {
+        name,
+        tier: (name.match(/^envision-(t[123])-/) || [])[1] ?? '—',
+        declared: raw[name],
+        resolved,
+        chain,
+        kind: kindOf(String(resolved ?? '')),
+      };
+    });
+};
+
+export const Swatch = ({ t }) => {
+  const box = { inlineSize: 34, blockSize: 22, borderRadius: 3, flex: 'none' };
+  if (t.kind === 'color')
+    return <span style={{ ...box, display: 'inline-block', background: t.resolved, border: `1px solid ${T('t2-color-border-default-default')}` }} />;
+  if (t.kind === 'elevation')
+    return <span style={{ ...box, display: 'inline-block', background: T('t2-color-background-surface-default'), boxShadow: t.resolved }} />;
+  if (t.kind === 'dimension') {
+    const px = parseFloat(t.resolved);
+    return (
+      <span style={{ ...box, display: 'inline-flex', alignItems: 'center' }}>
+        <span style={{ blockSize: 8, inlineSize: Math.min(34, Math.max(2, /rem$/.test(t.resolved) ? px * 16 : px)), background: T('t2-color-background-brand-default'), borderRadius: 2 }} />
+      </span>
+    );
+  }
+  return <span style={{ ...box, display: 'inline-block' }} />;
+};
+
+export const TabRow = ({ legend, value, onChange, options }) => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: T('t2-spacing-control-gap') }}>
+    <span style={{ fontSize: T('t2-font-size-body-sm'), fontWeight: T('t1-font-weight-600'), color: T('t2-color-content-secondary-default') }}>
+      {legend}
+    </span>
+    <div role="tablist" aria-label={legend} style={{ display: 'flex', gap: T('t2-spacing-control-gap') }}>
+      {options.map(([v, label]) =>
+        createElement('envision-tab', { key: v, label, selected: value === v ? '' : undefined, onClick: () => onChange(v) }),
+      )}
+    </div>
+  </div>
+);
+
+export const TokenExplorer = () => {
+  const all = useMemo(() => parseTokens(tokensCss), []);
+  const [q, setQ] = useState('');
+  const [tier, setTier] = useState('all');
+  const [kind, setKind] = useState('all');
+  const searchRef = useRef(null);
+
+  // <envision-input> emits a composed CustomEvent('input', { detail: { value } }).
+  // Custom events need a real listener; React's synthetic onInput does not cover them.
+  useEffect(() => {
+    const el = searchRef.current;
+    if (!el) return;
+    const onInput = (e) => setQ(String((e.detail && e.detail.value) ?? el.getAttribute('value') ?? ''));
+    el.addEventListener('input', onInput);
+    return () => el.removeEventListener('input', onInput);
+  }, []);
+
+  const rows = all.filter(
+    (t) =>
+      (tier === 'all' || t.tier === tier) &&
+      (kind === 'all' || t.kind === kind) &&
+      (q === '' || t.name.includes(q.toLowerCase().replace(/\s+/g, '-')) || String(t.resolved).toLowerCase().includes(q.toLowerCase())),
+  );
+
+  const counts = all.reduce((a, t) => ((a[t.tier] = (a[t.tier] ?? 0) + 1), a), {});
+  const cell = { padding: `${T('t2-spacing-control-gap-tight')} ${T('t2-spacing-control-gap')}`, textAlign: 'start', verticalAlign: 'middle' };
+
+  return (
+    <div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: T('t2-spacing-subsection-gap'), padding: `0 ${T('t2-spacing-control-gap')}`, borderBottom: `${T('t2-border-width-default')} solid ${T('t2-color-border-subtle-default')}`, marginBottom: T('t2-spacing-stack-gap') }}>
+        <TabRow legend="Tier" value={tier} onChange={setTier} options={[['all', 'All'], ['t1', 'T1 Primitive'], ['t2', 'T2 Semantic'], ['t3', 'T3 Component']]} />
+        <TabRow legend="Type" value={kind} onChange={setKind} options={[['all', 'All'], ['color', 'Color'], ['dimension', 'Dimension'], ['elevation', 'Elevation'], ['duration', 'Motion']]} />
+      </div>
+
+      <div style={{ maxInlineSize: '22rem', marginBottom: T('t2-spacing-stack-gap') }}>
+        {createElement('envision-input', { ref: searchRef, type: 'search', label: 'Search tokens', placeholder: 'brand, spacing, button…' })}
+      </div>
+
+      <p style={{ fontSize: T('t2-font-size-body-sm'), color: T('t2-color-content-secondary-default') }}>
+        Showing <strong>{rows.length}</strong> of <strong>{all.length}</strong> tokens ·
+        T1 {counts.t1 ?? 0} · T2 {counts.t2 ?? 0} · T3 {counts.t3 ?? 0}
+      </p>
+
+      <div style={{ overflowX: 'auto' }}>
+        <table style={{ inlineSize: '100%', borderCollapse: 'collapse', fontSize: T('t1-font-size-13') }}>
+          <thead>
+            <tr style={{ borderBottom: `${T('t2-border-width-default')} solid ${T('t2-color-border-default-default')}` }}>
+              <th style={cell} />
+              <th style={cell}>Token</th>
+              <th style={cell}>Resolved</th>
+              <th style={cell}>Chain</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((t) => (
+              <tr key={t.name} style={{ borderBottom: `1px solid ${T('t2-color-border-subtle-default')}` }}>
+                <td style={cell}><Swatch t={t} /></td>
+                <td style={{ ...cell, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}>--{t.name}</td>
+                <td style={{ ...cell, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', color: T('t2-color-content-secondary-default') }}>{String(t.resolved)}</td>
+                <td style={{ ...cell, color: T('t2-color-content-tertiary-default') }}>
+                  {t.chain.length ? t.chain.map((c) => c.replace(/^envision-/, '')).join('  ->  ') : '—'}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {rows.length === 0 && (
+        <p style={{ padding: T('t2-spacing-inset-panel'), color: T('t2-color-content-secondary-default') }}>
+          No token matches that filter.
+        </p>
+      )}
+    </div>
+  );
+};
+
+<TokenExplorer />
+
+## How to read a chain
+
+`--envision-t3-button-primary-color-background-default` resolves to `#29594f`, but it does not
+*contain* `#29594f`. It points at `t2-color-background-brand-default`, which points at
+`t1-color-green-500`, which holds the value. Rebrand by changing the primitive and every consumer
+follows; override the component token and only the button changes.
+
+That is the whole argument for three tiers, and the chain column is the evidence.
+
+## Counts: 436 tokens, 447 declarations
+
+`dist/tokens.css` contains **447** custom-property declarations but only **436 distinct tokens**.
+The difference is not duplication — it is the responsive layer.
+
+Eleven tokens are declared twice: once in `:root` with their desktop value, then again inside
+`@media (max-width: 1024px)` with their mobile value. Same property, two values, resolved by the
+viewport:
+
+`font-size/display · h1 · h2 · h3 · h4 · h5` and
+`layout/card-grid-columns · page-gutter · right-rail-width · swatch-grid-columns · top-bar-height`
+
+This table lists each token **once**, showing its `:root` value. Those eleven are the tokens whose
+value changes below the tablet breakpoint.
+
+## What this page does not show
+
+- **Elevation** is authored in Figma as **effect styles**, which the variable export cannot see. It
+  is transcribed into `_figma-export.txt` by hand so it reaches this pipeline like every other token
+  rather than being hardcoded per component.
+- **The mobile values themselves.** They ship — the `@media` block is inside `tokens.css`, which
+  Storybook imports — but this table shows the `:root` value only. Switch the Storybook viewport to
+  Mobile (390) and the 11 tokens above resolve differently in the components.
+- **`dist/tokens.responsive.css`** is a separate published entry point containing just the media
+  block, for consumers who want to load it on its own. Storybook does not need it, because
+  `tokens.css` already carries the same rules.

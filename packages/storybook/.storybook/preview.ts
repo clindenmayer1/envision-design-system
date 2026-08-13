@@ -44,7 +44,7 @@ const preview: Preview = {
           'Introduction',
           ['Overview', 'How Envision is documented', 'Using this Storybook', 'Component index'],
           'Foundations',
-          ['Color', 'Typography', 'Spacing & Radius', 'Border', 'Elevation & Motion', 'Iconography'],
+          ['Tokens', 'Color', 'Typography', 'Spacing & Radius', 'Border', 'Elevation & Motion', 'Iconography'],
           'Components',
           [
             'Actions',
