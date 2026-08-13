@@ -16,6 +16,49 @@ be traced back through its semantic role to the primitive it ultimately resolves
 
 export const T = (n) => `var(--envision-${n})`;
 
+export const FIGMA_FILE = 'https://www.figma.com/design/ZnnaoZcKjKhDxXFvfHr6fA/Envision-Design-System';
+
+{/* Navigation, so this is a Link and not a Button — the system's own rule, stated on the Button
+    page: "Navigation between pages/views -> use Link." */}
+export const SourceLink = () => (
+  <p style={{ margin: `0 0 ${T('t2-spacing-stack-gap')}` }}>
+    {createElement('envision-link', {
+      href: FIGMA_FILE,
+      label: 'View these tokens in Figma',
+      variant: 'standalone',
+      'direction-icon': '',
+      target: '_blank',
+      rel: 'noreferrer',
+    })}
+  </p>
+);
+
+{/* Click to copy. The token name copies as var(--…), the form you paste into CSS; the resolved
+    column copies the literal value. */}
+export const Copyable = ({ text, copy, title, style }) => {
+  const [done, setDone] = useState(false);
+  return (
+    <button
+      type="button"
+      title={title}
+      aria-label={`Copy ${copy}`}
+      onClick={() => {
+        navigator.clipboard?.writeText(copy).then(
+          () => { setDone(true); setTimeout(() => setDone(false), 1200); },
+          () => {},
+        );
+      }}
+      style={{
+        font: 'inherit', textAlign: 'start', padding: 0, border: 'none', background: 'none',
+        cursor: 'copy', color: done ? T('t2-color-content-brand-default') : 'inherit',
+        ...style,
+      }}
+    >
+      {done ? 'Copied' : text}
+    </button>
+  );
+};
+
 export const parseTokens = (css) => {
   const raw = {};
   const order = [];
@@ -112,6 +155,7 @@ export const TokenExplorer = () => {
 
   return (
     <div>
+      <SourceLink />
       <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: T('t2-spacing-subsection-gap'), padding: `0 ${T('t2-spacing-control-gap')}`, borderBottom: `${T('t2-border-width-default')} solid ${T('t2-color-border-subtle-default')}`, marginBottom: T('t2-spacing-stack-gap') }}>
         <TabRow legend="Tier" value={tier} onChange={setTier} options={[['all', 'All'], ['t1', 'T1 Primitive'], ['t2', 'T2 Semantic'], ['t3', 'T3 Component']]} />
         <TabRow legend="Type" value={kind} onChange={setKind} options={[['all', 'All'], ['color', 'Color'], ['dimension', 'Dimension'], ['elevation', 'Elevation'], ['duration', 'Motion']]} />
@@ -123,7 +167,8 @@ export const TokenExplorer = () => {
 
       <p style={{ fontSize: T('t2-font-size-body-sm'), color: T('t2-color-content-secondary-default') }}>
         Showing <strong>{rows.length}</strong> of <strong>{all.length}</strong> tokens ·
-        T1 {counts.t1 ?? 0} · T2 {counts.t2 ?? 0} · T3 {counts.t3 ?? 0}
+        T1 {counts.t1 ?? 0} · T2 {counts.t2 ?? 0} · T3 {counts.t3 ?? 0} ·
+        click a token to copy <code>var(--…)</code>, or a value to copy the value
       </p>
 
       <div style={{ overflowX: 'auto' }}>
@@ -140,8 +185,17 @@ export const TokenExplorer = () => {
             {rows.map((t) => (
               <tr key={t.name} style={{ borderBottom: `1px solid ${T('t2-color-border-subtle-default')}` }}>
                 <td style={cell}><Swatch t={t} /></td>
-                <td style={{ ...cell, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}>--{t.name}</td>
-                <td style={{ ...cell, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', color: T('t2-color-content-secondary-default') }}>{String(t.resolved)}</td>
+                <td style={{ ...cell, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}>
+                  <Copyable text={`--${t.name}`} copy={`var(--${t.name})`} title={`Copy var(--${t.name})`} />
+                </td>
+                <td style={{ ...cell, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}>
+                  <Copyable
+                    text={String(t.resolved)}
+                    copy={String(t.resolved)}
+                    title={`Copy ${t.resolved}`}
+                    style={{ color: T('t2-color-content-secondary-default') }}
+                  />
+                </td>
                 <td style={{ ...cell, color: T('t2-color-content-tertiary-default') }}>
                   {t.chain.length ? t.chain.map((c) => c.replace(/^envision-/, '')).join('  ->  ') : '—'}
                 </td>
