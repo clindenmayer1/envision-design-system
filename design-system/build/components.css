@@ -74,9 +74,9 @@
   --envision-theme-material-swatch-label-color: var(--envision-theme-color-content-secondary-default); /* Label color -> neutral/600. */
   --envision-theme-material-swatch-chip-size: var(--envision-spacing-1100); /* Chip 64. T3->T1 (no T2 size role) — documented. */
   --envision-theme-material-swatch-unavailable-opacity: 0.4; /* Unavailable dim. Component-specific direct value (source has */
-  --envision-theme-material-swatch-ring-hover-color: var(--envision-theme-color-ring-hover-default); /* Hover ring colour. */
+  --envision-theme-material-swatch-ring-hover-color: var(--envision-theme-color-ring-hover-default); /* Hover ring color. */
   --envision-theme-material-swatch-ring-hover-width: var(--envision-theme-border-width-emphasis-default); /* Hover ring width (2). */
-  --envision-theme-material-swatch-ring-selected-color: var(--envision-theme-color-ring-selected-default); /* Selected ring colour (taupe-600). */
+  --envision-theme-material-swatch-ring-selected-color: var(--envision-theme-color-ring-selected-default); /* Selected ring color (taupe-600). */
   --envision-theme-material-swatch-ring-selected-width: var(--envision-theme-border-width-emphasis-default); /* Selected ring width (3.5). */
   --envision-theme-material-swatch-ring-selected-gap-color: var(--envision-theme-color-background-surface-default); /* Selected inner gap (white). */
   --envision-theme-material-swatch-ring-selected-gap-width: var(--envision-theme-border-width-emphasis-default); /* Selected gap width (2). */

@@ -10,7 +10,7 @@ const meta: Meta = {
   title: 'Components/Inputs & Selection/MaterialSwatch',
   component: 'envision-material-swatch',
   tags: ['autodocs'],
-  parameters: { docs: { description: { component: 'Selectable material/finish chip — `<envision-material-swatch>`. The fill is **product data** (image/texture/colour), set inline, never a token. Selection is signalled by a **ring + check** (not colour-only); the accessible name is material + finish + price. `option` is a JS property.' } } },
+  parameters: { docs: { description: { component: 'Selectable material/finish chip — `<envision-material-swatch>`. The fill is **product data** (image/texture/color), set inline, never a token. Selection is signalled by a **ring + check** (not color-only); the accessible name is material + finish + price. `option` is a JS property.' } } },
 };
 export default meta;
 type Story = StoryObj;

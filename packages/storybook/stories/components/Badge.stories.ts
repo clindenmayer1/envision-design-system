@@ -25,7 +25,7 @@ const meta: Meta<Args> = {
   render: (a) => html`
     <envision-badge tone=${a.tone} shape=${a.shape} count=${ifDefined(a.count)} max=${a.max} label=${ifDefined(a.label || undefined)}></envision-badge>
   `,
-  parameters: { docs: { description: { component: 'Count or status indicator — `<envision-badge>`. Registry tones map to emitted tokens (`error→critical`, `brand→promotional`). Meaning is never colour-only — pair with adjacent text or an accessible label.' } } },
+  parameters: { docs: { description: { component: 'Count or status indicator — `<envision-badge>`. Registry tones map to emitted tokens (`error→critical`, `brand→promotional`). Meaning is never color-only — pair with adjacent text or an accessible label.' } } },
 };
 export default meta;
 type Story = StoryObj<Args>;

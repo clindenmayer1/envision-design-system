@@ -14,7 +14,7 @@ inside a button (the notification bell) without nesting an interactive element.
 
 ## Anatomy
 `container` → `count` **or** `label` text, or nothing at all in `dot` shape. The pill radius and
-tone colour come from tokens; the number is clamped by `max`.
+tone color come from tokens; the number is clamped by `max`.
 
 ## When to use
 - An **unread or pending count** attached to a control: the notification bell.
@@ -48,7 +48,7 @@ Counts above `max` (default 99) render as `99+`, so the pill geometry stays stab
 ## Accessibility
 - A bare number is meaningless to a screen reader out of context. Pass `label` to supply the
   accessible name (`3 unread notifications`), or place adjacent text that conveys the meaning.
-- Tone is **colour**. Per Envision principle 3, colour never carries meaning alone — the count,
+- Tone is **color**. Per Envision principle 3, color never carries meaning alone — the count,
   the label, or the adjacent text must say what the tone implies.
 - `dot` shape has no text at all, so `label` is effectively required for it.
 

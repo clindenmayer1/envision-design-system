@@ -1,7 +1,7 @@
 /*
- * Choose Wall Color — full-library picker opened by the "+" chip in the wall-colour row.
+ * Choose Wall Color — full-library picker opened by the "+" chip in the wall-color row.
  * Mirrors the Figma design (fonts, spacing, 5-column grid, BROWSE BY / EXPLORE BY THEME sidebar,
- * Saved Colors, footer). Real Benjamin Moore colours grouped by section; selecting one and
+ * Saved Colors, footer). Real Benjamin Moore colors grouped by section; selecting one and
  * confirming applies it to the live model (config.wallColor → the plaster shell paint).
  */
 import { useMemo, useState } from 'react'
@@ -9,13 +9,13 @@ import { WALL_COLOR_SECTIONS, WALL_COLOR_LIBRARY, type WallColor } from '../../d
 import './WallColorModal.css'
 
 interface Props {
-  /** Currently-applied wall colour id (curated id or library id). */
+  /** Currently-applied wall color id (curated id or library id). */
   current: string
-  /** Cancel — reverts the live preview to the original colour and closes. */
+  /** Cancel — reverts the live preview to the original color and closes. */
   onClose: () => void
-  /** Confirm the chosen library colour by id (commits + closes). */
+  /** Confirm the chosen library color by id (commits + closes). */
   onSelect: (id: string) => void
-  /** Live-preview a colour on the model as the user clicks swatches (before confirming). */
+  /** Live-preview a color on the model as the user clicks swatches (before confirming). */
   onPreview?: (id: string) => void
 }
 

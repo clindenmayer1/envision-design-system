@@ -42,7 +42,7 @@ export const Rail: Story = {
  * Loading — the body is dimmed and marked aria-busy while content resolves.
  *
  * DOCUMENTED A11Y EXCEPTION: the transient opacity dim reduces text contrast below AA *while
- * loading only*; content passes contrast at rest. Colour-contrast is scoped-off for this one
+ * loading only*; content passes contrast at rest. Color-contrast is scoped-off for this one
  * story. The proper fix — skeleton placeholders (no dimmed real text) — is a tracked follow-up in
  * ACCESSIBILITY-CONTRACTS.md.
  */

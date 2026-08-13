@@ -3,8 +3,8 @@
  * Property-aware token migration for application stylesheets.
  *
  * Replaces raw design values with the CORRECT SEMANTIC ROLE for the property being set, not
- * merely with whatever primitive happens to hold the same value. A colour used as a background
- * resolves to color/background/*, the same colour used as text resolves to color/content/*, and
+ * merely with whatever primitive happens to hold the same value. A color used as a background
+ * resolves to color/background/*, the same color used as text resolves to color/content/*, and
  * as a border to color/border/*. Primitives are used only where the system publishes no role for
  * that property (type steps, letter spacing).
  *
@@ -40,7 +40,7 @@ const rgbToHex = (s) => {
   if (a < 0.999) return null; // translucent: match textually, not by hex
   return '#' + [m[1], m[2], m[3]].map((n) => Number(n).toString(16).padStart(2, '0')).join('');
 };
-const colourKey = (s) => {
+const colorKey = (s) => {
   const t = norm(s);
   if (t.startsWith('#')) return hex3to6(t);
   const h = rgbToHex(s);
@@ -55,9 +55,9 @@ for (const name of Object.keys(V)) {
   const val = resolve(name);
   if (val === undefined) continue;
   const t = `var(--${name})`;
-  if (/^envision-t2-color-background-/.test(name)) put(byRole.background, colourKey(val), t);
-  else if (/^envision-t2-color-content-/.test(name)) put(byRole.content, colourKey(val), t);
-  else if (/^envision-t2-color-border-/.test(name)) put(byRole.border, colourKey(val), t);
+  if (/^envision-t2-color-background-/.test(name)) put(byRole.background, colorKey(val), t);
+  else if (/^envision-t2-color-content-/.test(name)) put(byRole.content, colorKey(val), t);
+  else if (/^envision-t2-color-border-/.test(name)) put(byRole.border, colorKey(val), t);
   else if (/^envision-t2-spacing-/.test(name)) put(byRole.spacing, norm(val), t);
   else if (/^envision-t2-border-radius-/.test(name)) put(byRole.radius, norm(val), t);
   else if (/^envision-t2-border-width-/.test(name)) put(byRole.borderWidth, norm(val), t);
@@ -83,21 +83,21 @@ const COLOUR_PROP = {
 };
 const LENGTH_PROP = /^(padding|margin|gap|row-gap|column-gap)(-(top|right|bottom|left|inline|block))?$/;
 
-const stats = { colour: 0, length: 0, radius: 0, width: 0, shadow: 0, type: 0, motion: 0, unmapped: [] };
+const stats = { color: 0, length: 0, radius: 0, width: 0, shadow: 0, type: 0, motion: 0, unmapped: [] };
 
 function tokeniseDecl(prop, value) {
   const p = prop.trim().toLowerCase();
 
-  // colours (standalone value, and inside shorthand border/outline)
+  // colors (standalone value, and inside shorthand border/outline)
   if (COLOUR_PROP[p]) {
     const bucket = byRole[COLOUR_PROP[p]];
-    const hit = bucket[colourKey(value)];
-    if (hit) { stats.colour++; return hit; }
+    const hit = bucket[colorKey(value)];
+    if (hit) { stats.color++; return hit; }
   }
   if (/^(border|border-top|border-bottom|border-left|border-right|outline)$/.test(p)) {
     return value.replace(/(#[0-9a-fA-F]{3,8}|rgba?\([^)]*\))/g, (c) => {
-      const hit = byRole.border[colourKey(c)];
-      if (hit) { stats.colour++; return hit; }
+      const hit = byRole.border[colorKey(c)];
+      if (hit) { stats.color++; return hit; }
       return c;
     }).replace(/(?<![\w.-])(\d*\.?\d+px)(?=\s|$)/, (w) => {
       const hit = byRole.borderWidth[norm(w)];
@@ -175,7 +175,7 @@ for (const file of files) {
   if (!DRY && changed) writeFileSync(file, out);
   console.log(`${file.replace('src/components/', '').padEnd(42)} ${String(changed).padStart(4)} declarations tokenised`);
 }
-console.log(`\ncolour ${stats.colour} · spacing ${stats.length} · radius ${stats.radius} · border-width ${stats.width} · shadow ${stats.shadow} · type ${stats.type} · motion ${stats.motion}`);
+console.log(`\ncolor ${stats.color} · spacing ${stats.length} · radius ${stats.radius} · border-width ${stats.width} · shadow ${stats.shadow} · type ${stats.type} · motion ${stats.motion}`);
 if (stats.unmapped.length) {
   const u = [...new Set(stats.unmapped)];
   console.log(`\nleft alone, no role in the system (${u.length} distinct):`);

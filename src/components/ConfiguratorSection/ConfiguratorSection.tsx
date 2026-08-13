@@ -18,7 +18,7 @@ interface Props {
   onOpenTray?: (key: ConfigKey) => void
   /** Card whose tray is currently open → active outline. */
   openTrayKey?: ConfigKey | null
-  /** Open the full Choose Wall Color picker (from the "+" chip in the wall-colour row). */
+  /** Open the full Choose Wall Color picker (from the "+" chip in the wall-color row). */
   onOpenWallPicker?: () => void
 }
 
@@ -32,9 +32,9 @@ export default function ConfiguratorSection({ section, config, onChange, onOpenT
         // (the backsplash is its child in that mode), so its card thumbnail tracks the
         // selected countertop instead of showing a fixed image.
         let options = group.key === 'backsplashStyle' ? backsplashOptionsFor(config.countertop) : group.options
-        // Wall-colour row: the SELECTED colour is always the first tile, the curated colours
-        // follow, and the row is capped at 11 (+ the "›" opener). So a colour chosen from the
-        // full picker (a library colour not in the curated set) prepends as tile #1, pushes the
+        // Wall-color row: the SELECTED color is always the first tile, the curated colors
+        // follow, and the row is capped at 11 (+ the "›" opener). So a color chosen from the
+        // full picker (a library color not in the curated set) prepends as tile #1, pushes the
         // rest over, and drops the last curated swatch. A curated selection just moves to front.
         if (group.key === 'wallColor') {
           const sel = config.wallColor

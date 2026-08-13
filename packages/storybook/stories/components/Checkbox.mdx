@@ -34,8 +34,8 @@ the separate `Label` component to associate them.
 <Canvas of={CheckboxStories.States} />
 `checked` · `unchecked` · `focus-visible` · `disabled` · `error`.
 
-The check is drawn as **geometry** — a rotated tick — not as a colour fill. That is deliberate:
-Envision principle 3 says selection is never colour-only, so the checked state survives greyscale
+The check is drawn as **geometry** — a rotated tick — not as a color fill. That is deliberate:
+Envision principle 3 says selection is never color-only, so the checked state survives greyscale
 and forced-colors.
 
 <Story of={CheckboxStories.Checked} /> <Story of={CheckboxStories.Disabled} />
@@ -53,7 +53,7 @@ same shadow root. `disabled` blocks activation and removes the control from the 
 ## Accessibility
 - Native `<input type="checkbox">` supplies `role=checkbox` and the checked state.
 - `required` must also be reflected to the control as `aria-required`, not only drawn.
-- `invalid` should be accompanied by an associated message; the border alone is colour-only.
+- `invalid` should be accompanied by an associated message; the border alone is color-only.
 - Focus ring is the shared 2px brand ring, visible and unclipped.
 
 ## Responsive

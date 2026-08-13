@@ -18,7 +18,7 @@ A native `<input type="checkbox">` carries the toggle behaviour and `Space` hand
 native checkbox only responds to `Space` while the switch contract expects both.
 
 The on/off state also **shifts the thumb position**, so state is conveyed by position as well as
-colour and survives greyscale.
+color and survives greyscale.
 
 ## Anatomy
 `container` → `track` · `thumb` · `label`. Label and input share one shadow root, so Switch does
@@ -52,7 +52,7 @@ the action is dangerous enough to need confirming, it is not a switch.
   control actually means.
 - The label is the accessible name and must describe the **thing being switched**, not the action:
   "Show dimensions", not "Toggle dimensions".
-- State is position plus colour, never colour alone.
+- State is position plus color, never color alone.
 - Focus ring is the shared 2px brand ring.
 
 ## Responsive

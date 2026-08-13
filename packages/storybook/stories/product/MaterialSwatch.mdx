@@ -13,12 +13,12 @@ picker in the Design Center. It is a toggle button that carries product imagery.
 
 ## The fill is product data, not a token
 This is the most important rule about this component, and it is a system rule
-(**SYSTEM_SPEC §4**): the swatch fill — image, texture or colour — is **product data set inline**,
+(**SYSTEM_SPEC §4**): the swatch fill — image, texture or color — is **product data set inline**,
 never a design token.
 
-Cabinet colours, paint colours and countertop textures are catalogue content. They change when the
+Cabinet colors, paint colors and countertop textures are catalogue content. They change when the
 builder's catalogue changes, they are not part of the visual language, and putting them in the
-colour system would corrupt it. If you find yourself adding `--envision-t1-color-oak-500`, stop.
+color system would corrupt it. If you find yourself adding `--envision-t1-color-oak-500`, stop.
 
 The **chrome** around the fill — ring, radius, check, label gap — is entirely tokenised.
 
@@ -27,21 +27,21 @@ The **chrome** around the fill — ring, radius, check, label gap — is entirel
 because objects cannot be attributes; `selected` and `unavailable` are attributes.
 
 ## When to use
-- Choosing a **material, finish or colour** from a catalogue: cabinet finish, countertop, hardware.
+- Choosing a **material, finish or color** from a catalogue: cabinet finish, countertop, hardware.
 - Any grid where the **image is the choice** and a text label alone would not communicate it.
 
 ## When not to use
 - **A named non-visual option** → use **Radio** or **SelectionCard**.
 - **Displaying a material without choosing it** → that is a thumbnail, not a swatch.
-- **Brand or UI colour** → swatches are for product data; UI colour lives in the token system.
+- **Brand or UI color** → swatches are for product data; UI color lives in the token system.
 
 ## States
 `default` · `hover` · `selected` · `unavailable` · `loading` · `image-failure`.
 <Canvas of={SwatchStories.Selected} />
 <Canvas of={SwatchStories.Unavailable} />
 
-Selection is signalled by **both a ring and a check glyph**, never colour alone — a swatch fill can
-be any colour, so a colour-only selected state would be invisible against the wrong material.
+Selection is signalled by **both a ring and a check glyph**, never color alone — a swatch fill can
+be any color, so a color-only selected state would be invisible against the wrong material.
 
 Image failure is a real state, not an edge case: catalogue imagery is remote. The component
 degrades to a broken-image glyph rather than an empty box.
@@ -59,7 +59,7 @@ extended rather than duplicated in the app:
 
 ## Accessibility
 - `role="button"` with `aria-pressed` — it is a toggle, not a link.
-- The accessible name is **material + finish + price**, not just a colour name. "Oak, natural,
+- The accessible name is **material + finish + price**, not just a color name. "Oak, natural,
   included" is usable; "Swatch 3" is not.
 - Selection is ring plus check, satisfying 1.4.1.
 - `unavailable` must be announced, not only greyed.

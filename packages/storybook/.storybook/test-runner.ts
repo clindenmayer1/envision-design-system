@@ -7,7 +7,7 @@ import AxeBuilder from '@axe-core/playwright';
  *
  * For EVERY story the runner first executes the story's `play` function (the interaction test —
  * keyboard, focus, activation). This hook then runs axe against the rendered story, scoped to the
- * **WCAG 2.2 AA** rule set (not axe's "best-practice" rules), in real Chromium — so colour-contrast
+ * **WCAG 2.2 AA** rule set (not axe's "best-practice" rules), in real Chromium — so color-contrast
  * and rendered ARIA (which the happy-dom unit layer cannot evaluate) ARE checked here.
  *
  * Docs pages are skipped for a11y (prose, not fixtures — their embedded stories are tested
