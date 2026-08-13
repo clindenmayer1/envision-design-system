@@ -10,7 +10,7 @@ interface Args {
 }
 
 const meta: Meta<Args> = {
-  title: 'Components/Link',
+  title: 'Components/Navigation/Link',
   component: 'envision-link',
   tags: ['autodocs'],
   argTypes: {
@@ -18,13 +18,13 @@ const meta: Meta<Args> = {
     label: { control: 'text' },
     variant: { control: 'inline-radio', options: ['inline', 'standalone'] },
     directionIcon: { control: 'boolean', description: 'Trailing directional arrow (RTL-aware).' },
-    disabled: { control: 'boolean', description: 'Only when semantically appropriate — drops href + tab order.' },
+    disabled: { control: 'boolean', description: 'Only when semantically appropriate. Drops the href and the tab order.' },
   },
   args: { href: '#plans', label: 'View all plans', variant: 'inline', directionIcon: false, disabled: false },
   render: (a) => html`
     <envision-link href=${a.href} label=${a.label} variant=${a.variant} ?direction-icon=${a.directionIcon} ?disabled=${a.disabled}></envision-link>
   `,
-  parameters: { docs: { description: { component: 'Navigation — `<envision-link>`, a real `<a href>`. Use for moving between pages/views; use **Button** for actions and **IconButton** for icon-only actions.' } } },
+  parameters: { docs: { description: { component: 'Navigation, `<envision-link>`, a real `<a href>`. Use for moving between pages/views; use **Button** for actions and **IconButton** for icon-only actions.' } } },
 };
 export default meta;
 type Story = StoryObj<Args>;

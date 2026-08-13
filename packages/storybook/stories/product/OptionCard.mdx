@@ -1,0 +1,96 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/blocks';
+import * as OptionCardStories from './OptionCard.stories';
+
+<Meta of={OptionCardStories} />
+
+# OptionCard
+
+## Overview
+`<envision-option-card>` is the **selection-row opener** in the RightRail. It shows the currently
+chosen option (thumb, title, note) and opens the selection tray for that category. It is the
+spine of the Customize tab.
+
+<Canvas of={OptionCardStories.Default} />
+
+## Anatomy
+`card` (a real `<button>`) → `thumb` · `title` · `note` · `chevron`.
+
+The **whole card is one button**. There is no nested interactive element, which is a deliberate
+accessibility decision recorded in `ACCESSIBILITY.md`: a card with a button inside a button is
+invalid HTML and produces an unpredictable tab order.
+
+## When to use
+- A **category row that opens a tray**: Cabinet Style, Countertop, Hardware.
+- Anywhere the user needs to see the current choice and change it in one target.
+
+## When not to use
+- **Choosing the material itself** → that happens in the tray, with **MaterialSwatch**.
+- **A row that does not open anything** → use plain content; the chevron promises a destination.
+- **A package** → use **PackageCard**, which carries price and multiple materials.
+
+## The note carries the price signal
+`note` is either `Included` or `+$X`. The **upgrade** styling applies automatically when the note
+is not `Included`, so pricing emphasis is derived from content rather than set by a second prop.
+<Canvas of={OptionCardStories.Upgrade} />
+
+## States
+`default` · `hover` · `pressed` · `selected/active` · `loading` · `price-pending`.
+
+`active` means the tray is currently open **for this card**, which is why it reads as selected
+while the tray is up:
+<Canvas of={OptionCardStories.Active} />
+
+`price-pending` is a real product state, because pricing resolves asynchronously and the card must not
+show a wrong number while it does:
+<Canvas of={OptionCardStories.PricePending} />
+
+## The media slot exists because of the 3D viewport
+The shipped rail renders a **live 3D `PullThumb`** inside the thumb for door and pull previews.
+No background-image API can express that, so the component publishes a `media` slot and a
+`thumb-shape="portrait"` variant. This was added to the design system rather than worked around in
+the app. The alternative was a parallel card implementation, which the system forbids.
+
+## Behaviour
+The card is a button: `Enter` and `Space` open the tray. It emits a composed `open` event. If
+`onOpen` is absent the card cycles through its options instead, so it is still useful standalone.
+
+## Accessibility
+- The entire card is a real `<button>`, giving one target, one tab stop and the correct role for free.
+- The accessible name should read as the whole row: category, current choice, and price
+  implication.
+- Selection/active is ring plus styling, not color alone.
+
+## Responsive
+The card is full-width within the rail and travels unchanged into the mobile sheet below 1024px.
+Its content wraps rather than truncating, so long material names stay readable.
+
+## API
+<Controls of={OptionCardStories.Default} />
+
+**Events:** `open` (composed).
+
+## Token relationships
+| Part | Token |
+|---|---|
+| Ring states | `--envision-t3-option-card-ring-rest` / `-ring-hover` / `-ring-pressed` / `-ring-selected` |
+| Surface | `--envision-t2-color-background-surface-warm-default` |
+| Padding | `--envision-t2-spacing-inset-control` (12) |
+| Text gap | `--envision-t3-option-card-text-gap` |
+
+The ring is drawn as a `box-shadow` spread rather than a border, so it does not affect layout when
+the state changes. `--envision-t3-option-card-color-shadow` is published but **not consumed** by
+this component. It is a leftover from an earlier design.
+
+## Implementation
+```tsx
+import { OptionCard } from '@envision/react';
+<OptionCard title="Cabinet Style" note="Included" options={styles} value={value} onOpen={openTray} />
+```
+
+## Realistic Envision example
+The Customize tab's real stack of category rows:
+<Canvas of={OptionCardStories.RealUseCase_Stack} />
+
+## Related
+**RightRail** (its container) · **MaterialSwatch** (what the tray contains) · **BottomActionTray**
+(specified, not yet implemented).

@@ -44,7 +44,7 @@ here; if it's about *judgement, process, or the system as a whole*, it lives on 
 - Confirms real behaviour a static frame can’t: focus order, keyboard, loading, content overflow,
   and the RightRail’s responsive rail→sheet re-composition.
 - Use the **Backgrounds**, **Viewport**, and **Theme** toolbars to check surfaces, breakpoints, and
-  light/dark. Verify that selection/status are never colour-only (ring + check + label).
+  light/dark. Verify that selection/status are never color-only (ring + check + label).
 
 ## Scripts
 

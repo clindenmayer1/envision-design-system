@@ -2,7 +2,7 @@ import { EnvisionElement } from '../base/element.js';
 import { css } from '../base/css.js';
 
 /**
- * Envision Badge — `<envision-badge>`. Count or status indicator.
+ * Envision Badge, `<envision-badge>`. Count or status indicator.
  *
  * Registry contract → "badge":
  *   props:  tone('neutral'|'brand'|'info'|'success'|'warning'|'error'=neutral) ·

@@ -37,15 +37,15 @@ function ensureOutwardNormals(mesh: THREE.Mesh): void {
 interface WoodCfg {
   diff: string
   color?: string // optional multiply tint (only to darken; default white)
-  tone: string // the diffuse's mean colour = this wood's overall tone (used to recolour the floor)
+  tone: string // the diffuse's mean color = this wood's overall tone (used to recolor the floor)
   repeat?: number // optional texture-repeat multiplier (>1 shrinks the grain pattern; this
   // source has a coarser native grain than oak/walnut, so maple scales its pattern down)
 }
 const WOOD_FINISHES: Record<string, WoodCfg> = {
   // Softened diffuse: grain contrast reduced ~30%, orange/yellow cast trimmed
   // (desaturated) so the oak reads as muted honey-beige rather than synthetic orange.
-  // `tone` is the measured mean of each diffuse — the canonical wood colour, reused to
-  // recolour the floor so it matches the selected cabinet wood (colour only).
+  // `tone` is the measured mean of each diffuse — the canonical wood color, reused to
+  // recolor the floor so it matches the selected cabinet wood (color only).
   'natural-oak': { diff: '/textures/oak/oak_diff_soft_2k.jpg', tone: '#99856f' },
   'white-oak': { diff: '/textures/oak/oak_diff_white_soft_2k.jpg', tone: '#a89888' },
   'warm-walnut': { diff: '/textures/walnut/walnut_diff_soft_2k.jpg', tone: '#654337' },
@@ -53,7 +53,7 @@ const WOOD_FINISHES: Record<string, WoodCfg> = {
   'warm-maple': { diff: '/textures/maple/maple_diff_soft_2k.jpg', tone: '#6b5446', repeat: 1.5 },
 }
 
-/** The canonical tone (mean diffuse colour) for a wood finish id, or null if not wood. */
+/** The canonical tone (mean diffuse color) for a wood finish id, or null if not wood. */
 export function woodFinishTone(id: string): string | null {
   return WOOD_FINISHES[id]?.tone ?? null
 }
@@ -72,11 +72,11 @@ export function isWoodFinish(opt: Option): boolean {
   return !!WOOD_FINISHES[opt.id]
 }
 
-// Per-panel colour variation — VERY subtle multiply tints. Kept close to white so the
-// cabinetry reads as an even colour throughout (user wants even colour) with only a
+// Per-panel color variation — VERY subtle multiply tints. Kept close to white so the
+// cabinetry reads as an even color throughout (user wants even color) with only a
 // whisper of warm/cool veneer difference, not visible patchwork. The grain pattern still
 // varies per panel (offset/scale/mirror in projectBoxUVs) so it doesn't read as one
-// printed texture even though the colour is near-uniform.
+// printed texture even though the color is near-uniform.
 const WOOD_PANEL_TINTS = [
   '#ffffff', // neutral
   '#fefcf9', // barely warm
@@ -94,7 +94,7 @@ function woodPanelTint(mesh: THREE.Mesh): THREE.Color {
   return _tintC
 }
 
-// Optional per-mesh tint gives each panel its own subtle colour; called once per mesh
+// Optional per-mesh tint gives each panel its own subtle color; called once per mesh
 // in applyFinish (cheap — the diffuse texture itself is shared/cached).
 function makeWoodMaterial(opt: Option, mesh?: THREE.Mesh): THREE.MeshPhysicalMaterial {
   const cfg = WOOD_FINISHES[opt.id]
@@ -105,7 +105,7 @@ function makeWoodMaterial(opt: Option, mesh?: THREE.Mesh): THREE.MeshPhysicalMat
   // URL and only this finish uses it. RepeatWrapping is already set in loadWoodDiff.
   if (cfg.repeat) diff.repeat.set(cfg.repeat, cfg.repeat)
   return new THREE.MeshPhysicalMaterial({
-    map: diff, // diffuse carries the colour
+    map: diff, // diffuse carries the color
     color,
     roughness: 0.5, // smooth finished veneer (no bump/normal — stays satin, not raw lumber)
     metalness: 0,
@@ -284,7 +284,7 @@ export function applyFinish(
   const useOriginal = !finish || finish.id === 'original'
   const wood = !useOriginal && isWoodFinish(finish as Option)
   // Painted finishes share one material; wood gets a per-mesh instance so each panel
-  // can carry its own subtle colour variation (see makeWoodMaterial / woodPanelTint).
+  // can carry its own subtle color variation (see makeWoodMaterial / woodPanelTint).
   const sharedMat = !useOriginal && !wood ? makeFinishMaterial(finish as Option) : null
   eachMesh(
     nodes,

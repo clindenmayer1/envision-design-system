@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/web-components';
 
-// THE production artifacts — no approximations.
+// THE production artifacts, no approximations.
 import '@envision/tokens/css'; // production design tokens (--envision-t1/t2/t3-*)
 import '@envision/components'; // registers every <envision-*> custom element
 
@@ -21,7 +21,7 @@ const preview: Preview = {
         { name: 'brand', value: '#29594f' },
       ],
     },
-    // Responsive behavior — the real Envision breakpoints (SYSTEM_SPEC §6).
+    // Responsive behavior, the real Envision breakpoints (SYSTEM_SPEC §6).
     viewport: {
       viewports: {
         mobile: { name: 'Mobile (390)', styles: { width: '390px', height: '844px' } },
@@ -34,23 +34,34 @@ const preview: Preview = {
       // WCAG 2.2 AA is the Envision target (ACCESSIBILITY.md).
       config: { rules: [{ id: 'color-contrast', enabled: true }] },
     },
+    // Sidebar organisation follows the canonical component taxonomy published by the design
+    // system (component-registry.json → meta.componentTaxonomy). The seven categories are held
+    // in that fixed order; components inside each are alphabetised by Storybook's default
+    // comparator, which is what the trailing '*' delegates to.
     options: {
       storySort: {
         order: [
           'Introduction',
-          ['Overview', 'Using this Storybook', 'Storybook vs the docs site'],
+          ['Overview', 'How Envision is documented', 'Using this Storybook', 'Component index'],
           'Foundations',
-          ['Color', 'Typography', 'Spacing & Radius', 'Elevation & Motion'],
+          ['Tokens', 'Color', 'Typography', 'Spacing & Radius', 'Border', 'Elevation & Motion', 'Iconography'],
           'Components',
-          ['Button', 'IconButton', 'Link', 'Label', 'Input', 'Checkbox', 'Radio', 'Switch', 'Badge', 'Tab'],
-          'Product Components',
-          'Patterns',
+          [
+            'Actions',
+            'Inputs & Selection',
+            'Navigation',
+            'Data Display',
+            'Feedback & Guidance',
+            'Panels',
+            'Status & Progress',
+            '*',
+          ],
           '*',
         ],
       },
     },
   },
-  // Theme + brand toolbars — Envision is white-label (theme mode + brand mode).
+  // Theme + brand toolbars, Envision is white-label (theme mode + brand mode).
   globalTypes: {
     theme: {
       description: 'Color scheme',
@@ -68,7 +79,7 @@ const preview: Preview = {
   },
   decorators: [
     (story, context) => {
-      // Apply the theme the same way the product does — via a data attribute on the root.
+      // Apply the theme the same way the product does, via a data attribute on the root.
       document.documentElement.dataset.theme = context.globals.theme ?? 'light';
       return story();
     },

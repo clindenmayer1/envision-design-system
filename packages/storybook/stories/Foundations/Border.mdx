@@ -1,0 +1,78 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Foundations/Border" />
+
+# Border
+
+Border is its own foundation rather than a subsection of color or shape, following Polaris. It
+covers two independent axes: **width** and **radius**. Border *color* lives in the color
+foundation as `color/border/*` roles.
+
+## Width
+
+| Role | Value | Use |
+|---|---|---|
+| `--envision-t2-border-width-none` | 0 | Explicitly removing a border |
+| `--envision-t2-border-width-default` | 1px | The hairline. Almost every border in Envision. |
+| `--envision-t2-border-width-thin` | 1.5px | Rare optical correction |
+| `--envision-t2-border-width-emphasis` | 2px | Selected states, active indicators |
+| `--envision-t2-border-width-focus` | 2px | The focus ring, always |
+
+`emphasis` and `focus` are both 2px but are **separate roles on purpose**. They change for
+different reasons: focus width is an accessibility commitment, emphasis is a visual-design choice.
+Collapsing them would mean a design tweak could silently weaken the focus indicator.
+
+<div style={{ display: 'flex', gap: 24, alignItems: 'flex-end', padding: '20px 0 28px' }}>
+  {['default', 'thin', 'emphasis'].map((w) => (
+    <div key={w} style={{ textAlign: 'center' }}>
+      <div style={{
+        width: 96, height: 56,
+        border: `var(--envision-t2-border-width-${w}) solid var(--envision-t2-color-border-default-default)`,
+        borderRadius: 'var(--envision-t2-border-radius-control)',
+      }} />
+      <code style={{ fontSize: 11 }}>{w}</code>
+    </div>
+  ))}
+</div>
+
+## Radius
+
+Radius is **role-named by what it wraps**, not by size. Reach for the role that matches the
+element, and the value follows.
+
+<div style={{ display: 'grid', gap: 20, gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', padding: '16px 0 28px' }}>
+  {[
+    ['control-xs', '2'], ['control-sm', '4'], ['control', '6'],
+    ['container-sm', '8'], ['container-md', '10'], ['container-default', '12'],
+    ['container-menu', '14'], ['container-lg', '16'], ['panel', '16'],
+    ['card', '12'], ['modal', '12'], ['pill', 'pill'], ['circular', 'full'],
+  ].map(([name, px]) => (
+    <div key={name}>
+      <div style={{
+        height: 56,
+        background: 'var(--envision-t2-color-background-surface-sunken, #edeae4)',
+        border: '1px solid var(--envision-t2-color-border-default-default)',
+        borderRadius: `var(--envision-t2-border-radius-${name})`,
+      }} />
+      <div style={{ fontSize: 12, marginTop: 6 }}><strong>{name}</strong> · {px}</div>
+    </div>
+  ))}
+</div>
+
+### The one that trips people up
+The primary CTA uses **`container-md` (10)**, not `control` (6). The shipped website's buttons are
+10, which is container-scale, so the button reads as a small container rather than a control. It is
+documented on the Button page too, because it looks like a mistake until you know.
+
+### Rules
+- **Never author a raw radius.** `border-radius: 8px` in product code is a bug even when 8 is the
+  right number, because it will not follow the system when the role changes.
+- `circular` is for genuinely circular things (avatars, dots). `pill` is for things whose radius
+  should track their height (badges, chips). They are not interchangeable.
+- `container-xs` is `3px`, a literal rather than an alias. It is the one radius with no primitive behind
+  it, which is a small inconsistency worth knowing about rather than papering over.
+
+## Border color
+Border color is not here. It lives in **Foundations → Color** as the `color/border/*` roles
+(`default`, `focus`, `brand`, `error`, and the selection-ring ramp). Keeping width and color on
+separate axes is what lets a focus ring change color per theme without changing thickness.

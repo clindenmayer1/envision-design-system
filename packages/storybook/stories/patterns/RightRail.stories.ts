@@ -16,12 +16,12 @@ const body = () => html`
 `;
 
 const meta: Meta = {
-  title: 'Patterns/RightRail',
+  title: 'Components/Panels/RightRail',
   component: 'envision-right-rail',
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
-    docs: { description: { component: 'The configurator side panel shell — `<envision-right-rail>`. Header + tabs (Customize / Packages), a scrollable **slotted** body, and a sticky footer (total slot + Apply). It is `role=complementary` on desktop and **re-composes into a modal sheet** (`role=dialog aria-modal`, focus-trapped, Esc-to-close, focus returned) at ≤1024px — the same API, not a shrunken rail. Body content is slotted, so the rail is a reusable shell, not coupled to the kitchen domain.' } },
+    docs: { description: { component: 'The configurator side panel shell, `<envision-right-rail>`. Header + tabs (Customize / Packages), a scrollable **slotted** body, and a sticky footer (total slot + Apply). It is `role=complementary` on desktop and **re-composes into a modal sheet** (`role=dialog aria-modal`, focus-trapped, Esc-to-close, focus returned) at ≤1024px, using the same API rather than a shrunken rail. Body content is slotted, so the rail is a reusable shell, not coupled to the kitchen domain.' } },
   },
 };
 export default meta;
@@ -39,11 +39,11 @@ export const Rail: Story = {
 };
 
 /**
- * Loading — the body is dimmed and marked aria-busy while content resolves.
+ * Loading: the body is dimmed and marked aria-busy while content resolves.
  *
  * DOCUMENTED A11Y EXCEPTION: the transient opacity dim reduces text contrast below AA *while
- * loading only*; content passes contrast at rest. Colour-contrast is scoped-off for this one
- * story. The proper fix — skeleton placeholders (no dimmed real text) — is a tracked follow-up in
+ * loading only*; content passes contrast at rest. Color-contrast is scoped-off for this one
+ * story. The proper fix, skeleton placeholders with no dimmed real text, is a tracked follow-up in
  * ACCESSIBILITY-CONTRACTS.md.
  */
 export const Loading: Story = {
@@ -58,7 +58,7 @@ export const Loading: Story = {
 };
 
 /**
- * Mobile sheet — the SAME component, forced into its sheet presentation and opened. It becomes a
+ * Mobile sheet: the SAME component, forced into its sheet presentation and opened. It becomes a
  * modal dialog: focus moves in, Tab is trapped across header → body → Apply, Esc closes, and focus
  * returns to the opener. (Switch the Viewport toolbar to ≤1024 to see this happen automatically.)
  */

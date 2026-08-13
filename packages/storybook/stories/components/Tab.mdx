@@ -1,0 +1,98 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/blocks';
+import * as TabStories from './Tab.stories';
+
+<Meta of={TabStories} />
+
+# RightRail/Tab
+
+## Overview
+`<envision-tab>` is a **single tab item** with an active underline, used for the Customize and Packages
+switch in the RightRail, and general tabs elsewhere. It switches which panel is shown **in place**;
+it does not navigate.
+
+<Canvas of={TabStories.Default} />
+
+## Why the Tab ships but Tabs does not
+`Tabs`, the container, is a **specified but not-yet-designed** component in the registry, so it is
+deliberately not built here. Rather than ship a primitive that is only accessible once a container
+arrives, the Tab keeps itself fully keyboard-operable on its own:
+
+- it coordinates with sibling `<envision-tab>` elements under the same parent
+- **roving tabindex** plus `Arrow` / `Home` / `End`
+- selection follows focus (automatic activation, per APG)
+- it emits a composed `select` event so a host can show the matching panel
+
+Wrap the row in an element with `role="tablist"` for full APG semantics. When `Tabs` is designed,
+it will own that wrapper and this coordination moves up.
+
+## Anatomy
+`container` → `label` · `indicator` (the underline). The indicator is a bottom border driven by a
+T3 token, not a decorative element.
+
+## When to use
+- Switching between **peer views of the same object**: Customize and Packages for one room.
+- The panels are few, mutually exclusive, and the user will move between them repeatedly.
+
+## When not to use
+- **Navigating to a different page** → use **Link** or **GlobalNav**.
+- **More than a handful of panels**, or panels that need descriptions → use a menu or a list.
+- **Filtering a list** → tabs imply different content, not the same content narrowed.
+
+## States
+`default` · `hover` · `selected` · `disabled`.
+<Story of={TabStories.Disabled} />
+Selection is carried by the **underline and the text weight/color together**, so it is not
+color-only.
+
+## In a tablist
+<Canvas of={TabStories.Tablist} />
+This is the intended composition until `Tabs` exists: a `role="tablist"` wrapper containing sibling
+tabs, which discover each other and share one tab stop.
+
+## Behaviour
+`Left` / `Right` move between tabs and select as they go. `Home` / `End` jump to the first and last.
+`Tab` enters the group at the selected tab and leaves it on the next press.
+
+## Accessibility
+- `role="tab"` with `aria-selected`; the tab should reference its panel via `aria-controls`.
+- Roving tabindex means the group is one tab stop, per APG.
+- The wrapper must carry `role="tablist"`, and each panel `role="tabpanel"`.
+
+## Responsive
+The rail's tabs stay side by side at every breakpoint; when the RightRail becomes a mobile sheet
+below 1024px the tabs travel with it unchanged.
+
+## API
+<Controls of={TabStories.Default} />
+
+**Events:** `select` (composed), carrying the tab's label.
+
+## Token relationships
+| Part | Token |
+|---|---|
+| Selected text | `--envision-t3-tab-selected-color-content-default` |
+| Indicator | `--envision-t3-tab-selected-color-indicator-default` |
+| Rest text | `--envision-t2-color-content-tertiary-default` |
+| Padding | `--envision-t2-spacing-container-padding-note` block |
+
+## Known discrepancy
+The shipped website's tab padding is 16 top and bottom (14 before the rule-of-8s change), which is
+what this component implements. The **Figma `Tabs` master carries padding 0** and spaces its
+indicator with an 8px `itemSpacing` instead. Figma and the website disagree here; it is logged for
+reconciliation rather than silently resolved in either direction.
+
+## Implementation
+```html
+<div role="tablist">
+  <envision-tab label="Customize" selected></envision-tab>
+  <envision-tab label="Packages"></envision-tab>
+</div>
+```
+```tsx
+import { Tab } from '@envision/react';
+<Tab label="Customize" selected={tab === 'customize'} onSelect={() => setTab('customize')} />
+```
+
+## Related
+**RightRail** (its primary host) · **Tabs** (the specified container) · **Link** (navigation
+instead of panel switching).

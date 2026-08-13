@@ -4,7 +4,7 @@ import { ICON } from '../base/icons.js';
 import type { MaterialOption } from '../types.js';
 
 /**
- * Envision MaterialSwatch — `<envision-material-swatch>`. Selectable material/finish chip.
+ * Envision MaterialSwatch, `<envision-material-swatch>`. Selectable material/finish chip.
  *
  * Registry → "material-swatch":
  *   props:  option(MaterialOption, required) · selected(false) · unavailable(false) · onSelect(id)

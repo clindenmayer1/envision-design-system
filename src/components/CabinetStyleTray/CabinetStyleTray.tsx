@@ -70,8 +70,8 @@ export default function CabinetStyleTray({ open, options, value, onSelect, onClo
 
   // Click outside the tray closes it. Deferred a tick so the same click that opened
   // the tray (on the rail card) doesn't immediately close it. EXCEPTION: clicking a
-  // colour/finish chip (the rail swatches) keeps the tray open & in place, so you can
-  // recolour while comparing styles.
+  // color/finish chip (the rail swatches) keeps the tray open & in place, so you can
+  // recolor while comparing styles.
   useEffect(() => {
     if (!open) return
     const onDown = (e: PointerEvent) => {

@@ -16,13 +16,13 @@ interface ButtonArgs {
 }
 
 const meta: Meta<ButtonArgs> = {
-  title: 'Components/Button',
+  title: 'Components/Actions/Button',
   component: 'envision-button',
   tags: ['autodocs'],
   argTypes: {
     variant: { control: 'inline-radio', options: ['primary', 'outline', 'ghost'], description: 'Emphasis. Primary = brand CTA; outline = neutral secondary; ghost = low-emphasis.' },
     size: { control: 'inline-radio', options: ['sm', 'md', 'lg'] },
-    label: { control: 'text', description: 'Accessible label — the button’s name (required).' },
+    label: { control: 'text', description: 'Accessible label, the button’s name (required).' },
     leadingIcon: { control: 'text', description: 'Material Symbols name rendered before the label.' },
     trailingIcon: { control: 'text', description: 'Material Symbols name rendered after the label.' },
     disabled: { control: 'boolean', description: 'Not focusable; blocks activation.' },
@@ -51,7 +51,7 @@ const meta: Meta<ButtonArgs> = {
     docs: {
       description: {
         component:
-          'The Envision **Button** — `<envision-button>`. A real `<button>` in a shadow root, so keyboard ' +
+          'The Envision **Button**, `<envision-button>`. A real `<button>` in a shadow root, so keyboard ' +
           'activation, disabled focus behaviour and form semantics come from the platform. Styled entirely ' +
           'with production tokens (14px / 600 / brand-CTA radius 10; outline = neutral hairline secondary).',
       },
@@ -105,13 +105,13 @@ export const Loading: Story = { args: { loading: true, label: 'Saving…' } };
 /** Disabled removes the control from the tab order and blocks activation. */
 export const Disabled: Story = { args: { disabled: true } };
 
-/** Stretches to fill its container — used for the RightRail apply action and mobile CTAs. */
+/** Stretches to fill its container, used for the RightRail apply action and mobile CTAs. */
 export const FullWidth: Story = {
   args: { fullWidth: true },
   decorators: [(s) => html`<div style="width:360px; padding:16px; background:var(--envision-t2-color-background-surface-warm-default);">${s()}</div>`],
 };
 
-/** Content extremes — empty, one word, and a very long label (buttons should not wrap or break layout). */
+/** Content extremes: empty, one word, and a very long label (buttons should not wrap or break layout). */
 export const ContentExtremes: Story = {
   parameters: { controls: { disable: true } },
   render: () => html`
@@ -145,9 +145,9 @@ export const KeyboardActivation: Story = {
   },
 };
 
-/** A realistic Envision use case: the RightRail footer — primary apply + ghost cancel + a price total. */
+/** A realistic Envision use case: the RightRail footer, with a primary apply, a ghost cancel and a price total. */
 export const RealUseCase_RailFooter: Story = {
-  name: 'Realistic — RightRail footer',
+  name: 'Realistic: RightRail footer',
   parameters: { controls: { disable: true }, layout: 'padded' },
   render: () => html`
     <div style="display:flex; align-items:center; justify-content:space-between; gap:16px;

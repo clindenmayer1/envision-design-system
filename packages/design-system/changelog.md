@@ -4,6 +4,78 @@ Format: [version] — date. Keep-a-changelog style. Maturity in parentheses.
 
 ## [Unreleased]
 
+### Added — Button size scale (system-first)
+- Button had a `size` prop (`sm`/`md`/`lg`) that **the design system never defined**: the Figma
+  Button set had no Size axis, no per-size tokens existed, and the `sm`/`lg` rules were six raw
+  ratios (`0.6`, `0.75`, `1.35`, `1.25`, `0.875em`, `1.0625em`) — exactly the arbitrary values
+  `CLAUDE.md` rule 2 forbids. Because those ratios scaled from `control-padding-block` (8) while
+  `md` used `container-padding-note` (16), **`lg` rendered smaller than `md`** (44px vs 51px) and
+  `sm` shared `md`'s font size.
+- Fixed in system order rather than in code: **Figma variables → snapshot → tokens → component**.
+  - 9 new T3 variables in `T3 · Components`, following the existing `badge/medium/*` precedent:
+    `button/{small,medium,large}/{padding-block,padding-inline,font-size}/default`, each aliasing
+    a published T2 role or T1 step (12/12/12 · 16/16/14 · 20/24/16).
+  - The Figma Button set gains a **Size** variant (15 → 45 variants, Medium first so it stays the
+    default and no existing instance moves). Component property references were carried across the
+    clones; all 45 retain the `Label` text property.
+  - `Button.ts` now consumes those tokens and the six ratios are deleted.
+- Resolved geometry is **40 / 51 / 61** tall (Figma masters 38 / 49 / 59 plus the component's 1px
+  transparent border on each edge). `md` is unchanged, so no shipped button moved.
+- Registry records `size.figmaProp = "Size"` and `figmaProperties.Size`.
+- **Second demonstration of the visual-suite weakness:** `sm` changed 28→40px and `lg` 44→61px, and
+  `playwright --update-snapshots` left the baseline untouched because the delta stayed under
+  `maxDiffPixelRatio: 0.01`. The baseline had to be deleted to force regeneration. The threshold
+  still cannot be tightened until the Google-Fonts dependency is removed (see
+  `playwright.config.ts`).
+
+### Changed — Canonical component taxonomy (organisation + metadata only)
+- Adopted a seven-category taxonomy for public components, held in a fixed order:
+  **Actions · Inputs & Selection · Navigation · Data Display · Feedback & Guidance · Panels ·
+  Status & Progress**. Components are alphabetised within each category.
+- **One source of truth**: `component-registry.json` declares the list and order in
+  `meta.componentTaxonomy.order`, and membership in `category` on each component. Storybook and
+  every other consumer derive from it; nobody keeps a parallel list.
+  `scripts/verify-taxonomy.mjs` (wired into `npm run quality`) fails the build on drift.
+- The pre-existing `category` field held an **architectural** classification
+  (`control-primitive` / `product-component` / `composite-pattern` / `internal-subcomponent`).
+  That axis was preserved verbatim under the new key **`architecture`**; it was not deleted or
+  folded into the taxonomy. The two axes are independent, as are component taxonomy and token
+  taxonomy — a component's category never implies a token namespace.
+- Internal subcomponents (`_CardSurface`, `_MaterialThumb`) carry `category: null` alongside
+  `public: false`. They are not members of any public category.
+- **Registry inventory extended from 34 to 52 entries.** 18 components were built in the Figma
+  library but had never been registered: Avatar, Card / Header, Card / What's Next, Dialog,
+  Divider, Finish Group, Home Hero, Key Date Row, Notification Badge, Notification Bell,
+  Room Progress Item, Selection Indicator, Selection Tray, Style Tile, Table, Thumbnail, Top Bar,
+  Tray. They are recorded as **inventory records** (`specified: false`): identity, Figma master
+  name, owning page and category only. `architecture`, props, states and accessibility are left
+  `null`/absent because they have never been defined — the records make the library countable
+  without fabricating a specification. Inventory is now **50 public + 2 internal = 52**.
+- Three placements revised on review, each removing an inconsistency rather than expressing a
+  preference: **`Notification Badge` → Data Display** (it now sits beside `Badge`, which it
+  duplicates; the two had already drifted to different tone vocabularies, `Critical` vs `Error`,
+  and splitting them across categories concealed that). **`Dialog` → Panels** (a generic dialog is
+  a bounded region hosting arbitrary content, and `ColorPickerModal`, also a dialog, is
+  categorised by purpose — leaving `Dialog` under Feedback made the rule inconsistent with
+  itself). **`Notification Bell` → Actions** (a trigger that opens a panel, not a move between
+  destinations). Feedback & Guidance is now Tooltip alone, which is intended.
+- Storybook sidebar restructured to `Components/<Category>/<displayName>`, derived from the
+  registry; the former `Product Components/` and `Patterns/RightRail` groupings are retired.
+  Leaves use the published component name, so `Field` and `RightRail/Tab` appear under those
+  names even though they ship as `<envision-input>` / `Input` and `<envision-tab>` / `Tab`
+  (`codeName` records the relationship; no API changed). Storybook reads the slash in
+  `RightRail/Tab` as a path separator, so it renders as a nested group — the published name is
+  preserved verbatim.
+- 66 visual-regression baselines renamed to the new story ids. The images are byte-identical —
+  they were moved, never regenerated.
+- Figma: the COMPONENTS section is grouped by the same seven categories using divider pages plus
+  page order, with a `-- INTERNAL (private primitives)` group. All **44** component pages are
+  categorised; no holding group remains. Placement was decided by reading each page's **real
+  master component name**, not its page title — several pages own a master under a different name
+  (`Card / Option` owns `OptionCard`, `Dropdown` owns the component recorded above as
+  `RoomSelector`, `Tabs` owns both `Tab` and `Tabs`). No component, variant, property, instance,
+  style or variable binding was touched.
+
 ### Changed — Spacing scale (rule of 8s)
 - Removed the off-grid **`spacing/10`** and **`spacing/14`** primitives from the T1 scale.
   Re-pointed every alias: `10 → 12`, `14 → 16` (field-padding-block/inline, navigation-item
@@ -52,7 +124,7 @@ Format: [version] — date. Keep-a-changelog style. Maturity in parentheses.
 - Fixes: circular radius token → 999; RightRail anatomy width restored to 392; token-table CSS-var prefix.
 
 ### In progress — v4 component-by-component Tier-3 migration (real, not staged)
-- **OptionCard migrated end-to-end** (`OptionCard.css` → zero raw governed values): added a full `option-card/*` Tier-3 contract (padding, radius, ring-inset/width + colour, warm hover shadow, thumb radius + inset shadow, title/note/chevron type + gaps). Added Tier-1 `border-width/350` (3.5px tile-ring spread), `shadow/thumb-inset`, `shadow/option-hover` (warm) and Tier-2 roles `border-width/ring-tile`, `shadow/elevation-warm`, `shadow/thumb-inset`. **Measured value-parity: every resolved value equals the original** (ring #E2E2DD/#ABAB9D/#999988, 3.5px/2px ring, `0 2px 10px rgba(118,93,73,0.12)`, radius 6, thumb radius 4 + `inset 0 0 0 1px rgba(0,0,0,0.06)`, 14/1.2 title, 13/1.6 note, 20 chevron, 12/8/2 spacing). Only intrinsic thumbnail px geometry + `line-height:1` icon reset remain literal (structural, documented).
+- **OptionCard migrated end-to-end** (`OptionCard.css` → zero raw governed values): added a full `option-card/*` Tier-3 contract (padding, radius, ring-inset/width + color, warm hover shadow, thumb radius + inset shadow, title/note/chevron type + gaps). Added Tier-1 `border-width/350` (3.5px tile-ring spread), `shadow/thumb-inset`, `shadow/option-hover` (warm) and Tier-2 roles `border-width/ring-tile`, `shadow/elevation-warm`, `shadow/thumb-inset`. **Measured value-parity: every resolved value equals the original** (ring #E2E2DD/#ABAB9D/#999988, 3.5px/2px ring, `0 2px 10px rgba(118,93,73,0.12)`, radius 6, thumb radius 4 + `inset 0 0 0 1px rgba(0,0,0,0.06)`, 14/1.2 title, 13/1.6 note, 20 chevron, 12/8/2 spacing). Only intrinsic thumbnail px geometry + `line-height:1` icon reset remain literal (structural, documented).
 - **opacity category correction (source-verified)**: the source diagram defines no standalone Tier-1 `opacity` category, so the invented `opacity/muted` primitive was **removed from Figma** (T1 · Primitives) and JSON; `material-swatch/unavailable-opacity` repointed to a **component-specific direct `0.4`** (Figma T3 unaliased + JSON) — no other consumers existed.
 - **Fixed dangling reference**: `OptionSwatch.css` `material-swatch-item-gap` → `material-swatch-label-gap` (the T3 rename). **Global dangling sweep across all product CSS = 0 missing tokens.**
 - **Validated**: 432 tokens, 0 broken/0 circular; `npx vite build` ✓; every migrated component (OptionSwatch/PackagesTab/OptionCard) has 0 raw governed hex/rgba/px.

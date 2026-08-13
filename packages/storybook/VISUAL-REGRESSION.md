@@ -24,7 +24,7 @@ No external SaaS. Config: `playwright.config.ts`; spec: `visual/stories.spec.ts`
 ## What constitutes a failure
 - A story’s current render differs from its baseline beyond the tolerance
   (`maxDiffPixelRatio: 0.01`, with anti-aliasing tolerance). Any perceptible change to geometry,
-  colour, spacing, type, or layout trips it.
+  color, spacing, type, or layout trips it.
 - A **new story with no baseline** is not a silent pass — the run reports the missing snapshot; a
   baseline must be generated and committed.
 

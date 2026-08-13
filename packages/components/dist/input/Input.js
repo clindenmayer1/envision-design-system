@@ -2,7 +2,7 @@ import { EnvisionElement } from '../base/element.js';
 import { css } from '../base/css.js';
 import { tryAttachInternals, setFormValue, emitChange, emitInput } from '../base/internals.js';
 /**
- * Envision Input (Field) — `<envision-input>`.
+ * Envision Input (Field), `<envision-input>`.
  *
  * Registry contract → "field" (codeName Input):
  *   props:  type('text'|'email'|'search'|'number'|'price'|'password'=text) · value · label(required) ·
@@ -14,7 +14,7 @@ import { tryAttachInternals, setFormValue, emitChange, emitInput } from '../base
  *
  * Label, input, and messages all live in ONE shadow root, so `for`/`id`/`aria-describedby`
  * association works within scope. `price` maps to a text input with decimal inputmode (locale
- * formatting is product/content responsibility, not a control concern — SYSTEM_SPEC §8).
+ * formatting is product/content responsibility, not a control concern, SYSTEM_SPEC §8).
  */
 const styles = css `
   :host { display: block; }

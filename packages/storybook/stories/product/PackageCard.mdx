@@ -1,0 +1,112 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/blocks';
+import * as PackageCardStories from './PackageCard.stories';
+
+<Meta of={PackageCardStories} />
+
+# PackageCard
+
+## Overview
+`<envision-package-card>` presents a **curated design package**, a pre-selected set of finishes
+sold as one choice. It is the unit of the Packages tab: image, name, description, price, the
+materials included, and a way to customise from that starting point.
+
+<Canvas of={PackageCardStories.Default} />
+
+## The nested-control pattern, done validly
+This card has **two** actions: select the package, and customise it. That is the one case where a
+card legitimately contains more than one control, and it is easy to get wrong.
+
+The application's original card was a `<section role="button" tabindex="0">` with a nested button
+and a `stopPropagation` hack, a div-as-button containing a real button. This component fixes it
+structurally:
+
+- the **primary select target is a real `<button>`** covering media, name and price
+- **Customize is a separate sibling `<button>`**, not nested inside the first
+
+No `button`-in-`button`, no invalid HTML, no event-propagation workaround, and a tab order that
+matches the visual order. This is the pattern to copy whenever a card needs a secondary action.
+
+## Anatomy
+`card` → `media` (with lifecycle) · `badge?` · `name` · `description` · `price` · `materials`
+(six square texture tiles) · `Customize` action · `applied check?`.
+
+## When to use
+- Presenting **bundled selections** the homeowner picks as a whole.
+- Any grid where packages are compared side by side on image, price and contents.
+
+## When not to use
+- **A single material** → use **MaterialSwatch**.
+- **A category row that opens a tray** → use **OptionCard**.
+- **A package with no price or contents** → then it is a content card, not this component.
+
+## The image lifecycle is part of the component
+Package imagery is remote, so the card owns the full lifecycle rather than assuming success:
+**shimmer while loading → image ready → graceful fallback on error.** A package card with a
+collapsed or empty media region is a layout bug in a grid; handling it here means every consumer
+gets it right.
+
+## States
+`default` · `selected` · `popular` · `image-loading` · `image-ready` · `image-error` · `long-name`
+· `max-materials`.
+
+<Canvas of={PackageCardStories.Selected} />
+<Canvas of={PackageCardStories.Popular} />
+
+`popular` renders a **Badge** inside the card, so the system composes with itself rather than
+re-drawing a pill.
+
+## Content extremes are a supported state, not an edge case
+Package names come from a builder's catalogue and are not length-controlled:
+<Canvas of={PackageCardStories.LongName} />
+The name wraps and the card grows; the price stays baseline-aligned with the name row and the grid
+stays even.
+
+## Behaviour
+Clicking the primary button selects the package and emits `select`. Customize emits `customize`
+separately. Both are real buttons, so `Enter` and `Space` work natively on each.
+
+## Accessibility
+- Two sibling buttons, each with its own accessible name; the primary name includes the package
+  name and price so it is meaningful out of context.
+- Selected state is a border plus an applied check, not color alone.
+- The materials tiles are decorative previews and are hidden from assistive technology; the
+  contents are conveyed in text.
+
+## Responsive
+The card fills its grid cell; the **grid** decides column count. Media holds its aspect ratio via
+`--envision-t3-package-card-default-image-ratio`, so cards stay uniform as the grid reflows from
+three columns to one below 1080px.
+
+## API
+<Controls of={PackageCardStories.Default} />
+
+**Events:** `select` (composed) · `customize` (composed).
+
+## Token relationships
+| Part | Token |
+|---|---|
+| Surface | `--envision-t2-color-background-surface-default` / `-surface-warm-default` |
+| Border / selected | `--envision-t2-color-border-default-default` · `-border-strong-default` · `--envision-t2-border-width-default` |
+| Radius | `--envision-t2-border-radius-container-sm` · `-container-xs` · `-circular` |
+| Content gap | `--envision-t3-package-card-content-gap` |
+| Spacing | `--envision-t2-spacing-container-gap` · `-control-gap` · `-control-gap-tight` |
+| Elevation | `--envision-t2-elevation-flat` |
+| Focus | `--envision-t2-color-border-focus-default` / `--envision-t2-border-width-focus` |
+
+Note this component consumes almost entirely **T2 semantic roles**, with a single T3 token
+(`content-gap`). The `--envision-t3-package-card-*` family visible in the legacy application
+stylesheet is a **different, older set** and is not what ships.
+
+## Implementation
+```tsx
+import { PackageCard } from '@envision/react';
+<PackageCard pkg={pkg} selected={value === pkg.id} onSelect={setValue} onCustomize={customize} />
+```
+
+## Realistic Envision example
+The Packages tab grid:
+<Canvas of={PackageCardStories.RealUseCase_Grid} />
+
+## Related
+**Badge** (used internally for `Popular`) · **MaterialSwatch** (the individual finishes) ·
+**OptionCard** (the Customize tab's equivalent row).

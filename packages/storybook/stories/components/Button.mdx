@@ -1,17 +1,106 @@
 import { Meta, Canvas, Controls, Story } from '@storybook/blocks';
+import { useState, createElement } from 'react';
 import * as ButtonStories from './Button.stories';
 
 <Meta of={ButtonStories} />
 
+export const T = (n) => `var(--envision-${n})`;
+
+export const TabRow = ({ legend, value, onChange, options }) => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: T('t2-spacing-control-gap') }}>
+    <span
+      style={{
+        fontSize: T('t2-font-size-body-sm'),
+        fontWeight: T('t1-font-weight-600'),
+        color: T('t2-color-content-secondary-default'),
+      }}
+    >
+      {legend}
+    </span>
+    {/* Tab gap matches how the system composes a tablist: RightRail uses .tabs { gap: 0.5rem }
+        and the Tablist story uses 8px. */}
+    <div role="tablist" aria-label={legend} style={{ display: 'flex', gap: T('t2-spacing-control-gap') }}>
+      {/* createElement, not JSX: MDX routes unknown hyphenated tags through its component map,
+          which turns <envision-tab> into an undefined _component reference. */}
+      {options.map(([v, label]) =>
+        createElement('envision-tab', {
+          key: v,
+          label,
+          selected: value === v ? '' : undefined,
+          onClick: () => onChange(v),
+        }),
+      )}
+    </div>
+  </div>
+);
+
+export const ButtonPlayground = () => {
+  const [variant, setVariant] = useState('primary');
+  const [size, setSize] = useState('md');
+  return (
+    <div style={{ margin: `${T('t2-spacing-section-gap')} 0` }}>
+      {/* One tab bar, composed the way the system composes one: tabs share a hairline rail
+          (RightRail header, Tab "Tablist" story) rather than floating free. */}
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          gap: T('t2-spacing-subsection-gap'),
+          padding: `0 ${T('t2-spacing-control-gap')}`,
+          borderBottom: `${T('t2-border-width-default')} solid ${T('t2-color-border-subtle-default')}`,
+          marginBottom: T('t2-spacing-stack-gap'),
+        }}
+      >
+        <TabRow
+          legend="Type"
+          value={variant}
+          onChange={setVariant}
+          options={[['primary', 'Primary'], ['outline', 'Outline'], ['ghost', 'Ghost']]}
+        />
+        <TabRow
+          legend="Size"
+          value={size}
+          onChange={setSize}
+          options={[['sm', 'Small'], ['md', 'Medium'], ['lg', 'Large']]}
+        />
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: T('t2-spacing-stack-gap'),
+          minHeight: '8rem',
+          padding: T('t2-spacing-inset-panel'),
+          border: `${T('t2-border-width-default')} solid ${T('t2-color-border-default-default')}`,
+          borderRadius: T('t2-border-radius-panel'),
+          background: T('t2-color-background-surface-default'),
+        }}
+      >
+        {createElement('envision-button', { variant, size, label: 'Apply design' })}
+        <code style={{ fontSize: T('t1-font-size-12'), color: T('t2-color-content-tertiary-default') }}>
+          {`<envision-button variant="${variant}" size="${size}" label="Apply design">`}
+        </code>
+      </div>
+    </div>
+  );
+};
+
 # Button
 
 ## Overview
-`<envision-button>` triggers an **action** — submit, apply, select this design. It renders a real
+`<envision-button>` triggers an **action**, such as submit, apply or select this design. It renders a real
 `<button>` inside a shadow root, so keyboard activation, disabled focus behaviour and form
 semantics come from the platform. It is styled entirely with production tokens and reconciled to
 the shipped website (14px / 600, brand-CTA radius 10, outline = neutral hairline secondary).
 
-<Canvas of={ButtonStories.Default} />
+Switch Type and Size below and the button updates in place, with the controls kept above the frame
+so the change is always in view. The control strip is built from real `<envision-tab>` elements in
+two tablists, so the documentation is composed from the system it documents.
+
+<ButtonPlayground />
 
 ## Anatomy
 `container` → `leadingIcon?` · `label` · `trailingIcon?`. The label is the button’s accessible
@@ -31,17 +120,32 @@ replaces the intent while `loading`.
 ## Variants
 <Canvas of={ButtonStories.Variants} />
 `primary` = brand CTA (green fill). `outline` = neutral secondary (hairline border, dark text,
-surface fill) — this matches the website’s secondary buttons, **not** a brand-green outline.
+surface fill). This matches the website’s secondary buttons, **not** a brand-green outline.
 `ghost` = transparent, brand text, for lowest emphasis.
 
 ## Sizes
 <Canvas of={ButtonStories.Sizes} />
 
+Three sizes, backed by the Figma Button's **Size** variant and driven entirely by T3 tokens.
+
+| size | padding block / inline | font-size | rendered height |
+|---|---|---|---|
+| `sm` | 12 / 12 | 12 | 40px |
+| `md` (default) | 16 / 16 | 14 | 51px |
+| `lg` | 20 / 24 | 16 | 61px |
+
+Every value aliases an existing scale step, so the sizes sit on the 4pt grid. Heights are 2px
+taller than the Figma masters (38 / 49 / 59) because the component carries a 1px transparent border
+on all variants, so `primary` and `outline` align on a shared baseline.
+
+`md` is the base and is applied to `.btn` directly, not through a `:host([size])` rule, so a button
+with no `size` attribute is a medium.
+
 ## States
-- **default / hover / focus-visible / pressed** — from the platform + tokens; the focus ring is a
+- **default / hover / focus-visible / pressed**, from the platform and tokens; the focus ring is a
   2px brand ring (`--envision-t2-color-border-focus-default`).
-- **disabled** — not focusable, blocks activation. <Story of={ButtonStories.Disabled} />
-- **loading** — spinner replaces intent, `aria-busy=true`, re-activation blocked, but the control
+- **disabled**, not focusable and blocks activation. <Story of={ButtonStories.Disabled} />
+- **loading**, where a spinner replaces the intent, `aria-busy=true`, re-activation blocked, but the control
   **stays focusable**. <Story of={ButtonStories.Loading} />
 
 ## Behaviour
@@ -56,7 +160,7 @@ submit can’t occur. `fullWidth` stretches the button to its container (RightRa
 
 ## Content considerations
 Labels are short, action-first verbs (“Apply design”, not “Click here to apply”). Buttons don’t
-wrap — long labels stay on one line; if a label is long, shorten the copy rather than the button.
+wrap, so long labels stay on one line; if a label is long, shorten the copy rather than the button.
 <Canvas of={ButtonStories.ContentExtremes} />
 
 ## API
@@ -71,8 +175,8 @@ wrap — long labels stay on one line; if a label is long, shorten the copy rath
 | Outline border | `--envision-t2-color-border-default-default` (hairline) |
 | Outline / ghost text | `--envision-t2-color-content-primary` / `-brand` |
 | Radius (CTA) | `--envision-t2-border-radius-container-md` (10) |
-| Padding | `--envision-t1-spacing-16` block / `control-padding-inline` |
-| Type | `--envision-t1-font-size-14` / `--envision-t1-font-weight-600` |
+| Padding | `--envision-t3-button-{small,medium,large}-padding-block/-inline-default` |
+| Type | `--envision-t3-button-{small,medium,large}-font-size-default` / `--envision-t1-font-weight-600` |
 | Focus ring | `--envision-t2-color-border-focus-default` |
 
 ## Implementation
@@ -86,7 +190,7 @@ import { Button } from '@envision/react';
 ```
 
 ## Realistic Envision example
-The RightRail footer — primary apply + ghost cancel + a price total:
+The RightRail footer, with a primary apply, a ghost cancel and a price total:
 <Canvas of={ButtonStories.RealUseCase_RailFooter} />
 
 ## Interaction & keyboard tests

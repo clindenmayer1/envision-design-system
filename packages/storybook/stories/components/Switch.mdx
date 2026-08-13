@@ -1,0 +1,78 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/blocks';
+import * as SwitchStories from './Switch.stories';
+
+<Meta of={SwitchStories} />
+
+# Switch
+
+## Overview
+`<envision-switch>` is an **immediate on/off toggle**. Flipping it applies the change now, so there
+is no save step. That is the whole distinction from Checkbox, and it should drive which one you
+reach for.
+
+<Canvas of={SwitchStories.On} />
+
+## How it is built
+A native `<input type="checkbox">` carries the toggle behaviour and `Space` handling;
+`role="switch"` supplies the on/off semantics. The component adds **`Enter` to toggle**, because a
+native checkbox only responds to `Space` while the switch contract expects both.
+
+The on/off state also **shifts the thumb position**, so state is conveyed by position as well as
+color and survives greyscale.
+
+## Anatomy
+`container` → `track` · `thumb` · `label`. Label and input share one shadow root, so Switch does
+not need the separate **Label** component.
+
+## When to use
+- A **preference that takes effect immediately**: show dimensions, enable lighting, dark mode.
+- A binary control where the result is visible right away, so the user gets their own confirmation.
+
+## When not to use
+- **Anything submitted with a form** → use **Checkbox**. A switch that does not apply until you
+  press Save is lying about its own semantics.
+- **Choosing between two labelled alternatives** → use **Radio** or **RightRail/Tab**; a switch has
+  no room for two labels.
+- **Triggering an action** → use **Button**.
+
+## States
+<Canvas of={SwitchStories.States} />
+`on` · `off` · `focus-visible` · `disabled`.
+<Story of={SwitchStories.Off} /> <Story of={SwitchStories.Disabled} />
+
+## Behaviour
+`Space` and `Enter` both toggle. Clicking the label toggles. `disabled` blocks activation and
+removes the control from the tab order.
+
+Because the change is immediate, the product should **not** show a confirmation for a switch. If
+the action is dangerous enough to need confirming, it is not a switch.
+
+## Accessibility
+- `role="switch"` announces "on"/"off" rather than "checked"/"unchecked", which matches what the
+  control actually means.
+- The label is the accessible name and must describe the **thing being switched**, not the action:
+  "Show dimensions", not "Toggle dimensions".
+- State is position plus color, never color alone.
+- Focus ring is the shared 2px brand ring.
+
+## Responsive
+Intrinsic size at every breakpoint. On touch, extend the row's hit area rather than enlarging the
+track, so switches stay aligned in a settings list.
+
+## API
+<Controls of={SwitchStories.On} />
+
+**Events:** `change` (composed), carrying the new `checked` value.
+
+## Implementation
+```html
+<envision-switch label="Show dimensions" checked></envision-switch>
+```
+```tsx
+import { Switch } from '@envision/react';
+<Switch label="Show dimensions" checked={showDims} onChange={setShowDims} />
+```
+
+## Related
+**Checkbox** (pending, form-submitted) · **Radio** (one of a set) · **IconButton** with `selected`
+(an active tool, not a preference).

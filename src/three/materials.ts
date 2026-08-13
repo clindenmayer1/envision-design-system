@@ -43,7 +43,7 @@ export const BACKSPLASH_FINISHES: Option[] = [
   { id: 'textured-stone', label: 'Textured Stone', swatch: '#edeae2' },
 ]
 
-// Flooring = the four cabinet wood tones (ids match WOOD_FINISHES so the floor recolour
+// Flooring = the four cabinet wood tones (ids match WOOD_FINISHES so the floor recolor
 // reuses woodFinishTone). Each option shows the veneer thumbnail.
 export const FLOORING: Option[] = [
   // Woods grouped together, lightest → darkest …
@@ -63,7 +63,7 @@ export const FLOORING: Option[] = [
   { id: 'terracotta-hex', label: 'Terracotta Hexagon Tile', swatch: '#b06a4f', texture: '/textures/floor/terracottahex_thumb.jpg' },
 ]
 
-// The curated wall colours shown as chips in the rail. The 12th chip in the UI is a "+" that
+// The curated wall colors shown as chips in the rail. The 12th chip in the UI is a "+" that
 // opens the full Choose Wall Color picker (see WALL_COLOR_LIBRARY). The original five ids are
 // kept (packages reference them); six real Benjamin Moore neutrals round the row out to eleven.
 export const WALL_COLORS: Option[] = [
@@ -80,7 +80,7 @@ export const WALL_COLORS: Option[] = [
   { id: 'gray-cashmere', label: 'Gray Cashmere', swatch: '#cfd5cd' },
 ]
 
-// Resolve a wallColor id to its hex / label, whether it's a curated chip above or any colour
+// Resolve a wallColor id to its hex / label, whether it's a curated chip above or any color
 // picked from the full library modal.
 export function wallColorHex(id: string): string | undefined {
   return optionById(WALL_COLORS, id)?.swatch ?? wallLibraryById(id)?.hex

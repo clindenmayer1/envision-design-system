@@ -12,7 +12,7 @@ const flush = () => new Promise<void>((r) => setTimeout(r, 0));
 
 /**
  * Fast, headless accessibility layer. axe-core runs on each component in happy-dom and catches
- * ARIA/role/name/structure violations at unit speed. Colour-contrast, focus-visible painting and
+ * ARIA/role/name/structure violations at unit speed. Color-contrast, focus-visible painting and
  * real screen-reader behaviour need a rendering browser — those are covered by the Storybook
  * test-runner (a11y) layer and the manual review in ACCESSIBILITY-CONTRACTS.md, so the contrast
  * rule is disabled here (it cannot be evaluated without layout).

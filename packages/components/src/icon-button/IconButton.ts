@@ -2,10 +2,10 @@ import { EnvisionElement } from '../base/element.js';
 import { css } from '../base/css.js';
 
 /**
- * Envision IconButton — `<envision-icon-button>`. Icon-only action.
+ * Envision IconButton, `<envision-icon-button>`. Icon-only action.
  *
  * Registry contract → "icon-button":
- *   props:  icon(required) · accessibleName(string, REQUIRED — icon-only has no visible text) ·
+ *   props:  icon(required) · accessibleName(string, REQUIRED, icon-only has no visible text) ·
  *           variant('standard'|'subtle'=standard) · selected(false) · disabled(false) · tooltip?
  *   states: default · hover · focus-visible · selected · disabled
  *   a11y:   aria-label = accessibleName · aria-pressed when toggle · Enter/Space · tooltip Esc
@@ -108,7 +108,7 @@ export class EnvisionIconButton extends EnvisionElement {
     }
     this.#button.disabled = this.disabled;
     // Minimal tooltip via title; the richer APG tooltip (Esc-dismiss, hoverable) is the
-    // proposed Tooltip component — documented as a staged dependency.
+    // proposed Tooltip component, documented as a staged dependency.
     if (this.tooltip) this.#button.setAttribute('title', this.tooltip);
     else this.#button.removeAttribute('title');
   }

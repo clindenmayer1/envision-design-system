@@ -41,7 +41,7 @@ To support a new material category, you add **content** and pick the **thumb var
 
 1. Name by function (`Tray`, `Dropdown`, `Card`, `Swatch`), never by feature.
 2. The feature is an **instance** (content), not a component or a variant.
-3. What differs per use is a **variable** (aspect ratio, size, colour role) — documented and
+3. What differs per use is a **variable** (aspect ratio, size, color role) — documented and
    interchangeable — not a fork.
 4. Break this only when the *structure* itself differs, and document why.
 
@@ -67,7 +67,7 @@ for its own sake just churns the token pipeline, registries, and governance.
 |---|---|---|
 | `RoomSelector` | **renamed → `Dropdown`** | "Room" was one feature; the function is a dropdown. |
 | `CabinetStyleTray` | **renamed → `Tray`** | "Cabinet" was one of many tray uses; the function is a tray. |
-| `MaterialSwatch` | **keep** | "Material" is a **data family** (product-material data, paired with `MaterialCard`, per governance rule 7 — never flat hex chrome), not a feature. It already generalizes across cabinets, counters, paint, backsplash. Bare `Swatch` would lose that and collide with a generic UI colour swatch. |
+| `MaterialSwatch` | **keep** | "Material" is a **data family** (product-material data, paired with `MaterialCard`, per governance rule 7 — never flat hex chrome), not a feature. It already generalizes across cabinets, counters, paint, backsplash. Bare `Swatch` would lose that and collide with a generic UI color swatch. |
 | `OptionCard` | **keep** | "Option" *is* the function — a selectable option tile. |
 | `PackageCard` | **keep** | Generic composition (media + title + price + CTA); "package" is the content type, and there's no cleaner generic (`Card` collides with `OptionCard`). |
 | `RightRail` | **keep** | Named by layout position/function (a right-hand rail), like `Sidebar` — not a product feature. |

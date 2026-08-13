@@ -14,14 +14,14 @@ interface Args {
 }
 
 const meta: Meta<Args> = {
-  title: 'Components/IconButton',
+  title: 'Components/Actions/IconButton',
   component: 'envision-icon-button',
   tags: ['autodocs'],
   argTypes: {
     icon: { control: 'text', description: 'Material Symbols name (required).' },
-    accessibleName: { control: 'text', description: 'Accessible name — REQUIRED, since an icon-only control has no visible text.' },
+    accessibleName: { control: 'text', description: 'Accessible name. REQUIRED, since an icon-only control has no visible text.' },
     variant: { control: 'inline-radio', options: ['standard', 'subtle'] },
-    selected: { control: 'boolean', description: 'Toggle on — brand fill + aria-pressed.' },
+    selected: { control: 'boolean', description: 'Toggle on, giving a brand fill and aria-pressed.' },
     disabled: { control: 'boolean' },
     tooltip: { control: 'text' },
     onClick: { action: 'click', table: { category: 'Events' } },
@@ -39,7 +39,7 @@ const meta: Meta<Args> = {
     ></envision-icon-button>
   `,
   parameters: {
-    docs: { description: { component: 'Icon-only action — `<envision-icon-button>`. An accessible name is mandatory; `aria-pressed` appears only when it acts as a toggle. Used for close/back/save/overflow and 3D controls.' } },
+    docs: { description: { component: 'Icon-only action, `<envision-icon-button>`. An accessible name is mandatory; `aria-pressed` appears only when it acts as a toggle. Used for close/back/save/overflow and 3D controls.' } },
   },
 };
 export default meta;
@@ -70,9 +70,9 @@ export const Toggle: Story = {
 
 export const Disabled: Story = { args: { disabled: true, icon: 'delete', accessibleName: 'Delete' } };
 
-/** Realistic — a 3D-viewport control cluster (zoom / reset / fullscreen). */
+/** Realistic: a 3D-viewport control cluster (zoom / reset / fullscreen). */
 export const RealUseCase_ViewportControls: Story = {
-  name: 'Realistic — viewport controls',
+  name: 'Realistic: viewport controls',
   parameters: { controls: { disable: true } },
   render: () => html`
     <div style="display:inline-flex; gap:4px; padding:6px; border-radius:12px;

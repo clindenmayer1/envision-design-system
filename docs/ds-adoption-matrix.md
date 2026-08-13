@@ -13,7 +13,7 @@ Audit of the shipping application against the production design system. Numbers 
 | components fully migrated | **0 / 18** |
 | canonical `--envision-t1/t2/t3-*` references | 125 |
 | legacy token references | 93 |
-| **hardcoded design values** | **659** (colour 171 · length 355 · type 113 · shadow 20) |
+| **hardcoded design values** | **659** (color 171 · length 355 · type 113 · shadow 20) |
 
 The application imports the token package but is not meaningfully consuming the system: 96% of its
 UI is bespoke.
@@ -38,12 +38,12 @@ Classification key: **R** replace with DS component · **A** adopt product-speci
 | 1 | Global tokens | `src/styles/*` legacy layer, canonical imported but unused by most screens | `@envision/tokens` | 125 / 93 / — | T | Load canonical sheet first; retire legacy layer screen by screen | Low; layers are separately namespaced | Responsive sheet must load after base | none | **done** (rail scope) |
 | 2 | TopBar | bespoke `<header>` + 3 `<button>` + inline SVG | none shipping | 0 / 4 / 43 | T + C | Keep structure; nav items become `Tab`; icon actions become `IconButton`; tokens throughout | Nav is brand-critical; verify wordmark + avatar untouched | collapses under 1024 | nav landmark, current-page state | pending |
 | 3 | ViewSwitcher | 3 segmented `<button>` | `Tab` (fitted) | 0 / 3 / 23 | R | Replace with `Tab` in a tablist | Segmented look differs from underline tabs — needs review before swapping | fixed | needs `role=tablist` + arrows | **review** |
-| 4 | RoomSelector | `<button>` trigger + `<ul>/<li>` menu with per-room status | none shipping | 0 / 4 / 41 | M | No Dropdown/Menu in the shipping system. Keep bespoke, migrate to tokens now; log coverage gap | Status colours must map to semantic status roles | fixed | combobox/menu semantics, Esc, focus return | pending |
+| 4 | RoomSelector | `<button>` trigger + `<ul>/<li>` menu with per-room status | none shipping | 0 / 4 / 41 | M | No Dropdown/Menu in the shipping system. Keep bespoke, migrate to tokens now; log coverage gap | Status colors must map to semantic status roles | fixed | combobox/menu semantics, Esc, focus return | pending |
 | 5 | RightRail | bespoke shell; tabs already `Tab` | `RightRail` | 17 / 0 / 1 | A | Adopt the shell once its React adapter exists; footer via the `footer` slot | Shell hardcodes a title + one-row footer upstream | rail → sheet ≤1024 | sheet is a modal dialog w/ focus trap | partial |
 | 6 | RailFooter | bespoke; CTA is `Button` | — | 26 / 0 / 1 | C | Composed from `Button` + tokens | none | none | Save button needs a name | **done** |
 | 7 | ConfiguratorSection | section wrapper + swatch groups | — | 0 / 1 / 17 | C | Compose from `MaterialSwatch`; tokens for the wrapper | swatch sizing/ring must match | none | group labelling | pending |
 | 8 | OptionCard (app) | `<button>` + thumb + title + chevron | **`OptionCard`** | 0 / 35 / 9 | R | Replace with the DS component via adapter | DS card layout differs from the rail row; compare before swap | none | already a real button | pending |
-| 9 | OptionSwatch | `<button>` + chip | **`MaterialSwatch`** | 0 / 15 / 10 | R | Replace via adapter | DS swatch has label + price slots the app may not use | none | selected state must not be colour-only | pending |
+| 9 | OptionSwatch | `<button>` + chip | **`MaterialSwatch`** | 0 / 15 / 10 | R | Replace via adapter | DS swatch has label + price slots the app may not use | none | selected state must not be color-only | pending |
 | 10 | PackagesTab card | bespoke `<section role=button>` | **`PackageCard`** | 82 / 0 / 4 | R | Replace via adapter | Upstream card lacks description, applied check, texture swatches | none | div-as-button today; DS uses real buttons | pending |
 | 11 | CabinetStyleTray | tray + tile grid | none shipping | 0 / 7 / 70 | M + C | Tiles → `MaterialSwatch`; tray shell stays bespoke, tokenised | large surface, high drift risk | tray height | dialog semantics | pending |
 | 12 | WallColorModal | modal + category sidebar + swatch grid | none shipping | 0 / 14 / **158** | M + C | Largest hardcoded surface. Swatches → `MaterialSwatch`; modal stays bespoke, tokenised | very high; 158 raw values | fixed 720 | modal focus trap, Esc | pending |
@@ -110,7 +110,7 @@ All three have zero slots, so the application cannot inject its own content:
 |---|---|
 | `envision-option-card` | No slot. The app renders a **live 3D `PullThumb`** inside the thumb; adopting it would silently drop 3D door/pull previews. Also single thumb geometry vs the app's portrait/square variants. |
 | `envision-material-swatch` | Fixed 64px vs the app's fluid `width:100%` + `aspect-ratio` grid cell; adds a **green check badge** the product deliberately does not use ("ring only, no checkmark"); no circular variant for the rendered metal spheres; renders no label. |
-| `envision-package-card` | No description, no applied-check, 5 round colour dots instead of the product's 6 square **texture** tiles, price stacked rather than baseline-aligned. |
+| `envision-package-card` | No description, no applied-check, 5 round color dots instead of the product's 6 square **texture** tiles, price stacked rather than baseline-aligned. |
 | TopBar primary nav | `envision-tab` is 16/0/14 with a full-width indicator; the nav is a 6px-underlined link at a 40px rhythm. |
 | TopBar notification count | `envision-badge` publishes no `accent` tone; `brand` would render it green instead of orange. |
 
@@ -124,7 +124,7 @@ visibly redesign approved product UI, which this migration forbids.
 | Category | Count | Disposition |
 |---|---|---|
 | Structural geometry | ~120 | 3D viewport maths, canvas sizing, absolute positioning, optical offsets. No system role applies. |
-| Product/content data | ~35 | Material colours, texture URLs, package imagery. Content, not tokens (SYSTEM_SPEC §4). |
+| Product/content data | ~35 | Material colors, texture URLs, package imagery. Content, not tokens (SYSTEM_SPEC §4). |
 | Off-grid values the system retired | 44 | 3/5/6/7/9/10/14/22px. The system's scale has no such steps; snapping would move the product. |
 | Genuine missing roles | ~16 | Ring insets, scrim tints and a 10px micro-label with no published role. Logged as gaps. |
 

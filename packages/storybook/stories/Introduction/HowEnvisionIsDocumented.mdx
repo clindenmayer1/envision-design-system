@@ -1,0 +1,79 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction/How Envision is documented" />
+
+# How Envision is documented
+
+**Storybook is the documentation environment for the Envision Design System.** There is no second
+documentation site, and no page here is a mock-up of one. Everything you read is rendered by
+Storybook's own documentation blocks, and every component example on every page is the real
+production custom element from `@envision/components`, styled by the real tokens from
+`@envision/tokens`.
+
+That constraint is deliberate. A design system that documents itself with bespoke UI is describing
+something other than what it ships.
+
+## Why one environment
+
+An earlier attempt split this into two surfaces: Storybook for the executable spec, and a separate
+site for guidance, foundations and governance. It was removed. The split created three problems
+worth recording, because they recur whenever a system reaches for a custom docs site:
+
+1. **The examples stop being real.** A separate site re-creates components in its own markup, so
+   the documentation drifts from the implementation the moment either changes.
+2. **The chrome becomes invented design.** The removed site had grown its own sidebar width,
+   reading measure, code-surface colors and navigation patterns, none of which exist in Envision.
+   It looked like a design system, but not like *this* one.
+3. **Guidance separates from proof.** "When not to use Button" is far more convincing on the page
+   where you can toggle Button's props and read its accessibility report.
+
+## What lives where, now
+
+| You want | Where it is |
+|---|---|
+| What a component is for, and when not to use it | The component's **Docs** page |
+| Every state, variant and content extreme | That component's **stories** |
+| The live API: attributes, properties, events | The **Controls** table on each Docs page |
+| Proof it is accessible | The **Accessibility** panel, plus `play` functions in **Interactions** |
+| Which tokens a component consumes | The **Token relationships** table on each Docs page |
+| Color, type, spacing, radius, elevation, motion | **Foundations** |
+| How components compose into real screens | The **realistic Envision example** on each Docs page |
+| Which components exist and their status | **Introduction → Component index** |
+
+## How the sidebar is organised
+
+Components are grouped by the canonical **component taxonomy**, held in this fixed order:
+
+**Actions · Inputs & Selection · Navigation · Data Display · Feedback & Guidance · Panels ·
+Status & Progress**
+
+That taxonomy has exactly one source of truth: `component-registry.json`
+(`meta.componentTaxonomy.order` for the order, `category` on each component for membership).
+Storybook derives its grouping from it and keeps no parallel list.
+`scripts/verify-taxonomy.mjs` fails the build if the two ever disagree.
+
+Two categories currently show no stories. That is honest rather than broken: **Feedback & Guidance**
+contains only `Tooltip`, and **Status & Progress** contains `KeyDateCard`, `ProgressCard` and
+`ProgressIndicator`, all of which are specified in the registry but not yet implemented. Storybook
+only renders groups that contain a story.
+
+## Reading a component page
+
+Every component Docs page follows the same order, so you can scan for what you need:
+
+Overview → Anatomy → When to use → When **not** to use → Variants → States → Behaviour →
+Accessibility → Responsive → API → Token relationships → Implementation → Realistic Envision
+example → Related.
+
+Where a component has a known gap, an unresolved disagreement with Figma, or a documented
+architecture exception, it is written on the page rather than left for you to discover. Those
+sections are the useful ones.
+
+## What this Storybook does not claim
+
+- It does not claim every registry component exists. 50 public components are specified; 14 ship.
+  The **Component index** marks which is which.
+- It does not claim the visual-regression suite is airtight. Its threshold and the reason it cannot
+  currently be tightened are documented in `playwright.config.ts`.
+- It does not present Figma and code as identical where they are not. Known disagreements are
+  called out on the affected component's page.

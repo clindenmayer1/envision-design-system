@@ -3,10 +3,10 @@ import { html } from 'lit';
 import { fn, expect, userEvent } from '@storybook/test';
 
 const meta: Meta = {
-  title: 'Components/Radio',
+  title: 'Components/Inputs & Selection/Radio',
   component: 'envision-radio',
   tags: ['autodocs'],
-  parameters: { docs: { description: { component: 'Single choice within a group — `<envision-radio>`. Because separate custom elements do not group natively, Radio coordinates by `name` within its root: selecting one deselects same-name siblings, and Arrow / Home / End implement the APG roving-tabindex pattern. The selected dot is a filled shape, not colour-only.' } } },
+  parameters: { docs: { description: { component: 'Single choice within a group, `<envision-radio>`. Because separate custom elements do not group natively, Radio coordinates by `name` within its root: selecting one deselects same-name siblings, and Arrow / Home / End implement the APG roving-tabindex pattern. The selected dot is a filled shape, not color-only.' } } },
 };
 export default meta;
 type Story = StoryObj;

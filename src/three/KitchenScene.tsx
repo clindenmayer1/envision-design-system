@@ -128,19 +128,19 @@ function metalFinishMaterial(id: string): THREE.MeshStandardMaterial {
     normalMap: tex('normal.jpg'),
     metalnessMap: has.metal ? tex('metal.jpg') : null,
     roughnessMap: has.rough ? tex('rough.jpg') : null,
-    // metalness just under 1 lets a little of the (brightened) base colour read as diffuse so
+    // metalness just under 1 lets a little of the (brightened) base color read as diffuse so
     // darker metals (copper/steel) lift; low roughness = shiny; high envMapIntensity makes them
     // reflect the dim scene env brightly.
     metalness: tune.metalness ?? 0.88,
     roughness: tune.roughness ?? (has.rough ? 0.42 : (opt?.roughness ?? 0.4) * 0.6),
     envMapIntensity: tune.env ?? 4.2,
-    // Low emissive floor (tinted by the metal's own colour) lifts the SHADOWED areas without
+    // Low emissive floor (tinted by the metal's own color) lifts the SHADOWED areas without
     // touching the bright reflections.
     emissive: 0xffffff,
     emissiveMap: color,
     emissiveIntensity: tune.emissive ?? 0.17,
   })
-  if (tune.tint) mat.color.setHex(tune.tint) // multiplies the colour map → pulls albedo down
+  if (tune.tint) mat.color.setHex(tune.tint) // multiplies the color map → pulls albedo down
   metalFinishCache.set(id, mat)
   return mat
 }
@@ -344,7 +344,7 @@ export default function KitchenScene({ config, onTargets, activeView = DEFAULT_V
   }, [pullKey])
   const pullTargetsRef = useRef<PullTarget[]>([])
   const addedPullsRef = useRef<THREE.Object3D[]>([])
-  // Fridge/freezer metal (the 'alu' body+handles mesh) — recoloured to match the selected
+  // Fridge/freezer metal (the 'alu' body+handles mesh) — recolored to match the selected
   // hardware finish so the appliance pulls track the cabinet pulls.
   const applianceMetalRef = useRef<THREE.Mesh[]>([])
   const pullMaterialRef = useRef<THREE.Material | null>(null)
@@ -363,7 +363,7 @@ export default function KitchenScene({ config, onTargets, activeView = DEFAULT_V
   const addedDoorsRef = useRef<THREE.Object3D[]>([])
 
   // Faucets — load every faucet GLB; the active one (config.faucetStyle) replaces the
-  // authored sink faucet, recoloured to the selected faucet finish.
+  // authored sink faucet, recolored to the selected faucet finish.
   const faucetGltfs = useGLTF(FAUCET_URL_LIST) as Array<{ scene: THREE.Object3D }>
   const faucetKey = faucetGltfs.map((g) => g.scene.uuid).join(',')
   const addedFaucetRef = useRef<THREE.Object3D[]>([])
@@ -619,7 +619,7 @@ export default function KitchenScene({ config, onTargets, activeView = DEFAULT_V
   // MeshStandardMaterial (lighting-responsive, NOT MeshBasic); emissive off so it
   // never self-lights; DoubleSide so the down-facing cap renders from the room.
   // Wall paint for the plaster shell. ONE shared instance (every wall mesh points at it), created
-  // once and recoloured live from the selected Paint Color swatch (see the effect below) — so the
+  // once and recolored live from the selected Paint Color swatch (see the effect below) — so the
   // whole shell repaints instantly without re-running the architectural rebuild.
   const roomPaint = useMemo(() => {
     const initial = wallColorHex(config.wallColor) ?? '#f3f0ea'
@@ -632,7 +632,7 @@ export default function KitchenScene({ config, onTargets, activeView = DEFAULT_V
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // Repaint the whole shell when the wall-colour swatch changes (all wall meshes share roomPaint).
+  // Repaint the whole shell when the wall-color swatch changes (all wall meshes share roomPaint).
   useEffect(() => {
     const hex = wallColorHex(config.wallColor)
     if (hex) roomPaint.color.set(hex)
@@ -837,7 +837,7 @@ export default function KitchenScene({ config, onTargets, activeView = DEFAULT_V
       // Wood floor — UNLIT (MeshBasic). three.js can't exclude one light from one surface,
       // so to keep the OUTSIDE SUN (and all lights) off the floor while the sun still hits
       // the cabinets/counters, the floor simply doesn't react to light. toneMapped stays on
-      // so it grades with the scene (not flat/pale); the recolour drives a vibrant tone so
+      // so it grades with the scene (not flat/pale); the recolor drives a vibrant tone so
       // it doesn't read dull. Grounded by the fake contact-shadow decals.
       if (/benchmark oak|oak.*plank/i.test(mat) || /Floor_/i.test(name)) {
         if (done.__archDone) return
@@ -911,7 +911,7 @@ export default function KitchenScene({ config, onTargets, activeView = DEFAULT_V
         return
       }
       // Crown molding, window frames/grille/molding, perimeter trim, and the vent
-      // hood → cream. The hood stays trim-coloured regardless of cabinet finish.
+      // hood → cream. The hood stays trim-colored regardless of cabinet finish.
       // The crown molding's normals are inverted (mirrored instance) so it reads
       // near-black; recompute them so it catches light like the reference.
       if (/crownmolding|trim_perimeter|window_molding|window_.*_(frame|grille)|hood/i.test(name)) {
@@ -920,9 +920,9 @@ export default function KitchenScene({ config, onTargets, activeView = DEFAULT_V
         return
       }
       // Fridge/freezer metal body+handles (one fused 'alu' mesh). Collect it so the
-      // hardware-finish effect can recolour the handles to match the cabinet pulls.
+      // hardware-finish effect can recolor the handles to match the cabinet pulls.
       // The body sits behind the panel-ready fronts/inside the casing, so visibly this
-      // recolours the protruding handles. Skip the generic metal tweak below — the
+      // recolors the protruding handles. Skip the generic metal tweak below — the
       // finish effect assigns its material.
       if (mat === 'alu' && /Refrigerator/i.test(name)) {
         applianceMetalRef.current.push(mesh)
@@ -1171,7 +1171,7 @@ export default function KitchenScene({ config, onTargets, activeView = DEFAULT_V
   // appliance fronts (named Appliance_…Panel) are painted separately to match.
   useEffect(() => {
     const finish = optionById(CABINET_FINISHES, config.cabinetFinish) ?? null
-    // Skip pulls/hardware (keep their metal) and the vent hood (stays trim-coloured).
+    // Skip pulls/hardware (keep their metal) and the vent hood (stays trim-colored).
     const skip = /pull|hardware|knob|handle|hood/i
     applyFinish([scene], finish, skip, /cabinet/i)
     const panels = lookup.targets.cabinet_style.filter((n) => /appliance/i.test(n.name))
@@ -1218,7 +1218,7 @@ export default function KitchenScene({ config, onTargets, activeView = DEFAULT_V
             // UNLIT translucent glass. The pane is a single sheet whose normals are
             // inconsistent across its area, so any LIT material (Standard/Physical) shades one
             // region (the middle-right pane) brighter than the rest. MeshBasic ignores normals
-            // and lighting entirely → a flat translucent colour that is identical on every pane.
+            // and lighting entirely → a flat translucent color that is identical on every pane.
             // Double-sided so a flipped-normal face is never culled.
             m.material = new THREE.MeshBasicMaterial({
               color: '#7c8893', transparent: true, opacity: 0.55, depthWrite: false,
@@ -1230,7 +1230,7 @@ export default function KitchenScene({ config, onTargets, activeView = DEFAULT_V
         toRemove.forEach((o) => o.parent?.remove(o))
       }
     }
-    // Paint the swapped doors with the SAME cabinet finish (wood grain / solid colour) so they
+    // Paint the swapped doors with the SAME cabinet finish (wood grain / solid color) so they
     // match the cabinetry. For glass uppers, stash the translucent glass first and restore it
     // after so only the FRAME takes the finish (the glass stays glass).
     const finish = optionById(CABINET_FINISHES, config.cabinetFinish) ?? null
@@ -1822,7 +1822,7 @@ function makeContrastTexture(src: THREE.Texture, k: number): THREE.Texture {
 
 // For MULTIPLY blending: the texture is a GREYSCALE multiplier — white (=1) outside the
 // shadow leaves the floor untouched, a darker grey in the core multiplies the floor's
-// colour down (so the wood colour/grain shows THROUGH the shadow, not a flat grey wash).
+// color down (so the wood color/grain shows THROUGH the shadow, not a flat grey wash).
 // `core` is the darkest multiplier (0=black, 1=none); lower = darker shadow.
 function makeBoxShadowTexture(fw: number, fh: number, fm: number, core: number): THREE.Texture {
   const PXM = 96 // canvas px per metre
@@ -1848,7 +1848,7 @@ function makeBoxShadowTexture(fw: number, fh: number, fm: number, core: number):
 }
 
 // Each shadow sized to a real footprint (cx,cz centre; fw×fh footprint; fm feather).
-// `core` = darkest multiply factor (lower = darker; the floor colour shows through).
+// `core` = darkest multiply factor (lower = darker; the floor color shows through).
 const FLOOR_SHADOWS = [
   // Island: follow the CABINET BASE that touches the floor (x1.7–4.44, z-1.82–-1.17),
   // NOT the countertop overhang — otherwise the shadow sticks out past the island.

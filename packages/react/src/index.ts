@@ -128,7 +128,7 @@ export interface MaterialSwatchProps extends EnvisionReactBaseProps {
   finish?: string;
   /** Display string such as "Included" or "+$120"; the caller formats it. */
   price?: string;
-  /** Texture URL (preferred) or a solid product colour. Product data, never a token. */
+  /** Texture URL (preferred) or a solid product color. Product data, never a token. */
   image?: string;
   color?: string;
   selected?: boolean;

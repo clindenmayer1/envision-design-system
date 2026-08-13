@@ -4,13 +4,13 @@ import { ICON } from '../base/icons.js';
 import type { KitchenPackage } from '../types.js';
 
 /**
- * Envision PackageCard — `<envision-package-card>`. Curated design package card.
+ * Envision PackageCard, `<envision-package-card>`. Curated design package card.
  *
  * Registry → "package-card":
  *   props:  pkg(KitchenPackage, required) · selected(false) · onSelect(id) · onCustomize(id)
  *   states: default · selected · popular · image-loading(shimmer) · image-ready · image-error ·
  *           long-name · max-materials
- *   a11y (ACCESSIBILITY.md): select button + nested Customize control — the valid nested pattern.
+ *   a11y (ACCESSIBILITY.md): select button + nested Customize control, the valid nested pattern.
  *
  * AUDIT FIX: the app's PackageCard is a `<section role="button" tabindex=0>` (div-as-button). Here
  * the primary select target is a REAL <button> covering media+name+price, and Customize is a
@@ -62,12 +62,12 @@ const styles = css`
   .price { font-size: var(--envision-t1-font-size-13); color: var(--envision-t2-color-content-secondary-default); font-variant-numeric: tabular-nums; }
   .footer { display: flex; align-items: center; justify-content: space-between; gap: var(--envision-t3-package-card-footer-gap); padding: 0 var(--envision-t3-package-card-content-gap) var(--envision-t3-package-card-content-gap); }
   /* Customize = neutral secondary button (hairline border + dark text + surface fill), matching
-     the web's Customize pill — NOT the brand-green t3.button.outline tokens (see AUDIT.md §B). */
+     the web's Customize pill, NOT the brand-green t3.button.outline tokens (see AUDIT.md §B). */
   /* Customize = website secondary pill: hairline border, radius 8 (container-sm), 13/600 text. */
   .customize { appearance: none; border: 1px solid var(--envision-t2-color-border-default-default); background: var(--envision-t2-color-background-surface-default); color: var(--envision-t2-color-content-primary-default); border-radius: var(--envision-t2-border-radius-container-sm); padding: 0.375rem 0.75rem; font-family: inherit; font-size: var(--envision-t1-font-size-13); font-weight: var(--envision-t1-font-weight-600); cursor: pointer; }
   .customize:hover { border-color: var(--envision-t2-color-border-strong-default); background: var(--envision-t2-color-background-surface-warm-default); }
   .customize:focus-visible { outline: var(--envision-t2-border-width-focus) solid var(--envision-t2-color-border-focus-default); outline-offset: 2px; }
-  /* Square texture tile filling its grid column — the product previews real materials. */
+  /* Square texture tile filling its grid column, the product previews real materials. */
   .mat { aspect-ratio: 1 / 1; border-radius: var(--envision-t2-border-radius-container-xs);
     border: var(--envision-t2-border-width-default) solid var(--envision-t2-color-border-subtle-default);
     background-size: cover; background-position: center; }

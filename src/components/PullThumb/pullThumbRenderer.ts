@@ -129,7 +129,7 @@ const DOOR_GLASS: Record<string, GlassCfg> = {
   // The full-coverage face that forms all 6 panes is "default_face_material" → make it the
   // glass; hide the partial actual glass mesh (it doesn't reach the top pane → uneven).
   // The 6 panes ARE the Translucent_Glass_Gray mesh (one material → all identical);
-  // everything else (frame, muntins, default_face_material2 left board) = one paint colour.
+  // everything else (frame, muntins, default_face_material2 left board) = one paint color.
   '/doors/glass_uppers.glb': { convert: /glass/i },
 }
 
@@ -185,13 +185,13 @@ function buildDoor(sourceObj: THREE.Object3D, applyWorld: boolean, glass?: Glass
     // Hidden meshes stay in the bbox (crop unchanged) but don't render.
     if (glass?.hide && glass.hide.test(nm)) { m.visible = false; continue }
     if (glass && glass.convert.test(nm)) {
-      // OPAQUE flat glass colour — the door's own backing geometry varies behind the panes
+      // OPAQUE flat glass color — the door's own backing geometry varies behind the panes
       // (the top-right pane has a different backer), so a translucent material reads a
       // different value per pane. Opaque + unlit makes every pane identical. Geometry is
       // untouched: the white muntins still render in front and divide it into 6 panes.
       m.material = new THREE.MeshBasicMaterial({ color: '#b3bdc2', side: THREE.DoubleSide })
     } else {
-      m.material = paint // frame + everything else = one paint colour
+      m.material = paint // frame + everything else = one paint color
     }
   }
   const size = new THREE.Box3().setFromObject(flat).getSize(new THREE.Vector3())

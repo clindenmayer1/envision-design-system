@@ -1,0 +1,97 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/blocks';
+import * as SwatchStories from './MaterialSwatch.stories';
+
+<Meta of={SwatchStories} />
+
+# MaterialSwatch
+
+## Overview
+`<envision-material-swatch>` is a **selectable material or finish chip**, the atom of every finish
+picker in the Design Center. It is a toggle button that carries product imagery.
+
+<Canvas of={SwatchStories.Default} />
+
+## The fill is product data, not a token
+This is the most important rule about this component, and it is a system rule
+(**SYSTEM_SPEC §4**): the swatch fill (image, texture or color) is **product data set inline**,
+never a design token.
+
+Cabinet colors, paint colors and countertop textures are catalogue content. They change when the
+builder's catalogue changes, they are not part of the visual language, and putting them in the
+color system would corrupt it. If you find yourself adding `--envision-t1-color-oak-500`, stop.
+
+The **chrome** around the fill (ring, radius, check, label gap) is entirely tokenised.
+
+## Anatomy
+`swatch` (product fill) → `ring` → `check` glyph → `label?`. `option` is an object **property**,
+because objects cannot be attributes; `selected` and `unavailable` are attributes.
+
+## When to use
+- Choosing a **material, finish or color** from a catalogue: cabinet finish, countertop, hardware.
+- Any grid where the **image is the choice** and a text label alone would not communicate it.
+
+## When not to use
+- **A named non-visual option** → use **Radio** or **SelectionCard**.
+- **Displaying a material without choosing it** → that is a thumbnail, not a swatch.
+- **Brand or UI color** → swatches are for product data; UI color lives in the token system.
+
+## States
+`default` · `hover` · `selected` · `unavailable` · `loading` · `image-failure`.
+<Canvas of={SwatchStories.Selected} />
+<Canvas of={SwatchStories.Unavailable} />
+
+Selection is signalled by **both a ring and a check glyph**, never color alone, because a swatch fill can
+be any color, so a color-only selected state would be invisible against the wrong material.
+
+Image failure is a real state, not an edge case: catalogue imagery is remote. The component
+degrades to a broken-image glyph rather than an empty box.
+
+## Variants added for the product
+The shipped Design Center needed capabilities the original spec lacked, so the component's API was
+extended rather than duplicated in the app:
+
+| Capability | Why |
+|---|---|
+| `fluid` | Swatches fill their grid cell instead of a fixed 64px |
+| `shape="circle"` | Metal finishes render as spheres |
+| `hide-check` | The product's finish grid uses ring-only selection |
+| `label` | Some grids show the material name under the chip |
+
+## Accessibility
+- `role="button"` with `aria-pressed`, so it is a toggle, not a link.
+- The accessible name is **material + finish + price**, not just a color name. "Oak, natural,
+  included" is usable; "Swatch 3" is not.
+- Selection is ring plus check, satisfying 1.4.1.
+- `unavailable` must be announced, not only greyed.
+
+## Responsive
+With `fluid`, the swatch fills its grid cell and the grid decides the column count, so the same
+component serves the desktop rail and the mobile sheet without a device variant.
+
+## API
+<Controls of={SwatchStories.Default} />
+
+## Token relationships
+| Part | Token |
+|---|---|
+| Chip size / background | `--envision-t3-material-swatch-chip-size` · `-chip-background` |
+| Rest + hover ring | `--envision-t3-material-swatch-ring-hover-color` · `-ring-hover-width` |
+| Selected ring | `--envision-t3-material-swatch-ring-selected-color` · `-width` · `-gap-color` · `-gap-width` |
+| Unavailable | `--envision-t3-material-swatch-unavailable-opacity` |
+| Radius | `--envision-t2-border-radius-control-sm` |
+| Label gap / type | `--envision-t3-material-swatch-label-gap` / `--envision-t1-font-size-11` |
+| Fill | **none, this is product data** |
+
+## Implementation
+```tsx
+import { MaterialSwatch } from '@envision/react';
+<MaterialSwatch option={finish} selected={value === finish.id} onSelect={setValue} fluid hideCheck />
+```
+
+## Realistic Envision example
+A finish group from the Customize tab, with the real grid and real options:
+<Canvas of={SwatchStories.RealUseCase_FinishGroup} />
+
+## Related
+**OptionCard** (the row that opens a swatch tray) · **PackageCard** (shows swatches as a preview) ·
+**SelectionCard** (specified, not yet implemented).

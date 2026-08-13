@@ -1,7 +1,7 @@
 import { EnvisionElement } from '../base/element.js';
 import { css } from '../base/css.js';
 /**
- * Envision RightRail — `<envision-right-rail>`. The configurator side panel shell.
+ * Envision RightRail, `<envision-right-rail>`. The configurator side panel shell.
  *
  * Registry → "right-rail":
  *   props:  mode('customize'|'packages'=customize) · config · onChange · onApply ·
