@@ -6,7 +6,7 @@ import * as LinkStories from './Link.stories';
 # Link
 
 ## Overview
-`<envision-link>` is **navigation** — it takes you somewhere. It renders a real `<a href>`, so
+`<envision-link>` is **navigation**, so it takes you somewhere. It renders a real `<a href>`, so
 `Enter` activation, middle-click, open-in-new-tab and the browser's own affordances all work
 without reimplementation.
 
@@ -42,7 +42,7 @@ Hover adds an **underline** rather than only changing color, so the affordance i
 
 ## Disabled is deliberately constrained
 <Canvas of={LinkStories.Disabled} />
-A disabled link is an anti-pattern for real navigation — a destination either exists or it does
+A disabled link is an anti-pattern for real navigation, because a destination either exists or it does
 not. Where the product genuinely needs it, the component does the honest thing: it **drops the
 `href`**, removes the element from the tab order, sets `aria-disabled`, and blocks activation.
 Prefer removing the link, or rendering plain text, over disabling it.
@@ -52,7 +52,7 @@ Prefer removing the link, or rendering plain text, over disabling it.
 contract.
 
 ## Accessibility
-- The accessible name is `label`. "Click here" and "Read more" fail 2.4.4 out of context — name
+- The accessible name is `label`. "Click here" and "Read more" fail 2.4.4 out of context, so name
   the destination.
 - Focus ring is the shared 2px brand ring.
 - Links that open a new tab should say so in the label; Envision does not rely on an icon alone.

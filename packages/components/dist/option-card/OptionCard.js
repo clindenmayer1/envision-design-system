@@ -2,7 +2,7 @@ import { EnvisionElement } from '../base/element.js';
 import { css } from '../base/css.js';
 import { ICON } from '../base/icons.js';
 /**
- * Envision OptionCard — `<envision-option-card>`. Selection-row opener in the RightRail.
+ * Envision OptionCard, `<envision-option-card>`. Selection-row opener in the RightRail.
  *
  * Registry → "option-card":
  *   props:  options(MaterialOption[]) · value(string) · title(required) · note ·
@@ -24,7 +24,7 @@ const styles = css `
     gap: var(--envision-t3-option-card-text-gap);
     text-align: start;
     /* Figma Card / Option binds all four paddings to spacing/inset-control (12). This previously
-       read var(--envision-t1-spacing-12), which does not exist — the card lost its padding. */
+       read var(--envision-t1-spacing-12), which does not exist, the card lost its padding. */
     padding: var(--envision-t2-spacing-inset-control);
     border: none;
     border-radius: var(--envision-t2-border-radius-control);

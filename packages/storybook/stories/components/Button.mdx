@@ -91,7 +91,7 @@ export const ButtonPlayground = () => {
 # Button
 
 ## Overview
-`<envision-button>` triggers an **action** — submit, apply, select this design. It renders a real
+`<envision-button>` triggers an **action**, such as submit, apply or select this design. It renders a real
 `<button>` inside a shadow root, so keyboard activation, disabled focus behaviour and form
 semantics come from the platform. It is styled entirely with production tokens and reconciled to
 the shipped website (14px / 600, brand-CTA radius 10, outline = neutral hairline secondary).
@@ -120,7 +120,7 @@ replaces the intent while `loading`.
 ## Variants
 <Canvas of={ButtonStories.Variants} />
 `primary` = brand CTA (green fill). `outline` = neutral secondary (hairline border, dark text,
-surface fill) — this matches the website’s secondary buttons, **not** a brand-green outline.
+surface fill). This matches the website’s secondary buttons, **not** a brand-green outline.
 `ghost` = transparent, brand text, for lowest emphasis.
 
 ## Sizes
@@ -138,14 +138,14 @@ Every value aliases an existing scale step, so the sizes sit on the 4pt grid. He
 taller than the Figma masters (38 / 49 / 59) because the component carries a 1px transparent border
 on all variants, so `primary` and `outline` align on a shared baseline.
 
-`md` is the base and is applied to `.btn` directly, not through a `:host([size])` rule — a button
+`md` is the base and is applied to `.btn` directly, not through a `:host([size])` rule, so a button
 with no `size` attribute is a medium.
 
 ## States
-- **default / hover / focus-visible / pressed** — from the platform + tokens; the focus ring is a
+- **default / hover / focus-visible / pressed**, from the platform and tokens; the focus ring is a
   2px brand ring (`--envision-t2-color-border-focus-default`).
-- **disabled** — not focusable, blocks activation. <Story of={ButtonStories.Disabled} />
-- **loading** — spinner replaces intent, `aria-busy=true`, re-activation blocked, but the control
+- **disabled**, not focusable and blocks activation. <Story of={ButtonStories.Disabled} />
+- **loading**, where a spinner replaces the intent, `aria-busy=true`, re-activation blocked, but the control
   **stays focusable**. <Story of={ButtonStories.Loading} />
 
 ## Behaviour
@@ -160,7 +160,7 @@ submit can’t occur. `fullWidth` stretches the button to its container (RightRa
 
 ## Content considerations
 Labels are short, action-first verbs (“Apply design”, not “Click here to apply”). Buttons don’t
-wrap — long labels stay on one line; if a label is long, shorten the copy rather than the button.
+wrap, so long labels stay on one line; if a label is long, shorten the copy rather than the button.
 <Canvas of={ButtonStories.ContentExtremes} />
 
 ## API
@@ -190,7 +190,7 @@ import { Button } from '@envision/react';
 ```
 
 ## Realistic Envision example
-The RightRail footer — primary apply + ghost cancel + a price total:
+The RightRail footer, with a primary apply, a ghost cancel and a price total:
 <Canvas of={ButtonStories.RealUseCase_RailFooter} />
 
 ## Interaction & keyboard tests

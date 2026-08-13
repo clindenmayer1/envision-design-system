@@ -1,7 +1,7 @@
 import type { StorybookConfig } from '@storybook/web-components-vite';
 
 /**
- * Envision Storybook — the executable technical specification of the design system.
+ * Envision Storybook, the executable technical specification of the design system.
  * Renders the REAL production Web Components (@envision/components) with the REAL production
  * tokens (@envision/tokens). No Storybook-specific component approximations exist.
  */

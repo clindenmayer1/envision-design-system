@@ -1,7 +1,7 @@
 import { EnvisionElement } from '../base/element.js';
 import { css } from '../base/css.js';
 /**
- * Envision Button — `<envision-button>`.
+ * Envision Button, `<envision-button>`.
  *
  * Registry contract (component-registry.json → "button"):
  *   props:  variant('primary'|'outline'|'ghost'=primary) · size('sm'|'md'|'lg'=md) ·
@@ -16,10 +16,10 @@ import { css } from '../base/css.js';
  *
  * Tokens only (no raw color/radius): primary = t3.button.primary.*. Outline is a NEUTRAL
  * secondary button matching the web (t2.color.border.default var(--envision-t2-color-border-default-default) + t2.color.content.primary
- * + t2.color.background.surface) — the t3.button.outline.* tokens resolve to brand green and do
+ * + t2.color.background.surface), the t3.button.outline.* tokens resolve to brand green and do
  * NOT match the shipped product (AUDIT.md §B/§D). Ghost falls back to T2 brand roles. Per-size
  * type/padding tokens do not exist yet, so size scales by relative ratio over the base control
- * padding — a noted follow-up, not a raw design value.
+ * padding, a noted follow-up, not a raw design value.
  */
 const styles = css `
   :host {
@@ -61,7 +61,7 @@ const styles = css `
     .btn { transition: none; }
   }
 
-  /* size — every value is a published T3 token bound to the Figma Button's Size variant.
+  /* size, every value is a published T3 token bound to the Figma Button's Size variant.
      Previously these were calc() ratios (0.6 / 0.75 / 1.35 / 1.25 / 0.875em / 1.0625em) over a
      DIFFERENT base than medium used, which made large render SMALLER than medium and gave small
      the same font size as medium. Resolved geometry is now 38 / 49 / 59 tall, matching Figma. */
@@ -88,7 +88,7 @@ const styles = css `
     background: var(--envision-t3-button-primary-color-background-pressed);
   }
 
-  /* variant: outline — NEUTRAL secondary button. Matches the web design (the app's hairline
+  /* variant: outline, NEUTRAL secondary button. Matches the web design (the app's hairline
      "Customize"/secondary buttons: var(--envision-t2-color-border-default-default) border, dark text, surface fill). The registry's
      t3.button.outline.* tokens resolve to BRAND green, which does not match the shipped web
      product, so outline binds to the nearest existing neutral tokens instead. See AUDIT.md §B/§D. */
@@ -118,7 +118,7 @@ const styles = css `
     background: var(--envision-t2-color-background-brand-subtle-default);
   }
 
-  /* focus ring — the DS 2px brand ring, never clipped (offset outline) */
+  /* focus ring, the DS 2px brand ring, never clipped (offset outline) */
   .btn:focus-visible {
     outline: var(--envision-t2-border-width-focus) solid
       var(--envision-t2-color-border-focus-default);

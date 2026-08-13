@@ -6,7 +6,7 @@ import * as CheckboxStories from './Checkbox.stories';
 # Checkbox
 
 ## Overview
-`<envision-checkbox>` is **boolean selection** — on or off, independent of any other checkbox. It
+`<envision-checkbox>` is **boolean selection**, on or off, independent of any other checkbox. It
 wraps a **real native `<input type="checkbox">`** inside its shadow root, so role, checked state,
 `Space` to toggle and focus behaviour come from the platform rather than from ARIA we maintain.
 Form participation goes through `ElementInternals` where the browser supports it.
@@ -34,7 +34,7 @@ the separate `Label` component to associate them.
 <Canvas of={CheckboxStories.States} />
 `checked` · `unchecked` · `focus-visible` · `disabled` · `error`.
 
-The check is drawn as **geometry** — a rotated tick — not as a color fill. That is deliberate:
+The check is drawn as **geometry**, a rotated tick, rather than as a color fill. That is deliberate:
 Envision principle 3 says selection is never color-only, so the checked state survives greyscale
 and forced-colors.
 
@@ -43,7 +43,7 @@ and forced-colors.
 ## Error state
 <Canvas of={CheckboxStories.Error} />
 `invalid` paints the error border and is the visual half of validation. The **message** is the
-field's responsibility, not the checkbox's — pair it with helper text that is programmatically
+field's responsibility, not the checkbox's, so pair it with helper text that is programmatically
 associated, or the error is invisible to a screen reader.
 
 ## Behaviour

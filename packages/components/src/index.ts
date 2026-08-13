@@ -1,12 +1,12 @@
 /**
- * @envision/components — public entry.
+ * @envision/components, public entry.
  *
  * Importing this module registers all `<envision-*>` custom elements (side effect)
  * and re-exports the element classes for programmatic/typed use.
  *
  * The public API is the set of MEANINGFUL component names (Button, Input, OptionCard…),
  * NOT the internal Atomic-Design tiers. Consumers use `<envision-button>` in HTML or the
- * `EnvisionButton` class / the `@envision/react` wrapper — they never need to know a
+ * `EnvisionButton` class / the `@envision/react` wrapper, they never need to know a
  * component is an "atom", "molecule", or "organism".
  *
  * Tokens: consumers must load the design tokens once at the document level:

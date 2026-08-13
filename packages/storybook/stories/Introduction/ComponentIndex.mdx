@@ -6,13 +6,13 @@ import registry from '@envision/design-system/component-registry.json';
 # Component index
 
 Every component the system registers, grouped by the canonical taxonomy. This page is generated
-from `component-registry.json` at build time — it is the registry, not a copy of it, so it cannot
+from `component-registry.json` at build time. It is the registry, not a copy of it, so it cannot
 drift from the source of truth.
 
 **Implemented** means a production custom element ships in `@envision/components` with a React
 adapter in `@envision/react`. **Specified** means the registry defines the component's contract but
 no code exists yet. **Inventory** means the component is built in the Figma library but has no
-registry specification — identity and category only.
+registry specification, carrying identity and category only.
 
 <div>
   {(() => {
@@ -43,7 +43,7 @@ registry specification — identity and category only.
                   <td>{status(c)}</td>
                   <td>{c.maturity}</td>
                   <td>{c.figmaStatus}</td>
-                  <td>{c.purpose ?? '—'}</td>
+                  <td>{c.purpose ?? 'None recorded'}</td>
                 </tr>
               ))}
             </tbody>
@@ -61,7 +61,7 @@ are not intended for direct use.
 
 <div>
   {registry.components.filter((c) => !c.public).map((c) => (
-    <p key={c.id}><code>{c.displayName}</code> — {c.purpose ?? 'internal composition primitive'}</p>
+    <p key={c.id}><code>{c.displayName}</code>: {c.purpose ?? 'internal composition primitive'}</p>
   ))}
 </div>
 
@@ -84,5 +84,5 @@ are not intended for direct use.
 
 Envision registers a component's contract before it is built, so that product teams can see what is
 coming and so the Figma library and the code inventory can be reconciled. A component with no
-stories is not an omission in this Storybook — it is a component that does not exist yet. Building
+stories is not an omission in this Storybook. It is a component that does not exist yet. Building
 a story for it would require inventing the component, which the system forbids.

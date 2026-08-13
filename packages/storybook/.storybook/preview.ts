@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/web-components';
 
-// THE production artifacts — no approximations.
+// THE production artifacts, no approximations.
 import '@envision/tokens/css'; // production design tokens (--envision-t1/t2/t3-*)
 import '@envision/components'; // registers every <envision-*> custom element
 
@@ -21,7 +21,7 @@ const preview: Preview = {
         { name: 'brand', value: '#29594f' },
       ],
     },
-    // Responsive behavior — the real Envision breakpoints (SYSTEM_SPEC §6).
+    // Responsive behavior, the real Envision breakpoints (SYSTEM_SPEC §6).
     viewport: {
       viewports: {
         mobile: { name: 'Mobile (390)', styles: { width: '390px', height: '844px' } },
@@ -61,7 +61,7 @@ const preview: Preview = {
       },
     },
   },
-  // Theme + brand toolbars — Envision is white-label (theme mode + brand mode).
+  // Theme + brand toolbars, Envision is white-label (theme mode + brand mode).
   globalTypes: {
     theme: {
       description: 'Color scheme',
@@ -79,7 +79,7 @@ const preview: Preview = {
   },
   decorators: [
     (story, context) => {
-      // Apply the theme the same way the product does — via a data attribute on the root.
+      // Apply the theme the same way the product does, via a data attribute on the root.
       document.documentElement.dataset.theme = context.globals.theme ?? 'light';
       return story();
     },

@@ -22,7 +22,7 @@ worth recording, because they recur whenever a system reaches for a custom docs 
 1. **The examples stop being real.** A separate site re-creates components in its own markup, so
    the documentation drifts from the implementation the moment either changes.
 2. **The chrome becomes invented design.** The removed site had grown its own sidebar width,
-   reading measure, code-surface colors and navigation patterns — none of which exist in Envision.
+   reading measure, code-surface colors and navigation patterns, none of which exist in Envision.
    It looked like a design system, but not like *this* one.
 3. **Guidance separates from proof.** "When not to use Button" is far more convincing on the page
    where you can toggle Button's props and read its accessibility report.
@@ -33,7 +33,7 @@ worth recording, because they recur whenever a system reaches for a custom docs 
 |---|---|
 | What a component is for, and when not to use it | The component's **Docs** page |
 | Every state, variant and content extreme | That component's **stories** |
-| The live API — attributes, properties, events | The **Controls** table on each Docs page |
+| The live API: attributes, properties, events | The **Controls** table on each Docs page |
 | Proof it is accessible | The **Accessibility** panel, plus `play` functions in **Interactions** |
 | Which tokens a component consumes | The **Token relationships** table on each Docs page |
 | Color, type, spacing, radius, elevation, motion | **Foundations** |
@@ -49,7 +49,7 @@ Status & Progress**
 
 That taxonomy has exactly one source of truth: `component-registry.json`
 (`meta.componentTaxonomy.order` for the order, `category` on each component for membership).
-Storybook derives its grouping from it and keeps no parallel list —
+Storybook derives its grouping from it and keeps no parallel list.
 `scripts/verify-taxonomy.mjs` fails the build if the two ever disagree.
 
 Two categories currently show no stories. That is honest rather than broken: **Feedback & Guidance**

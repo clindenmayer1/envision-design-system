@@ -21,7 +21,7 @@
         "deprecated"
       ]
     },
-    "note": "figmaStatus reflects what is ACTUALLY built in the Figma library. Components with figmaStatus 'proposed' are specified here but NOT yet drawn in Figma — do not claim they exist. codeName/props are the proposed API; runtime stack is provisional (see STORYBOOK.md).",
+    "note": "figmaStatus reflects what is ACTUALLY built in the Figma library. Components with figmaStatus 'proposed' are specified here but NOT yet drawn in Figma, so do not claim they exist. codeName/props are the proposed API; runtime stack is provisional (see STORYBOOK.md).",
     "componentTaxonomy": {
       "note": "Canonical UX taxonomy for public components. Sole source of truth: downstream tooling (Storybook, docs, manifests) derives grouping from `category` on each component and MUST NOT keep a parallel list. Categories are displayed in the `order` below; components are alphabetised within each category, comparing names with spaces and punctuation ignored.",
       "order": [
@@ -99,7 +99,7 @@
           "default": "md",
           "storybookControl": "select",
           "figmaProp": "Size",
-          "note": "sm|md|lg map to the Figma Size variant Small|Medium|Large. Geometry comes from t3.button.{small,medium,large}.* — no ratios."
+          "note": "sm|md|lg map to the Figma Size variant Small|Medium|Large. Geometry comes from t3.button.{small,medium,large}.*, with no ratios."
         },
         {
           "name": "label",
@@ -147,7 +147,7 @@
         }
       ],
       "invalidCombinations": [
-        "hover/focus/pressed are NOT props — they are runtime pseudo-states / stories",
+        "hover/focus/pressed are NOT props. They are runtime pseudo-states and stories",
         "loading + repeated onClick without guard"
       ],
       "states": [
@@ -237,7 +237,7 @@
           "name": "accessibleName",
           "type": "string",
           "required": true,
-          "a11y": "REQUIRED — icon-only has no visible text"
+          "a11y": "REQUIRED, since an icon-only control has no visible text"
         },
         {
           "name": "variant",
@@ -1109,9 +1109,9 @@
         "effect Elevation/Raised",
         "t2.color.background.surface"
       ],
-      "interactionModel": "card is role=button (select); Customize is a nested control (stopPropagation) — valid nested-control pattern.",
+      "interactionModel": "card is role=button (select); Customize is a nested control (stopPropagation), the valid nested-control pattern.",
       "prohibitions": [
-        "NO redundant 'Choose Package' button — selection via card, apply via BottomActionTray"
+        "NO redundant 'Choose Package' button. Selection happens via the card, apply via BottomActionTray"
       ],
       "contentRules": "Distinguish select vs preview vs save vs customize vs apply-to-home.",
       "swatchOrder": [
@@ -1625,7 +1625,7 @@
       "maturity": "experimental",
       "figmaStatus": "audited",
       "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only — architecture, props, states and accessibility are unset because they have not been defined.",
+      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
       "owner": "design-systems"
     },
     {
@@ -1640,7 +1640,7 @@
       "maturity": "experimental",
       "figmaStatus": "audited",
       "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only — architecture, props, states and accessibility are unset because they have not been defined.",
+      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
       "owner": "design-systems"
     },
     {
@@ -1655,7 +1655,7 @@
       "maturity": "experimental",
       "figmaStatus": "audited",
       "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only — architecture, props, states and accessibility are unset because they have not been defined.",
+      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
       "owner": "design-systems"
     },
     {
@@ -1670,7 +1670,7 @@
       "maturity": "experimental",
       "figmaStatus": "audited",
       "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only — architecture, props, states and accessibility are unset because they have not been defined.",
+      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
       "owner": "design-systems"
     },
     {
@@ -1685,7 +1685,7 @@
       "maturity": "experimental",
       "figmaStatus": "audited",
       "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only — architecture, props, states and accessibility are unset because they have not been defined.",
+      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
       "owner": "design-systems"
     },
     {
@@ -1700,7 +1700,7 @@
       "maturity": "experimental",
       "figmaStatus": "audited",
       "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only — architecture, props, states and accessibility are unset because they have not been defined.",
+      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
       "owner": "design-systems"
     },
     {
@@ -1715,7 +1715,7 @@
       "maturity": "experimental",
       "figmaStatus": "audited",
       "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only — architecture, props, states and accessibility are unset because they have not been defined.",
+      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
       "owner": "design-systems"
     },
     {
@@ -1730,7 +1730,7 @@
       "maturity": "experimental",
       "figmaStatus": "audited",
       "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only — architecture, props, states and accessibility are unset because they have not been defined.",
+      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
       "owner": "design-systems"
     },
     {
@@ -1745,7 +1745,7 @@
       "maturity": "experimental",
       "figmaStatus": "audited",
       "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only — architecture, props, states and accessibility are unset because they have not been defined.",
+      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
       "owner": "design-systems"
     },
     {
@@ -1760,7 +1760,7 @@
       "maturity": "experimental",
       "figmaStatus": "audited",
       "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only — architecture, props, states and accessibility are unset because they have not been defined.",
+      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
       "owner": "design-systems"
     },
     {
@@ -1775,7 +1775,7 @@
       "maturity": "experimental",
       "figmaStatus": "audited",
       "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only — architecture, props, states and accessibility are unset because they have not been defined.",
+      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
       "owner": "design-systems"
     },
     {
@@ -1790,7 +1790,7 @@
       "maturity": "experimental",
       "figmaStatus": "audited",
       "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only — architecture, props, states and accessibility are unset because they have not been defined.",
+      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
       "owner": "design-systems"
     },
     {
@@ -1805,7 +1805,7 @@
       "maturity": "experimental",
       "figmaStatus": "audited",
       "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only — architecture, props, states and accessibility are unset because they have not been defined.",
+      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
       "owner": "design-systems"
     },
     {
@@ -1820,7 +1820,7 @@
       "maturity": "experimental",
       "figmaStatus": "audited",
       "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only — architecture, props, states and accessibility are unset because they have not been defined.",
+      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
       "owner": "design-systems"
     },
     {
@@ -1835,7 +1835,7 @@
       "maturity": "experimental",
       "figmaStatus": "audited",
       "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only — architecture, props, states and accessibility are unset because they have not been defined.",
+      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
       "owner": "design-systems"
     },
     {
@@ -1850,7 +1850,7 @@
       "maturity": "experimental",
       "figmaStatus": "audited",
       "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only — architecture, props, states and accessibility are unset because they have not been defined.",
+      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
       "owner": "design-systems"
     },
     {
@@ -1865,7 +1865,7 @@
       "maturity": "experimental",
       "figmaStatus": "audited",
       "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only — architecture, props, states and accessibility are unset because they have not been defined.",
+      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
       "owner": "design-systems"
     },
     {
@@ -1880,7 +1880,7 @@
       "maturity": "experimental",
       "figmaStatus": "audited",
       "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only — architecture, props, states and accessibility are unset because they have not been defined.",
+      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
       "owner": "design-systems"
     }
   ]

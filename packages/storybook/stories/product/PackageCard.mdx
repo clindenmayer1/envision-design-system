@@ -6,7 +6,7 @@ import * as PackageCardStories from './PackageCard.stories';
 # PackageCard
 
 ## Overview
-`<envision-package-card>` presents a **curated design package** — a pre-selected set of finishes
+`<envision-package-card>` presents a **curated design package**, a pre-selected set of finishes
 sold as one choice. It is the unit of the Packages tab: image, name, description, price, the
 materials included, and a way to customise from that starting point.
 
@@ -17,7 +17,7 @@ This card has **two** actions: select the package, and customise it. That is the
 card legitimately contains more than one control, and it is easy to get wrong.
 
 The application's original card was a `<section role="button" tabindex="0">` with a nested button
-and a `stopPropagation` hack — a div-as-button containing a real button. This component fixes it
+and a `stopPropagation` hack, a div-as-button containing a real button. This component fixes it
 structurally:
 
 - the **primary select target is a real `<button>`** covering media, name and price
@@ -52,7 +52,7 @@ gets it right.
 <Canvas of={PackageCardStories.Selected} />
 <Canvas of={PackageCardStories.Popular} />
 
-`popular` renders a **Badge** inside the card — the system composing with itself rather than
+`popular` renders a **Badge** inside the card, so the system composes with itself rather than
 re-drawing a pill.
 
 ## Content extremes are a supported state, not an edge case

@@ -20,8 +20,8 @@ platform constraint rather than a preference:
 > cannot associate with a control that lives in the document's light DOM.
 
 Form-label association therefore requires light DOM, so Label injects a single document-level
-stylesheet and renders normally. The self-labelling controls — **Input**, **Checkbox**, **Radio**,
-**Switch** — keep their `<label>` and `<input>` together inside one shadow root, which is why they
+stylesheet and renders normally. The self-labelling controls (**Input**, **Checkbox**, **Radio**,
+**Switch**) keep their `<label>` and `<input>` together inside one shadow root, which is why they
 do not need this component and are unaffected by the exception.
 
 This is recorded in the Component Architecture Document; it is a documented deviation, not drift.
@@ -33,10 +33,10 @@ This is recorded in the Component Architecture Document; it is a documented devi
 ## When to use
 - Labelling a control that **cannot label itself**: a custom field, a group of swatches, a
   composite control assembled in product code.
-- Labelling a **group** — a fieldset legend equivalent — where the group has no single input.
+- Labelling a **group**, the fieldset legend equivalent, where the group has no single input.
 
 ## When not to use
-- With **Input, Checkbox, Radio or Switch** — they already render their own label. Adding this one
+- With **Input, Checkbox, Radio or Switch**, which already render their own label. Adding this one
   produces two labels and an ambiguous accessible name.
 - As a **heading**. Headings are a content role with their own type styles; a label describes a
   control.
@@ -56,7 +56,7 @@ a tooltip; the icon is an affordance, not the explanation.
 ## Accessibility
 - Association is via `<label for={htmlFor}>`, so `htmlFor` must match a real control `id`.
 - The asterisk is `aria-hidden`; requirement state comes from `aria-required` on the control.
-- Label text is persistent. Envision does not use placeholder-as-label — a placeholder disappears
+- Label text is persistent. Envision does not use placeholder-as-label, because a placeholder disappears
   on input and fails 3.3.2.
 
 ## Responsive

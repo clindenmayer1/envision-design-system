@@ -16,7 +16,7 @@ const meta: Meta<Args> = {
   },
   args: { checked: true, label: 'Show upgrade pricing', disabled: false, onChange: fn() },
   render: (a) => html`<envision-switch ?checked=${a.checked} label=${a.label} ?disabled=${a.disabled} @change=${a.onChange}></envision-switch>`,
-  parameters: { docs: { description: { component: 'On/off toggle for an immediate setting — `<envision-switch>` (`role=switch`). Space or Enter toggles; the thumb position (not just color) conveys state. Use for instant toggles; use **Checkbox** for form selections.' } } },
+  parameters: { docs: { description: { component: 'On/off toggle for an immediate setting, `<envision-switch>` (`role=switch`). Space or Enter toggles; the thumb position (not just color) conveys state. Use for instant toggles; use **Checkbox** for form selections.' } } },
 };
 export default meta;
 type Story = StoryObj<Args>;

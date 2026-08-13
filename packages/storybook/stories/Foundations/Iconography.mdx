@@ -5,7 +5,7 @@ import { Meta } from '@storybook/blocks';
 # Iconography
 
 Envision uses **one icon family, one configuration**: Material Symbols Outlined. One family is a
-hard rule (`CLAUDE.md`) — mixing icon sets is the fastest way to make a system look assembled
+hard rule (`CLAUDE.md`), because mixing icon sets is the fastest way to make a system look assembled
 rather than designed.
 
 ## Two delivery paths, and why both exist
@@ -13,8 +13,8 @@ rather than designed.
 This is the part worth understanding, because it caused a real production defect.
 
 ### 1. Component-owned glyphs are inline SVG
-Chrome that a component draws **itself** — the chevron on `OptionCard`, the check on
-`MaterialSwatch` and `PackageCard`, the broken-image fallback — is an **inline SVG** defined in
+Chrome that a component draws **itself**, such as the chevron on `OptionCard`, the check on
+`MaterialSwatch` and `PackageCard`, the broken-image fallback, is an **inline SVG** defined in
 `packages/components/src/base/icons.ts`. It ships inside the component.
 
 ```ts
@@ -26,7 +26,7 @@ export const ICON = {
 ```
 
 ### 2. Consumer-supplied icons are Material Symbols ligatures
-Icons the **product chooses** — `IconButton`'s `icon` prop, Button's leading/trailing icons — are
+Icons the **product chooses**, such as `IconButton`'s `icon` prop and Button's leading and trailing icons, are
 Material Symbols names rendered as ligatures.
 
 ### The defect that forced the split
@@ -45,7 +45,7 @@ means a host that does not load Material Symbols will see icon names in those sl
 the font, or pass no icon.
 
 Storybook loads the font in `.storybook/preview-head.html`. That is also, unhelpfully, the source
-of the visual-regression nondeterminism documented in `playwright.config.ts` — the fonts come over
+of the visual-regression nondeterminism documented in `playwright.config.ts`, because the fonts come over
 the network, so glyph rendering depends on timing. Self-hosting them is the fix.
 
 ## Rules

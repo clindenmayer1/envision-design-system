@@ -18,7 +18,7 @@ const meta: Meta<Args> = {
   },
   args: { checked: false, label: 'Include lighting package', disabled: false, required: false, invalid: false, onChange: fn() },
   render: (a) => html`<envision-checkbox ?checked=${a.checked} label=${a.label} ?disabled=${a.disabled} ?required=${a.required} ?invalid=${a.invalid} @change=${a.onChange}></envision-checkbox>`,
-  parameters: { docs: { description: { component: 'Boolean choice — `<envision-checkbox>`, built on a native `<input type=checkbox>`. The check is drawn as **geometry** (a tick), so the checked state is not conveyed by color alone. Space toggles.' } } },
+  parameters: { docs: { description: { component: 'Boolean choice, `<envision-checkbox>`, built on a native `<input type=checkbox>`. The check is drawn as **geometry** (a tick), so the checked state is not conveyed by color alone. Space toggles.' } } },
 };
 export default meta;
 type Story = StoryObj<Args>;

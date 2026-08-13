@@ -92,7 +92,7 @@ export const parseTokens = (css) => {
       const { resolved, chain } = chainOf(name);
       return {
         name,
-        tier: (name.match(/^envision-(t[123])-/) || [])[1] ?? '—',
+        tier: (name.match(/^envision-(t[123])-/) || [])[1] ?? 'none',
         declared: raw[name],
         resolved,
         chain,
@@ -201,7 +201,7 @@ export const TokenExplorer = () => {
                   />
                 </td>
                 <td style={{ ...cell, color: T('t2-color-content-tertiary-default') }}>
-                  {t.chain.length ? t.chain.map((c) => c.replace(/^envision-/, '')).join('  ->  ') : '—'}
+                  {t.chain.length ? t.chain.map((c) => c.replace(/^envision-/, '')).join('  ->  ') : 'none'}
                 </td>
               </tr>
             ))}
@@ -232,7 +232,7 @@ That is the whole argument for three tiers, and the chain column is the evidence
 ## Counts: 436 tokens, 447 declarations
 
 `dist/tokens.css` contains **447** custom-property declarations but only **436 distinct tokens**.
-The difference is not duplication — it is the responsive layer.
+The difference is not duplication. It is the responsive layer.
 
 Eleven tokens are declared twice: once in `:root` with their desktop value, then again inside
 `@media (max-width: 1024px)` with their mobile value. Same property, two values, resolved by the
@@ -249,8 +249,8 @@ value changes below the tablet breakpoint.
 - **Elevation** is authored in Figma as **effect styles**, which the variable export cannot see. It
   is transcribed into `_figma-export.txt` by hand so it reaches this pipeline like every other token
   rather than being hardcoded per component.
-- **The mobile values themselves.** They ship — the `@media` block is inside `tokens.css`, which
-  Storybook imports — but this table shows the `:root` value only. Switch the Storybook viewport to
+- **The mobile values themselves.** They ship, because the `@media` block is inside `tokens.css`, which
+  Storybook imports, but this table shows the `:root` value only. Switch the Storybook viewport to
   Mobile (390) and the 11 tokens above resolve differently in the components.
 - **`dist/tokens.responsive.css`** is a separate published entry point containing just the media
   block, for consumers who want to load it on its own. Storybook does not need it, because

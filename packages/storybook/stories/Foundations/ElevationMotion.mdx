@@ -5,25 +5,25 @@ import { Meta } from '@storybook/blocks';
 # Elevation & Motion
 
 Both of these foundations are **role-named, not scale-named**. There is no `elevation-1` or
-`duration-fast` in the semantic layer — there is `menu`, `tray`, `micro`, `panel`. You pick the
+`duration-fast` in the semantic layer. There is `menu`, `tray`, `micro` and `panel`. You pick the
 role that matches what the element *is*, and the value follows. That is what stops a system from
 accumulating six barely-different shadows.
 
 ## Elevation
 
 Seven published roles. Each is a real shadow from the product, reconciled during the audit rather
-than generated from a formula, which is why the ramp is not evenly spaced — a menu and a tray sit
+than generated from a formula, which is why the ramp is not evenly spaced, because a menu and a tray sit
 at genuinely different depths in this product.
 
 <div style={{ display: 'grid', gap: '32px', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', padding: '24px 4px 32px' }}>
   {[
     ['flat', 'Resting cards and rows. The lowest lift the system has that is still not flat.'],
-    ['raised', 'A card that has lifted — hoverable surfaces at rest.'],
+    ['raised', 'A card that has lifted, for hoverable surfaces at rest.'],
     ['raised-hover', 'The hover partner of raised. Only ever paired with it.'],
     ['menu', 'Dropdowns and popovers. Above the page, not covering it.'],
     ['tray', 'The bottom selection tray. Two-layer shadow: spread plus contact.'],
     ['overlay-dark', 'Content over the 3D viewport, where the backdrop is unpredictable.'],
-    ['card-warm', 'Warm-tinted card shadow. Brown-based, not black — Envision is a warm palette.'],
+    ['card-warm', 'Warm-tinted card shadow. Brown-based, not black, because Envision is a warm palette.'],
   ].map(([name, use]) => (
     <div key={name}>
       <div
@@ -62,12 +62,12 @@ Four semantic durations, all aliasing the primitive duration scale.
 | Role | Value | Use |
 |---|---|---|
 | `--envision-t2-motion-micro-duration` | 150ms | Hover, focus, color and small state changes |
-| `--envision-t2-motion-dismiss-duration` | 180ms | Things leaving — closing a tray, dismissing |
+| `--envision-t2-motion-dismiss-duration` | 180ms | Things leaving, such as closing a tray or dismissing |
 | `--envision-t2-motion-panel-duration` | 260ms | Panels and trays arriving |
 | `--envision-t2-motion-loading-duration` | 340ms | Shimmer and loading rhythm |
 
 ### Easing
-The signature ease is **`cubic-bezier(.2, .8, .2, 1)`** — a fast start with a long settle. It is
+The signature ease is **`cubic-bezier(.2, .8, .2, 1)`**, a fast start with a long settle. It is
 applied directly in components today; the semantic layer publishes **durations only**, no easing
 tokens. That is a known gap, and it is the reason four dead `--envision-theme-*-easing` definitions
 were removed from the legacy layer rather than repointed: there was nothing to point them at.
@@ -87,5 +87,5 @@ transition: background-color var(--envision-t2-motion-micro-duration) cubic-bezi
 }
 ```
 
-Motion in Envision is always **supportive** — it explains where a panel came from. Nothing in the
+Motion in Envision is always **supportive**, so it explains where a panel came from. Nothing in the
 product depends on motion to be understood, so removing it costs nothing.

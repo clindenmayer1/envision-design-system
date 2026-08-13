@@ -3,15 +3,14 @@ import { getStoryContext } from '@storybook/test-runner';
 import AxeBuilder from '@axe-core/playwright';
 
 /**
- * Storybook test-runner — the browser interaction + accessibility layer.
+ * Storybook test-runner, the browser interaction + accessibility layer.
  *
- * For EVERY story the runner first executes the story's `play` function (the interaction test —
- * keyboard, focus, activation). This hook then runs axe against the rendered story, scoped to the
- * **WCAG 2.2 AA** rule set (not axe's "best-practice" rules), in real Chromium — so color-contrast
+ * For EVERY story the runner first executes the story's `play` function (the interaction test, * keyboard, focus, activation). This hook then runs axe against the rendered story, scoped to the
+ * **WCAG 2.2 AA** rule set (not axe's "best-practice" rules), in real Chromium, so color-contrast
  * and rendered ARIA (which the happy-dom unit layer cannot evaluate) ARE checked here.
  *
- * Docs pages are skipped for a11y (prose, not fixtures — their embedded stories are tested
- * individually). A story may tune rules via `parameters.a11y` — `{ a11y: { disable: true } }` to skip,
+ * Docs pages are skipped for a11y (prose, not fixtures, their embedded stories are tested
+ * individually). A story may tune rules via `parameters.a11y`, `{ a11y: { disable: true } }` to skip,
  * or `{ a11y: { config: { rules: [{ id, enabled: false }] } } }` to disable a specific rule (used
  * sparingly, always with a documented reason).
  */
@@ -40,9 +39,9 @@ const config: TestRunnerConfig = {
     const { violations } = await builder.analyze();
     if (violations.length) {
       const summary = violations
-        .map((v) => `${v.id} [${v.impact}] ×${v.nodes.length} — ${v.nodes[0]?.target.join(' ')}`)
+        .map((v) => `${v.id} [${v.impact}] ×${v.nodes.length}, ${v.nodes[0]?.target.join(' ')}`)
         .join('\n  ');
-      throw new Error(`Accessibility violations (WCAG 2.2 AA) in "${context.title} — ${context.name}":\n  ${summary}`);
+      throw new Error(`Accessibility violations (WCAG 2.2 AA) in "${context.title}, ${context.name}":\n  ${summary}`);
     }
   },
 };

@@ -3,7 +3,7 @@ import { css } from '../base/css.js';
 import { tryAttachInternals, setFormValue, emitChange } from '../base/internals.js';
 
 /**
- * Envision Checkbox — `<envision-checkbox>`.
+ * Envision Checkbox, `<envision-checkbox>`.
  *
  * Registry contract → "checkbox":
  *   props:  checked(required) · label(required) · disabled(false) · required(false) · invalid(false)

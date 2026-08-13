@@ -14,7 +14,7 @@ const meta: Meta = {
   component: 'envision-package-card',
   tags: ['autodocs'],
   parameters: {
-    docs: { description: { component: 'Curated design-package card — `<envision-package-card>`. A real select `<button>` plus a **separate** Customize `<button>` (never a div-as-button, never nested buttons). Carries the image lifecycle (shimmer → ready → error), a popular badge, and a material preview capped at 5. `pkg` is a JS property.' } },
+    docs: { description: { component: 'Curated design-package card, `<envision-package-card>`. A real select `<button>` plus a **separate** Customize `<button>` (never a div-as-button, never nested buttons). Carries the image lifecycle (shimmer → ready → error), a popular badge, and a material preview capped at 5. `pkg` is a JS property.' } },
   },
 };
 export default meta;
@@ -32,14 +32,14 @@ export const Popular: Story = {
   render: () => html`<div style="width:260px;"><envision-package-card .pkg=${pkgPopular} @select=${fn()} @customize=${fn()}></envision-package-card></div>`,
 };
 
-/** Content extreme — a long package name line-clamps to two lines. */
+/** Content extreme: a long package name line-clamps to two lines. */
 export const LongName: Story = {
   render: () => html`<div style="width:260px;"><envision-package-card .pkg=${{ ...pkg, name: 'The Grand Coastal Transitional Statement Collection, Signature Edition' }} @select=${fn()} @customize=${fn()}></envision-package-card></div>`,
 };
 
-/** Realistic — the Packages tab grid. */
+/** Realistic: the Packages tab grid. */
 export const RealUseCase_Grid: Story = {
-  name: 'Realistic — packages grid',
+  name: 'Realistic: packages grid',
   parameters: { layout: 'padded' },
   render: () => html`
     <div style="display:grid; grid-template-columns:repeat(2, 240px); gap:16px;">

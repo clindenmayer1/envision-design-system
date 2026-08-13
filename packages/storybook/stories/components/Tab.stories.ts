@@ -20,16 +20,16 @@ const meta: Meta<Args> = {
     onSelect: { action: 'select', table: { category: 'Events' } },
   },
   args: { label: 'Customize', selected: true, disabled: false, onSelect: fn() },
-  // A role=tab requires a role=tablist parent — even a single tab is shown inside one.
+  // A role=tab requires a role=tablist parent, so even a single tab is shown inside one.
   render: (a) => html`<div role="tablist"><envision-tab label=${a.label} ?selected=${a.selected} ?disabled=${a.disabled} @select=${a.onSelect}></envision-tab></div>`,
-  parameters: { docs: { description: { component: '`role=tab` control — `<envision-tab>`. Implements the APG roving-tabindex pattern across sibling tabs (Arrow / Home / End), selection-follows-focus. The `Tabs` container is a separate (proposed) component; wrap tabs in `role="tablist"`.' } } },
+  parameters: { docs: { description: { component: '`role=tab` control, `<envision-tab>`. Implements the APG roving-tabindex pattern across sibling tabs (Arrow / Home / End), selection-follows-focus. The `Tabs` container is a separate (proposed) component; wrap tabs in `role="tablist"`.' } } },
 };
 export default meta;
 type Story = StoryObj<Args>;
 
 export const Default: Story = {};
 
-/** A real tablist — the RightRail Customize / Packages tabs. Arrow keys move + select. */
+/** A real tablist: the RightRail Customize and Packages tabs. Arrow keys move + select. */
 export const Tablist: Story = {
   name: 'Tablist (keyboard)',
   parameters: { controls: { disable: true } },

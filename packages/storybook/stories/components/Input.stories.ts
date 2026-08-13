@@ -51,7 +51,7 @@ const meta: Meta<Args> = {
       ></envision-input>
     </div>
   `,
-  parameters: { docs: { description: { component: 'Text field — `<envision-input>`. A persistent `<label>` is associated by id; `aria-invalid` / `aria-required` / `aria-describedby` wire the error & helper text. `type="price"` uses a decimal inputmode.' } } },
+  parameters: { docs: { description: { component: 'Text field, `<envision-input>`. A persistent `<label>` is associated by id; `aria-invalid` / `aria-required` / `aria-describedby` wire the error & helper text. `type="price"` uses a decimal inputmode.' } } },
 };
 export default meta;
 type Story = StoryObj<Args>;
@@ -60,16 +60,16 @@ export const Default: Story = {};
 
 export const WithHelperText: Story = { args: { label: 'Email', type: 'email', helperText: "We'll only use this to send your selections." } };
 
-/** Validation/error — `invalid` shows the error message and wires aria-invalid + aria-describedby. */
+/** Validation and error: `invalid` shows the error message and wires aria-invalid + aria-describedby. */
 export const Invalid: Story = { args: { label: 'Email', type: 'email', value: 'not-an-email', invalid: true, errorMessage: 'Enter a valid email address.' } };
 
 export const Required: Story = { args: { label: 'Home address', required: true } };
 
-export const Disabled: Story = { args: { label: 'Plan (locked)', value: 'Westlake — The Sonoma', disabled: true } };
+export const Disabled: Story = { args: { label: 'Plan (locked)', value: 'Westlake, The Sonoma', disabled: true } };
 
 export const WithLeadingIcon: Story = { args: { label: 'Search finishes', type: 'search', leadingIcon: 'search', placeholder: 'e.g. matte walnut' } };
 
-/** The full state matrix on one page — the "state library" view. */
+/** The full state matrix on one page: the "state library" view. */
 export const StateMatrix: Story = {
   parameters: { controls: { disable: true }, layout: 'padded' },
   render: () => html`

@@ -8,7 +8,7 @@ import * as IconButtonStories from './IconButton.stories';
 ## Overview
 `<envision-icon-button>` is an **icon-only action**: close, back, save, overflow, and the 3D
 viewport controls. It is a square 2.5rem control with no visible text, which makes
-`accessibleName` **required** rather than optional — without it the control is anonymous to
+`accessibleName` **required** rather than optional, because without it the control is anonymous to
 assistive technology.
 
 <Canvas of={IconButtonStories.Default} />
@@ -19,7 +19,7 @@ if you need visible text, you need **Button**.
 
 ## When to use
 - The action is **universally understood from its glyph** (close, back, play) or is repeated so
-  often that a label would be noise — the viewport controls.
+  often that a label would be noise, as with the viewport controls.
 - Space is genuinely constrained: toolbars, card corners, the top bar.
 
 ## When not to use
@@ -45,8 +45,8 @@ Selection is carried by background **and** icon fill, not color alone.
 <Story of={IconButtonStories.Disabled} />
 
 ## Behaviour
-`Enter` and `Space` activate. A `tooltip`, when present, appears on hover and on keyboard focus —
-focus parity matters, a hover-only tooltip is invisible to keyboard users — and dismisses on `Esc`
+`Enter` and `Space` activate. A `tooltip`, when present, appears on hover and on keyboard focus.
+Focus parity matters, because a hover-only tooltip is invisible to keyboard users. It dismisses on `Esc`
 per WCAG 1.4.13.
 
 ## Accessibility
@@ -81,7 +81,7 @@ import { IconButton } from '@envision/react';
 ```
 
 ## Realistic Envision example
-The 3D viewport controls — a cluster of subtle icon buttons over the canvas:
+The 3D viewport controls, a cluster of subtle icon buttons over the canvas:
 <Canvas of={IconButtonStories.RealUseCase_ViewportControls} />
 
 ## Related

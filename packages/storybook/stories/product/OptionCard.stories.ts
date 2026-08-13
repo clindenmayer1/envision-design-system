@@ -13,7 +13,7 @@ const meta: Meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
-    docs: { description: { component: 'Selection-row opener in the RightRail — `<envision-option-card>`. The **whole card is a single `<button>`** (no nested interactive); it shows the current option thumb + title + note and opens the selection tray. `active` reflects the tray being open; the note styles as an upgrade when it isn’t "Included".' } },
+    docs: { description: { component: 'Selection-row opener in the RightRail, `<envision-option-card>`. The **whole card is a single `<button>`** (no nested interactive); it shows the current option thumb + title + note and opens the selection tray. `active` reflects the tray being open; the note styles as an upgrade when it isn’t "Included".' } },
   },
 };
 export default meta;
@@ -40,7 +40,7 @@ export const PricePending: Story = {
 
 /** A realistic stack of selection rows in the RightRail. */
 export const RealUseCase_Stack: Story = {
-  name: 'Realistic — selection stack',
+  name: 'Realistic: selection stack',
   render: () => html`
     <div style="width:340px; display:grid; gap:8px;">
       <envision-option-card title="Cabinet Style" note="Included" .options=${options} value="shaker" @open=${fn()}></envision-option-card>

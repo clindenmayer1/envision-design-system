@@ -15,7 +15,7 @@ elements.
 ## Why this component coordinates its own group
 Native radios group by `name` **within a single tree scope**. Each `<envision-radio>` is a separate
 custom element with its own shadow root, so the browser sees each input in a different tree and
-will not group them. Left alone, every radio would be independently checkable — the classic
+will not group them. Left alone, every radio would be independently checkable, the classic
 failure of radio-in-a-web-component.
 
 This component therefore coordinates the group itself, within the shared root node:
@@ -29,7 +29,7 @@ than Checkbox despite looking simpler.
 
 ## Anatomy
 `container` → `input` (native, visually replaced) · `dot` · `label`. The selected state is a
-**filled inner dot** — shape, not color alone.
+**filled inner dot**, so it reads by shape and not color alone.
 
 ## When to use
 - **Two to about five mutually exclusive options**, all worth showing at once.
@@ -55,7 +55,7 @@ group is one tab stop: `Tab` enters it at the selected radio and `Tab` again lea
 - Native `<input type="radio">` supplies role and checked state.
 - Roving tabindex means assistive technology announces the group position correctly.
 - Every radio in a group needs the same `name`; a mismatched `name` silently creates two groups.
-- The group itself should have an accessible name — wrap it in a `fieldset`/`legend` or label the
+- The group itself should have an accessible name, so wrap it in a `fieldset`/`legend` or label the
   container, since Radio labels only the individual option.
 
 ## Responsive

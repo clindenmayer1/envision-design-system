@@ -7,7 +7,7 @@ import * as OptionCardStories from './OptionCard.stories';
 
 ## Overview
 `<envision-option-card>` is the **selection-row opener** in the RightRail. It shows the currently
-chosen option — thumb, title, note — and opens the selection tray for that category. It is the
+chosen option (thumb, title, note) and opens the selection tray for that category. It is the
 spine of the Customize tab.
 
 <Canvas of={OptionCardStories.Default} />
@@ -40,7 +40,7 @@ is not `Included`, so pricing emphasis is derived from content rather than set b
 while the tray is up:
 <Canvas of={OptionCardStories.Active} />
 
-`price-pending` is a real product state — pricing resolves asynchronously and the card must not
+`price-pending` is a real product state, because pricing resolves asynchronously and the card must not
 show a wrong number while it does:
 <Canvas of={OptionCardStories.PricePending} />
 
@@ -48,14 +48,14 @@ show a wrong number while it does:
 The shipped rail renders a **live 3D `PullThumb`** inside the thumb for door and pull previews.
 No background-image API can express that, so the component publishes a `media` slot and a
 `thumb-shape="portrait"` variant. This was added to the design system rather than worked around in
-the app — the alternative was a parallel card implementation, which the system forbids.
+the app. The alternative was a parallel card implementation, which the system forbids.
 
 ## Behaviour
 The card is a button: `Enter` and `Space` open the tray. It emits a composed `open` event. If
 `onOpen` is absent the card cycles through its options instead, so it is still useful standalone.
 
 ## Accessibility
-- The entire card is a real `<button>` — one target, one tab stop, correct role for free.
+- The entire card is a real `<button>`, giving one target, one tab stop and the correct role for free.
 - The accessible name should read as the whole row: category, current choice, and price
   implication.
 - Selection/active is ring plus styling, not color alone.
@@ -79,7 +79,7 @@ Its content wraps rather than truncating, so long material names stay readable.
 
 The ring is drawn as a `box-shadow` spread rather than a border, so it does not affect layout when
 the state changes. `--envision-t3-option-card-color-shadow` is published but **not consumed** by
-this component — a leftover from an earlier design.
+this component. It is a leftover from an earlier design.
 
 ## Implementation
 ```tsx

@@ -1,5 +1,5 @@
 /**
- * Envision Label — `<envision-label>`. Reusable field/control label.
+ * Envision Label, `<envision-label>`. Reusable field/control label.
  *
  * Registry contract → "label":
  *   props: text(required) · required(false) · helpIcon(false) · htmlFor(required)
@@ -8,7 +8,7 @@
  *
  * DELIBERATE ARCHITECTURE EXCEPTION: this element renders into the LIGHT DOM (no Shadow DOM).
  * A `<label for="…">` inside a shadow root cannot associate with a control in the document's
- * light DOM — `for`/`id` matching is scoped to a single tree. Form-label association therefore
+ * light DOM, `for`/`id` matching is scoped to a single tree. Form-label association therefore
  * requires light DOM. The self-labelling form controls (Input/Checkbox/Radio/Switch) instead
  * keep their <label> and <input> together inside one shadow root, so they don't need this.
  * Documented in the component doc + Component Architecture Document.

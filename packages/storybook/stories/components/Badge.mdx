@@ -6,8 +6,8 @@ import * as BadgeStories from './Badge.stories';
 # Badge
 
 ## Overview
-`<envision-badge>` is a **count or status indicator**. It labels something else — a bell, a row, a
-package — and is never interactive itself. It renders a `<span>` in a shadow root, so it can sit
+`<envision-badge>` is a **count or status indicator**. It labels something else, such as a bell, a row or a
+package, and is never interactive itself. It renders a `<span>` in a shadow root, so it can sit
 inside a button (the notification bell) without nesting an interactive element.
 
 <Canvas of={BadgeStories.Default} />
@@ -48,7 +48,7 @@ Counts above `max` (default 99) render as `99+`, so the pill geometry stays stab
 ## Accessibility
 - A bare number is meaningless to a screen reader out of context. Pass `label` to supply the
   accessible name (`3 unread notifications`), or place adjacent text that conveys the meaning.
-- Tone is **color**. Per Envision principle 3, color never carries meaning alone — the count,
+- Tone is **color**. Per Envision principle 3, color never carries meaning alone, so the count,
   the label, or the adjacent text must say what the tone implies.
 - `dot` shape has no text at all, so `label` is effectively required for it.
 
@@ -83,12 +83,12 @@ import { Badge } from '@envision/react';
 ```
 
 ## Realistic Envision example
-The top-bar notification bell — badge positioned on an `IconButton`:
+The top-bar notification bell, with the badge positioned on an `IconButton`:
 <Canvas of={BadgeStories.RealUseCase_NotificationBell} />
 
 ## Known gap
 The shipped product's notification count is **accent orange**, and Badge publishes no `accent`
-tone — `brand` would render it green. The top bar therefore consumes the T3 token directly rather
+tone, so `brand` would render it green. The top bar therefore consumes the T3 token directly rather
 than adopting Badge. This is logged in `docs/ds-adoption-matrix.md` as a component API gap, not an
 application defect.
 
