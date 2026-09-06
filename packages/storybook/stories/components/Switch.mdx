@@ -13,12 +13,12 @@ reach for.
 <Canvas of={SwitchStories.On} />
 
 ## How it is built
-A native `<input type="checkbox">` carries the toggle behaviour and `Space` handling;
+A native `<input type="checkbox">` carries the toggle behavior and `Space` handling;
 `role="switch"` supplies the on/off semantics. The component adds **`Enter` to toggle**, because a
 native checkbox only responds to `Space` while the switch contract expects both.
 
 The on/off state also **shifts the thumb position**, so state is conveyed by position as well as
-color and survives greyscale.
+color and survives grayscale.
 
 ## Anatomy
 `container` → `track` · `thumb` · `label`. Label and input share one shadow root, so Switch does
@@ -31,7 +31,7 @@ not need the separate **Label** component.
 ## When not to use
 - **Anything submitted with a form** → use **Checkbox**. A switch that does not apply until you
   press Save is lying about its own semantics.
-- **Choosing between two labelled alternatives** → use **Radio** or **RightRail/Tab**; a switch has
+- **Choosing between two labeled alternatives** → use **Radio** or **RightRail/Tab**; a switch has
   no room for two labels.
 - **Triggering an action** → use **Button**.
 
@@ -40,7 +40,7 @@ not need the separate **Label** component.
 `on` · `off` · `focus-visible` · `disabled`.
 <Story of={SwitchStories.Off} /> <Story of={SwitchStories.Disabled} />
 
-## Behaviour
+## Behavior
 `Space` and `Enter` both toggle. Clicking the label toggles. `disabled` blocks activation and
 removes the control from the tab order.
 

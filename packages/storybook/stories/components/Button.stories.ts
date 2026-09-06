@@ -52,7 +52,7 @@ const meta: Meta<ButtonArgs> = {
       description: {
         component:
           'The Envision **Button**, `<envision-button>`. A real `<button>` in a shadow root, so keyboard ' +
-          'activation, disabled focus behaviour and form semantics come from the platform. Styled entirely ' +
+          'activation, disabled focus behavior and form semantics come from the platform. Styled entirely ' +
           'with production tokens (14px / 600 / brand-CTA radius 10; outline = neutral hairline secondary).',
       },
     },
@@ -99,14 +99,21 @@ export const WithIcons: Story = {
   `,
 };
 
+// The three below are hidden from the sidebar (`!dev`): each is one button with a single prop
+// flipped, so it is reached from Default via the `loading` / `disabled` / `fullWidth` controls.
+// They stay indexed, so the docs page embeds them and visual regression still covers them.
+// FocusVisible and KeyboardActivation are NOT hidden: no control can produce a :focus-visible
+// state or a keypress, so those two are not reachable from Default.
+
 /** Loading blocks re-activation and announces `aria-busy`, but the control stays focusable. */
-export const Loading: Story = { args: { loading: true, label: 'Saving…' } };
+export const Loading: Story = { tags: ['!dev'], args: { loading: true, label: 'Saving…' } };
 
 /** Disabled removes the control from the tab order and blocks activation. */
-export const Disabled: Story = { args: { disabled: true } };
+export const Disabled: Story = { tags: ['!dev'], args: { disabled: true } };
 
 /** Stretches to fill its container, used for the RightRail apply action and mobile CTAs. */
 export const FullWidth: Story = {
+  tags: ['!dev'],
   args: { fullWidth: true },
   decorators: [(s) => html`<div style="width:360px; padding:16px; background:var(--envision-t2-color-background-surface-warm-default);">${s()}</div>`],
 };

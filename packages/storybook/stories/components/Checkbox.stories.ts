@@ -24,9 +24,16 @@ export default meta;
 type Story = StoryObj<Args>;
 
 export const Default: Story = {};
-export const Checked: Story = { args: { checked: true } };
-export const Disabled: Story = { args: { disabled: true } };
-export const Error: Story = { args: { invalid: true, required: true, label: 'Accept the builder agreement' } };
+
+/**
+ * Single-state stories carry `tags: ['!dev']`: they are reachable by flipping the matching
+ * control on Default rather than by their own sidebar page, so they are hidden from the sidebar.
+ * They still exist as stories, so the docs page keeps embedding them with `<Canvas of={...}>`
+ * and visual regression keeps screenshotting them. Only the duplicate navigation is removed.
+ */
+export const Checked: Story = { tags: ['!dev'], args: { checked: true } };
+export const Disabled: Story = { tags: ['!dev'], args: { disabled: true } };
+export const Error: Story = { tags: ['!dev'], args: { invalid: true, required: true, label: 'Accept the builder agreement' } };
 
 export const States: Story = {
   parameters: { controls: { disable: true } },

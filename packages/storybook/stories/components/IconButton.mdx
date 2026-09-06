@@ -23,7 +23,7 @@ if you need visible text, you need **Button**.
 - Space is genuinely constrained: toolbars, card corners, the top bar.
 
 ## When not to use
-- **The primary action on a surface** → use **Button** with a label. An unlabelled primary action
+- **The primary action on a surface** → use **Button** with a label. An unlabeled primary action
   is a guessing game.
 - **Navigation** → use **Link**.
 - **A toggle that represents a setting** → use **Switch**. `selected` here means "this tool is
@@ -44,7 +44,7 @@ Selection is carried by background **and** icon fill, not color alone.
 `default` · `hover` · `focus-visible` · `selected` · `disabled`.
 <Story of={IconButtonStories.Disabled} />
 
-## Behaviour
+## Behavior
 `Enter` and `Space` activate. A `tooltip`, when present, appears on hover and on keyboard focus.
 Focus parity matters, because a hover-only tooltip is invisible to keyboard users. It dismisses on `Esc`
 per WCAG 1.4.13.
@@ -85,5 +85,5 @@ The 3D viewport controls, a cluster of subtle icon buttons over the canvas:
 <Canvas of={IconButtonStories.RealUseCase_ViewportControls} />
 
 ## Related
-**Button** (labelled action) · **Badge** (count attached to an icon button) · **Tooltip**
+**Button** (labeled action) · **Badge** (count attached to an icon button) · **Tooltip**
 (specified, not yet implemented).

@@ -92,7 +92,7 @@ export const ButtonPlayground = () => {
 
 ## Overview
 `<envision-button>` triggers an **action**, such as submit, apply or select this design. It renders a real
-`<button>` inside a shadow root, so keyboard activation, disabled focus behaviour and form
+`<button>` inside a shadow root, so keyboard activation, disabled focus behavior and form
 semantics come from the platform. It is styled entirely with production tokens and reconciled to
 the shipped website (14px / 600, brand-CTA radius 10, outline = neutral hairline secondary).
 
@@ -119,8 +119,9 @@ replaces the intent while `loading`.
 
 ## Variants
 <Canvas of={ButtonStories.Variants} />
-`primary` = brand CTA (green fill). `outline` = neutral secondary (hairline border, dark text,
-surface fill). This matches the website’s secondary buttons, **not** a brand-green outline.
+`primary` = brand CTA (filled with the active theme's brand color). `outline` = neutral secondary
+(hairline border, dark text, surface fill). This matches the website’s secondary buttons, **not** a
+brand-colored outline.
 `ghost` = transparent, brand text, for lowest emphasis.
 
 ## Sizes
@@ -148,7 +149,7 @@ with no `size` attribute is a medium.
 - **loading**, where a spinner replaces the intent, `aria-busy=true`, re-activation blocked, but the control
   **stays focusable**. <Story of={ButtonStories.Loading} />
 
-## Behaviour
+## Behavior
 `Enter` / `Space` activate. While `loading`, a capture-phase guard cancels activation so a double
 submit can’t occur. `fullWidth` stretches the button to its container (RightRail apply, mobile CTAs).
 

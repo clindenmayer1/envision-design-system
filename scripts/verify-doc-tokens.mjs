@@ -71,9 +71,13 @@ for (const f of docs) {
   const dir = DIR[name];
   if (!dir || !compTokens[dir]) continue;
   const src = readFileSync(f, 'utf8');
+  // A doc may cite a token precisely because the component does NOT use it: a counter-example, or
+  // a published token recorded as unconsumed. Those pages say so inline, next to the sentence.
+  const allowed = new Set([...src.matchAll(/verify-claims:\s*allow\s+--(envision-[a-z0-9-]+)/g)].map((m) => m[1]));
   // token names cited inside the doc, ignoring {a,b,c} brace expansions and trailing wildcards
   const cited = [...src.matchAll(/`--(envision-t[123]-[a-z0-9-]+)`/g)].map((m) => m[1]);
   for (const c of cited) {
+    if (allowed.has(c)) continue;
     claims++;
     const real = [...compTokens[dir]];
     const ok = real.some((r) => r === c || r.startsWith(c) || c.startsWith(r));

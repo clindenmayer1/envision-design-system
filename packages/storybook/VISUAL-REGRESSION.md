@@ -12,7 +12,7 @@ No external SaaS. Config: `playwright.config.ts`; spec: `visual/stories.spec.ts`
 - **Every `story`-type entry** in the Storybook index (66 today) — one screenshot per story.
 - **Docs pages are excluded** (prose, not fixtures — the stories they embed are covered directly).
 - A story opts **out** with `tags: ['no-visual']` — reserved for intentionally non-deterministic
-  content (e.g. randomised/animated demos). None today.
+  content (e.g. randomized/animated demos). None today.
 - Rendered against the static build (`storybook-static`) for determinism; animations disabled,
   caret hidden, fonts awaited before capture.
 

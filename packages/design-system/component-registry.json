@@ -21,9 +21,9 @@
         "deprecated"
       ]
     },
-    "note": "figmaStatus reflects what is ACTUALLY built in the Figma library. Components with figmaStatus 'proposed' are specified here but NOT yet drawn in Figma, so do not claim they exist. codeName/props are the proposed API; runtime stack is provisional (see STORYBOOK.md).",
+    "note": "figmaStatus reflects what is ACTUALLY built in the Figma library. Components with figmaStatus 'proposed' are specified here but NOT yet drawn in Figma, so do not claim they exist. codeName/props are the proposed API; runtime stack is provisional (see STORYBOOK.md). WHITE-LABEL: Envision serves many builder brands. No component may assume a brand color \u2014 consume semantic roles (background/brand, content/on-brand), never color/primary/* directly, and never pair a fixed content color with a brand surface. Themeable surface and invariants: SYSTEM_SPEC \u00a79.",
     "componentTaxonomy": {
-      "note": "Canonical UX taxonomy for public components. Sole source of truth: downstream tooling (Storybook, docs, manifests) derives grouping from `category` on each component and MUST NOT keep a parallel list. Categories are displayed in the `order` below; components are alphabetised within each category, comparing names with spaces and punctuation ignored.",
+      "note": "Category axis mirrors the section dividers in the Figma library, so a component sits in the same place in both. Status & Progress is its own section again, and Table returns to Data Display. The prior axis is preserved per component as categoryPrevious.",
       "order": [
         "Actions",
         "Inputs & Selection",
@@ -62,6 +62,11 @@
         "trailingIcon?"
       ],
       "figmaProperties": {
+        "Label": "text",
+        "Leading icon": "boolean",
+        "Trailing icon": "boolean",
+        "Leading icon glyph": "instance-swap",
+        "Trailing icon glyph": "instance-swap",
         "Type": [
           "Primary",
           "Outline",
@@ -74,9 +79,6 @@
           "Pressed",
           "Disabled"
         ],
-        "Label": "text",
-        "Leading icon": "boolean",
-        "Trailing icon": "boolean",
         "Size": [
           "Medium",
           "Small",
@@ -159,15 +161,36 @@
         "loading"
       ],
       "tokenDependencies": [
-        "t3.button.primary.color-background.*",
-        "t3.button.primary.color-content.*",
-        "t3.button.outline.*",
-        "t2.radius.control",
-        "t2.spacing.inline-icon-gap",
-        "t2.color.border.focus",
-        "t3.button.small.padding-block/padding-inline/font-size",
-        "t3.button.medium.padding-block/padding-inline/font-size",
-        "t3.button.large.padding-block/padding-inline/font-size"
+        "t1.font-weight.600",
+        "t2.border-radius.container-md",
+        "t2.border-width.default",
+        "t2.border-width.focus",
+        "t2.color.background.brand-subtle.default",
+        "t2.color.background.surface-warm.default",
+        "t2.color.background.surface.default",
+        "t2.color.border.default.default",
+        "t2.color.border.focus.default",
+        "t2.color.border.strong.default",
+        "t2.color.content.brand.default",
+        "t2.color.content.primary.default",
+        "t2.motion.loading-duration",
+        "t2.motion.micro-duration",
+        "t2.spacing.control-gap",
+        "t3.button.large.font-size.default",
+        "t3.button.large.padding-block.default",
+        "t3.button.large.padding-inline.default",
+        "t3.button.medium.font-size.default",
+        "t3.button.medium.padding-block.default",
+        "t3.button.medium.padding-inline.default",
+        "t3.button.primary.color-background.default",
+        "t3.button.primary.color-background.disabled",
+        "t3.button.primary.color-background.hover",
+        "t3.button.primary.color-background.pressed",
+        "t3.button.primary.color-content.default",
+        "t3.button.primary.color-content.disabled",
+        "t3.button.small.font-size.default",
+        "t3.button.small.padding-block.default",
+        "t3.button.small.padding-inline.default"
       ],
       "responsive": "Hug by default; fullWidth in constrained/mobile footers.",
       "keyboard": "Enter/Space activate. Focusable. Not focusable when disabled.",
@@ -181,18 +204,6 @@
       "empty": "n/a",
       "error": "n/a",
       "unavailable": "disabled",
-      "storybookStories": [
-        "Button/Primary",
-        "Button/Outline",
-        "Button/Ghost",
-        "Button/Sizes",
-        "Button/Loading",
-        "Button/Disabled",
-        "Button/WithIcons",
-        "Button/LongLabel",
-        "Button/FullWidth",
-        "Button/Mobile"
-      ],
       "usageExamples": [
         "<Button variant='primary' label='Select this design' fullWidth/>"
       ],
@@ -201,7 +212,8 @@
         "inline background hex"
       ],
       "owner": "design-systems",
-      "webComponentPackage": "@envision/components"
+      "webComponentPackage": "@envision/components",
+      "categoryPrevious": "Actions"
     },
     {
       "id": "icon-button",
@@ -218,12 +230,17 @@
       "figmaStatus": "ready-for-review",
       "purpose": "Icon-only action (close, back, save/bookmark, overflow, 3D controls).",
       "figmaProperties": {
+        "Type": [
+          "Filled",
+          "Plain"
+        ],
         "State": [
           "Default",
           "Hover",
           "Focus",
           "Selected",
-          "Disabled"
+          "Disabled",
+          "Pressed"
         ]
       },
       "props": [
@@ -270,11 +287,16 @@
         "disabled"
       ],
       "tokenDependencies": [
-        "t2.color.content.*",
-        "t2.color.background.brand",
-        "t2.color.background.brand-subtle",
-        "t2.radius.control",
-        "t2.color.border.focus"
+        "t2.border-radius.control",
+        "t2.border-width.focus",
+        "t2.color.background.brand-subtle.default",
+        "t2.color.background.brand.default",
+        "t2.color.border.focus.default",
+        "t2.color.content.disabled.default",
+        "t2.color.content.on-brand.default",
+        "t2.color.content.secondary.default",
+        "t2.color.content.tertiary.default",
+        "t2.motion.micro-duration"
       ],
       "keyboard": "Enter/Space. Tooltip dismissible on Esc.",
       "aria": [
@@ -284,14 +306,9 @@
       "invalidCombinations": [
         "icon without accessibleName is invalid (enforce in types)"
       ],
-      "storybookStories": [
-        "IconButton/Default",
-        "IconButton/Selected",
-        "IconButton/Disabled",
-        "IconButton/WithTooltip"
-      ],
       "owner": "design-systems",
-      "webComponentPackage": "@envision/components"
+      "webComponentPackage": "@envision/components",
+      "categoryPrevious": "Actions"
     },
     {
       "id": "link",
@@ -308,13 +325,13 @@
       "figmaStatus": "ready-for-review",
       "purpose": "Inline or standalone navigation.",
       "figmaProperties": {
+        "Label": "text",
         "State": [
           "Default",
           "Hover",
           "Focus",
           "Disabled"
-        ],
-        "Label": "text"
+        ]
       },
       "props": [
         {
@@ -354,17 +371,105 @@
         "disabled(optional)"
       ],
       "tokenDependencies": [
+        "t2.border-radius.control-xs",
+        "t2.border-width.focus",
+        "t2.color.border.focus.default",
         "t2.color.content.brand.default",
         "t2.color.content.brand.hover",
-        "t2.color.border.focus"
+        "t2.color.content.disabled.default",
+        "t2.spacing.control-gap-tight"
       ],
       "semanticHTML": "<a href>",
       "keyboard": "Enter activates.",
-      "storybookStories": [
-        "Link/Default",
-        "Link/Standalone",
-        "Link/WithIcon",
-        "Link/Disabled"
+      "owner": "design-systems",
+      "webComponentPackage": "@envision/components",
+      "categoryPrevious": "Navigation"
+    },
+    {
+      "id": "breadcrumbs",
+      "displayName": "Breadcrumbs",
+      "figmaName": "Breadcrumbs",
+      "figmaNodeId": "865:12",
+      "codeName": "Breadcrumbs",
+      "importPath": "@envision/react",
+      "category": "Navigation",
+      "architecture": "control-primitive",
+      "categoryPrevious": "Navigation",
+      "taxonomyLevel": 3,
+      "public": true,
+      "maturity": "candidate",
+      "figmaStatus": "in-progress",
+      "specified": true,
+      "purpose": "Shows where the current page sits in the site hierarchy and links back to each ancestor.",
+      "whenToUse": "A page sits three or more levels deep and someone needs to know where they are and how to get back up.",
+      "whenNotToUse": "Flat hierarchies, or as a substitute for primary navigation or a back button.",
+      "anatomy": [
+        "nav landmark",
+        "ordered list",
+        "ancestor link",
+        "separator",
+        "current page"
+      ],
+      "figmaProperties": {
+        "Breadcrumb Item \u00b7 State": [
+          "Default",
+          "Hover",
+          "Focus",
+          "Current"
+        ]
+      },
+      "props": [
+        {
+          "name": "items",
+          "type": "BreadcrumbItem[]",
+          "required": true,
+          "note": "JS property, not an attribute: it carries objects. Root first; the last entry is the current page.",
+          "storybookControl": "object"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": false,
+          "default": "Breadcrumb",
+          "note": "Accessible name for the landmark.",
+          "storybookControl": "text"
+        }
+      ],
+      "invalidCombinations": [],
+      "states": [
+        "default",
+        "hover",
+        "focus-visible",
+        "current"
+      ],
+      "tokenDependencies": [
+        "t1.font-size.13",
+        "t1.spacing.100",
+        "t2.border-radius.control-xs",
+        "t2.border-width.focus",
+        "t2.color.border.focus.default",
+        "t2.color.content.primary.default",
+        "t2.color.content.secondary.default",
+        "t2.color.content.tertiary.default"
+      ],
+      "responsive": "Wraps onto multiple lines rather than truncating; a breadcrumb that hides the middle removes the part people read.",
+      "keyboard": "Tab moves through the ancestor links. Enter follows one. The current page is not focusable because it is not a destination.",
+      "semanticHTML": "<nav aria-label> containing an <ol> of <li>. Ancestors are real <a href>; the current page is a <span aria-current=\"page\">.",
+      "aria": [
+        "nav landmark carries an accessible name",
+        "final item carries aria-current=page",
+        "separators are aria-hidden"
+      ],
+      "loading": null,
+      "empty": "Renders the landmark with no items rather than throwing.",
+      "error": null,
+      "unavailable": null,
+      "usageExamples": [
+        "<Breadcrumbs items={[{label:'Home',href:'/'},{label:'Components'}]} />"
+      ],
+      "prohibitedExamples": [
+        "using it as the only way back from a deep page",
+        "truncating the middle of the trail"
       ],
       "owner": "design-systems",
       "webComponentPackage": "@envision/components"
@@ -384,12 +489,12 @@
       "figmaStatus": "ready-for-review",
       "purpose": "Reusable field/control label. Kept separate so it composes into Field, Input, Checkbox, Radio, Switch.",
       "figmaProperties": {
+        "Label": "text",
+        "Help icon": "boolean",
         "Type": [
           "Default",
           "Required"
-        ],
-        "Label": "text",
-        "Help icon": "boolean"
+        ]
       },
       "props": [
         {
@@ -421,18 +526,14 @@
       "prohibitedExamples": [
         "placeholder used as the only label"
       ],
-      "storybookStories": [
-        "Label/Default",
-        "Label/Required",
-        "Label/WithHelp"
-      ],
       "owner": "design-systems",
-      "webComponentPackage": "@envision/components"
+      "webComponentPackage": "@envision/components",
+      "categoryPrevious": "Inputs & Selection"
     },
     {
       "id": "field",
       "displayName": "Field",
-      "figmaName": "Field",
+      "figmaName": "TextField",
       "figmaNodeId": "11:36",
       "codeName": "Input",
       "importPath": "@envision/react",
@@ -444,6 +545,11 @@
       "figmaStatus": "ready-for-review",
       "purpose": "Text input shell. Compose Label + Field + helper/error = Input.",
       "figmaProperties": {
+        "Value": "text",
+        "Leading icon": "boolean",
+        "Trailing icon": "boolean",
+        "Leading icon glyph": "instance-swap",
+        "Trailing icon glyph": "instance-swap",
         "State": [
           "Default",
           "Hover",
@@ -451,8 +557,7 @@
           "Filled",
           "Error",
           "Disabled"
-        ],
-        "Value": "text"
+        ]
       },
       "props": [
         {
@@ -497,11 +602,15 @@
         },
         {
           "name": "leadingIcon",
-          "type": "MaterialSymbolName"
+          "type": "MaterialSymbolName",
+          "figmaProp": "Leading icon",
+          "note": "Material Symbols name. Figma carries a boolean per side plus a glyph to swap; code names the glyph directly."
         },
         {
           "name": "trailingIcon",
-          "type": "MaterialSymbolName"
+          "type": "MaterialSymbolName",
+          "figmaProp": "Trailing icon",
+          "note": "Material Symbols name. Decorative: an icon that can be acted on needs a real control, not a glyph."
         }
       ],
       "states": [
@@ -515,10 +624,27 @@
         "required"
       ],
       "tokenDependencies": [
-        "t3.input.default.color-border.*",
-        "t2.color.background.surface",
-        "t2.radius.control",
-        "t2.color.content.placeholder"
+        "t1.font-size.15",
+        "t2.border-radius.control",
+        "t2.border-width.default",
+        "t2.border-width.focus",
+        "t2.color.background.surface-sunken.default",
+        "t2.color.background.surface.default",
+        "t2.color.border.disabled.default",
+        "t2.color.border.focus.default",
+        "t2.color.content.disabled.default",
+        "t2.color.content.error.default",
+        "t2.color.content.placeholder.default",
+        "t2.color.content.primary.default",
+        "t2.color.content.secondary.default",
+        "t2.color.content.tertiary.default",
+        "t2.spacing.control-gap-tight",
+        "t2.spacing.control-padding-block",
+        "t2.spacing.control-padding-inline",
+        "t3.input.default.color-border.default",
+        "t3.input.default.color-border.error",
+        "t3.input.default.color-border.focus",
+        "t3.input.default.color-border.hover"
       ],
       "aria": [
         "label associated via id",
@@ -527,17 +653,12 @@
         "aria-required"
       ],
       "keyboard": "standard text editing.",
-      "storybookStories": [
-        "Field/Default",
-        "Field/Filled",
-        "Field/Focus",
-        "Field/Error",
-        "Field/Disabled",
-        "Field/Search",
-        "Field/LongValue"
-      ],
       "owner": "design-systems",
-      "webComponentPackage": "@envision/components"
+      "webComponentPackage": "@envision/components",
+      "categoryPrevious": "Inputs & Selection",
+      "behavior": [
+        "Either end of the field can carry an icon. A leading icon labels the field\u2019s subject; a trailing icon shows status. Both are hidden from assistive technology, so neither may be the only carrier of meaning, and an icon that can be acted on must be a control rather than a glyph."
+      ]
     },
     {
       "id": "checkbox",
@@ -561,7 +682,8 @@
         "State": [
           "Default",
           "Focus",
-          "Disabled"
+          "Disabled",
+          "Hover"
         ]
       },
       "props": [
@@ -600,22 +722,29 @@
         "error"
       ],
       "tokenDependencies": [
-        "t2.color.background.brand",
-        "t2.color.border.brand",
-        "t2.color.border.default",
-        "t2.radius.control",
-        "t2.color.content.on-brand"
+        "t1.font-size.14",
+        "t2.border-radius.control-sm",
+        "t2.border-width.emphasis",
+        "t2.border-width.focus",
+        "t2.color.background.brand.default",
+        "t2.color.background.surface-sunken.default",
+        "t2.color.background.surface.default",
+        "t2.color.border.brand.default",
+        "t2.color.border.default.default",
+        "t2.color.border.disabled.default",
+        "t2.color.border.error.default",
+        "t2.color.border.focus.default",
+        "t2.color.content.disabled.default",
+        "t2.color.content.on-brand.default",
+        "t2.color.content.primary.default",
+        "t2.motion.micro-duration",
+        "t2.spacing.control-gap"
       ],
       "semanticHTML": "<input type=checkbox>",
       "keyboard": "Space toggles.",
-      "storybookStories": [
-        "Checkbox/Checked",
-        "Checkbox/Unchecked",
-        "Checkbox/Focus",
-        "Checkbox/Disabled"
-      ],
       "owner": "design-systems",
-      "webComponentPackage": "@envision/components"
+      "webComponentPackage": "@envision/components",
+      "categoryPrevious": "Inputs & Selection"
     },
     {
       "id": "radio",
@@ -639,7 +768,8 @@
         "State": [
           "Default",
           "Focus",
-          "Disabled"
+          "Disabled",
+          "Hover"
         ]
       },
       "props": [
@@ -677,13 +807,9 @@
       ],
       "semanticHTML": "<input type=radio>",
       "keyboard": "Arrow keys move within group; Space selects.",
-      "storybookStories": [
-        "Radio/Selected",
-        "Radio/Unselected",
-        "Radio/Disabled"
-      ],
       "owner": "design-systems",
-      "webComponentPackage": "@envision/components"
+      "webComponentPackage": "@envision/components",
+      "categoryPrevious": "Inputs & Selection"
     },
     {
       "id": "switch",
@@ -707,7 +833,8 @@
         "State": [
           "Default",
           "Focus",
-          "Disabled"
+          "Disabled",
+          "Hover"
         ]
       },
       "props": [
@@ -735,19 +862,15 @@
       ],
       "semanticHTML": "role=switch",
       "keyboard": "Space/Enter toggles.",
-      "storybookStories": [
-        "Switch/On",
-        "Switch/Off",
-        "Switch/Disabled"
-      ],
       "owner": "design-systems",
-      "webComponentPackage": "@envision/components"
+      "webComponentPackage": "@envision/components",
+      "categoryPrevious": "Inputs & Selection"
     },
     {
       "id": "badge",
       "displayName": "Badge",
       "figmaName": "Badge",
-      "figmaNodeId": "10:20",
+      "figmaNodeId": "106:65",
       "codeName": "Badge",
       "importPath": "@envision/react",
       "category": "Data Display",
@@ -758,19 +881,15 @@
       "figmaStatus": "ready-for-review",
       "purpose": "Count or status indicator.",
       "figmaProperties": {
+        "Label": "text",
         "Tone": [
+          "Promotional",
           "Neutral",
-          "Brand",
           "Info",
           "Success",
           "Warning",
-          "Error"
-        ],
-        "Shape": [
-          "Count",
-          "Dot"
-        ],
-        "Count": "text"
+          "Critical"
+        ]
       },
       "props": [
         {
@@ -802,24 +921,25 @@
         "default"
       ],
       "tokenDependencies": [
-        "t1.color.success/warning/error/info (status)",
-        "t2.color.background.brand/accent",
-        "t2.color.content.on-brand",
-        "t2.radius.pill"
+        "t1.font-weight.600",
+        "t2.border-radius.pill",
+        "t3.badge.medium.font-size.default",
+        "t3.badge.medium.gap.default",
+        "t3.badge.medium.padding-block.default",
+        "t3.badge.medium.padding-inline.default",
+        "t3.badge.neutral.color-background.default",
+        "t3.badge.neutral.color-content.default",
+        "t3.badge.notification.dot-size"
       ],
       "a11y": "Non-color-only: adjacent accessible text conveys meaning; announce count via aria-label.",
-      "storybookStories": [
-        "Badge/Tones",
-        "Badge/Dot",
-        "Badge/MaxCount"
-      ],
       "owner": "design-systems",
-      "webComponentPackage": "@envision/components"
+      "webComponentPackage": "@envision/components",
+      "categoryPrevious": "Data Display"
     },
     {
-      "id": "rightrail-tab",
-      "displayName": "RightRail/Tab",
-      "figmaName": "RightRail/Tab",
+      "id": "tab",
+      "displayName": "Tab",
+      "figmaName": "Tab",
       "figmaNodeId": "10:37",
       "codeName": "Tab",
       "category": "Navigation",
@@ -830,13 +950,14 @@
       "figmaStatus": "ready-for-review",
       "purpose": "Tab item with active underline (Customize | Packages, and general tabs).",
       "figmaProperties": {
+        "Label": "text",
         "State": [
           "Default",
           "Hover",
           "Selected",
-          "Disabled"
-        ],
-        "Label": "text"
+          "Disabled",
+          "Focus"
+        ]
       },
       "props": [
         {
@@ -863,12 +984,18 @@
         "disabled"
       ],
       "tokenDependencies": [
-        "t3.tab.selected.color-content",
-        "t3.tab.selected.color-indicator",
-        "t3.tab.default.color-content"
+        "t1.font-size.14",
+        "t1.font-weight.600",
+        "t2.border-width.focus",
+        "t2.color.border.focus.default",
+        "t2.color.content.disabled.default",
+        "t2.color.content.primary.default",
+        "t2.color.content.tertiary.default",
+        "t2.spacing.container-padding-note",
+        "t3.tab.selected.color-content.default",
+        "t3.tab.selected.color-indicator.default"
       ],
       "allowedParents": [
-        "rightrail",
         "tablist container"
       ],
       "aria": [
@@ -877,14 +1004,11 @@
         "controls the tabpanel id"
       ],
       "keyboard": "Left/Right arrows move; Home/End; activation manual or automatic per APG.",
-      "storybookStories": [
-        "Tab/Default",
-        "Tab/Selected",
-        "Tab/Disabled",
-        "Tab/Overflow"
-      ],
       "owner": "design-systems",
-      "importPathNote": "not shipped in code yet"
+      "categoryPrevious": "Navigation",
+      "webComponentPackage": "@envision/components",
+      "figmaPage": "Tabs",
+      "importPath": "@envision/react"
     },
     {
       "id": "material-swatch",
@@ -899,13 +1023,20 @@
       "public": true,
       "maturity": "candidate",
       "figmaStatus": "ready-for-review",
-      "purpose": "Selectable material/finish chip. Fill is PRODUCT DATA (image/texture/color), not a UI token.",
+      "purpose": "One selectable material. It renders either a flat chip or a rendered sphere, because a paint color and a metal finish are not the same kind of thing.",
       "figmaProperties": {
+        "Content": [
+          "Chip",
+          "Sphere",
+          "Veneer",
+          "Opener"
+        ],
         "State": [
           "Default",
           "Hover",
           "Selected",
-          "Unavailable"
+          "Unavailable",
+          "Focus"
         ],
         "Label": "text"
       },
@@ -914,17 +1045,39 @@
           "name": "option",
           "type": "MaterialOption",
           "required": true,
-          "dataModel": "materialOption"
+          "dataModel": "materialOption",
+          "note": "id, name, finish, priceLabel, and the fill as image or color"
+        },
+        {
+          "name": "shape",
+          "type": "'square'|'circle'",
+          "default": "square",
+          "figmaProp": "Content",
+          "note": "square is the Chip content, circle is the Sphere content used for metal finishes"
         },
         {
           "name": "selected",
           "type": "boolean",
-          "default": false
+          "default": false,
+          "figmaProp": "State"
         },
         {
           "name": "unavailable",
           "type": "boolean",
-          "default": false
+          "default": false,
+          "figmaProp": "State"
+        },
+        {
+          "name": "fluid",
+          "type": "boolean",
+          "default": false,
+          "note": "fills its grid cell instead of the fixed chip size, which is how the rail and trays use it"
+        },
+        {
+          "name": "hideCheck",
+          "type": "boolean",
+          "default": false,
+          "note": "selection shown by the ring alone; the product sets this"
         },
         {
           "name": "onSelect",
@@ -941,25 +1094,44 @@
         "image-failure"
       ],
       "tokenDependencies": [
-        "effect Ring/Rest|Hover|Selected",
-        "t2.radius.panel"
+        "t1.font-size.11",
+        "t2.border-radius.control-sm",
+        "t2.border-width.focus",
+        "t2.color.background.brand.default",
+        "t2.color.border.focus.default",
+        "t2.color.content.on-brand.default",
+        "t2.color.content.secondary.default",
+        "t2.color.content.tertiary.default",
+        "t2.motion.micro-duration",
+        "t3.material-swatch.chip-background",
+        "t3.material-swatch.chip-size",
+        "t3.material-swatch.label-gap",
+        "t3.material-swatch.ring.hover.color",
+        "t3.material-swatch.ring.hover.width",
+        "t3.material-swatch.ring.selected.color",
+        "t3.material-swatch.ring.selected.gap-color",
+        "t3.material-swatch.ring.selected.gap-width",
+        "t3.material-swatch.ring.selected.width",
+        "t3.material-swatch.unavailable-opacity",
+        "effect Ring/Rest|Hover|Selected"
       ],
       "a11y": "aria-pressed; selection shown by warm ring + check, not color alone. Accessible name = material name + finish + price delta.",
       "content": "Do not flatten complex samples to hex when texture fidelity needed.",
-      "storybookStories": [
-        "MaterialSwatch/Default",
-        "MaterialSwatch/Selected",
-        "MaterialSwatch/Unavailable",
-        "MaterialSwatch/Loading",
-        "MaterialSwatch/ImageFailure"
-      ],
       "owner": "design-systems",
-      "webComponentPackage": "@envision/components"
+      "webComponentPackage": "@envision/components",
+      "categoryPrevious": "Inputs & Selection",
+      "whenToUse": "Anywhere a material is chosen: the rail\u2019s swatch grids, a Selection Tray, a Finish Group. Chip for paint, wood and stone, whose sample is a flat color or texture. Sphere for metal finishes such as hardware and faucets, whose sample is a rendered material that needs curvature to read.",
+      "whenNotToUse": "Do not use a chip for a metal finish or a sphere for a paint color: the shape is how a reader tells the two apart. Do not flatten a textured sample to a hex value when the texture is what is being chosen.",
+      "anatomyNote": "A sample with a selection ring, and an optional label beneath. The fill is product data, an image, texture or color set per instance, never a token: the swatch shows the material itself.",
+      "behavior": [
+        "Selection is a ring, never color alone, because the fill is product data and can be any color.",
+        "A swatch does not reorder when it is chosen. Its position in a grid is the catalog\u2019s order, not a record of what was picked."
+      ]
     },
     {
       "id": "option-card",
-      "displayName": "OptionCard",
-      "figmaName": "OptionCard",
+      "displayName": "Card-Option",
+      "figmaName": "Card-Option",
       "figmaNodeId": "12:39",
       "codeName": "OptionCard",
       "importPath": "@envision/react",
@@ -971,14 +1143,15 @@
       "figmaStatus": "ready-for-review",
       "purpose": "Selection-row opener in the RightRail. Shows current option thumb + title + note; opens the BottomSelectionTray.",
       "figmaProperties": {
+        "Title": "text",
+        "Note": "text",
         "State": [
           "Default",
           "Hover",
           "Pressed",
-          "Selected"
-        ],
-        "Title": "text",
-        "Note": "text"
+          "Selected",
+          "Focus"
+        ]
       },
       "props": [
         {
@@ -1024,9 +1197,32 @@
         "price-pending"
       ],
       "tokenDependencies": [
-        "effect Ring/Rest|Hover|Pressed|Selected",
-        "t2.color.background.surface-warm",
-        "t2.radius.control"
+        "t1.font-size.13",
+        "t1.font-size.14",
+        "t1.font-size.20",
+        "t1.font-weight.500",
+        "t1.font-weight.600",
+        "t1.line-height.120",
+        "t1.line-height.160",
+        "t2.border-radius.control",
+        "t2.border-radius.control-sm",
+        "t2.border-width.focus",
+        "t2.color.background.surface-sunken.default",
+        "t2.color.background.surface-warm.default",
+        "t2.color.border.focus.default",
+        "t2.color.content.brand.default",
+        "t2.color.content.primary.default",
+        "t2.color.content.secondary.default",
+        "t2.color.content.tertiary.default",
+        "t2.motion.micro-duration",
+        "t2.spacing.container-gap",
+        "t2.spacing.inset-control",
+        "t3.option-card.ring.hover",
+        "t3.option-card.ring.pressed",
+        "t3.option-card.ring.rest",
+        "t3.option-card.ring.selected",
+        "t3.option-card.text.gap",
+        "effect Ring/Rest|Hover|Pressed|Selected"
       ],
       "interactionModel": "entire-card interactive (role=button). Do not nest independent buttons.",
       "allowedChildren": [
@@ -1036,20 +1232,44 @@
         "button",
         "a"
       ],
-      "storybookStories": [
-        "OptionCard/Default",
-        "OptionCard/Active",
-        "OptionCard/Selected",
-        "OptionCard/Upgrade",
-        "OptionCard/LongTitle"
-      ],
       "owner": "design-systems",
-      "webComponentPackage": "@envision/components"
+      "webComponentPackage": "@envision/components",
+      "categoryPrevious": "Inputs & Selection",
+      "anatomyNote": "Organism, live instance. Numbered parts map to the legend.",
+      "anatomyParts": [
+        {
+          "n": 1,
+          "name": "Thumbnail",
+          "note": "Atom, media placeholder. Owns size, radius, border.",
+          "part": [
+            "thumb"
+          ]
+        },
+        {
+          "n": 2,
+          "name": "OptionCardText",
+          "note": "Molecule, Title + Note. Owns vertical arrangement and gap.",
+          "part": [
+            "title",
+            "note"
+          ]
+        },
+        {
+          "n": 3,
+          "name": "Icon/chevron_right",
+          "note": "Atom, Material Symbol drill-in affordance.",
+          "part": [
+            "chevron"
+          ]
+        }
+      ],
+      "anatomyAxis": "x",
+      "anatomySpecimenWidth": 400
     },
     {
       "id": "package-card",
-      "displayName": "PackageCard",
-      "figmaName": "PackageCard",
+      "displayName": "Card-Package",
+      "figmaName": "Card-Package",
       "figmaNodeId": "13:54",
       "codeName": "PackageCard",
       "importPath": "@envision/react",
@@ -1061,14 +1281,14 @@
       "figmaStatus": "ready-for-review",
       "purpose": "Curated design package card in the Packages tab.",
       "figmaProperties": {
+        "Name": "text",
+        "Price": "text",
+        "Description": "text",
         "State": [
           "Default",
           "Selected",
           "Popular"
-        ],
-        "Name": "text",
-        "Price": "text",
-        "Description": "text"
+        ]
       },
       "props": [
         {
@@ -1104,10 +1324,38 @@
         "max-materials"
       ],
       "tokenDependencies": [
+        "t1.font-size.13",
+        "t1.font-size.18",
+        "t1.font-weight.600",
+        "t1.font-weight.700",
+        "t1.spacing.350",
+        "t2.border-radius.circular",
+        "t2.border-radius.container-sm",
+        "t2.border-radius.container-xs",
+        "t2.border-width.default",
+        "t2.border-width.focus",
+        "t2.color.background.surface-warm.default",
+        "t2.color.background.surface.default",
+        "t2.color.border.default.default",
+        "t2.color.border.focus.default",
+        "t2.color.border.strong.default",
+        "t2.color.border.subtle.default",
+        "t2.color.content.brand.default",
+        "t2.color.content.primary.default",
+        "t2.color.content.secondary.default",
+        "t2.color.content.tertiary.default",
+        "t2.elevation.flat",
+        "t2.spacing.container-gap",
+        "t2.spacing.control-gap",
+        "t2.spacing.control-gap-tight",
+        "t3.package-card.content.gap",
+        "t3.package-card.default.image-ratio",
         "t3.package-card.default.radius",
+        "t3.package-card.footer.gap",
+        "t3.package-card.header.gap",
+        "t3.package-card.media.color-background",
         "t3.package-card.selected.color-border",
-        "effect Elevation/Raised",
-        "t2.color.background.surface"
+        "effect Elevation/Raised"
       ],
       "interactionModel": "card is role=button (select); Customize is a nested control (stopPropagation), the valid nested-control pattern.",
       "prohibitions": [
@@ -1122,23 +1370,16 @@
         "metal",
         "wall"
       ],
-      "storybookStories": [
-        "PackageCard/Default",
-        "PackageCard/Selected",
-        "PackageCard/Popular",
-        "PackageCard/Loading",
-        "PackageCard/ImageError",
-        "PackageCard/LongName",
-        "PackageCard/Mobile"
-      ],
       "owner": "design-systems",
-      "webComponentPackage": "@envision/components"
+      "webComponentPackage": "@envision/components",
+      "categoryPrevious": "Inputs & Selection",
+      "anatomyNote": "Organism, live instance. Brackets label each nested component and what it owns."
     },
     {
       "id": "right-rail",
       "displayName": "RightRail",
       "figmaName": "RightRail",
-      "figmaNodeId": "16:2",
+      "figmaNodeId": "222:250",
       "codeName": "RightRail",
       "importPath": "@envision/react",
       "category": "Panels",
@@ -1149,7 +1390,7 @@
       "figmaStatus": "ready-for-review",
       "purpose": "Complete configurator side panel (Customize | Packages) with header/tabs, scroll body, sticky footer.",
       "composedOf": [
-        "rightrail-tab",
+        "tab",
         "option-card",
         "material-swatch",
         "package-card",
@@ -1232,53 +1473,106 @@
       "desktop": "persistent 392px side panel, internal scroll, sticky footer, no focus trap.",
       "mobile": "becomes bottom sheet / full-height drawer / dedicated selection screen (same API + data model). Focus managed, Esc closes, safe-area padding, sticky actions.",
       "tokenDependencies": [
-        "t3.right-rail.*",
-        "t2.color.background.surface",
-        "t2.color.border.default",
-        "t2.spacing.*"
-      ],
-      "storybookStories": [
-        "RightRail/CustomizeDefault",
-        "RightRail/PackagesDefault",
-        "RightRail/Loading",
-        "RightRail/Empty",
-        "RightRail/NoResults",
-        "RightRail/Saving",
-        "RightRail/Saved",
-        "RightRail/Applying",
-        "RightRail/Applied",
-        "RightRail/PriceRecalculating",
-        "RightRail/Error",
-        "RightRail/UnavailableOption",
-        "RightRail/MaxContent",
-        "RightRail/Mobile",
-        "RightRail/KeyboardNav"
+        "t1.font-size.18",
+        "t1.font-weight.600",
+        "t2.color.background.overlay.default",
+        "t2.color.border.subtle.default",
+        "t2.color.content.primary.default",
+        "t2.motion.panel-duration",
+        "t2.spacing.container-gap",
+        "t2.spacing.container-padding",
+        "t3.right-rail.default.color-background",
+        "t3.right-rail.default.color-border",
+        "t3.right-rail.default.width"
       ],
       "owner": "design-systems",
-      "webComponentPackage": "@envision/components"
+      "webComponentPackage": "@envision/components",
+      "categoryPrevious": "Panels",
+      "anatomyNote": "Organism, live instance. Numbered parts map to the legend: each names the nested component and what it owns.",
+      "figmaProperties": {
+        "State": [
+          "Customize",
+          "Packages"
+        ]
+      },
+      "anatomyParts": [
+        {
+          "n": 1,
+          "name": "RightRailHeader (Tabs)",
+          "note": "Customize and Packages. Owns the tab switch; content scrolls beneath the fixed tabs.",
+          "y": 6.6
+        },
+        {
+          "n": 2,
+          "name": "Section title",
+          "note": "Category heading such as Hardware or Cabinets. One per configurator section.",
+          "y": 18.5
+        },
+        {
+          "n": 3,
+          "name": "OptionCard",
+          "note": "Card picker for style groups; opens the bottom Tray to browse full options.",
+          "y": 29.4
+        },
+        {
+          "n": 4,
+          "name": "Group header",
+          "note": "Selected option\u2019s name and the Included or +$ upgrade badge.",
+          "y": 40.8
+        },
+        {
+          "n": 5,
+          "name": "Swatch grid, MaterialSwatch \u00d7 N",
+          "note": "Content variant per product data: sphere for metal finish, chip for color, veneer for wood.",
+          "y": 48.7
+        },
+        {
+          "n": 6,
+          "name": "RailFooter",
+          "note": "Save-this-design button, upgrade summary and the Select-this-design CTA.",
+          "y": 89.6
+        }
+      ],
+      "anatomyAxis": "y",
+      "anatomySpecimenWidth": 392,
+      "behavior": [
+        "Curated swatches hold their positions. Choosing one selects it where it already sits: a swatch that jumps to the front moves every other swatch under the pointer and makes the row impossible to scan the same way twice.",
+        "The one exception is a color chosen from the picker that is not in the curated set. It has nowhere to sit, so it prepends as the first tile, pushes the rest over, and drops the last curated swatch.",
+        "The row is capped at eleven swatches plus the opener, which opens the full picker.",
+        "One tray is open at a time; opening another dismisses the current one."
+      ]
     },
     {
-      "id": "tabs",
-      "displayName": "Tabs",
-      "codeName": "Tabs",
+      "id": "tab-bar",
+      "displayName": "Tab Bar",
+      "codeName": "TabBar",
       "category": "Navigation",
       "architecture": "control-primitive",
       "taxonomyLevel": 3,
       "public": true,
       "maturity": "experimental",
-      "figmaStatus": "proposed",
-      "purpose": "Tablist container coordinating RightRail/Tab items + tabpanels.",
+      "figmaStatus": "audited",
+      "purpose": "The tablist container: it holds Tab items, owns which one is current, and pairs each with its panel.",
       "composedOf": [
-        "rightrail-tab"
+        "tab"
       ],
       "aria": [
         "role=tablist",
         "manages roving tabindex"
       ],
-      "storybookStories": [
-        "Tabs/Default"
-      ],
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Navigation",
+      "figmaName": "TabBar",
+      "figmaNodeId": "645:2971",
+      "figmaProperties": {
+        "Fitted": [
+          "false",
+          "true"
+        ]
+      },
+      "figmaPage": "Tab Bar",
+      "whenToUse": "Switching between views of the same subject in one place, such as the rail\u2019s Customize and Packages.",
+      "whenNotToUse": "Moving between different places, which is Navigation, and never for a single item: one tab is not a choice."
     },
     {
       "id": "tooltip",
@@ -1296,37 +1590,75 @@
         "hoverable",
         "no essential-only content"
       ],
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Feedback & Guidance"
     },
     {
       "id": "menu-item",
       "displayName": "MenuItem",
       "codeName": "MenuItem",
-      "category": "Navigation",
+      "category": "Inputs & Selection",
       "architecture": "control-primitive",
       "taxonomyLevel": 3,
       "public": true,
       "maturity": "experimental",
-      "figmaStatus": "proposed",
-      "purpose": "Row in a menu/listbox (RoomSelector, sort).",
-      "owner": "design-systems"
+      "figmaStatus": "ready-for-review",
+      "purpose": "A row in a menu or listbox, optionally carrying a status.",
+      "owner": "design-systems",
+      "categoryPrevious": "Navigation",
+      "whenToUse": "Inside a Dropdown menu. The optional status reports progress for the row, as in the room selector.",
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "selected",
+        "disabled"
+      ],
+      "figmaProperties": {
+        "Room": "text",
+        "State": [
+          "Default",
+          "Hover",
+          "Selected",
+          "Focus"
+        ],
+        "Status": [
+          "Complete",
+          "In Progress",
+          "Not Started"
+        ]
+      },
+      "figmaName": "RoomOption",
+      "figmaNodeId": "504:56",
+      "figmaPage": "Dropdown",
+      "specified": true
     },
     {
-      "id": "progress-indicator",
-      "displayName": "ProgressIndicator",
-      "codeName": "ProgressIndicator",
+      "id": "progress-ring",
+      "displayName": "ProgressRing",
+      "codeName": "ProgressRing",
       "category": "Status & Progress",
       "architecture": "control-primitive",
       "taxonomyLevel": 3,
       "public": true,
       "maturity": "experimental",
-      "figmaStatus": "proposed",
-      "purpose": "Bar + ring (design progress, upload).",
+      "figmaStatus": "ready-for-review",
+      "purpose": "A circular progress indicator showing a percentage with a caption.",
       "states": [
         "determinate",
         "indeterminate"
       ],
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Status & Progress",
+      "figmaName": "ProgressRing",
+      "figmaNodeId": "406:3",
+      "anatomyNote": "Percent (text) \u00b7 Caption (text). The sweep is set on the progress-arc ellipse to match the value.",
+      "figmaPage": "Progress Ring",
+      "specified": true,
+      "figmaProperties": {
+        "Percent": "text",
+        "Caption": "text"
+      }
     },
     {
       "id": "material-symbol",
@@ -1343,7 +1675,8 @@
         "decorative -> aria-hidden",
         "functional -> accessible name"
       ],
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Data Display"
     },
     {
       "id": "selection-summary",
@@ -1363,11 +1696,12 @@
         "saved"
       ],
       "disambiguation": "SelectionSummary is the rail-footer variant; BottomActionTray is the full-width page/canvas footer. Do not merge; they differ in placement + width behavior.",
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Data Display"
     },
     {
       "id": "selection-card",
-      "displayName": "SelectionCard",
+      "displayName": "Card-Selection",
       "codeName": "SelectionCard",
       "category": "Inputs & Selection",
       "architecture": "product-component",
@@ -1409,7 +1743,8 @@
         "unavailable"
       ],
       "note": "Registered to resolve the taxonomy-vs-registry gap found in AI-readiness Validation B. Compose from _CardSurface + _MaterialThumb + PriceAdjustment.",
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Inputs & Selection"
     },
     {
       "id": "price-adjustment",
@@ -1423,7 +1758,8 @@
       "figmaStatus": "proposed",
       "purpose": "Included / +$upcharge / pending / previous-price presentation.",
       "content": "localized currency, tabular figures, screen-reader phrasing",
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Data Display"
     },
     {
       "id": "view-preset-control",
@@ -1435,57 +1771,56 @@
       "taxonomyLevel": 4,
       "public": true,
       "maturity": "experimental",
-      "figmaStatus": "proposed",
+      "figmaStatus": "audited",
       "purpose": "3D camera view segmented control (ViewSwitcher).",
-      "owner": "design-systems"
-    },
-    {
-      "id": "room-selector",
-      "displayName": "RoomSelector",
-      "codeName": "RoomSelector",
-      "category": "Inputs & Selection",
-      "architecture": "product-component",
-      "taxonomyLevel": 4,
-      "public": true,
-      "maturity": "experimental",
-      "figmaStatus": "proposed",
-      "purpose": "Room dropdown (listbox) with per-room status.",
-      "states": [
-        "complete",
-        "in-progress",
-        "not-started"
-      ],
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Inputs & Selection",
+      "figmaNodeId": "259:30",
+      "figmaProperties": {
+        "State": [
+          "Default",
+          "Hover",
+          "Focus"
+        ]
+      }
     },
     {
       "id": "progress-card",
-      "displayName": "ProgressCard",
+      "displayName": "Card-Progress",
       "codeName": "ProgressCard",
       "category": "Status & Progress",
       "architecture": "product-component",
       "taxonomyLevel": 4,
       "public": true,
       "maturity": "experimental",
-      "figmaStatus": "proposed",
+      "figmaStatus": "audited",
       "purpose": "Dashboard design-progress widget (ring + selection list).",
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Status & Progress",
+      "figmaName": "Card-Progress",
+      "figmaNodeId": "412:23",
+      "anatomyNote": "ProgressRing + RoomProgressItem \u00d7 N on the DashboardCard shell (surface, hairline, radius-container, 24 padding, Elevation/Raised)."
     },
     {
       "id": "key-date-card",
-      "displayName": "KeyDateCard",
+      "displayName": "Card-KeyDate",
       "codeName": "KeyDateCard",
       "category": "Status & Progress",
       "architecture": "product-component",
       "taxonomyLevel": 4,
       "public": true,
       "maturity": "experimental",
-      "figmaStatus": "proposed",
+      "figmaStatus": "audited",
       "purpose": "Dashboard key-dates widget.",
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Status & Progress",
+      "figmaName": "Card-KeyDate",
+      "figmaNodeId": "413:22",
+      "anatomyNote": "CardHeader (Show link) + KeyDateRow \u00d7 N with dividers between rows."
     },
     {
       "id": "floor-plan-card",
-      "displayName": "FloorPlanCard",
+      "displayName": "Card-FloorPlan",
       "codeName": "FloorPlanCard",
       "category": "Inputs & Selection",
       "architecture": "product-component",
@@ -1494,11 +1829,12 @@
       "maturity": "experimental",
       "figmaStatus": "proposed",
       "purpose": "Floor-plan widget.",
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Inputs & Selection"
     },
     {
       "id": "lot-map-card",
-      "displayName": "LotMapCard",
+      "displayName": "Card-LotMap",
       "codeName": "LotMapCard",
       "category": "Inputs & Selection",
       "architecture": "product-component",
@@ -1507,7 +1843,8 @@
       "maturity": "experimental",
       "figmaStatus": "proposed",
       "purpose": "Lot-map widget.",
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Inputs & Selection"
     },
     {
       "id": "bottom-action-tray",
@@ -1524,7 +1861,9 @@
         "price-adjustment",
         "button"
       ],
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Actions",
+      "note": "Proposed only, no Figma page. Overlaps Selection Tray, which occupies the same bottom-of-canvas surface. Confirm it is a distinct component before designing it."
     },
     {
       "id": "global-nav",
@@ -1535,37 +1874,85 @@
       "taxonomyLevel": 5,
       "public": true,
       "maturity": "experimental",
-      "figmaStatus": "proposed",
+      "figmaStatus": "audited",
       "purpose": "Top bar: wordmark, primary nav, notifications, account.",
       "responsive": "desktop bar -> mobile nav",
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Navigation",
+      "figmaName": "GlobalNav",
+      "figmaNodeId": "265:6",
+      "anatomyNote": "Brand (wordmark) \u00b7 Menu (Nav Tab \u00d75, one selected) \u00b7 Right (Notification Bell + avatar + caret)."
     },
     {
       "id": "three-d-viewport-shell",
       "displayName": "ThreeDViewportShell",
-      "codeName": "ThreeDViewportShell",
+      "codeName": "SceneCanvas",
       "category": "Panels",
-      "architecture": "composite-pattern",
+      "architecture": "product-component",
       "taxonomyLevel": 5,
       "public": true,
-      "maturity": "experimental",
-      "figmaStatus": "proposed",
-      "purpose": "3D canvas host with load/error/material states + control overlays.",
+      "maturity": "candidate",
+      "figmaStatus": "ready-for-review",
+      "purpose": "The full-bleed 3D canvas the Design Center is built around, hosting the live kitchen model.",
       "states": [
-        "placeholder-snapshot",
-        "initial-loading",
-        "model-ready",
-        "interaction-enabled",
-        "material-applying",
-        "material-applied",
-        "price-recalculating",
-        "model-load-failure",
-        "material-load-failure",
-        "reduced-function-fallback",
-        "retry"
+        "loading",
+        "ready",
+        "idle",
+        "error"
       ],
-      "note": "byte-driven progress; no fake interactive snapshot; controls disabled until ready; reduced-motion honored",
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Panels",
+      "specified": true,
+      "productImplementation": "envision app \u00b7 src/components/SceneCanvas",
+      "whenToUse": "As the Design Center\u2019s canvas region. One per view; the rail and trays sit over it.",
+      "whenNotToUse": "Not for a still image of a room. If the model is not interactive, that is a Thumbnail or an image, not a viewport.",
+      "anatomyNote": "A canvas filling its region, with a preloader over it while the first assets download and the camera framing driven by whichever tray is open.",
+      "behavior": [
+        "The preloader appears only while the initial assets are downloading, and its bar is driven by real bytes: never a timed or decorative animation.",
+        "The scene mounts only once assets are cached, and the bar reaches 100% only when the scene has actually rendered. If everything is cached, the model shows immediately with no preloader.",
+        "Opening a tray reframes the camera to that subject: countertop, backsplash, hardware or faucet.",
+        "Covered by another tab, the render loop idles rather than unmounting, so the GPU context and buffers survive for an instant return."
+      ],
+      "props": [
+        {
+          "name": "config",
+          "type": "KitchenConfig",
+          "required": true,
+          "note": "the current selections the scene renders"
+        },
+        {
+          "name": "activeView",
+          "type": "ViewName",
+          "note": "which camera preset to frame"
+        },
+        {
+          "name": "lighting",
+          "type": "LightingState",
+          "required": true
+        },
+        {
+          "name": "active",
+          "type": "boolean",
+          "default": true,
+          "note": "false idles the render loop without unmounting"
+        },
+        {
+          "name": "onTargets",
+          "type": "(counts)=>void",
+          "note": "reports what the scene matched, for diagnostics"
+        }
+      ],
+      "a11y": "A canvas cannot be read by assistive technology, so every choice it visualises must also be available as text in the rail. The viewport is a preview, never the only place a selection is stated.",
+      "responsive": "Fills its region. The rail and trays overlay it rather than shrinking it.",
+      "figmaName": "ThreeDViewportShell",
+      "figmaPage": "ThreeDViewportShell",
+      "figmaNodeId": "1002:17",
+      "figmaProperties": {
+        "State": [
+          "Ready",
+          "Loading"
+        ]
+      }
     },
     {
       "id": "color-picker-modal",
@@ -1576,29 +1963,94 @@
       "taxonomyLevel": 5,
       "public": true,
       "maturity": "experimental",
-      "figmaStatus": "proposed",
-      "purpose": "Wall-color picker (279 BM colors), search/category/preview-vs-commit.",
+      "figmaStatus": "audited",
+      "purpose": "The full wall-color library, opened from the rail to browse, search and apply any curated color.",
       "states": [
         "default",
-        "search-results",
-        "no-results(empty)",
-        "preview",
-        "committed"
+        "searching",
+        "swatch-selected",
+        "empty-results"
       ],
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Inputs & Selection",
+      "figmaName": "ColorPickerModal",
+      "figmaNodeId": "278:100",
+      "anatomyNote": "Header with the title, search and close. Sidebar of color families. Content with the count, a sort control and a five-column swatch grid. Footer with Save Color and Select This Color.",
+      "figmaProperties": {
+        "CategoryItem \u00b7 State": [
+          "Default",
+          "Selected",
+          "Hover",
+          "Focus"
+        ],
+        "ColorSwatch \u00b7 State": [
+          "Default",
+          "Selected",
+          "Hover",
+          "Focus"
+        ],
+        "ColorSwatch \u00b7 Label": "text",
+        "ColorSwatch \u00b7 Code": "text"
+      },
+      "figmaPage": "Color Picker Modal",
+      "specified": true,
+      "whenToUse": "When the eleven curated chips in the rail are not enough. The opener beside them is what brings it up.",
+      "whenNotToUse": "Not for a short set of options that fits in the rail, and not bottom-anchored like a Selection Tray: this is a centered overlay because browsing a library is a task of its own.",
+      "behavior": [
+        "The grid is ordered by value first, then intensity, then hue, so it reads as a gradient rather than as the order the catalog was authored in. Value is banded rather than compared exactly, because a difference the eye cannot see should not outrank hue.",
+        "Select This Color is disabled until a color is chosen.",
+        "Clicking a swatch live-previews it on the model. Select This Color commits and closes; Save Color stores it without closing.",
+        "Esc or the close button dismisses and reverts the preview.",
+        "Search filters within the active category, and choosing a category resets the grid.",
+        "A chosen library color becomes the first chip in the rail, since it has no curated position of its own."
+      ],
+      "a11y": "Focus is trapped while open, and Esc or close dismisses it, reverting the preview. Search is a labeled input. The selected swatch shows a check and a ring, not color alone. The category list is keyboard-navigable.",
+      "composedOf": [
+        "button",
+        "search-field"
+      ],
+      "content": "Swatch cells carry the color name and its catalog code. Both come from the catalog, so neither is a token or a translation string. Ordering is computed in OKLCH: HSL lightness is a channel average, so it would place a near-white and a near-black side by side."
     },
     {
       "id": "material-thumb",
-      "displayName": "_MaterialThumb",
+      "displayName": "Material Thumbnail",
       "codeName": "_MaterialThumb",
-      "category": null,
-      "architecture": "internal-subcomponent",
-      "taxonomyLevel": 4,
-      "public": false,
-      "maturity": "experimental",
-      "figmaStatus": "proposed",
-      "purpose": "Internal cached raster thumbnail (PullThumb). Not published.",
-      "owner": "design-systems"
+      "category": "Inputs & Selection",
+      "architecture": "control-primitive",
+      "taxonomyLevel": 2,
+      "public": true,
+      "maturity": "candidate",
+      "figmaStatus": "ready-for-review",
+      "purpose": "The selectable material preview used inside every picker tile and rail card.",
+      "owner": "design-systems",
+      "figmaName": "Material Thumbnail",
+      "figmaPage": "Material Thumbnail",
+      "figmaNodeId": "279:3",
+      "specified": true,
+      "anatomyNote": "A fixed-ratio preview with a selection ring. Placeholder art ships in the component; the real material image overrides the fill per instance. It never adds a label itself.",
+      "figmaProperties": {
+        "Shape": [
+          "Door",
+          "Square"
+        ],
+        "State": [
+          "Default",
+          "Hover",
+          "Selected",
+          "Focus"
+        ]
+      },
+      "a11y": "Hover shows a faint ring and selection a solid one, never color alone. Keyboard focusable with a visible focus ring; unavailable materials are dimmed and non-interactive.",
+      "categoryPrevious": "Internal",
+      "whenToUse": "Inside a picker tile or rail card that needs a selectable material preview.",
+      "whenNotToUse": "On its own. It never carries a label; the name and price live on the parent tile or card. For a non-selectable image, use Thumbnail.",
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "selected",
+        "unavailable"
+      ]
     },
     {
       "id": "card-surface",
@@ -1617,6 +2069,7 @@
       "id": "finish-group",
       "displayName": "Finish Group",
       "figmaName": "FinishGroup",
+      "figmaNodeId": "213:360",
       "figmaPage": "Finish Group",
       "codeName": null,
       "category": "Inputs & Selection",
@@ -1626,12 +2079,19 @@
       "figmaStatus": "audited",
       "specified": false,
       "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Inputs & Selection",
+      "anatomyNote": "Header (selected label + status) over a 6-column MaterialSwatch grid.",
+      "figmaProperties": {
+        "Label": "text",
+        "Status": "text"
+      }
     },
     {
       "id": "selection-indicator",
       "displayName": "Selection Indicator",
       "figmaName": "SelectionIndicator",
+      "figmaNodeId": "308:320",
       "figmaPage": "Selection Indicator",
       "codeName": null,
       "category": "Inputs & Selection",
@@ -1641,7 +2101,14 @@
       "figmaStatus": "audited",
       "specified": false,
       "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Inputs & Selection",
+      "figmaProperties": {
+        "Size": [
+          "Medium",
+          "Small"
+        ]
+      }
     },
     {
       "id": "selection-tray",
@@ -1650,18 +2117,64 @@
       "figmaPage": "Selection Tray",
       "codeName": null,
       "category": "Inputs & Selection",
-      "architecture": null,
+      "architecture": "composite-pattern",
       "public": true,
       "maturity": "experimental",
       "figmaStatus": "audited",
-      "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
-      "owner": "design-systems"
+      "specified": true,
+      "owner": "design-systems",
+      "categoryPrevious": "Inputs & Selection",
+      "figmaNodeId": "275:3",
+      "taxonomyLevel": 4,
+      "purpose": "A bottom-anchored material picker that opens over the 3D model.",
+      "whenToUse": "Every Design Center picker: cabinet style, countertop, cabinet hardware, backsplash and flooring. One component drives all five via the Title text and the Shape variant.",
+      "whenNotToUse": "Never fork it per material category. A new category is a new Title and tile content, not a new component.",
+      "anatomyNote": "A header carrying the title and close, over a scrolling row of SelectionTile, each nesting a MaterialThumbnail. The first tile is the included option and is preselected.",
+      "figmaProperties": {
+        "Title": "text",
+        "Scroll arrow": "boolean",
+        "Shape": [
+          "Door",
+          "Square"
+        ]
+      },
+      "props": [
+        {
+          "name": "shape",
+          "type": "'door'|'square'",
+          "default": "square",
+          "figmaProp": "Shape",
+          "note": "door for cabinet doors, square for countertops, hardware, backsplash and flooring"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "figmaProp": "Title"
+        },
+        {
+          "name": "scrollArrow",
+          "type": "boolean",
+          "default": false,
+          "figmaProp": "Scroll arrow",
+          "note": "shown only when tiles overflow"
+        }
+      ],
+      "composedOf": [
+        "selection-tile",
+        "material-thumb"
+      ],
+      "states": [
+        "default",
+        "selected"
+      ],
+      "a11y": "A dialog: focus is trapped while open, and Esc or the close button dismisses it. Tiles are buttons carrying a visible selection ring rather than color alone.",
+      "responsive": "Centered over the canvas, 24px above the viewport bottom. The tile row scrolls rather than wrapping."
     },
     {
       "id": "style-tile",
       "displayName": "Style Tile",
       "figmaName": "StyleTile",
+      "figmaNodeId": "203:327",
       "figmaPage": "Style Tile",
       "codeName": null,
       "category": "Inputs & Selection",
@@ -1670,13 +2183,25 @@
       "maturity": "experimental",
       "figmaStatus": "audited",
       "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
-      "owner": "design-systems"
+      "note": "Orphaned. Its only consumer was the CabinetStyleTray fork, deleted 2026-09-02 in favor of Selection Tray, which composes SelectionTile instead. Retire it or find it a consumer.",
+      "owner": "design-systems",
+      "categoryPrevious": "Inputs & Selection",
+      "figmaProperties": {
+        "Title": "text",
+        "Note": "text",
+        "State": [
+          "Default",
+          "Hover",
+          "Selected",
+          "Focus"
+        ]
+      }
     },
     {
       "id": "notification-bell",
       "displayName": "Notification Bell",
       "figmaName": "NotificationBell",
+      "figmaNodeId": "265:2",
       "figmaPage": "Notification Bell",
       "codeName": null,
       "category": "Actions",
@@ -1686,22 +2211,45 @@
       "figmaStatus": "audited",
       "specified": false,
       "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Actions",
+      "figmaProperties": {
+        "Count": "text",
+        "Show badge": "boolean"
+      }
     },
     {
       "id": "top-bar",
       "displayName": "Top Bar",
       "figmaName": "TopBar",
       "figmaPage": "Top Bar",
-      "codeName": null,
+      "codeName": "TopBar",
       "category": "Navigation",
-      "architecture": null,
+      "architecture": "composite-pattern",
       "public": true,
-      "maturity": "experimental",
+      "maturity": "candidate",
       "figmaStatus": "audited",
-      "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
-      "owner": "design-systems"
+      "specified": true,
+      "owner": "design-systems",
+      "categoryPrevious": "Navigation",
+      "anatomyNote": "Brand mark, primary section tabs, and the account cluster on the end.",
+      "figmaNodeId": "478:2501",
+      "productImplementation": "envision app \u00b7 src/components/TopBar",
+      "taxonomyLevel": 5,
+      "purpose": "A top navigation bar: brand mark, primary section tabs, and an account cluster.",
+      "whenToUse": "Atop screens that need navigation but not the full GlobalNav chrome. It is the lighter sibling.",
+      "whenNotToUse": "Where the screen needs the full global chrome, which is GlobalNav, and never twice on one screen: it is the top-level bar.",
+      "behavior": [
+        "The current section tab is emphasised, and the account cluster opens a menu.",
+        "The brand mark returns to the first section, which is the behaviour a wordmark carries everywhere else."
+      ],
+      "a11y": "A nav landmark. The tabs are a tablist, and the brand and account controls are labeled buttons: a wordmark alone does not announce what activating it does.",
+      "composedOf": [
+        "tab",
+        "notification-bell",
+        "avatar"
+      ],
+      "responsive": "The tab row is the part that gives: the brand and the account cluster hold their positions."
     },
     {
       "id": "avatar",
@@ -1710,18 +2258,63 @@
       "figmaPage": "Avatar",
       "codeName": null,
       "category": "Data Display",
-      "architecture": null,
+      "architecture": "control-primitive",
       "public": true,
       "maturity": "experimental",
       "figmaStatus": "audited",
-      "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
-      "owner": "design-systems"
+      "specified": true,
+      "owner": "design-systems",
+      "categoryPrevious": "Data Display",
+      "figmaNodeId": "321:2",
+      "taxonomyLevel": 2,
+      "purpose": "A circular monogram, or photo, representing the signed-in user.",
+      "whenToUse": "In the Global Nav account control, and anywhere a person is referenced. One avatar per user reference.",
+      "whenNotToUse": "For brand logos or non-person entities, and never as a bare pill showing initials without the circle.",
+      "anatomyNote": "A circle on a neutral fill, carrying the user\u2019s initials or a photo. Size is a variant, never a resize.",
+      "figmaProperties": {
+        "Initials": "text",
+        "Size": [
+          "Small",
+          "Medium",
+          "Large"
+        ]
+      },
+      "props": [
+        {
+          "name": "size",
+          "type": "'small'|'medium'|'large'",
+          "default": "medium",
+          "figmaProp": "Size",
+          "note": "small 28px for dense UI, medium 34px for the nav bar, large 40px for profile headers"
+        },
+        {
+          "name": "initials",
+          "type": "string",
+          "figmaProp": "Initials",
+          "note": "first letters of the given and family name, uppercased"
+        },
+        {
+          "name": "src",
+          "type": "string",
+          "note": "photo when available; falls back to initials when unset. Product data per instance, not a token"
+        }
+      ],
+      "states": [
+        "default"
+      ],
+      "tokenDependencies": [
+        "t3.avatar.color.background",
+        "t2.border-radius.circular",
+        "t2.color.content.primary"
+      ],
+      "a11y": "Always provide an accessible name, the user\u2019s full name, even though only initials are shown. Initials meet 3:1 contrast on the neutral fill. When interactive, guarantee a hit area of at least 40px around the 28 to 34px circle.",
+      "responsive": "Size is chosen per context, not per viewport. The circle does not scale with available width."
     },
     {
       "id": "card-header",
-      "displayName": "Card / Header",
-      "figmaName": "CardHeader",
+      "displayName": "Card-Header",
+      "figmaName": "Card-Header",
+      "figmaNodeId": "411:3",
       "figmaPage": "Card / Header",
       "codeName": null,
       "category": "Data Display",
@@ -1731,12 +2324,21 @@
       "figmaStatus": "audited",
       "specified": false,
       "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Data Display",
+      "anatomyNote": "Icon (swap) \u00b7 Title (text) \u00b7 Show link (boolean) \u00b7 Link label (text).",
+      "figmaProperties": {
+        "Title": "text",
+        "Link label": "text",
+        "Show link": "boolean",
+        "Icon": "instance-swap"
+      }
     },
     {
       "id": "divider",
       "displayName": "Divider",
       "figmaName": "Divider",
+      "figmaNodeId": "181:143",
       "figmaPage": "Divider",
       "codeName": null,
       "category": "Data Display",
@@ -1746,12 +2348,15 @@
       "figmaStatus": "audited",
       "specified": false,
       "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Data Display",
+      "anatomyNote": "A 1px line bound to color/border/default."
     },
     {
       "id": "table",
       "displayName": "Table",
       "figmaName": "Table",
+      "figmaNodeId": "182:60",
       "figmaPage": "Table",
       "codeName": null,
       "category": "Data Display",
@@ -1761,12 +2366,15 @@
       "figmaStatus": "audited",
       "specified": false,
       "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Data Display",
+      "anatomyNote": "TableHeaderRow over repeating TableRow, divided by hairlines. Native parts: TableHeaderRow, TableRow."
     },
     {
       "id": "thumbnail",
       "displayName": "Thumbnail",
       "figmaName": "Thumbnail",
+      "figmaNodeId": "175:269",
       "figmaPage": "Thumbnail",
       "codeName": null,
       "category": "Data Display",
@@ -1776,12 +2384,15 @@
       "figmaStatus": "audited",
       "specified": false,
       "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Data Display",
+      "anatomyNote": "Single component (56\u00d770). Background, radius and inner border are tokens; the image is product data."
     },
     {
       "id": "dialog",
       "displayName": "Dialog",
       "figmaName": "Dialog",
+      "figmaNodeId": "180:362",
       "figmaPage": "Dialog",
       "codeName": null,
       "category": "Panels",
@@ -1791,12 +2402,18 @@
       "figmaStatus": "audited",
       "specified": false,
       "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Panels",
+      "figmaProperties": {
+        "Title": "text",
+        "Body": "text"
+      }
     },
     {
       "id": "notification-badge",
       "displayName": "Notification Badge",
       "figmaName": "NotificationBadge",
+      "figmaNodeId": "10:20",
       "figmaPage": "Notification Badge",
       "codeName": null,
       "category": "Data Display",
@@ -1806,12 +2423,30 @@
       "figmaStatus": "audited",
       "specified": false,
       "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Data Display",
+      "figmaProperties": {
+        "Count": "text",
+        "Tone": [
+          "Neutral",
+          "Brand",
+          "Info",
+          "Success",
+          "Warning",
+          "Critical",
+          "Accent"
+        ],
+        "Shape": [
+          "Count",
+          "Dot"
+        ]
+      }
     },
     {
       "id": "home-hero",
       "displayName": "Home Hero",
       "figmaName": "HomeHero",
+      "figmaNodeId": "427:3",
       "figmaPage": "Home Hero",
       "codeName": null,
       "category": "Panels",
@@ -1821,42 +2456,58 @@
       "figmaStatus": "audited",
       "specified": false,
       "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
-      "owner": "design-systems"
-    },
-    {
-      "id": "tray",
-      "displayName": "Tray",
-      "figmaName": "Tray",
-      "figmaPage": "Tray",
-      "codeName": null,
-      "category": "Panels",
-      "architecture": null,
-      "public": true,
-      "maturity": "experimental",
-      "figmaStatus": "audited",
-      "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Panels",
+      "anatomyNote": "Eyebrow \u00b7 Name \u00b7 Subtitle (text) + Button CTA. The image and scrim are content and treatment.",
+      "figmaProperties": {
+        "Eyebrow": "text",
+        "Name": "text",
+        "Subtitle": "text"
+      }
     },
     {
       "id": "whats-next-card",
-      "displayName": "Card / What's Next",
-      "figmaName": "WhatsNextCard",
-      "figmaPage": "Card / What's Next",
+      "displayName": "Card-WhatsNext",
+      "figmaName": "Card-WhatsNext",
+      "figmaPage": "Card-WhatsNext",
       "codeName": null,
       "category": "Status & Progress",
-      "architecture": null,
+      "architecture": "composite-pattern",
       "public": true,
       "maturity": "experimental",
       "figmaStatus": "audited",
-      "specified": false,
-      "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
-      "owner": "design-systems"
+      "specified": true,
+      "owner": "design-systems",
+      "categoryPrevious": "Status & Progress",
+      "anatomyNote": "Card-Header over a media preview, with a full-width brand CTA bar pinned to the bottom of the preview. The preview image is content supplied per instance.",
+      "figmaNodeId": "413:3",
+      "taxonomyLevel": 4,
+      "purpose": "The Overview dashboard widget pointing at the homeowner\u2019s single next action.",
+      "whenToUse": "The middle card of the Overview grid, driving the user to their next selection.",
+      "whenNotToUse": "More than once per view, and never with a generic prompt: the CTA label states the action it performs.",
+      "composedOf": [
+        "card-header",
+        "button"
+      ],
+      "states": [
+        "default"
+      ],
+      "a11y": "The CTA is a labeled button, and the preview image needs alt text.",
+      "tokenDependencies": [
+        "t2.border-radius.container-md",
+        "t2.color.background.brand",
+        "t2.color.content.on-primary"
+      ],
+      "responsive": "The preview fills the remaining card height rather than forcing the card taller.",
+      "figmaProperties": {
+        "CTA label": "text"
+      }
     },
     {
       "id": "key-date-row",
       "displayName": "Key Date Row",
       "figmaName": "KeyDateRow",
+      "figmaNodeId": "411:1867",
       "figmaPage": "Key Date Row",
       "codeName": null,
       "category": "Status & Progress",
@@ -1866,12 +2517,20 @@
       "figmaStatus": "audited",
       "specified": false,
       "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
-      "owner": "design-systems"
+      "owner": "design-systems",
+      "categoryPrevious": "Status & Progress",
+      "anatomyNote": "Label (text) \u00b7 Date (text) \u00b7 Divider (boolean).",
+      "figmaProperties": {
+        "Label": "text",
+        "Date": "text",
+        "Divider": "boolean"
+      }
     },
     {
       "id": "room-progress-item",
       "displayName": "Room Progress Item",
       "figmaName": "RoomProgressItem",
+      "figmaNodeId": "409:21",
       "figmaPage": "Room Progress Item",
       "codeName": null,
       "category": "Status & Progress",
@@ -1881,6 +2540,224 @@
       "figmaStatus": "audited",
       "specified": false,
       "note": "Built in the Figma library, not yet specified in the registry. Identity and category only. Architecture, props, states and accessibility are unset because they have not been defined.",
+      "owner": "design-systems",
+      "categoryPrevious": "Status & Progress",
+      "figmaProperties": {
+        "Number": "text",
+        "Name": "text",
+        "State": [
+          "Get Started",
+          "Complete",
+          "In Progress"
+        ]
+      }
+    },
+    {
+      "id": "dropdown",
+      "displayName": "Dropdown",
+      "figmaName": "Dropdown",
+      "figmaPage": "Dropdown",
+      "figmaNodeId": "282:14",
+      "codeName": null,
+      "category": "Inputs & Selection",
+      "architecture": "control-primitive",
+      "taxonomyLevel": 3,
+      "public": true,
+      "maturity": "experimental",
+      "figmaStatus": "audited",
+      "specified": true,
+      "purpose": "A compact trigger that opens a menu of options and reflects the current selection.",
+      "whenToUse": "Wherever a single choice is picked from a set. The room selector is one instance of it: the same trigger with room data and a per-row status.",
+      "anatomyNote": "A trigger showing the current selection and a caret that flips when the menu opens. The menu is documented separately.",
+      "figmaProperties": {
+        "Label": "text",
+        "Open": [
+          "false",
+          "true"
+        ],
+        "State": [
+          "Default",
+          "Focus"
+        ]
+      },
+      "states": [
+        "default",
+        "focus",
+        "open"
+      ],
+      "owner": "design-systems",
+      "whenNotToUse": "Do not fork it per subject. A new use is new data and a new Label, not a new component. Per-row status belongs to MenuItem, not to the trigger.",
+      "composedOf": [
+        "menu-item"
+      ]
+    },
+    {
+      "id": "form-field",
+      "displayName": "Form Field",
+      "figmaName": "FormField",
+      "figmaPage": "Form Field",
+      "figmaNodeId": "179:145",
+      "codeName": null,
+      "category": "Inputs & Selection",
+      "architecture": "composite-pattern",
+      "taxonomyLevel": 4,
+      "public": true,
+      "maturity": "experimental",
+      "figmaStatus": "audited",
+      "specified": true,
+      "purpose": "Label, control, and helper or error text composed into one field block.",
+      "whenNotToUse": "Do not show helper and error at once: error replaces helper, and the field moves to State = Error at the same time.",
+      "anatomyNote": "Label + control + helper text. Helper and error are separate rows, each led by an icon.",
+      "figmaProperties": {
+        "Helper text": "text",
+        "Show helper": "boolean",
+        "Error text": "text",
+        "Show error": "boolean"
+      },
+      "composedOf": [
+        "label",
+        "field"
+      ],
+      "states": [
+        "default",
+        "error"
+      ],
+      "owner": "design-systems"
+    },
+    {
+      "id": "search-field",
+      "displayName": "Search Field",
+      "figmaName": "SearchField",
+      "figmaPage": "Search Field",
+      "figmaNodeId": "841:41",
+      "codeName": null,
+      "category": "Inputs & Selection",
+      "architecture": "control-primitive",
+      "taxonomyLevel": 3,
+      "public": true,
+      "maturity": "experimental",
+      "figmaStatus": "audited",
+      "specified": true,
+      "purpose": "Text input with a leading search icon, used to filter a list or catalog.",
+      "whenToUse": "Filtering an existing list in place. It submits on change rather than through a separate button.",
+      "whenNotToUse": "Typed data entry, which is Text Field.",
+      "anatomyNote": "Leading search icon plus placeholder.",
+      "states": [
+        "default",
+        "focus",
+        "disabled"
+      ],
+      "a11y": "Give the field an accessible name even when the visible label is omitted. The icon is decorative.",
+      "owner": "design-systems",
+      "figmaProperties": {
+        "Placeholder": "text",
+        "State": [
+          "Default",
+          "Hover",
+          "Focus",
+          "Filled",
+          "Disabled"
+        ]
+      }
+    },
+    {
+      "id": "selection-tile",
+      "displayName": "Selection Tile",
+      "figmaName": "SelectionTile",
+      "figmaPage": "Selection Tile",
+      "figmaNodeId": "254:84",
+      "codeName": null,
+      "category": "Inputs & Selection",
+      "architecture": "composite-pattern",
+      "taxonomyLevel": 4,
+      "public": true,
+      "maturity": "experimental",
+      "figmaStatus": "audited",
+      "specified": true,
+      "purpose": "A material cell: thumbnail, name and note. The repeating unit inside every Selection Tray.",
+      "whenNotToUse": "Shape follows the parent picker, so do not set it per tile.",
+      "anatomyNote": "Wraps a Material Thumbnail with a centered name and a note that is either Included or a +$ upgrade price.",
+      "figmaProperties": {
+        "Title": "text",
+        "Note": "text",
+        "Shape": [
+          "Door",
+          "Square"
+        ],
+        "State": [
+          "Default",
+          "Hover",
+          "Selected",
+          "Focus"
+        ],
+        "Tier": [
+          "Included",
+          "Upgrade"
+        ]
+      },
+      "composedOf": [
+        "material-thumb"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "selected"
+      ],
+      "owner": "design-systems"
+    },
+    {
+      "id": "navigation",
+      "displayName": "Navigation",
+      "figmaName": "Navigation",
+      "figmaPage": "Navigation",
+      "figmaNodeId": "640:2944",
+      "codeName": null,
+      "category": "Navigation",
+      "architecture": "composite-pattern",
+      "taxonomyLevel": 4,
+      "public": true,
+      "maturity": "experimental",
+      "figmaStatus": "audited",
+      "specified": true,
+      "purpose": "Vertical navigation list and its item, used for section switching in a panel.",
+      "whenToUse": "Switching between sections of the same surface.",
+      "whenNotToUse": "Switching views inside one panel, which is Tabs.",
+      "anatomyNote": "Navigation holds NavigationItem rows. One item is current at a time.",
+      "states": [
+        "default",
+        "selected",
+        "disabled"
+      ],
+      "a11y": "Mark the active row with aria-current, not color alone. The list is a nav landmark.",
+      "owner": "design-systems",
+      "figmaProperties": {
+        "NavigationItem \u00b7 Label": "text"
+      }
+    },
+    {
+      "id": "rail-footer",
+      "displayName": "RailFooter",
+      "figmaName": "RailFooter",
+      "figmaPage": "Rail Footer",
+      "figmaNodeId": "730:3",
+      "codeName": null,
+      "category": "Panels",
+      "architecture": "composite-pattern",
+      "taxonomyLevel": 4,
+      "public": true,
+      "maturity": "experimental",
+      "figmaStatus": "audited",
+      "specified": true,
+      "purpose": "The pinned footer of the Right Rail: save, upgrade summary and the commit action.",
+      "whenToUse": "Only inside the Right Rail, which pins it below the scrolling content.",
+      "anatomyNote": "Save-this-design button, selected-upgrades summary, and the Select-this-design CTA.",
+      "composedOf": [
+        "button"
+      ],
+      "states": [
+        "default"
+      ],
       "owner": "design-systems"
     }
   ]

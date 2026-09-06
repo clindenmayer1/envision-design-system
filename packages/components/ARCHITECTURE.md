@@ -204,8 +204,8 @@ Components declare their token usage in code and docs (`COMPONENTS.md`). Reconci
 *emitted* token names are documented in `AUDIT.md` (not silently changed): Badge tones
 `error`/`brand` map to emitted `critical`/`promotional`; a few components (ghost Button,
 checkbox/radio/switch) have **no T3 tokens** and correctly consume **T2** roles; and the **outline
-Button + PackageCard Customize** were rebound from the brand-green `t3.button.outline.*` tokens to
-the **neutral hairline** (`t2.color.border.default` #e7e3dc + `t2.color.content.primary` +
+Button + PackageCard Customize** were rebound from the brand-green `t3.button.outline.*` tokens (a
+family the system no longer publishes) to the **neutral hairline** (`t2.color.border.default` #e7e3dc + `t2.color.content.primary` +
 `surface`) to match the shipped web product — the nearest existing tokens, no new tokens. Verified
 against the GitHub baseline: every bordered secondary control in the app uses the hairline, and no
 brand-green outline button exists.

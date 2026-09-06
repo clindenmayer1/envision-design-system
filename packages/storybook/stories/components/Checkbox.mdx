@@ -8,7 +8,7 @@ import * as CheckboxStories from './Checkbox.stories';
 ## Overview
 `<envision-checkbox>` is **boolean selection**, on or off, independent of any other checkbox. It
 wraps a **real native `<input type="checkbox">`** inside its shadow root, so role, checked state,
-`Space` to toggle and focus behaviour come from the platform rather than from ARIA we maintain.
+`Space` to toggle and focus behavior come from the platform rather than from ARIA we maintain.
 Form participation goes through `ElementInternals` where the browser supports it.
 
 <Canvas of={CheckboxStories.Default} />
@@ -21,7 +21,7 @@ the separate `Label` component to associate them.
 ## When to use
 - **Independent on/off choices**, especially several of them: filter lists, opt-ins, "apply to all
   rooms".
-- A single acknowledgement that must be **submitted with a form** rather than acted on instantly.
+- A single acknowledgment that must be **submitted with a form** rather than acted on instantly.
 
 ## When not to use
 - **A setting that takes effect immediately** → use **Switch**. Checkbox implies a pending state
@@ -35,7 +35,7 @@ the separate `Label` component to associate them.
 `checked` · `unchecked` · `focus-visible` · `disabled` · `error`.
 
 The check is drawn as **geometry**, a rotated tick, rather than as a color fill. That is deliberate:
-Envision principle 3 says selection is never color-only, so the checked state survives greyscale
+Envision principle 3 says selection is never color-only, so the checked state survives grayscale
 and forced-colors.
 
 <Story of={CheckboxStories.Checked} /> <Story of={CheckboxStories.Disabled} />
@@ -46,7 +46,7 @@ and forced-colors.
 field's responsibility, not the checkbox's, so pair it with helper text that is programmatically
 associated, or the error is invisible to a screen reader.
 
-## Behaviour
+## Behavior
 `Space` toggles. Clicking the label toggles, because the label is bound to the input inside the
 same shadow root. `disabled` blocks activation and removes the control from the tab order.
 

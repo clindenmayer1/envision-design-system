@@ -38,8 +38,8 @@ truth — `component-registry.json` → `meta.componentTaxonomy.order` for the c
 order, and `category` on each component for membership. The Storybook sidebar derives from it;
 it does not keep its own list. `scripts/verify-taxonomy.mjs` fails the build if the two drift.
 
-The seven categories are held in the order below (they are not alphabetised); components are
-alphabetised within each category.
+The seven categories are held in the order below (they are not alphabetized); components are
+alphabetized within each category.
 
 ```
 Foundations/          (color, type, spacing, elevation, motion, icons — token docs)
@@ -61,7 +61,7 @@ Templates/            (Dashboard, DesignCenter, Visualizer, BrowseSelections, Re
 Pages/                (Dashboard, DesignCenter — full page stories)
 ```
 
-50 public components + 2 internal. Alphabetisation compares names with spaces and punctuation
+50 public components + 2 internal. Alphabetization compares names with spaces and punctuation
 ignored, so `SelectionCard` precedes `Selection Indicator`.
 
 Most of these have no story yet. 18 entries carry `specified: false` — they are built in the

@@ -32,14 +32,19 @@ export default function ConfiguratorSection({ section, config, onChange, onOpenT
         // (the backsplash is its child in that mode), so its card thumbnail tracks the
         // selected countertop instead of showing a fixed image.
         let options = group.key === 'backsplashStyle' ? backsplashOptionsFor(config.countertop) : group.options
-        // Wall-color row: the SELECTED color is always the first tile, the curated colors
-        // follow, and the row is capped at 11 (+ the "›" opener). So a color chosen from the
-        // full picker (a library color not in the curated set) prepends as tile #1, pushes the
-        // rest over, and drops the last curated swatch. A curated selection just moves to front.
+        // Wall-color row: the curated colors hold their positions. Choosing one selects it where
+        // it already sits, because a swatch that jumps to the front moves every other swatch under
+        // the pointer and makes the row impossible to scan twice the same way.
+        //
+        // The one exception is a color chosen from the full picker that is NOT in the curated set:
+        // it has nowhere to sit, so it prepends as tile #1, pushes the rest over, and drops the
+        // last curated swatch. The row stays capped at 11, plus the "›" opener.
         if (group.key === 'wallColor') {
           const sel = config.wallColor
-          const selOpt = options.find((o) => o.id === sel) ?? { id: sel, label: wallColorLabel(sel) ?? 'Custom', swatch: wallColorHex(sel) }
-          options = [selOpt, ...options.filter((o) => o.id !== sel)].slice(0, 11)
+          const curated = options.some((o) => o.id === sel)
+          options = curated
+            ? options.slice(0, 11)
+            : [{ id: sel, label: wallColorLabel(sel) ?? 'Custom', swatch: wallColorHex(sel) }, ...options].slice(0, 11)
         }
         // Swatch groups keep a label, but it shows the SELECTED swatch's name
         // (e.g. "Hale Navy"). Section H2s and card sublabels (Style/Material/etc.)

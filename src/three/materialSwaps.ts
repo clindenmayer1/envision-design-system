@@ -168,7 +168,7 @@ function projectBoxUVs(mesh: THREE.Mesh): void {
   const scaleJit = 0.82 + frac(Math.sin(_wp.x * 5.7 + _wp.y * 2.3 + _wp.z * 9.1) * 5371.1) * 0.36
   // Per-panel mirror (cross-grain) + vertical flip (along-grain) → cathedrals point
   // up on some panels, down on others, mirrored left/right on others. With the per-
-  // instance offset this makes every neighbour visibly different (grain stays vertical).
+  // instance offset this makes every neighbor visibly different (grain stays vertical).
   const mirrorU = frac(Math.sin(_wp.x * 27.13 + _wp.y * 61.7 + _wp.z * 14.9) * 9281.3) < 0.5 ? -1 : 1
   const flipV = frac(Math.sin(_wp.x * 8.91 + _wp.y * 33.7 + _wp.z * 52.1) * 6571.7) < 0.5 ? -1 : 1
   // Tiny per-panel grain-angle jitter (±~3°): kills the perfectly-aligned, machine-

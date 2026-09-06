@@ -81,7 +81,21 @@ Semantic content-role registry (page title, section title, card title/descriptio
 
 ## 9. White-label strategy
 
-Only `T2 · Brand` changes per builder (primary ramp, accent, display/wordmark fonts). Everything else shared. Add a builder = add a Brand mode + (optionally) a Semantic Color mode override; components need no changes. Dark mode: architecture-ready — add a `dark` mode to `T2 · Semantic Color` inverting neutrals; brand primary stays fixed. Not built (product is light-only).
+Envision serves **many builders, expected to reach the hundreds or thousands**. A builder brand is **data applied to the system at runtime**, never a fork, a branch, or a per-builder component. This constraint governs every other decision in this document.
+
+**The seam.** Only `T2 · Brand` changes per builder: the `primary` 50–900 ramp, the `accent` 50–900 ramp, `content/on-primary` (the content color that sits on the brand fill), and the display/wordmark fonts. That is **23 custom properties**, feeding 10 semantic roles. Everything else is invariant: neutrals, status colors, spacing, radius, type scale, elevation, motion, z-index, breakpoints. A builder does not get to change what an error looks like or how far apart two things sit.
+
+**The seam is deliberately narrow.** Every extra themeable property is another axis a component must be correct along and another pair the contrast gate must measure. Narrowness is what makes a theme *measurable* rather than *reviewable*, which is the only thing that scales past a handful of brands.
+
+**Artifacts.** Theme documents live in `packages/tokens/src/themes/*.theme.json`, validated by `src/theme.schema.json` (`envision-theme@1`). The runtime is `@envision/tokens/theme` (`applyTheme`, `themeToCss`, `validateTheme`). The default brand layer is emitted **separately** as `dist/brand.css` so it can be replaced on its own; folding it into `semantic.css` would make a theme unswappable.
+
+**Themes.** `envision` is the **default and is deliberately unbranded** (neutral warm ink) — it is what ships before a builder theme loads, and keeping it colorless is what prevents any one builder's palette being mistaken for the system's. `westlake` is a builder theme (the green that formerly read as the system's own color). Themes prefixed `example-` are fictional, for documentation and tests only. Exactly one theme may be `kind: "default"`.
+
+**Overrides.** Three semantic roles derive from the brand ramp and may be overridden by a theme, and only when the contrast gate requires it: `border/focus/default`, `content/brand/default`, `content/brand/hover`. Any other override is rejected by validation. There is no mechanism for a builder to reach a neutral, a status color, or a spacing value.
+
+**Contrast is gated, not reviewed.** Every theme is measured against pairs derived from real token chains (on-brand content over brand default/hover/pressed; focus ring over both surfaces; brand text over the page surface; body text over the subtle brand surface). `npm run test:themes` in `@envision/tokens` fails the build on any violation. A theme that fails does not ship, and the fix belongs in the theme — **never** in a component.
+
+**Adding a builder.** Add a Brand mode in Figma + a theme document in the repo, run the gate, and ship. Components need no changes. Dark mode: architecture-ready — add a `dark` mode to `T2 · Semantic Color` inverting neutrals; the brand layer is orthogonal to it. Not built (product is light-only).
 
 ## 10. Page-composition model
 
@@ -93,7 +107,7 @@ Pages = Shell + Template + Regions + Component instances, driven by an approved 
 
 ## 12. Storybook requirements
 
-Organize `Foundations/ Components/ Patterns/ Templates/ Pages/`, with `Components/` subdivided by the canonical component taxonomy — `Actions`, `Inputs & Selection`, `Navigation`, `Data Display`, `Feedback & Guidance`, `Panels`, `Status & Progress`, in that fixed order, alphabetised within each. The taxonomy is declared once in `component-registry.json` (`meta.componentTaxonomy` + per-component `category`) and derived everywhere else; `scripts/verify-taxonomy.mjs` enforces it. Component taxonomy is independent of token taxonomy and of the `architecture` axis (control-primitive / product-component / composite-pattern / internal-subcomponent) — a component's category never implies a token namespace. Every public component: default + each variant/size/state + long/min/max content + desktop/mobile + a11y + interaction + visual-regression. Reuse child stories in composite/page stories. Deterministic fixtures; mock 3D + APIs at the Storybook boundary. Assumptions (framework/TS/styling/tokens transform/versions) in `STORYBOOK.md` — **provisional until engineering confirms the stack**.
+Organize `Foundations/ Components/ Patterns/ Templates/ Pages/`, with `Components/` subdivided by the canonical component taxonomy — `Actions`, `Inputs & Selection`, `Navigation`, `Data Display`, `Feedback & Guidance`, `Panels`, `Status & Progress`, in that fixed order, alphabetized within each. The taxonomy is declared once in `component-registry.json` (`meta.componentTaxonomy` + per-component `category`) and derived everywhere else; `scripts/verify-taxonomy.mjs` enforces it. Component taxonomy is independent of token taxonomy and of the `architecture` axis (control-primitive / product-component / composite-pattern / internal-subcomponent) — a component's category never implies a token namespace. Every public component: default + each variant/size/state + long/min/max content + desktop/mobile + a11y + interaction + visual-regression. Reuse child stories in composite/page stories. Deterministic fixtures; mock 3D + APIs at the Storybook boundary. Assumptions (framework/TS/styling/tokens transform/versions) in `STORYBOOK.md` — **provisional until engineering confirms the stack**.
 
 ## 13. Governance & Definition of Done
 

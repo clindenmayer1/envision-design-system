@@ -29,4 +29,15 @@ export interface KitchenPackage {
     /** Material swatch fills previewed on the card. */
     materials?: MaterialOption[];
 }
+/**
+ * One step in a breadcrumb trail, root first.
+ *
+ * `href` is optional: the final item is the current page and is rendered as plain text, and an
+ * intermediate step without an href renders as text too (useful for a grouping level that is not
+ * itself a destination).
+ */
+export interface BreadcrumbItem {
+    label: string;
+    href?: string;
+}
 //# sourceMappingURL=types.d.ts.map

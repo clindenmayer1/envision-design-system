@@ -28,7 +28,7 @@ applying, applied, price-pending/updated, section-collapsed/expanded, unsaved-ch
 important are shown here:
 <Canvas of={RailStories.Loading} />
 
-## Responsive behaviour: rail becomes sheet
+## Responsive behavior: rail becomes sheet
 On desktop the rail is `role=complementary`, fixed width from `--envision-t3-right-rail-default-width`
 (392). At **≤1024px** it re-composes into a **modal sheet** with `role=dialog aria-modal`, focus moves
 in, **Tab is trapped** across header → slotted body → Apply, **Esc closes**, and focus returns to the
@@ -37,9 +37,9 @@ Mobile, or open the sheet story directly:
 <Canvas of={RailStories.MobileSheet} />
 
 ## Accessibility
-- Desktop: `role=complementary`, labelled by its heading.
+- Desktop: `role=complementary`, labeled by its heading.
 - Sheet: `role=dialog` + `aria-modal`; focus-in, focus-trap, Esc-to-close and return-focus. The modal
-  behaviour the app’s original rail was missing.
+  behavior the app’s original rail was missing.
 - `loading` sets `aria-busy` on the body.
 
 ## Events & API

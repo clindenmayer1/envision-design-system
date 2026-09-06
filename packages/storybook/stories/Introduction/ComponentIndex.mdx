@@ -18,12 +18,11 @@ registry specification, carrying identity and category only.
   {(() => {
     const order = registry.meta.componentTaxonomy.order;
     const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
-    const shipping = new Set([
-      'badge','button','checkbox','icon-button','input','label','link',
-      'material-swatch','option-card','package-card','radio','right-rail','switch','tab',
-    ]);
+    // Derived, not copied. This was a hardcoded list of 14 ids that had drifted: it missed
+    // breadcrumbs, field and rightrail-tab (all shipping, all shown as "Specified") and named two
+    // ids that do not exist. webComponentPackage is what actually says a component ships.
     const status = (c) =>
-      shipping.has(c.id) ? 'Implemented' : c.specified === false ? 'Inventory' : 'Specified';
+      c.webComponentPackage ? 'Implemented' : c.specified === false ? 'Inventory' : 'Specified';
     const pub = registry.components.filter((c) => c.public);
     return order.map((cat) => {
       const rows = pub

@@ -9,7 +9,7 @@ This Storybook is the **executable technical specification** of the Envision Des
 It is not a component gallery and not a set of mockups. Every example on every page is the **real
 production component** (`@envision/components`) rendered with the **real production tokens**
 (`@envision/tokens`). What you see here is exactly what ships to the product, at the same custom
-elements, same shadow DOM, same token bindings, same accessibility behaviour.
+elements, same shadow DOM, same token bindings, same accessibility behavior.
 
 Envision is a white-label homeowner + interactive home-design platform. Its components are built as
 **standards-based Web Components** (custom elements + Shadow DOM + `ElementInternals`) so the system
@@ -22,19 +22,19 @@ duplicating any logic.
 |---|---|
 | **Executable component reference** | The live, interactive source of truth for what each component is and how it behaves. |
 | **State library** | Every meaningful state (default, variants, sizes, hover, focus, disabled, loading, error, content extremes) captured as a story. |
-| **Technical documentation** | Per-component docs: anatomy, when to use / not use, states, behaviour, accessibility contract, API, token relationships, examples. |
+| **Technical documentation** | Per-component docs: anatomy, when to use / not use, states, behavior, accessibility contract, API, token relationships, examples. |
 | **Interaction-testing environment** | Stories include `play` functions (keyboard, focus, activation) runnable via the Interactions panel and `test-storybook`. |
 | **Accessibility-testing environment** | The a11y (axe) panel checks WCAG 2.2 AA on every story. |
 | **Visual-regression source** | The rendered stories are the canonical frames a visual-regression tool (Chromatic / Playwright) snapshots. |
 
-## How it is organised
+## How it is organized
 
 - **Foundations**: the token layer (color roles, type scale, spacing, radius, elevation, motion),
   read directly from `@envision/tokens`.
 - **Components**: the control primitives (Button, IconButton, Link, Label, Input, Checkbox, Radio,
   Switch, Badge, Tab).
 - **Product Components**: MaterialSwatch, OptionCard, PackageCard.
-- **Patterns**: RightRail (the configurator shell, including its responsive rail→sheet behaviour).
+- **Patterns**: RightRail (the configurator shell, including its responsive rail→sheet behavior).
 
 Scope is deliberately the **14 designed components** (`figmaStatus: ready-for-review` in the
 system-of-record). Components that are specified-but-not-yet-designed are intentionally absent. The

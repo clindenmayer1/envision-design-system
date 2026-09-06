@@ -4,6 +4,22 @@ import type { Preview } from '@storybook/web-components';
 import '@envision/tokens/css'; // production design tokens (--envision-t1/t2/t3-*)
 import '@envision/components'; // registers every <envision-*> custom element
 
+// Envision is white-label: one system, many builder brands. The themes below are the real
+// theme documents from the token package, applied through the same applyTheme() the product
+// uses, so a story rendered under a theme here is rendered exactly as a builder would see it.
+import { applyTheme } from '@envision/tokens/theme';
+import envisionTheme from '@envision/tokens/themes/envision';
+import westlakeTheme from '@envision/tokens/themes/westlake';
+import harborTheme from '@envision/tokens/themes/example-harbor';
+import citrineTheme from '@envision/tokens/themes/example-citrine';
+
+const THEMES = {
+  envision: envisionTheme,
+  westlake: westlakeTheme,
+  'example-harbor': harborTheme,
+  'example-citrine': citrineTheme,
+} as const;
+
 const preview: Preview = {
   parameters: {
     layout: 'centered',
@@ -18,7 +34,9 @@ const preview: Preview = {
         { name: 'surface', value: '#ffffff' },
         { name: 'surface-warm', value: '#fbf8f5' },
         { name: 'surface-sunken', value: '#edeae4' },
-        { name: 'brand', value: '#29594f' },
+        // Resolved through the token, not pinned to a hex — the brand surface follows
+        // whichever builder theme is selected in the toolbar.
+        { name: 'brand', value: 'var(--envision-t2-color-background-brand-default)' },
       ],
     },
     // Responsive behavior, the real Envision breakpoints (SYSTEM_SPEC §6).
@@ -34,9 +52,9 @@ const preview: Preview = {
       // WCAG 2.2 AA is the Envision target (ACCESSIBILITY.md).
       config: { rules: [{ id: 'color-contrast', enabled: true }] },
     },
-    // Sidebar organisation follows the canonical component taxonomy published by the design
+    // Sidebar organization follows the canonical component taxonomy published by the design
     // system (component-registry.json → meta.componentTaxonomy). The seven categories are held
-    // in that fixed order; components inside each are alphabetised by Storybook's default
+    // in that fixed order; components inside each are alphabetized by Storybook's default
     // comparator, which is what the trailing '*' delegates to.
     options: {
       storySort: {
@@ -44,7 +62,7 @@ const preview: Preview = {
           'Introduction',
           ['Overview', 'How Envision is documented', 'Using this Storybook', 'Component index'],
           'Foundations',
-          ['Tokens', 'Color', 'Typography', 'Spacing & Radius', 'Border', 'Elevation & Motion', 'Iconography'],
+          ['Tokens', 'Theming', 'Color', 'Typography', 'Spacing & Radius', 'Border', 'Elevation & Motion', 'Iconography'],
           'Components',
           [
             'Actions',
@@ -61,13 +79,29 @@ const preview: Preview = {
       },
     },
   },
-  // Theme + brand toolbars, Envision is white-label (theme mode + brand mode).
   globalTypes: {
-    theme: {
+    // The white-label switcher. Every component in this Storybook must hold up under any
+    // builder theme, so the theme is a global rather than a per-story decision.
+    brand: {
+      description: 'Builder theme (white-label brand layer)',
+      defaultValue: 'envision',
+      toolbar: {
+        title: 'Brand',
+        icon: 'paintbrush',
+        items: [
+          { value: 'envision', title: 'Envision Default (unbranded)' },
+          { value: 'westlake', title: 'Westlake (builder)' },
+          { value: 'example-harbor', title: 'Example · Harbor' },
+          { value: 'example-citrine', title: 'Example · Citrine (light brand)' },
+        ],
+        dynamicTitle: true,
+      },
+    },
+    scheme: {
       description: 'Color scheme',
       defaultValue: 'light',
       toolbar: {
-        title: 'Theme',
+        title: 'Scheme',
         icon: 'mirror',
         items: [
           { value: 'light', title: 'Light' },
@@ -79,8 +113,13 @@ const preview: Preview = {
   },
   decorators: [
     (story, context) => {
-      // Apply the theme the same way the product does, via a data attribute on the root.
-      document.documentElement.dataset.theme = context.globals.theme ?? 'light';
+      // Apply the scheme the same way the product does, via a data attribute on the root.
+      document.documentElement.dataset.theme = context.globals.scheme ?? 'light';
+      // Apply the builder theme through the production runtime. Only the brand layer is set;
+      // every semantic role and component token re-resolves through the normal cascade, which
+      // is precisely the property a white-label system has to guarantee.
+      const theme = THEMES[context.globals.brand as keyof typeof THEMES] ?? THEMES.envision;
+      applyTheme(theme);
       return story();
     },
   ],

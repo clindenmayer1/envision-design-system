@@ -4,6 +4,8 @@ import * as React from 'react';
  *
  * It wraps an Envision custom element in a React component that:
  *   - forwards camelCase props to kebab-case ATTRIBUTES on the element,
+ *   - assigns non-primitive values (objects, arrays) as element PROPERTIES, because an attribute
+ *     can only hold a string and would serialize them to "[object Object]",
  *   - forwards `on*` props to custom-element EVENT listeners,
  *   - forwards `ref` to the underlying element,
  *   - passes `children` through as slotted/light-DOM content.
@@ -36,6 +38,13 @@ export function createComponent(tagName) {
                     const evt = eventName(key);
                     el.addEventListener(evt, value);
                     cleanups.push(() => el.removeEventListener(evt, value));
+                }
+                else if (value !== null && typeof value === 'object') {
+                    // Objects and arrays are element PROPERTIES. Attributes are strings, so assigning one
+                    // here would produce "[object Object]" — the exact failure the Installation page warns
+                    // about. Applies to Breadcrumbs `items`, MaterialSwatch `option`, OptionCard `options`
+                    // and PackageCard `pkg`.
+                    el[key] = value;
                 }
                 else {
                     const attr = kebab(key);

@@ -322,7 +322,7 @@
           "on-brand": {
             "default": {
               "$type": "color",
-              "$value": "{envision.t1.color.neutral.0}"
+              "$value": "{envision.t2.color.content.on-primary.default}"
             }
           },
           "placeholder": {

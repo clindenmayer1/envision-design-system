@@ -40,6 +40,22 @@ export interface LinkProps extends EnvisionReactBaseProps {
     disabled?: boolean;
 }
 export declare const Link: import("react").ForwardRefExoticComponent<LinkProps & EnvisionReactBaseProps & import("react").RefAttributes<HTMLElement>>;
+export interface BreadcrumbItem {
+    label: string;
+    href?: string;
+}
+export interface BreadcrumbsProps extends EnvisionReactBaseProps {
+    /** The trail, root first. The last entry is rendered as the current page. */
+    items: BreadcrumbItem[];
+    /** Accessible name for the landmark. Defaults to "Breadcrumb". */
+    label?: string;
+    /**
+     * Fires on an unmodified left click of a link. Call `preventDefault()` to take over routing;
+     * leave it alone and the anchor navigates normally. Modifier clicks never fire this.
+     */
+    onNavigate?: EventHandler;
+}
+export declare const Breadcrumbs: import("react").ForwardRefExoticComponent<BreadcrumbsProps & EnvisionReactBaseProps & import("react").RefAttributes<HTMLElement>>;
 export interface LabelProps extends EnvisionReactBaseProps {
     text: string;
     htmlFor: string;
@@ -109,7 +125,7 @@ export interface MaterialSwatchProps extends EnvisionReactBaseProps {
     finish?: string;
     /** Display string such as "Included" or "+$120"; the caller formats it. */
     price?: string;
-    /** Texture URL (preferred) or a solid product colour. Product data, never a token. */
+    /** Texture URL (preferred) or a solid product color. Product data, never a token. */
     image?: string;
     color?: string;
     selected?: boolean;

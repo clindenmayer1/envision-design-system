@@ -9,10 +9,10 @@ import { getPullThumb, peekPullThumb } from './pullThumbRenderer'
 export default function PullThumb({ url }: { url: string }) {
   const [src, setSrc] = useState<string | undefined>(() => peekPullThumb(url))
   useEffect(() => {
-    let cancelled = false
+    let canceled = false
     setSrc(peekPullThumb(url))
-    getPullThumb(url).then((d) => { if (!cancelled) setSrc(d) }).catch(() => {})
-    return () => { cancelled = true }
+    getPullThumb(url).then((d) => { if (!canceled) setSrc(d) }).catch(() => {})
+    return () => { canceled = true }
   }, [url])
   // Fill the parent thumbnail box completely (stretch to fit) so there's no white space and
   // the selection-ring offset is a consistent gap all the way around.

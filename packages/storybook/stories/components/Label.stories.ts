@@ -26,5 +26,8 @@ export default meta;
 type Story = StoryObj<Args>;
 
 export const Default: Story = {};
-export const Required: Story = { args: { required: true } };
-export const WithHelpIcon: Story = { args: { helpIcon: true, text: 'Upgrade budget' } };
+
+// Hidden from the sidebar (`!dev`): reachable by flipping `required` / `helpIcon` on Default.
+// Still indexed, so the docs page embeds them and visual regression still covers them.
+export const Required: Story = { tags: ['!dev'], args: { required: true } };
+export const WithHelpIcon: Story = { tags: ['!dev'], args: { helpIcon: true, text: 'Upgrade budget' } };

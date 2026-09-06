@@ -12,7 +12,7 @@
     { "existing": "CabinetStyleTray", "replacement": "BottomSelectionTray (MaterialSelector)", "disposition": "preserve", "priority": "medium", "status": "proposed" },
     { "existing": "PackagesTab / PackageCard", "replacement": "PackageBrowser / PackageCard", "disposition": "preserve", "priority": "high", "status": "ready(figma card)", "risks": "remove any redundant choose-package CTA" },
     { "existing": "WallColorModal", "replacement": "ColorPickerModal", "disposition": "preserve", "priority": "medium", "status": "proposed" },
-    { "existing": "RoomSelector", "replacement": "RoomSelector (wire status to real data)", "disposition": "preserve", "priority": "low", "status": "proposed" },
+    { "existing": "RoomSelector", "replacement": "Dropdown + MenuItem (room data is content, not a component)", "disposition": "merge", "priority": "low", "status": "audited" },
     { "existing": "ViewSwitcher", "replacement": "ViewPresetControl", "disposition": "preserve", "priority": "low", "status": "proposed" },
     { "existing": "Overview dashboard", "replacement": "DashboardTemplate + widgets", "disposition": "normalize", "priority": "medium", "status": "proposed" },
     { "existing": "SceneCanvas/useSceneLoad", "replacement": "ThreeDViewportShell", "disposition": "preserve", "priority": "medium", "status": "proposed", "risks": "keep byte-driven load semantics" },

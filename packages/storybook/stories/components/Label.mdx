@@ -8,7 +8,7 @@ import * as LabelStories from './Label.stories';
 ## Overview
 `<envision-label>` is a reusable **field or control label**. It exists as its own component so the
 required-asterisk treatment, type style and help affordance are defined once and composed into
-anything that needs labelling, rather than re-authored per control.
+anything that needs labeling, rather than re-authored per control.
 
 <Canvas of={LabelStories.Default} />
 
@@ -20,7 +20,7 @@ platform constraint rather than a preference:
 > cannot associate with a control that lives in the document's light DOM.
 
 Form-label association therefore requires light DOM, so Label injects a single document-level
-stylesheet and renders normally. The self-labelling controls (**Input**, **Checkbox**, **Radio**,
+stylesheet and renders normally. The self-labeling controls (**Input**, **Checkbox**, **Radio**,
 **Switch**) keep their `<label>` and `<input>` together inside one shadow root, which is why they
 do not need this component and are unaffected by the exception.
 
@@ -31,9 +31,9 @@ This is recorded in the Component Architecture Document; it is a documented devi
 `aria-hidden`, because the requirement must be announced by the control, not by a decorative glyph.
 
 ## When to use
-- Labelling a control that **cannot label itself**: a custom field, a group of swatches, a
+- Labeling a control that **cannot label itself**: a custom field, a group of swatches, a
   composite control assembled in product code.
-- Labelling a **group**, the fieldset legend equivalent, where the group has no single input.
+- Labeling a **group**, the fieldset legend equivalent, where the group has no single input.
 
 ## When not to use
 - With **Input, Checkbox, Radio or Switch**, which already render their own label. Adding this one

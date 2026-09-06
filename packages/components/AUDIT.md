@@ -60,7 +60,7 @@ consumes the real emitted names and records the reconciliation here rather than 
 | button `t2.spacing.inline-icon-gap` | `--envision-t2-spacing-control-gap` | Use `control-gap`. |
 | ghost Button; checkbox/radio/switch T3 tokens | **none emitted** | Consume **T2** roles (`color-content-brand`, `color-background-brand`, `color-border-*`). |
 | per-size button padding/type tokens | none emitted | Size scales by **relative ratio** over base control padding (not a raw value). |
-| **`t3.button.outline.color-border`/`.color-content`** (Button outline + PackageCard Customize) | resolve to **brand green** (`t2.color.border/content.brand` → `#29594f`) | **Does not match the shipped web.** Every bordered secondary control in the app uses the neutral hairline `--hairline` (`t2.color.border.default` = **`#e7e3dc`**) with dark text; there is **no brand-green outline button anywhere** (only one non-button dashboard element uses a green border). Rebound outline + Customize to `t2.color.border.default` (#e7e3dc) + `t2.color.content.primary` (#222, nearest to the web's #333) + `t2.color.background.surface`; hover `t2.color.border.strong` + `surface-warm`. Nearest existing tokens; no new tokens. |
+| **`t3.button.outline.color-border`/`.color-content`** (Button outline + PackageCard Customize) | resolved to **brand green** (the family is no longer published) (`t2.color.border/content.brand` → `#29594f`) | **Does not match the shipped web.** Every bordered secondary control in the app uses the neutral hairline `--hairline` (`t2.color.border.default` = **`#e7e3dc`**) with dark text; there is **no brand-green outline button anywhere** (only one non-button dashboard element uses a green border). Rebound outline + Customize to `t2.color.border.default` (#e7e3dc) + `t2.color.content.primary` (#222, nearest to the web's #333) + `t2.color.background.surface`; hover `t2.color.border.strong` + `surface-warm`. Nearest existing tokens; no new tokens. |
 
 **Recommended follow-ups (token layer, out of scope to change here):** add badge `brand`/`error`
 aliases (or update the registry labels), add ghost-button + checkbox/radio/switch T3 tokens, and
@@ -105,7 +105,7 @@ per-size control tokens. Filed as design-system backlog, not silently patched.
    architecture is frozen.
 6. **Outline Button + PackageCard Customize rebound from brand green to the neutral hairline**
    (`t2.color.border.default` #e7e3dc + `t2.color.content.primary` #222 + `surface`; hover
-   `t2.color.border.strong` + `surface-warm`). Reason: the `t3.button.outline.*` tokens resolve to
+   `t2.color.border.strong` + `surface-warm`). Reason: the `t3.button.outline.*` tokens resolved to
    brand green, but the shipped web product renders every secondary/outline button as a neutral
    hairline with dark text (verified against the GitHub baseline across the whole app). Matched to
    the **nearest existing tokens** — no new tokens/primitives created. Documented in COMPONENTS.md,

@@ -17,9 +17,15 @@ import './define.js';
 
 export { EnvisionElement, define } from './base/element.js';
 export { css, cssSource } from './base/css.js';
+/**
+ * The component-owned inline glyphs. Exported so documentation can render the real set rather than
+ * transcribing it — a transcribed copy is a copy that drifts.
+ */
+export { ICON } from './base/icons.js';
 export { EnvisionButton } from './button/Button.js';
 export { EnvisionIconButton } from './icon-button/IconButton.js';
 export { EnvisionLink } from './link/Link.js';
+export { EnvisionBreadcrumbs } from './breadcrumbs/Breadcrumbs.js';
 export { EnvisionLabel } from './label/Label.js';
 export { EnvisionBadge } from './badge/Badge.js';
 export { EnvisionCheckbox } from './checkbox/Checkbox.js';
@@ -31,4 +37,4 @@ export { EnvisionMaterialSwatch } from './material-swatch/MaterialSwatch.js';
 export { EnvisionOptionCard } from './option-card/OptionCard.js';
 export { EnvisionPackageCard } from './package-card/PackageCard.js';
 export { EnvisionRightRail } from './right-rail/RightRail.js';
-export type { MaterialOption, KitchenPackage } from './types.js';
+export type { MaterialOption, KitchenPackage, BreadcrumbItem } from './types.js';

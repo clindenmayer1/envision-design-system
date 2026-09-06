@@ -8,12 +8,12 @@ import * as PackageCardStories from './PackageCard.stories';
 ## Overview
 `<envision-package-card>` presents a **curated design package**, a pre-selected set of finishes
 sold as one choice. It is the unit of the Packages tab: image, name, description, price, the
-materials included, and a way to customise from that starting point.
+materials included, and a way to customize from that starting point.
 
 <Canvas of={PackageCardStories.Default} />
 
 ## The nested-control pattern, done validly
-This card has **two** actions: select the package, and customise it. That is the one case where a
+This card has **two** actions: select the package, and customize it. That is the one case where a
 card legitimately contains more than one control, and it is easy to get wrong.
 
 The application's original card was a `<section role="button" tabindex="0">` with a nested button
@@ -56,12 +56,12 @@ gets it right.
 re-drawing a pill.
 
 ## Content extremes are a supported state, not an edge case
-Package names come from a builder's catalogue and are not length-controlled:
+Package names come from a builder's catalog and are not length-controlled:
 <Canvas of={PackageCardStories.LongName} />
 The name wraps and the card grows; the price stays baseline-aligned with the name row and the grid
 stays even.
 
-## Behaviour
+## Behavior
 Clicking the primary button selects the package and emits `select`. Customize emits `customize`
 separately. Both are real buttons, so `Enter` and `Space` work natively on each.
 

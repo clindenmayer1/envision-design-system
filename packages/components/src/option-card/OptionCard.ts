@@ -23,7 +23,10 @@ const styles = css`
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    gap: var(--envision-t3-option-card-text-gap);
+    /* The row gap between thumbnail, text and chevron. This previously used the card's TEXT gap
+       token (4px), which is the gap INSIDE the text stack, not between the card's three parts, so
+       the whole row rendered a third of the 12px the Figma master specifies. */
+    gap: var(--envision-t2-spacing-container-gap);
     text-align: start;
     /* Figma Card / Option binds all four paddings to spacing/inset-control (12). This previously
        read var(--envision-t1-spacing-12), which does not exist, the card lost its padding. */
@@ -45,7 +48,9 @@ const styles = css`
   .thumb ::slotted(*) { inline-size: 100%; block-size: 100%; display: block; }
   :host([thumb-shape='portrait']) .thumb { aspect-ratio: 4 / 5; block-size: auto; }
   .thumb { inline-size: 72px; block-size: 72px; flex: none; border-radius: var(--envision-t2-border-radius-control-sm); background: var(--envision-t2-color-background-surface-sunken-default) var(--ev-thumb, none); background-size: cover; background-position: center; }
-  .body { flex: 1; min-inline-size: 0; display: flex; flex-direction: column; gap: 0.125rem; }
+  /* The text stack, where option-card-text-gap actually belongs. Figma's option-text frame is a
+     vertical stack with a 4px gap, which is exactly what that token resolves to. */
+  .body { flex: 1; min-inline-size: 0; display: flex; flex-direction: column; gap: var(--envision-t3-option-card-text-gap); }
   /* Website title = 14 / 600 / 1.2; note = 13 / 500 / 1.6. */
   .title { font-family: inherit; font-size: var(--envision-t1-font-size-14); font-weight: var(--envision-t1-font-weight-600); line-height: var(--envision-t1-line-height-120); color: var(--envision-t2-color-content-primary-default); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .note { font-size: var(--envision-t1-font-size-13); font-weight: var(--envision-t1-font-weight-500); line-height: var(--envision-t1-line-height-160); color: var(--envision-t2-color-content-secondary-default); }

@@ -19,7 +19,7 @@ or release · what remains a human responsibility.
 | 1 | **Lint** | Inconsistent/unsafe code, banned patterns | ESLint + typescript-eslint | every commit / PR | **Blocks PR** | Choosing the rules; reviewing intent |
 | 2 | **Type checking** | Broken component/adapter APIs, wrong prop/attr types | `tsc --noEmit` (per package) | every commit / PR | **Blocks PR** | Designing the type contracts |
 | 3 | **Token validation** | Malformed tokens, broken alias chains, **committed token `dist` drifting from source** | token unit tests + `git diff` drift check | every PR | **Blocks PR** | Token architecture & naming decisions |
-| 4 | **Unit / contract behaviour** | Component behaviour regressions — states, events, ARIA wiring, keyboard, form participation, content extremes | Vitest + happy-dom (80 tests) | every PR | **Blocks PR** | Deciding the intended behaviour |
+| 4 | **Unit / contract behavior** | Component behavior regressions — states, events, ARIA wiring, keyboard, form participation, content extremes | Vitest + happy-dom (80 tests) | every PR | **Blocks PR** | Deciding the intended behavior |
 | 5 | **Accessibility — unit (fast)** | ARIA / accessible-name / structure violations | `vitest-axe` (happy-dom) | every PR | **Blocks PR** | Everything axe can’t see (see below) |
 | 6 | **Component + adapter build** | Un-buildable code; committed `dist` not matching source | `tsc` + `git diff` drift check | every PR | **Blocks PR** | — |
 | 7 | **Storybook / docs build** | Broken stories or MDX docs; a spec that won’t compile | `storybook build` | every PR | **Blocks PR** | Doc content & accuracy |
@@ -67,7 +67,7 @@ flowchart TB
     L10[Visual regression · Playwright vs baselines]
   end
 
-  HUMAN{{Human review: manual a11y checklist · visual-diff approval · design judgement}}
+  HUMAN{{Human review: manual a11y checklist · visual-diff approval · design judgment}}
   MERGE([Merge ▸ Release])
   ADV[App checks · advisory only]:::adv
 

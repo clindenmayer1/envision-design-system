@@ -62,7 +62,7 @@ const styles = css`
   .price { font-size: var(--envision-t1-font-size-13); color: var(--envision-t2-color-content-secondary-default); font-variant-numeric: tabular-nums; }
   .footer { display: flex; align-items: center; justify-content: space-between; gap: var(--envision-t3-package-card-footer-gap); padding: 0 var(--envision-t3-package-card-content-gap) var(--envision-t3-package-card-content-gap); }
   /* Customize = neutral secondary button (hairline border + dark text + surface fill), matching
-     the web's Customize pill, NOT the brand-green t3.button.outline tokens (see AUDIT.md §B). */
+     the web's Customize pill. There is no t3.button.outline family to bind to (see AUDIT.md §B). */
   /* Customize = website secondary pill: hairline border, radius 8 (container-sm), 13/600 text. */
   .customize { appearance: none; border: 1px solid var(--envision-t2-color-border-default-default); background: var(--envision-t2-color-background-surface-default); color: var(--envision-t2-color-content-primary-default); border-radius: var(--envision-t2-border-radius-container-sm); padding: 0.375rem 0.75rem; font-family: inherit; font-size: var(--envision-t1-font-size-13); font-weight: var(--envision-t1-font-weight-600); cursor: pointer; }
   .customize:hover { border-color: var(--envision-t2-color-border-strong-default); background: var(--envision-t2-color-background-surface-warm-default); }

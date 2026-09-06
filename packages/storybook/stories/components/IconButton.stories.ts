@@ -68,7 +68,9 @@ export const Toggle: Story = {
   `,
 };
 
-export const Disabled: Story = { args: { disabled: true, icon: 'delete', accessibleName: 'Delete' } };
+// Hidden from the sidebar (`!dev`): one icon button with `disabled` flipped, reached from Default
+// via the control. Still indexed for the docs page and visual regression.
+export const Disabled: Story = { tags: ['!dev'], args: { disabled: true, icon: 'delete', accessibleName: 'Delete' } };
 
 /** Realistic: a 3D-viewport control cluster (zoom / reset / fullscreen). */
 export const RealUseCase_ViewportControls: Story = {

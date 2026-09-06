@@ -40,20 +40,20 @@ worth recording, because they recur whenever a system reaches for a custom docs 
 | How components compose into real screens | The **realistic Envision example** on each Docs page |
 | Which components exist and their status | **Introduction → Component index** |
 
-## How the sidebar is organised
+## How the sidebar is organized
 
 Components are grouped by the canonical **component taxonomy**, held in this fixed order:
 
-**Actions · Inputs & Selection · Navigation · Data Display · Feedback & Guidance · Panels ·
-Status & Progress**
+**Action · Input & Control · Data Display · Feedback & Status · Navigation · Panels ·
+Data & Tables**
 
 That taxonomy has exactly one source of truth: `component-registry.json`
 (`meta.componentTaxonomy.order` for the order, `category` on each component for membership).
 Storybook derives its grouping from it and keeps no parallel list.
 `scripts/verify-taxonomy.mjs` fails the build if the two ever disagree.
 
-Two categories currently show no stories. That is honest rather than broken: **Feedback & Guidance**
-contains only `Tooltip`, and **Status & Progress** contains `KeyDateCard`, `ProgressCard` and
+Two categories currently show no stories. That is honest rather than broken: **Data & Tables**
+contains only `Table`, and **Feedback & Status** contains `Tooltip`, `KeyDateCard`, `ProgressCard` and
 `ProgressIndicator`, all of which are specified in the registry but not yet implemented. Storybook
 only renders groups that contain a story.
 
@@ -61,7 +61,7 @@ only renders groups that contain a story.
 
 Every component Docs page follows the same order, so you can scan for what you need:
 
-Overview → Anatomy → When to use → When **not** to use → Variants → States → Behaviour →
+Overview → Anatomy → When to use → When **not** to use → Variants → States → Behavior →
 Accessibility → Responsive → API → Token relationships → Implementation → Realistic Envision
 example → Related.
 

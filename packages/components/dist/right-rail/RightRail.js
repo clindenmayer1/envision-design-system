@@ -87,7 +87,7 @@ export class EnvisionRightRail extends EnvisionElement {
           <div class="tabs" role="tablist" part="tabs">
             <!-- No aria-controls: the tabs live in their own shadow roots, so an IDREF to the body
                  panel (a different shadow scope) is invalid. role=tab + aria-selected carry the
-                 semantics; the body is a labelled region that swaps content by mode. -->
+                 semantics; the body is a labeled region that swaps content by mode. -->
             <envision-tab class="t-customize" label="Customize"></envision-tab>
             <envision-tab class="t-packages" label="Packages"></envision-tab>
           </div>

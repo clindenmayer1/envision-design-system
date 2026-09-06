@@ -33,7 +33,7 @@ Classification key: **R** replace with DS component · **A** adopt product-speci
 **T** bespoke structure, consume DS tokens · **C** app-specific pattern composed from DS parts ·
 **M** missing DS coverage, needs review (do not invent).
 
-| # | App element | Current implementation | DS component | Canonical / legacy / hardcoded | Class | Migration action | Visual + behavioural risk | Responsive | Accessibility | Status |
+| # | App element | Current implementation | DS component | Canonical / legacy / hardcoded | Class | Migration action | Visual + behavioral risk | Responsive | Accessibility | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
 | 1 | Global tokens | `src/styles/*` legacy layer, canonical imported but unused by most screens | `@envision/tokens` | 125 / 93 / — | T | Load canonical sheet first; retire legacy layer screen by screen | Low; layers are separately namespaced | Responsive sheet must load after base | none | **done** (rail scope) |
 | 2 | TopBar | bespoke `<header>` + 3 `<button>` + inline SVG | none shipping | 0 / 4 / 43 | T + C | Keep structure; nav items become `Tab`; icon actions become `IconButton`; tokens throughout | Nav is brand-critical; verify wordmark + avatar untouched | collapses under 1024 | nav landmark, current-page state | pending |
@@ -41,12 +41,12 @@ Classification key: **R** replace with DS component · **A** adopt product-speci
 | 4 | RoomSelector | `<button>` trigger + `<ul>/<li>` menu with per-room status | none shipping | 0 / 4 / 41 | M | No Dropdown/Menu in the shipping system. Keep bespoke, migrate to tokens now; log coverage gap | Status colors must map to semantic status roles | fixed | combobox/menu semantics, Esc, focus return | pending |
 | 5 | RightRail | bespoke shell; tabs already `Tab` | `RightRail` | 17 / 0 / 1 | A | Adopt the shell once its React adapter exists; footer via the `footer` slot | Shell hardcodes a title + one-row footer upstream | rail → sheet ≤1024 | sheet is a modal dialog w/ focus trap | partial |
 | 6 | RailFooter | bespoke; CTA is `Button` | — | 26 / 0 / 1 | C | Composed from `Button` + tokens | none | none | Save button needs a name | **done** |
-| 7 | ConfiguratorSection | section wrapper + swatch groups | — | 0 / 1 / 17 | C | Compose from `MaterialSwatch`; tokens for the wrapper | swatch sizing/ring must match | none | group labelling | pending |
+| 7 | ConfiguratorSection | section wrapper + swatch groups | — | 0 / 1 / 17 | C | Compose from `MaterialSwatch`; tokens for the wrapper | swatch sizing/ring must match | none | group labeling | pending |
 | 8 | OptionCard (app) | `<button>` + thumb + title + chevron | **`OptionCard`** | 0 / 35 / 9 | R | Replace with the DS component via adapter | DS card layout differs from the rail row; compare before swap | none | already a real button | pending |
 | 9 | OptionSwatch | `<button>` + chip | **`MaterialSwatch`** | 0 / 15 / 10 | R | Replace via adapter | DS swatch has label + price slots the app may not use | none | selected state must not be color-only | pending |
 | 10 | PackagesTab card | bespoke `<section role=button>` | **`PackageCard`** | 82 / 0 / 4 | R | Replace via adapter | Upstream card lacks description, applied check, texture swatches | none | div-as-button today; DS uses real buttons | pending |
-| 11 | CabinetStyleTray | tray + tile grid | none shipping | 0 / 7 / 70 | M + C | Tiles → `MaterialSwatch`; tray shell stays bespoke, tokenised | large surface, high drift risk | tray height | dialog semantics | pending |
-| 12 | WallColorModal | modal + category sidebar + swatch grid | none shipping | 0 / 14 / **158** | M + C | Largest hardcoded surface. Swatches → `MaterialSwatch`; modal stays bespoke, tokenised | very high; 158 raw values | fixed 720 | modal focus trap, Esc | pending |
+| 11 | CabinetStyleTray | tray + tile grid | none shipping | 0 / 7 / 70 | M + C | Tiles → `MaterialSwatch`; tray shell stays bespoke, tokenized | large surface, high drift risk | tray height | dialog semantics | pending |
+| 12 | WallColorModal | modal + category sidebar + swatch grid | none shipping | 0 / 14 / **158** | M + C | Largest hardcoded surface. Swatches → `MaterialSwatch`; modal stays bespoke, tokenized | very high; 158 raw values | fixed 720 | modal focus trap, Esc | pending |
 | 13 | Overview | dashboard cards | none shipping | 0 / 0 / 116 | T | Tokens only; cards are app-specific compositions | high value, brand-facing | dashboard 3→1 col | heading order | pending |
 | 14 | Layout | grid wrapper | — | 0 / 2 / 5 | T | Tokens for gutters/gaps | low | drives the ≤1024 switch | landmarks | pending |
 | 15 | StudioPanel | lighting/dev controls | — | 0 / 0 / 81 | T | Tokens; consider `Switch`/`Input` for its controls | internal tool | none | — | pending |
@@ -97,7 +97,7 @@ Every application component now has an explicit state. Measured by `scripts/ds-a
 |---|---|
 | **A** migrated to a DS component | RightRail tabs (`Tab`), RailFooter CTA (`Button`), PackagesTab badges (`Badge`), ConfiguratorSection |
 | **B** app composition using DS parts + tokens | RightRail, RailFooter, PackagesTab, ConfiguratorSection |
-| **C** tokenised app structure | TopBar, Overview, WallColorModal, CabinetStyleTray, StudioPanel, RoomSelector, ViewSwitcher, Layout, PoseReadout, SceneCanvas, DebugTargetsPanel, PullThumb |
+| **C** tokenized app structure | TopBar, Overview, WallColorModal, CabinetStyleTray, StudioPanel, RoomSelector, ViewSwitcher, Layout, PoseReadout, SceneCanvas, DebugTargetsPanel, PullThumb |
 | **D** DS coverage gap | Dropdown/Menu · Modal/Dialog · Tray/Sheet |
 | **E** parity exception | OptionCard · OptionSwatch · PackagesTab card · TopBar nav · TopBar notification badge |
 
@@ -136,7 +136,7 @@ falls into one of the four categories above.
 
 # COMPONENT EVOLUTION PASS (final)
 
-Authorised to change DS public APIs so the system can represent the approved product. Every API
+Authorized to change DS public APIs so the system can represent the approved product. Every API
 addition below traces to an observed Envision requirement.
 
 ## APIs evolved

@@ -21,9 +21,13 @@ const meta: Meta<Args> = {
 export default meta;
 type Story = StoryObj<Args>;
 
+/** The canonical single-instance page. Off and Disabled are reached from here via the controls. */
 export const On: Story = { args: { checked: true } };
-export const Off: Story = { args: { checked: false } };
-export const Disabled: Story = { args: { disabled: true } };
+
+// Hidden from the sidebar (`!dev`): reachable by flipping `checked` / `disabled` on On.
+// Still indexed, so the docs page embeds them and visual regression still covers them.
+export const Off: Story = { tags: ['!dev'], args: { checked: false } };
+export const Disabled: Story = { tags: ['!dev'], args: { disabled: true } };
 
 export const States: Story = {
   parameters: { controls: { disable: true } },

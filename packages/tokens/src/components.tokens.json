@@ -322,7 +322,7 @@
             },
             "gap-width": {
               "$type": "dimension",
-              "$value": 0
+              "$value": "{envision.t2.border-width.emphasis}"
             },
             "width": {
               "$type": "dimension",

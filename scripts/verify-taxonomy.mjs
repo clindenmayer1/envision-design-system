@@ -35,14 +35,14 @@ check(new Set(CATEGORIES).size === CATEGORIES.length, 'no duplicate category nam
 // ---- 2. inventory invariants ---------------------------------------------------------------
 const names = components.map((c) => c.displayName);
 const ids = components.map((c) => c.id);
-check(components.length === 52, `52 registered entries (got ${components.length})`);
+check(components.length === 57, `57 registered entries (got ${components.length})`);
 check(new Set(names).size === names.length, 'no duplicate displayName');
 check(new Set(ids).size === ids.length, 'no duplicate id');
 
 const pub = components.filter((c) => c.public);
 const internal = components.filter((c) => !c.public);
-check(pub.length === 50, `50 public components (got ${pub.length})`);
-check(internal.length === 2, `2 internal subcomponents (got ${internal.length})`);
+check(pub.length === 56, `56 public components (got ${pub.length})`);
+check(internal.length === 1, `1 internal subcomponent (got ${internal.length})`);
 
 // ---- 3. category membership ----------------------------------------------------------------
 for (const c of pub) {
@@ -125,7 +125,7 @@ else {
 }
 
 // ---- report ----------------------------------------------------------------------------------
-// Alphabetisation ignores spaces and punctuation, so `SelectionCard` sorts before
+// Alphabetization ignores spaces and punctuation, so `SelectionCard` sorts before
 // `Selection Indicator` rather than after it on a raw ASCII compare.
 const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 const byAlpha = (a, b) => norm(a).localeCompare(norm(b));

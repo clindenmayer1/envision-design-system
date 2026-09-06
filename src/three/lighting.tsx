@@ -86,7 +86,7 @@ export function loadStoredLighting(): LightingState {
     const s = localStorage.getItem(LIGHTING_STORAGE_KEY)
     if (s) {
       const saved = JSON.parse(s) as Partial<LightingState> & { __v?: number }
-      // Only honour a save from the CURRENT defaults version — merged over the baseline so any
+      // Only honor a save from the CURRENT defaults version — merged over the baseline so any
       // newly-added control still gets its default. Any older/unversioned save is dropped.
       if (saved.__v === LIGHTING_VERSION) {
         return { ...REFERENCE_MATCH_LIGHTING, ...saved }

@@ -222,16 +222,22 @@ export const TokenExplorer = () => {
 
 ## How to read a chain
 
-`--envision-t3-button-primary-color-background-default` resolves to `#29594f`, but it does not
-*contain* `#29594f`. It points at `t2-color-background-brand-default`, which points at
-`t1-color-green-500`, which holds the value. Rebrand by changing the primitive and every consumer
-follows; override the component token and only the button changes.
+`--envision-t3-button-primary-color-background-default` resolves to a color, but it does not
+*contain* one. It points at `t2-color-background-brand-default`, which points at
+`t2-color-primary-500` in the **brand layer** — and that is the layer a builder theme replaces.
 
-That is the whole argument for three tiers, and the chain column is the evidence.
+Envision is white-label, so this matters more than it usually does. Rebranding is not editing a
+primitive; it is supplying a different brand layer, at runtime, as data. Every consumer downstream
+follows because none of them ever knew the value. Override the component token instead and only
+the button changes.
 
-## Counts: 436 tokens, 447 declarations
+That is the whole argument for three tiers, and the chain column is the evidence. See
+**Foundations → Theming** for the contract, and use the **Brand** toolbar above to watch the chain
+re-resolve under a different theme.
 
-`dist/tokens.css` contains **447** custom-property declarations but only **436 distinct tokens**.
+## Counts: 445 tokens, 456 declarations
+
+`dist/tokens.css` contains **456** custom-property declarations but only **445 distinct tokens**.
 The difference is not duplication. It is the responsive layer.
 
 Eleven tokens are declared twice: once in `:root` with their desktop value, then again inside

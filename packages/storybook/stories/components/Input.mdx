@@ -6,7 +6,7 @@ import * as InputStories from './Input.stories';
 # Input
 
 ## Overview
-`<envision-input>` is a labelled text field. The `<label>`, `<input>`, and helper/error messages
+`<envision-input>` is a labeled text field. The `<label>`, `<input>`, and helper/error messages
 live in one shadow root, so association (`for`/`id`/`aria-describedby`) works within scope.
 
 <Canvas of={InputStories.Default} />
@@ -27,7 +27,7 @@ live in one shadow root, so association (`for`/`id`/`aria-describedby`) works wi
 `invalid` shows `errorMessage`, sets `aria-invalid`, and points `aria-describedby` at the error.
 <Canvas of={InputStories.Invalid} />
 
-## Behaviour
+## Behavior
 Standard text editing. `type="price"` renders a text input with a **decimal inputmode** (locale
 formatting is content/product responsibility, not the control’s). Emits composed `input` / `change`.
 

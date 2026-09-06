@@ -4,6 +4,49 @@ Format: [version] — date. Keep-a-changelog style. Maturity in parentheses.
 
 ## [Unreleased]
 
+### Added — every documented claim is now checked against the thing it describes
+- `scripts/verify-claims.mjs` compares each claim the documentation makes to a real source rather
+  than to another document: Figma for status badges, sections, variant axes and node targets; the
+  component package for what is built and which custom elements it registers; the product tree for
+  what ships; the token build for every token a page names. A claim that cannot be checked is
+  reported as UNVERIFIED, not passed. Wired into `npm run quality`.
+- Ground truth is exported from the library and stored as fixtures
+  (`packages/design-system/fixtures/figma-{truth,variants}.json`), including variant options,
+  documentation-frame ids and effect styles. The variant export was verified by computing the same
+  checksum inside Figma and locally (48 entries, 4000 chars, `f30183e4`), so a mistyped fixture
+  cannot quietly pass.
+- `scripts/token-index.mjs` is now the single place that maps a DTCG token path to a CSS custom
+  property; `scripts/gen-token-table.mjs` regenerates `tokens/tokens-table.md` from it.
+
+### Fixed — false claims found by that check
+- **Badge linked to the wrong component.** Its Figma target was `10:20`, which is NotificationBadge.
+  The built element maps `brand`→`promotional` and `error`→`critical`, which are the Badge set's
+  tones, so it now points at Badge (`106:65`).
+- **Variant tables that disagreed with the library:** Button was missing both instance-swap glyph
+  properties; IconButton omitted the whole `Type` axis and the `Pressed` state; Card-Header omitted
+  `Icon`. Breadcrumbs and Navigation documented an axis their child component carries, now named
+  `Breadcrumb Item · State` and `NavigationItem · Label`.
+- **Figma links that did not point at a component:** RightRail pointed at a single variant, and
+  Form Field, Search Field and Selection Tile pointed at page nodes. Fourteen further components
+  named a real Figma component but carried no node id at all, so their pages could not link to it.
+- **`t3.button.outline.*` does not exist** in any token source. Button's own header comment, the
+  inline comment beside the outline rules, PackageCard, ARCHITECTURE.md, COMPONENTS.md and AUDIT.md
+  all described it in the present tense. Button's comment also claimed per-size tokens "do not exist
+  yet" while the file consumed nine of them.
+- **Token dependency lists** were rewritten from what each built component actually references, and
+  the stale `t2.radius.*` names corrected to `t2.border-radius.*`.
+- **`tokens-table.md`** claimed 345 entries under 188 rows and advertised the missing button/outline
+  family; the README claimed 304. Both now derive from the build: 445.
+- **Rail Footer had no documentation frame** in Figma, the only component page without one, so its
+  "Ready to use" status had nothing to corroborate it. Built to match the doc-kit pattern.
+- **The Home Hero specimen** used `--envision-t1-font-size-30`, a token that does not exist, and did
+  not match the component: it is 56px in the display face over a 22px eyebrow and an 18px subtitle.
+- `storybookStories` (16 records) listed scenarios the built stories never used. The site resolves
+  story links from the built index, so the field was an unread duplicate and is removed.
+- Docs that name a token deliberately, as a counter-example or to say it is unconsumed, declare it
+  inline with `verify-claims: allow <token>` instead of being silently exempt.
+
+
 ### Added — Button size scale (system-first)
 - Button had a `size` prop (`sm`/`md`/`lg`) that **the design system never defined**: the Figma
   Button set had no Size axis, no per-size tokens existed, and the `sm`/`lg` rules were six raw
@@ -28,10 +71,10 @@ Format: [version] — date. Keep-a-changelog style. Maturity in parentheses.
   still cannot be tightened until the Google-Fonts dependency is removed (see
   `playwright.config.ts`).
 
-### Changed — Canonical component taxonomy (organisation + metadata only)
+### Changed — Canonical component taxonomy (organization + metadata only)
 - Adopted a seven-category taxonomy for public components, held in a fixed order:
   **Actions · Inputs & Selection · Navigation · Data Display · Feedback & Guidance · Panels ·
-  Status & Progress**. Components are alphabetised within each category.
+  Status & Progress**. Components are alphabetized within each category.
 - **One source of truth**: `component-registry.json` declares the list and order in
   `meta.componentTaxonomy.order`, and membership in `category` on each component. Storybook and
   every other consumer derive from it; nobody keeps a parallel list.
@@ -56,7 +99,7 @@ Format: [version] — date. Keep-a-changelog style. Maturity in parentheses.
   duplicates; the two had already drifted to different tone vocabularies, `Critical` vs `Error`,
   and splitting them across categories concealed that). **`Dialog` → Panels** (a generic dialog is
   a bounded region hosting arbitrary content, and `ColorPickerModal`, also a dialog, is
-  categorised by purpose — leaving `Dialog` under Feedback made the rule inconsistent with
+  categorized by purpose — leaving `Dialog` under Feedback made the rule inconsistent with
   itself). **`Notification Bell` → Actions** (a trigger that opens a panel, not a move between
   destinations). Feedback & Guidance is now Tooltip alone, which is intended.
 - Storybook sidebar restructured to `Components/<Category>/<displayName>`, derived from the
@@ -70,7 +113,7 @@ Format: [version] — date. Keep-a-changelog style. Maturity in parentheses.
   they were moved, never regenerated.
 - Figma: the COMPONENTS section is grouped by the same seven categories using divider pages plus
   page order, with a `-- INTERNAL (private primitives)` group. All **44** component pages are
-  categorised; no holding group remains. Placement was decided by reading each page's **real
+  categorized; no holding group remains. Placement was decided by reading each page's **real
   master component name**, not its page title — several pages own a master under a different name
   (`Card / Option` owns `OptionCard`, `Dropdown` owns the component recorded above as
   `RoomSelector`, `Tabs` owns both `Tab` and `Tabs`). No component, variant, property, instance,

@@ -2,7 +2,7 @@
   "name": "@envision/storybook",
   "version": "0.1.0",
   "private": true,
-  "description": "Envision Design System — Storybook. The executable technical specification: the real production Web Components (@envision/components) rendered with the production tokens (@envision/tokens).",
+  "description": "Envision Design System: Storybook. The executable technical specification: the real production Web Components (@envision/components) rendered with the production tokens (@envision/tokens).",
   "type": "module",
   "scripts": {
     "storybook": "storybook dev -p 6006 --no-open",

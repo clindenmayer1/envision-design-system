@@ -17,6 +17,7 @@ You are generating or editing Envision UI (product: white-label homeowner + home
 6. **Never add a component or variant silently.** Follow the system-gap process (§ below).
 7. **Product data (cabinet/paint/material colors) is not a UI token.** Render via MaterialSwatch/MaterialCard with data from content models; never as flat hex chrome.
 8. **Selection/status/error are never color-only.** Use the ring ramp + check/icon/text.
+8a. **Envision is white-label: never assume a brand color.** There is no "the Envision green" — the default theme is deliberately unbranded and every builder supplies its own brand layer. Never hardcode a brand hex; never pair a fixed content color (e.g. `#fff`) with a brand-filled surface, always `content/on-brand`; never reach past a semantic role into `color/primary/*`; never add a component token that bakes in a brand assumption; never use brand color as the only carrier of meaning (a builder may have a red brand). Verify a component under a **light** brand before calling it done. Contract + invariants: SYSTEM_SPEC §9.
 9. **Never detach a page from the approved shell + layout structure.**
 10. **Never invent backend, repository, or product facts.** If a field/route/service is unknown, label it proposed and stop.
 
@@ -39,6 +40,9 @@ Button/control/card/RightRail/form/nav/status appearance, the type scale, focus 
 
 ## Required states on every page
 `loading` (skeleton/byte-progress — see ThreeDViewportShell), `empty`, `no-results` (search), `error` (with retry), `maximum-content`. Wire these — do not omit.
+
+## Adding or changing a builder theme
+Author a theme document in `packages/tokens/src/themes/<id>.theme.json` against `theme.schema.json`. Supply **complete** 50–900 ramps for `primary` and `accent` (a partial ramp leaves hover/pressed/subtle undefined), and set `contentOnBrand` from the brand's lightness — white is wrong for a pale brand. Run `npm run test:themes` in `@envision/tokens`; a failing pair names the fix. Use an `overrides` entry only to pass a gate, never to achieve a look, and only from the three allow-listed roles. Mirror the theme as a mode on the `T2 · Brand` collection in Figma. Never widen the themeable surface to solve a one-off visual problem — that is a system-gap request, below.
 
 ## System-gap process (when something needed doesn't exist)
 Do NOT approximate locally. Instead: (1) record the gap; (2) classify it (missing prop / slot / variant / component / pattern / token / page recipe); (3) search for an existing alternative; (4) decide if it's reusable; (5) propose the smallest system addition; (6) document token/a11y/responsive/Storybook impact; (7) obtain review before promoting to Stable; (8) update Figma → code → Storybook → registries → changelog. Never add a Tier-3 token to solve what composition or an existing Tier-2 role handles.

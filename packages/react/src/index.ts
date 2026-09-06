@@ -45,6 +45,23 @@ export interface LinkProps extends EnvisionReactBaseProps {
 }
 export const Link = createComponent<LinkProps>('envision-link');
 
+export interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+export interface BreadcrumbsProps extends EnvisionReactBaseProps {
+  /** The trail, root first. The last entry is rendered as the current page. */
+  items: BreadcrumbItem[];
+  /** Accessible name for the landmark. Defaults to "Breadcrumb". */
+  label?: string;
+  /**
+   * Fires on an unmodified left click of a link. Call `preventDefault()` to take over routing;
+   * leave it alone and the anchor navigates normally. Modifier clicks never fire this.
+   */
+  onNavigate?: EventHandler;
+}
+export const Breadcrumbs = createComponent<BreadcrumbsProps>('envision-breadcrumbs');
+
 export interface LabelProps extends EnvisionReactBaseProps {
   text: string;
   htmlFor: string;
@@ -118,9 +135,9 @@ export const Tab = createComponent<TabProps>('envision-tab');
 
 /* --------------------------------------------------------------------------------------------
  * Product components. Identical thin bridge to everything above: camelCase props become
- * kebab-case attributes, `on*` props become custom-element listeners, no behaviour is duplicated.
+ * kebab-case attributes, `on*` props become custom-element listeners, no behavior is duplicated.
  * `option` / `options` / `pkg` are product-data OBJECTS, so they are assigned as element
- * properties through a ref rather than serialised to attributes.
+ * properties through a ref rather than serialized to attributes.
  * ------------------------------------------------------------------------------------------ */
 
 export interface MaterialSwatchProps extends EnvisionReactBaseProps {

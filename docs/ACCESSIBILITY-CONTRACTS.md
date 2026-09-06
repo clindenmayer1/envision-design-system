@@ -1,7 +1,7 @@
 # Envision — Accessibility Contracts
 
 The explicit, enforceable accessibility contract for each interactive component. **Baseline: WCAG
-2.2 AA**, behaviour per the WAI-ARIA Authoring Practices. Each contract line is tagged with how it
+2.2 AA**, behavior per the WAI-ARIA Authoring Practices. Each contract line is tagged with how it
 is verified:
 
 - **[unit]** — Vitest contract test and/or `vitest-axe` (headless, every PR).
@@ -60,7 +60,7 @@ toggle **[play][unit]**; required/invalid wired **[unit]**; group has an accessi
 `role=tab` + `aria-selected`; **requires a `role=tablist` parent** **[unit][axe]**; roving tabindex +
 Arrow/Home/End, selection-follows-focus **[play][unit]**. Note: because tabs are separate custom
 elements, cross-shadow `aria-controls`→panel IDREF is **not** used (invalid across shadow roots) —
-the panel is a labelled region; full tab/panel association needs a same-scope Tabs container (a
+the panel is a labeled region; full tab/panel association needs a same-scope Tabs container (a
 tracked follow-up).
 
 ## MaterialSwatch — `<envision-material-swatch>`
@@ -76,7 +76,7 @@ below.
 
 ## PackageCard — `<envision-package-card>`
 Real select `<button>` **and a separate** Customize `<button>` — no div-as-button, no nested buttons
-**[unit][axe]**; `aria-pressed` on select **[unit]**; labelled actions **[unit]**; image has
+**[unit][axe]**; `aria-pressed` on select **[unit]**; labeled actions **[unit]**; image has
 loading/ready/error states **[unit]**.
 
 ## RightRail — `<envision-right-rail>`

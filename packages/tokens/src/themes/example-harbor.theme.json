@@ -1,0 +1,39 @@
+{
+  "$schema": "../theme.schema.json",
+  "id": "example-harbor",
+  "name": "Example · Harbor",
+  "version": "1.0.0",
+  "kind": "example",
+  "description": "A fictional example theme used in documentation and tests. Not a real builder.",
+  "brand": {
+    "primary": {
+      "50": "#EAF1F7",
+      "100": "#D3E3F0",
+      "200": "#A7C6E0",
+      "300": "#7BA9D0",
+      "400": "#4F8CC0",
+      "500": "#1F5F9E",
+      "600": "#1A5086",
+      "700": "#16456F",
+      "800": "#0E2C48",
+      "900": "#071925"
+    },
+    "accent": {
+      "50": "#FDF2E4",
+      "100": "#FAE3C6",
+      "200": "#F5C88D",
+      "300": "#EFAC54",
+      "400": "#E9911B",
+      "500": "#D07C0C",
+      "600": "#AD670A",
+      "700": "#8C5308",
+      "800": "#4F2F05",
+      "900": "#281802"
+    },
+    "contentOnBrand": "#FFFFFF",
+    "fontFamily": {
+      "display": "Playfair Display",
+      "wordmark": "Georgia"
+    }
+  }
+}

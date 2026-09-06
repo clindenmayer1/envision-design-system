@@ -50,7 +50,7 @@ No background-image API can express that, so the component publishes a `media` s
 `thumb-shape="portrait"` variant. This was added to the design system rather than worked around in
 the app. The alternative was a parallel card implementation, which the system forbids.
 
-## Behaviour
+## Behavior
 The card is a button: `Enter` and `Space` open the tray. It emits a composed `open` event. If
 `onOpen` is absent the card cycles through its options instead, so it is still useful standalone.
 
@@ -80,6 +80,7 @@ Its content wraps rather than truncating, so long material names stay readable.
 The ring is drawn as a `box-shadow` spread rather than a border, so it does not affect layout when
 the state changes. `--envision-t3-option-card-color-shadow` is published but **not consumed** by
 this component. It is a leftover from an earlier design.
+{/* verify-claims: allow --envision-t3-option-card-color-shadow (cited as published-but-unconsumed) */}
 
 ## Implementation
 ```tsx

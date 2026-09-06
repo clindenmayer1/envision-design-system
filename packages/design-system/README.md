@@ -16,7 +16,7 @@ Reverse-engineered from the live Envision product (https://envision-4tq.pages.de
 |---|---|
 | `AUDIT.md` | Stage-A product/code audit + disposition + reconciliation decisions |
 | `tokens/*.tokens.json` | DTCG tokens — primitives, brand, semantic, responsive, components |
-| `tokens/tokens-table.md` | Flattened machine-readable token table (304 entries, CSS vars) |
+| `tokens/tokens-table.md` | Flattened machine-readable token table (445 entries, CSS vars) |
 | `component-registry.json` | Components: props, variants, states, a11y, tokens, Figma node IDs, maturity |
 | `pattern-registry.json` | Composite patterns (RightRail, GlobalNav, viewport, modals, sheets) |
 | `page-recipes.json` | Shells, layout recipes, region contracts, mapped pages |
@@ -33,4 +33,4 @@ Reverse-engineered from the live Envision product (https://envision-4tq.pages.de
 | `decisions.md` / `changelog.md` | Decision log / release notes |
 
 ## Regenerate the token table
-`node` over `tokens/*.tokens.json` → `tokens/tokens-table.md` (flatten `$value`/aliases to CSS vars).
+`node scripts/gen-token-table.mjs` over `packages/tokens/src/*.tokens.json` → `tokens/tokens-table.md` (flatten `$value`/aliases to CSS vars).

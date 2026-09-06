@@ -1,0 +1,142 @@
+import { Meta } from '@storybook/blocks';
+import envision from '@envision/tokens/themes/envision';
+import westlake from '@envision/tokens/themes/westlake';
+import harbor from '@envision/tokens/themes/example-harbor';
+import citrine from '@envision/tokens/themes/example-citrine';
+import { themeCssPropertyNames, ALLOWED_OVERRIDES, validateTheme } from '@envision/tokens/theme';
+
+<Meta title="Foundations/Theming" />
+
+export const THEMES = [envision, westlake, harbor, citrine];
+
+export const Ramp = ({ theme }) => (
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 4, marginBottom: 20 }}>
+    <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
+      <strong style={{ fontSize: 14 }}>{theme.name}</strong>
+      <code style={{ fontSize: 12, color: '#666' }}>{theme.id}</code>
+      <span style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '.06em', color: '#888' }}>{theme.kind}</span>
+    </div>
+    <div style={{ display: 'flex', borderRadius: 6, overflow: 'hidden', width: 'fit-content' }}>
+      {Object.entries(theme.brand.primary).map(([step, hex]) => (
+        <div key={step} style={{ width: 46, height: 40, background: hex, display: 'flex', alignItems: 'flex-end', justifyContent: 'center', fontSize: 9, color: Number(step) >= 500 ? '#fff' : '#333', paddingBottom: 2 }}>{step}</div>
+      ))}
+    </div>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 4 }}>
+      <div style={{ background: theme.brand.primary['500'], color: theme.brand.contentOnBrand, padding: '7px 14px', borderRadius: 8, fontSize: 13, fontWeight: 600 }}>
+        Primary button
+      </div>
+      <code style={{ fontSize: 11, color: '#666' }}>contentOnBrand {theme.brand.contentOnBrand}</code>
+    </div>
+  </div>
+);
+
+export const Gate = () => (
+  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+    <thead>
+      <tr style={{ textAlign: 'left', borderBottom: '2px solid #e6e3dc' }}>
+        <th style={{ padding: '8px 6px' }}>Theme</th>
+        <th style={{ padding: '8px 6px' }}>Result</th>
+        <th style={{ padding: '8px 6px' }}>Worst pair</th>
+        <th style={{ padding: '8px 6px' }}>Overrides</th>
+      </tr>
+    </thead>
+    <tbody>
+      {THEMES.map((t) => {
+        const r = validateTheme(t);
+        const worst = r.results.length ? r.results.reduce((a, b) => (a.ratio <= b.ratio ? a : b)) : null;
+        return (
+          <tr key={t.id} style={{ borderBottom: '1px solid #efece6' }}>
+            <td style={{ padding: '8px 6px' }}><code>{t.id}</code></td>
+            <td style={{ padding: '8px 6px', color: r.ok ? '#1f6b4d' : '#a4241d', fontWeight: 600 }}>{r.ok ? 'passes' : 'fails'}</td>
+            <td style={{ padding: '8px 6px' }}>{worst ? `${worst.id} — ${worst.ratio}:1 (min ${worst.min})` : '—'}</td>
+            <td style={{ padding: '8px 6px' }}>{t.overrides ? Object.keys(t.overrides).length : 0}</td>
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+);
+
+# Theming
+
+Envision is a **white-label** platform. One system serves many builders, each with their own
+branding, and that number is expected to grow into the hundreds or thousands. A builder brand is
+therefore **data applied to the system**, never a fork of it.
+
+Use the **Brand** control in the toolbar above to render any story in this Storybook under any
+theme. Nothing in a component is aware that the theme changed.
+
+## The contract
+
+A theme supplies the **brand layer** and nothing else:
+
+- `brand.primary` — the full 50–900 brand ramp
+- `brand.accent` — the full 50–900 accent ramp
+- `brand.contentOnBrand` — the content color that sits on the brand fill
+- `brand.fontFamily.display` and `.wordmark`
+
+That is <strong>{themeCssPropertyNames().length} custom properties</strong>. Everything else is
+**invariant** and belongs to the system, not the builder: neutrals, status colors, spacing, radius,
+the type scale, elevation, motion, z-index and breakpoints. A builder does not get to change what
+an error looks like, or how far apart two things sit.
+
+The seam is deliberately narrow, and narrow is the point. It is what lets a theme be **measured**
+rather than reviewed, which is the only approach that survives contact with a thousand brands.
+
+## The themes in this repo
+
+<Ramp theme={envision} />
+<Ramp theme={westlake} />
+<Ramp theme={harbor} />
+<Ramp theme={citrine} />
+
+The default is deliberately **unbranded**. It is what the system looks like before a builder theme
+loads, and keeping it colorless is what stops any one builder's palette from being mistaken for
+the system's own. Themes prefixed `example-` are fictional and exist for documentation and tests.
+
+## Why `contentOnBrand` is per-theme
+
+It is tempting to make the label on a primary button white and be done. That holds right up until
+a builder has a pale brand color, and then every primary button in the product becomes unreadable.
+
+Compare Harbor and Citrine above: Harbor keeps white, Citrine flips to near-black. Neither is a
+special case in the components — both are just the theme answering a question the system asked it.
+
+## The gate
+
+Every theme is validated against contrast pairs derived from real token chains: the primary button
+label on the brand fill and its hover and pressed states, the focus ring against both surfaces it
+appears on, brand-colored text on the page, and body text on the subtle brand surface.
+
+<Gate />
+
+Citrine's brand color is too pale for a focus ring, so it overrides the brand-derived roles. Only
+these may be overridden — anything else is rejected:
+
+<ul>{ALLOWED_OVERRIDES.map((o) => <li key={o}><code>{o}</code></li>)}</ul>
+
+This runs in CI (`npm run test:themes` in `@envision/tokens`). A theme that fails does not ship.
+
+## Applying a theme
+
+```js
+import { applyTheme } from '@envision/tokens/theme';
+
+applyTheme(await fetchBuilderTheme(builderId));
+```
+
+`applyTheme` sets only the brand custom properties on the root element. Every semantic role and
+component token re-resolves through the normal cascade, which is exactly the property a white-label
+system has to guarantee. It returns a disposer that removes them again.
+
+Components inherit through the shadow boundary because custom properties are inherited, so a web
+component picks up the theme with no plumbing of its own.
+
+## What this means when building a component
+
+1. Never hardcode a brand color. There is no such thing as *the* Envision green.
+2. Consume semantic roles (`background/brand`, `content/on-brand`), not the brand ramp directly.
+3. Never pair a fixed content color with a brand background — use `content/on-brand`.
+4. Do not add a component token that bakes in a brand assumption.
+5. Check your component under Citrine before calling it done. A pale brand is the case that breaks
+   things, and it takes one click in the toolbar.

@@ -208,7 +208,16 @@ border-width/emphasis|dimension|=envision.t1.border-width.2
 border-width/focus|dimension|=envision.t1.border-width.2
 border-width/none|dimension|=envision.t1.border-width.0
 border-width/thin|dimension|=envision.t1.border-width.1-5
-color/accent/500|color|=envision.t1.color.accent-orange.500
+color/accent/50|color|#EEEFEC
+color/accent/100|color|#E5E5E1
+color/accent/200|color|#D4D4CA
+color/accent/300|color|#C1C1B3
+color/accent/400|color|#ADAD9C
+color/accent/500|color|#999988
+color/accent/600|color|#7C7C6D
+color/accent/700|color|#6C6C5F
+color/accent/800|color|#3E3E35
+color/accent/900|color|#1C1C16
 color/background/accent/default|color|=envision.t2.color.accent.500
 color/background/brand-subtle/default|color|=envision.t2.color.primary.50
 color/background/brand/default|color|=envision.t2.color.primary.500
@@ -248,8 +257,8 @@ color/content/brand/hover|color|=envision.t2.color.primary.600
 color/content/disabled/default|color|=envision.t1.color.neutral.400
 color/content/error/default|color|=envision.t1.color.error.600
 color/content/info/default|color|=envision.t1.color.info.600
-color/content/on-brand/default|color|=envision.t1.color.neutral.0
-color/content/on-primary/default|color|=envision.t1.color.neutral.0
+color/content/on-brand/default|color|=envision.t2.color.content.on-primary.default
+color/content/on-primary/default|color|#FFFFFF
 color/content/placeholder/default|color|=envision.t1.color.neutral.600
 color/content/primary/default|color|=envision.t1.color.neutral.800
 color/content/secondary/default|color|=envision.t1.color.neutral.600
@@ -260,16 +269,16 @@ color/content/subtle/default|color|=envision.t1.color.neutral.500
 color/content/success/default|color|=envision.t1.color.success.600
 color/content/tertiary/default|color|=envision.t1.color.neutral.700
 color/content/warning/default|color|=envision.t1.color.warning.800
-color/primary/50|color|=envision.t1.color.green.50
-color/primary/100|color|=envision.t1.color.green.100
-color/primary/200|color|=envision.t1.color.green.200
-color/primary/300|color|=envision.t1.color.green.300
-color/primary/400|color|=envision.t1.color.green.400
-color/primary/500|color|=envision.t1.color.green.500
-color/primary/600|color|=envision.t1.color.green.600
-color/primary/700|color|=envision.t1.color.green.700
-color/primary/800|color|=envision.t1.color.green.800
-color/primary/900|color|=envision.t1.color.green.900
+color/primary/50|color|#F5F4F2
+color/primary/100|color|#E8E6E2
+color/primary/200|color|#D2CFC9
+color/primary/300|color|#ABA7A0
+color/primary/400|color|#726E68
+color/primary/500|color|#3A3835
+color/primary/600|color|#2E2C2A
+color/primary/700|color|#242321
+color/primary/800|color|#1A1918
+color/primary/900|color|#101010
 elevation/flat|shadow|0px 1px 3px rgba(0, 0, 0, 0.06)
 elevation/raised|shadow|0px 4px 14px rgba(0, 0, 0, 0.04)
 elevation/raised-hover|shadow|0px 6px 20px rgba(0, 0, 0, 0.08)
@@ -396,7 +405,7 @@ material-swatch/ring/hover/color|color|=envision.t2.color.border.ring-hover.defa
 material-swatch/ring/hover/width|dimension|=envision.t2.border-width.emphasis
 material-swatch/ring/selected/color|color|=envision.t2.color.border.ring-selected.default
 material-swatch/ring/selected/gap-color|color|=envision.t2.color.background.surface.default
-material-swatch/ring/selected/gap-width|dimension|0
+material-swatch/ring/selected/gap-width|dimension|=envision.t2.border-width.emphasis
 material-swatch/ring/selected/width|dimension|=envision.t2.border-width.emphasis
 material-swatch/unavailable-opacity|number|0.4
 material-symbol/color/default|color|=envision.t2.color.content.primary.default

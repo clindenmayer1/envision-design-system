@@ -43,6 +43,10 @@ export const InlineInProse: Story = {
   `,
 };
 
-export const Standalone: Story = { args: { variant: 'standalone', directionIcon: true, label: 'Continue to Design Center' } };
+// Hidden from the sidebar (`!dev`): both are one link with props flipped, reached from Default via
+// the `variant` / `disabled` controls. Still indexed for the docs page and visual regression.
+// "Inline (in prose)" stays visible: it demonstrates the link inside running text, which is a
+// context no control can reproduce.
+export const Standalone: Story = { tags: ['!dev'], args: { variant: 'standalone', directionIcon: true, label: 'Continue to Design Center' } };
 
-export const Disabled: Story = { args: { disabled: true, label: 'Unavailable' } };
+export const Disabled: Story = { tags: ['!dev'], args: { disabled: true, label: 'Unavailable' } };
