@@ -1,5 +1,5 @@
 /**
- * EnvisionElement — the shared base for every Envision custom element.
+ * EnvisionElement, the shared base for every Envision custom element.
  *
  * Zero runtime dependencies. It provides just enough of a reactive lifecycle to
  * keep components small and correct:
@@ -8,7 +8,7 @@
  *  - Batched, microtask-coalesced updates (`requestUpdate`).
  *  - A two-phase render split so DOM is BUILT once (`render`) and STATE is SYNCED
  *    on every change (`updated`). This avoids re-`innerHTML`ing on every attribute
- *    change, which would destroy focus and form state — a real production concern
+ *    change, which would destroy focus and form state, a real production concern
  *    for inputs, checkboxes, and switches.
  *  - Small attribute-reflection helpers.
  *

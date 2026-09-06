@@ -3,59 +3,95 @@
     "t2": {
       "color": {
         "accent": {
+          "50": {
+            "$type": "color",
+            "$value": "#EEEFEC"
+          },
+          "100": {
+            "$type": "color",
+            "$value": "#E5E5E1"
+          },
+          "200": {
+            "$type": "color",
+            "$value": "#D4D4CA"
+          },
+          "300": {
+            "$type": "color",
+            "$value": "#C1C1B3"
+          },
+          "400": {
+            "$type": "color",
+            "$value": "#ADAD9C"
+          },
           "500": {
             "$type": "color",
-            "$value": "{envision.t1.color.accent-orange.500}"
+            "$value": "#999988"
+          },
+          "600": {
+            "$type": "color",
+            "$value": "#7C7C6D"
+          },
+          "700": {
+            "$type": "color",
+            "$value": "#6C6C5F"
+          },
+          "800": {
+            "$type": "color",
+            "$value": "#3E3E35"
+          },
+          "900": {
+            "$type": "color",
+            "$value": "#1C1C16"
           }
         },
         "content": {
           "on-primary": {
             "default": {
               "$type": "color",
-              "$value": "{envision.t1.color.neutral.0}"
+              "$value": "#FFFFFF"
             }
           }
         },
         "primary": {
           "50": {
             "$type": "color",
-            "$value": "{envision.t1.color.green.50}"
+            "$value": "#F5F4F2"
           },
           "100": {
             "$type": "color",
-            "$value": "{envision.t1.color.green.100}"
+            "$value": "#E8E6E2"
           },
           "200": {
             "$type": "color",
-            "$value": "{envision.t1.color.green.200}"
+            "$value": "#D2CFC9"
           },
           "300": {
             "$type": "color",
-            "$value": "{envision.t1.color.green.300}"
+            "$value": "#ABA7A0"
           },
           "400": {
             "$type": "color",
-            "$value": "{envision.t1.color.green.400}"
+            "$value": "#726E68"
           },
           "500": {
             "$type": "color",
-            "$value": "{envision.t1.color.green.500}"
+            "$value": "#3A3835"
           },
           "600": {
             "$type": "color",
-            "$value": "{envision.t1.color.green.600}"
+            "$value": "#2E2C2A"
           },
           "700": {
             "$type": "color",
-            "$value": "{envision.t1.color.green.700}"
+            "$value": "#242321"
           },
           "800": {
             "$type": "color",
-            "$value": "{envision.t1.color.green.800}"
+            "$value": "#1A1918"
           },
           "900": {
             "$type": "color",
-            "$value": "{envision.t1.color.green.900}"
+            "$value": "#101010"
           }
         }
       },

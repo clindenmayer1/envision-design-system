@@ -1,7 +1,7 @@
 import { EnvisionElement } from '../base/element.js';
 import { css } from '../base/css.js';
 /**
- * Envision Badge — `<envision-badge>`. Count or status indicator.
+ * Envision Badge, `<envision-badge>`. Count or status indicator.
  *
  * Registry contract → "badge":
  *   props:  tone('neutral'|'brand'|'info'|'success'|'warning'|'error'=neutral) ·
@@ -46,7 +46,11 @@ const styles = css `
   }
   :host([shape='dot']) .num { display: none; }
   :host([shape='dot']) .text { display: none; }
+  /* Both slots must collapse when empty, not just the label. An empty .num stayed a flex item, so
+     the 4px gap was still applied after the text and every label-only badge sat 4px left of center
+     (12px of padding on the left, 16px on the right). */
   .text:empty { display: none; }
+  .num:empty { display: none; }
 `;
 const TONES = ['neutral', 'brand', 'info', 'success', 'warning', 'error'];
 const SHAPES = ['count', 'dot'];

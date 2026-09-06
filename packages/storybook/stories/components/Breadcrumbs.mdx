@@ -1,0 +1,120 @@
+import { Meta, Canvas, Story, Controls } from '@storybook/blocks';
+import * as BreadcrumbsStories from './Breadcrumbs.stories';
+
+<Meta of={BreadcrumbsStories} />
+
+# Breadcrumbs
+
+Breadcrumbs say where the current page sits in the hierarchy, and link back to every level above
+it. They answer "where am I" and "how do I get back up" without the person needing to guess.
+
+<Canvas of={BreadcrumbsStories.Default} />
+
+<Controls of={BreadcrumbsStories.Default} />
+
+## Semantics
+
+A labeled `nav` landmark containing an ordered list. Ancestors are real `<a href>`; the final
+item is a `<span aria-current="page">` because the page you are on is not a destination.
+
+```html
+<nav aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/">Envision Design System</a><span aria-hidden="true">/</span></li>
+    <li><a href="/tokens">Design Tokens</a><span aria-hidden="true">/</span></li>
+    <li><span aria-current="page">Token architecture</span></li>
+  </ol>
+</nav>
+```
+
+Separators are `aria-hidden`, so a screen reader announces the trail rather than reading a slash
+between every step.
+
+## `items` is a property, not an attribute
+
+The trail carries objects, and an attribute can only hold a string. Setting `items` as an
+attribute produces `[object Object]`.
+
+```js
+document.querySelector('envision-breadcrumbs').items = [
+  { label: 'Envision Design System', href: '/' },
+  { label: 'Design Tokens', href: '/tokens' },
+  { label: 'Token architecture' },
+];
+```
+
+In React the adapter assigns it as a property for you:
+
+```jsx
+import { Breadcrumbs } from '@envision/react';
+
+<Breadcrumbs items={trail} />
+```
+
+## Single-page routing
+
+The component renders real anchors, so right-click, middle-click and open-in-new-tab all work. In
+a single-page app that would normally mean a full page reload, so an unmodified left click first
+emits a **cancelable `navigate` event**. Cancel it and the anchor stands down.
+
+```jsx
+<Breadcrumbs
+  items={trail}
+  onNavigate={(e) => {
+    e.preventDefault();          // stop the anchor
+    router.push(e.detail.href);  // route client-side
+  }}
+/>
+```
+
+Modifier clicks never emit the event, so cmd or ctrl click always opens a new tab. That is
+deliberate: hijacking a modifier click is the most common way a design-system link breaks a
+browser expectation people rely on.
+
+## Trail shapes
+
+A two-level trail is the shortest useful one.
+
+<Canvas of={BreadcrumbsStories.TwoLevels} />
+
+Deep trails **wrap** rather than truncating. An ellipsis in the middle of a breadcrumb removes
+exactly the part people read to orient themselves.
+
+<Canvas of={BreadcrumbsStories.Deep} />
+
+An intermediate step with no `href` renders as text, for a grouping level that is not itself a
+destination. Only the last item ever carries `aria-current`.
+
+<Canvas of={BreadcrumbsStories.NonLinkedAncestor} />
+
+A single item is just the current page: no links, no separators.
+
+<Canvas of={BreadcrumbsStories.CurrentPageOnly} />
+
+## In context
+
+<Canvas of={BreadcrumbsStories.RealUseCase_PageHeader} />
+
+## Accessibility
+
+| Concern | Behavior |
+| --- | --- |
+| Landmark | `nav` with an accessible name, so it can be jumped to and told apart from other navs |
+| Current page | `aria-current="page"` on the final item |
+| Separators | `aria-hidden`, never announced |
+| Keyboard | Tab through ancestors, Enter follows. The current page is not focusable |
+| Focus | The system focus ring, offset so it is never clipped |
+
+The landmark name is configurable via `label`, which matters when a page has several `nav`
+elements: two unnamed landmarks are worse than one.
+
+## When not to use
+
+- As a substitute for primary navigation. Breadcrumbs describe position, they do not replace wayfinding.
+- As a back button. Breadcrumbs go **up** the hierarchy, not **back** through history, and those are different journeys.
+- On a flat hierarchy, where every trail would be two items and neither tells anyone anything.
+
+## Tokens
+
+Breadcrumbs introduce no component tokens. They consume semantic roles directly, because nothing
+about them needs to diverge from the shared content, spacing and focus decisions.

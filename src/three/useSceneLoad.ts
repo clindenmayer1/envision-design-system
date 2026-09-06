@@ -5,7 +5,7 @@
  * cached, listens for the scene's actual first-render signal, and manages the reveal/fade + error
  * handling. It exposes a plain progress number and a few booleans; the progress-bar component is
  * purely presentational and reads only those — so the bar can be swapped for any other graphic
- * without touching this logic, completion behaviour, or error handling.
+ * without touching this logic, completion behavior, or error handling.
  *
  * Progress semantics (no simulation, no timers driving the value):
  *  - `percent` is the real downloaded-byte fraction, monotonic, capped at 99.
@@ -60,16 +60,16 @@ export function useSceneLoad(): SceneLoadState {
   // otherwise mount the scene, which now reads every GLB straight from THREE.Cache.
   useEffect(() => {
     if (cached) return
-    let cancelled = false
+    let canceled = false
     preloadAssets((p) => {
-      if (!cancelled) setBytePercent(p)
+      if (!canceled) setBytePercent(p)
     }).then((result) => {
-      if (cancelled) return
+      if (canceled) return
       if (result.fatal) setError(true)
       else setMountScene(true)
     })
     return () => {
-      cancelled = true
+      canceled = true
     }
   }, [cached])
 
@@ -94,7 +94,7 @@ export function useSceneLoad(): SceneLoadState {
     if (error) setVisible(true)
   }, [error])
 
-  // Watchdog: if the scene mounted but never signalled ready (e.g. an external env map stalls),
+  // Watchdog: if the scene mounted but never signaled ready (e.g. an external env map stalls),
   // don't leave the user staring at a frozen bar — log it and reveal whatever rendered.
   useEffect(() => {
     if (!mountScene || sceneReady || error) return

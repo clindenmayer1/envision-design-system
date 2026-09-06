@@ -20,7 +20,7 @@ inputs are set as JS **properties**.
 - **Props:** `variant`('primary'|'outline'|'ghost'=primary), `size`('sm'|'md'|'lg'=md), `label`\*(string), `leadingIcon`, `trailingIcon`, `disabled`(false), `loading`(false), `fullWidth`(false).
 - **Events:** native `click` (blocked while disabled/loading).
 - **States:** default, hover, focus-visible, pressed, disabled, loading (spinner replaces intent, `aria-busy`, activation blocked but stays focusable).
-- **Tokens:** primary → `t3.button.primary.*`. **Outline = neutral secondary** → `t2.color.border.default` (#e7e3dc) + `t2.color.content.primary` (#222) + `t2.color.background.surface`, hover `t2.color.border.strong` + `surface-warm` (matches the web's hairline "Customize" button; the brand-green `t3.button.outline.*` tokens do NOT match the shipped product — see AUDIT.md §B). Ghost → T2 brand roles. Plus `t2.border-radius.control`, `t2.spacing.control-gap`, `t2.color.border.focus`.
+- **Tokens:** primary → `t3.button.primary.*`. **Outline = neutral secondary** → `t2.color.border.default` (#e7e3dc) + `t2.color.content.primary` (#222) + `t2.color.background.surface`, hover `t2.color.border.strong` + `surface-warm` (matches the web's hairline "Customize" button; the brand-green `t3.button.outline.*` tokens did not match the shipped product and are no longer published — see AUDIT.md §B). Ghost → T2 brand roles. Plus `t2.border-radius.control`, `t2.spacing.control-gap`, `t2.color.border.focus`.
 - **a11y:** real `<button>`, name from `label`, `aria-busy` on load, not focusable when disabled, Enter/Space native, 2px focus ring. Icon slots `leading`/`trailing` for custom icons.
 
 ### IconButton — `<envision-icon-button>` / `IconButton`
@@ -80,7 +80,7 @@ inputs are set as JS **properties**.
 ### PackageCard — `<envision-package-card>` / `PackageCard`
 - **Props:** `pkg`(KitchenPackage, property), `selected`(false). **Events:** `select`, `customize` (detail `{id}`).
 - **States:** default, selected, popular, image-loading (shimmer), image-ready, image-error, long-name (line-clamp), max-materials (preview cap 5).
-- **a11y:** real select `<button>` + **separate** customize `<button>` (no div-as-button, no nested buttons); `aria-pressed`; labelled actions.
+- **a11y:** real select `<button>` + **separate** customize `<button>` (no div-as-button, no nested buttons); `aria-pressed`; labeled actions.
 
 ---
 

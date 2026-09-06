@@ -2,7 +2,7 @@ import { EnvisionElement } from '../base/element.js';
 import { css } from '../base/css.js';
 
 /**
- * Envision Tab — `<envision-tab>`.
+ * Envision Tab, `<envision-tab>`.
  *
  * Registry contract → "rightrail-tab" (codeName Tab):
  *   props:  label(required) · selected(false) · disabled(false)
@@ -27,8 +27,13 @@ const styles = css`
     font-size: var(--envision-t1-font-size-14);
     font-weight: var(--envision-t1-font-weight-600);
     cursor: pointer;
-    /* Website tab padding: 16 top / 0 sides / 14 bottom. */
-    padding: var(--envision-t1-spacing-16) 0 var(--envision-t1-spacing-16);
+    /* Website tab padding: 16 top / 0 sides / 16 bottom (14 -> 16 under the rule of 8s).
+       This previously read var(--envision-t1-spacing-16), a px-named token absent from this
+       step-named scale, so the whole shorthand was invalid and the tab had no padding.
+       NOTE: the Figma Tabs master carries padding 0 and spaces its indicator with an 8px
+       itemSpacing instead, so Figma and the shipped website disagree here, logged for
+       reconciliation rather than silently resolved. */
+    padding: var(--envision-t2-spacing-container-padding-note) 0;
     color: var(--envision-t2-color-content-tertiary-default);
     border-block-end: 2px solid transparent;
   }

@@ -23,7 +23,7 @@ export interface Option {
   label: string
   /** UI swatch / thumbnail color (hex). */
   swatch?: string
-  /** UI swatch image (wood-grain thumbnail) — shown instead of the flat colour. */
+  /** UI swatch image (wood-grain thumbnail) — shown instead of the flat color. */
   texture?: string
   /** 3D model (GLB) for this option — used by hardware pulls (live isometric thumbnail + scene swap). */
   model?: string

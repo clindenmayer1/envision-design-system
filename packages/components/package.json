@@ -2,7 +2,7 @@
   "name": "@envision/components",
   "version": "0.1.0",
   "private": true,
-  "description": "Envision design-system components — standards-based Web Components (custom elements) consuming @envision/tokens. Framework-agnostic; the React adapter lives in @envision/react.",
+  "description": "Envision design-system components: standards-based Web Components (custom elements) consuming @envision/tokens. Framework-agnostic; the React adapter lives in @envision/react.",
   "type": "module",
   "license": "UNLICENSED",
   "sideEffects": [

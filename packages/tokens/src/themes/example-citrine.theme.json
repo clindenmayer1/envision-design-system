@@ -1,0 +1,44 @@
+{
+  "$schema": "../theme.schema.json",
+  "id": "example-citrine",
+  "name": "Example · Citrine",
+  "version": "1.0.0",
+  "kind": "example",
+  "description": "A fictional example theme with a LIGHT brand color. It exists to prove the contract: white on this brand fails contrast, so the theme flips content-on-brand to dark ink and overrides the brand-derived focus and text roles. Any theme this pale must do the same.",
+  "brand": {
+    "primary": {
+      "50": "#FEFAE8",
+      "100": "#FDF3C4",
+      "200": "#FBE888",
+      "300": "#F8DC4C",
+      "400": "#F5D01A",
+      "500": "#E8C511",
+      "600": "#C4A50E",
+      "700": "#9E860B",
+      "800": "#5E5006",
+      "900": "#2F2803"
+    },
+    "accent": {
+      "50": "#E6F2F1",
+      "100": "#C7E3E0",
+      "200": "#94C8C2",
+      "300": "#61ADA4",
+      "400": "#2E9186",
+      "500": "#0F7A6E",
+      "600": "#0C665C",
+      "700": "#0A544C",
+      "800": "#06322D",
+      "900": "#031917"
+    },
+    "contentOnBrand": "#1A1600",
+    "fontFamily": {
+      "display": "Playfair Display",
+      "wordmark": "Georgia"
+    }
+  },
+  "overrides": {
+    "--envision-t2-color-border-focus-default": "#9E860B",
+    "--envision-t2-color-content-brand-default": "#5E5006",
+    "--envision-t2-color-content-brand-hover": "#2F2803"
+  }
+}

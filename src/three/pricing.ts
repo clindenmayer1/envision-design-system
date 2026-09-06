@@ -1,6 +1,6 @@
 /*
  * Material upgrade pricing. Each category has a base "Included" option (the default kitchen
- * config = $0); premium materials add an upgrade cost. Values are best-judgement estimates
+ * config = $0); premium materials add an upgrade cost. Values are best-judgment estimates
  * (standard vs. designer vs. premium tiers) meant to read realistically, easy to tune here.
  *
  * Anything NOT listed for a category is Included ($0). The running total (RailFooter) counts

@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Envision — a white-label homeowner / interactive home-design product (React 18 + React-Three-Fiber) and the production design system built for it (packages/*).",
+  "description": "Envision \u2014 a white-label homeowner / interactive home-design product (React 18 + React-Three-Fiber) and the production design system built for it (packages/*).",
   "workspaces": [
     "packages/*"
   ],
@@ -25,7 +25,11 @@
     "test:stories": "npm run test:stories:ci -w @envision/storybook",
     "visual": "npm run visual -w @envision/storybook",
     "visual:update": "npm run visual:update -w @envision/storybook",
-    "quality": "npm run lint && npm run typecheck -w @envision/components && npm run typecheck -w @envision/react && npm run tokens:verify && npm run components && npm run react && npm run build-storybook"
+    "quality": "npm run lint && npm run typecheck -w @envision/components && npm run typecheck -w @envision/react && npm run tokens:verify && npm run taxonomy:verify && npm run claims:verify && npm run tokens:refs && npm run components && npm run react && npm run build-storybook",
+    "taxonomy:verify": "node scripts/verify-taxonomy.mjs",
+    "tokens:refs": "node scripts/verify-token-refs.mjs",
+    "claims:verify": "node scripts/verify-claims.mjs",
+    "tokens:table": "node scripts/gen-token-table.mjs"
   },
   "dependencies": {
     "@envision/components": "*",

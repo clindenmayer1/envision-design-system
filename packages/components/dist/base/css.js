@@ -3,14 +3,14 @@
  *
  * `css` builds a `CSSStyleSheet` once at module load so every instance of a
  * component shares ONE sheet via `adoptedStyleSheets` (no per-instance <style>
- * duplication — this is the main performance reason to prefer Shadow DOM + tokens).
+ * duplication, this is the main performance reason to prefer Shadow DOM + tokens).
  *
  * Component styles reference the design-system CSS custom properties
  * (`--envision-t2-*`, `--envision-t3-*`) from `@envision/tokens`. Custom
  * properties inherit THROUGH the shadow boundary, so theming/white-label still
  * works even though the internals are encapsulated.
  */
-/** Raw source text per sheet — the authoritative styling contract for tests. (Test envs like
+/** Raw source text per sheet, the authoritative styling contract for tests. (Test envs like
  *  happy-dom mangle `var()` declarations when re-serializing `cssRules`, so assert on this.) */
 const sources = new WeakMap();
 export function css(strings, ...values) {

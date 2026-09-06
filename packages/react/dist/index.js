@@ -12,6 +12,7 @@ import { createComponent } from './createComponent.js';
 export const Button = createComponent('envision-button');
 export const IconButton = createComponent('envision-icon-button');
 export const Link = createComponent('envision-link');
+export const Breadcrumbs = createComponent('envision-breadcrumbs');
 export const Label = createComponent('envision-label');
 export const Badge = createComponent('envision-badge');
 export const Checkbox = createComponent('envision-checkbox');

@@ -11,11 +11,12 @@ interface Args {
 }
 
 const meta: Meta<Args> = {
-  title: 'Components/Badge',
+  title: 'Components/Data Display/Badge',
   component: 'envision-badge',
   tags: ['autodocs'],
   argTypes: {
-    tone: { control: 'select', options: ['neutral', 'brand', 'info', 'success', 'warning', 'error'] },
+    // inline-radio, not select: enum controls read as one horizontal switcher site-wide.
+    tone: { control: 'inline-radio', options: ['neutral', 'brand', 'info', 'success', 'warning', 'error'] },
     shape: { control: 'inline-radio', options: ['count', 'dot'] },
     count: { control: 'number' },
     max: { control: 'number', description: 'Renders `N+` above this value.' },
@@ -25,7 +26,7 @@ const meta: Meta<Args> = {
   render: (a) => html`
     <envision-badge tone=${a.tone} shape=${a.shape} count=${ifDefined(a.count)} max=${a.max} label=${ifDefined(a.label || undefined)}></envision-badge>
   `,
-  parameters: { docs: { description: { component: 'Count or status indicator — `<envision-badge>`. Registry tones map to emitted tokens (`error→critical`, `brand→promotional`). Meaning is never colour-only — pair with adjacent text or an accessible label.' } } },
+  parameters: { docs: { description: { component: 'Count or status indicator, `<envision-badge>`. Registry tones map to emitted tokens (`error→critical`, `brand→promotional`). Meaning is never color-only, so pair it with adjacent text or an accessible label.' } } },
 };
 export default meta;
 type Story = StoryObj<Args>;
@@ -46,15 +47,18 @@ export const Tones: Story = {
   `,
 };
 
+// Both hidden from the sidebar (`!dev`): each is one badge with a prop flipped, reached from
+// Default via the `count` and `shape` controls. Still indexed for docs and visual regression.
+
 /** Count clamps to `max` as `N+` (content extreme). */
-export const CountClamping: Story = { args: { count: 250, max: 99 } };
+export const CountClamping: Story = { tags: ['!dev'], args: { count: 250, max: 99 } };
 
 /** A dot for unread/attention, with no number. Provide a label so it isn't purely decorative. */
-export const Dot: Story = { args: { shape: 'dot', tone: 'error', label: 'Unread' } };
+export const Dot: Story = { tags: ['!dev'], args: { shape: 'dot', tone: 'error', label: 'Unread' } };
 
-/** Realistic — a notification bell with an overlaid count. */
+/** Realistic: a notification bell with an overlaid count. */
 export const RealUseCase_NotificationBell: Story = {
-  name: 'Realistic — notification bell',
+  name: 'Realistic: notification bell',
   parameters: { controls: { disable: true } },
   render: () => html`
     <div style="position:relative; display:inline-flex;">

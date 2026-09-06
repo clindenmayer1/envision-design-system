@@ -4,7 +4,7 @@ import { ICON } from '../base/icons.js';
 import type { MaterialOption } from '../types.js';
 
 /**
- * Envision MaterialSwatch — `<envision-material-swatch>`. Selectable material/finish chip.
+ * Envision MaterialSwatch, `<envision-material-swatch>`. Selectable material/finish chip.
  *
  * Registry → "material-swatch":
  *   props:  option(MaterialOption, required) · selected(false) · unavailable(false) · onSelect(id)
@@ -13,7 +13,7 @@ import type { MaterialOption } from '../types.js';
  *          material + finish + price · ring + check (NOT color-only).
  *
  * The fill is PRODUCT DATA (image/texture/color) set inline, never a token (SYSTEM_SPEC §4).
- * Selection is signalled by BOTH a ring (token effect) AND a check glyph, so it is not color-only.
+ * Selection is signaled by BOTH a ring (token effect) AND a check glyph, so it is not color-only.
  * `option` is an object PROPERTY (objects can't be attributes); selected/unavailable are attributes.
  */
 const styles = css`

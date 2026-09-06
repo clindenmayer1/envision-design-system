@@ -1,0 +1,87 @@
+/* Ported from AlikinVV's pen (https://codepen.io/AlikinVV/pen/pXpYwm). The geometry is the pen's
+   own; what changed is that it is anchored to this frame instead of the viewport, coloured from
+   tokens instead of white on black, and scaled to fit a card. The motion lives in
+   modules/dotsLoader.tsx, because it is an anime.js timeline rather than keyframes. */
+.dl {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: var(--dl-ink, var(--envision-t2-color-content-brand-default));
+}
+
+/* The composition is drawn at the pen's own pixel sizes; this fits it to the frame without
+   touching any of them. */
+.dl-stage {
+  position: relative;
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  transform: scale(var(--dl-scale, 0.44));
+}
+
+/* `position: absolute`, not the pen's `fixed`: inside a card, fixed would escape to the viewport. */
+.dl .four {
+  display: block;
+  inline-size: 0;
+  block-size: 0;
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-start: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: 0 0;
+}
+
+.dl .dot {
+  display: block;
+  inline-size: 4px;
+  block-size: 4px;
+  background: currentColor;
+  border-radius: var(--envision-t2-border-radius-circular);
+  position: absolute;
+}
+
+.dl .dot.d1 { inset-inline-start: -2px; inset-block-start: -2px; }
+.dl .dot.d2 { inset-inline-end: -2px; inset-block-start: -2px; }
+.dl .dot.d3 { inset-inline-start: -2px; inset-block-end: -2px; }
+.dl .dot.d4 { inset-inline-end: -2px; inset-block-end: -2px; }
+.dl .dot.d5 { inset-inline-end: -2px; inset-block-end: -2px; }
+.dl .dot.d7 { inset-inline-start: -2px; inset-block-end: -2px; }
+.dl .dot.d8 { inset-inline-end: -2px; inset-block-start: -2px; }
+.dl .dot.d9 { inset-inline-start: -2px; inset-block-start: -2px; }
+.dl .dot.d10 { inset-inline-end: -42px; inset-block-end: -42px; inline-size: 0; block-size: 0; }
+.dl .dot.d11 { inset-inline-start: -52px; inset-block-end: -2px; opacity: 0; }
+.dl .dot.d12 { inset-inline-end: -52px; inset-block-start: -2px; opacity: 0; }
+.dl .dot.d13 { inset-inline-end: -52px; inset-block-start: -2px; opacity: 0; }
+.dl .dot.d14 { inset-inline-start: -2px; inset-block-end: -52px; opacity: 0; }
+.dl .dot.d15 { inset-inline-end: -2px; inset-block-start: -52px; opacity: 0; }
+.dl .dot.d16 { inset-inline-start: -52px; inset-block-end: -2px; opacity: 0; }
+.dl .dot.d17 { inset-inline-end: 88px; inset-block-start: -44px; opacity: 0; }
+.dl .dot.d18 { inset-inline-start: 47px; inset-block-end: -51px; opacity: 0; }
+.dl .dot.d19 { inset-block-end: -51px; inset-inline-start: -2px; opacity: 0; }
+.dl .dot.d20 { inset-inline-start: -51px; inset-block-end: -2px; opacity: 0; }
+.dl .dot.d21 { inset-inline-start: -52px; inset-block-start: -1px; opacity: 0; }
+.dl .dot.d22 { inset-block-start: -52px; inset-inline-end: -2px; opacity: 0; }
+.dl .dot.d23 { inset-inline-end: 48px; inset-block-start: -52px; opacity: 0; }
+.dl .dot.d24 { inset-inline-end: -50px; inset-block-end: 48px; opacity: 0; }
+.dl .dot.d25 { inset-inline-end: -51px; inset-block-start: 47px; opacity: 0; }
+
+.dl .circle {
+  display: block;
+  inline-size: 4px;
+  block-size: 4px;
+  border: 2px solid currentColor;
+  border-radius: var(--envision-t2-border-radius-circular);
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  transform-origin: 0 0;
+  transform: translate(-50%, -50%);
+}
+
+.dl .circle.c5 {
+  inline-size: 30px;
+  block-size: 30px;
+  opacity: 0;
+}

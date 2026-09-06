@@ -162,7 +162,7 @@ export const PACKAGES: KitchenPackage[] = [
   },
 ]
 
-/** A visual swatch preview — a real material texture image, or a flat colour fallback. */
+/** A visual swatch preview — a real material texture image, or a flat color fallback. */
 export interface PackageSwatch {
   texture?: string
   color?: string
@@ -171,7 +171,7 @@ export interface PackageSwatch {
 /**
  * The card swatch previews for a package, in the fixed order:
  * cabinet finish → countertop → backsplash → flooring → metal finish → wall color.
- * Each maps to the real option's texture (preferred) or swatch colour. No arbitrary colours.
+ * Each maps to the real option's texture (preferred) or swatch color. No arbitrary colors.
  */
 export function packageSwatches(pkg: KitchenPackage): PackageSwatch[] {
   const c = pkg.config

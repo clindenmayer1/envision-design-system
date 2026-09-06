@@ -1,0 +1,1058 @@
+{
+  "note": "Ground truth exported from the Envision library (ZnnaoZcKjKhDxXFvfHr6fA) via the Plugin API. Variant options and property types exactly as the component sets define them. Regenerate with scripts/export-figma-variants (see verify-claims.mjs header).",
+  "exported": "2026-09-03",
+  "pages": [
+    {
+      "page": "Iconography",
+      "sets": [
+        {
+          "name": "Icon/bookmark",
+          "id": "137:737",
+          "props": {
+            "Selected": [
+              "false",
+              "true"
+            ]
+          }
+        },
+        {
+          "name": "Icon/favorite",
+          "id": "137:738",
+          "props": {
+            "Selected": [
+              "false",
+              "true"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Button",
+      "sets": [
+        {
+          "name": "Button",
+          "id": "8:62",
+          "props": {
+            "Label": "TEXT",
+            "Leading icon": "BOOLEAN",
+            "Trailing icon": "BOOLEAN",
+            "Leading icon glyph": "INSTANCE_SWAP",
+            "Trailing icon glyph": "INSTANCE_SWAP",
+            "Type": [
+              "Primary",
+              "Outline",
+              "Ghost"
+            ],
+            "State": [
+              "Default",
+              "Hover",
+              "Focus",
+              "Pressed",
+              "Disabled"
+            ],
+            "Size": [
+              "Medium",
+              "Small",
+              "Large"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Icon Button",
+      "sets": [
+        {
+          "name": "IconButton",
+          "id": "9:41",
+          "props": {
+            "Type": [
+              "Filled",
+              "Plain"
+            ],
+            "State": [
+              "Default",
+              "Hover",
+              "Focus",
+              "Selected",
+              "Disabled",
+              "Pressed"
+            ]
+          }
+        },
+        {
+          "name": "ScrollArrow",
+          "id": "481:176",
+          "props": {
+            "Direction": [
+              "Right",
+              "Left"
+            ],
+            "State": [
+              "Default",
+              "Hover",
+              "Focus"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Notification Bell",
+      "sets": [],
+      "singles": [
+        {
+          "name": "NotificationBell",
+          "id": "265:2",
+          "props": {
+            "Count": "TEXT",
+            "Show badge": "BOOLEAN"
+          }
+        }
+      ]
+    },
+    {
+      "page": "Card-Option",
+      "sets": [
+        {
+          "name": "Card-Option",
+          "id": "12:39",
+          "props": {
+            "Title": "TEXT",
+            "Note": "TEXT",
+            "State": [
+              "Default",
+              "Hover",
+              "Pressed",
+              "Selected",
+              "Focus"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Card-Package",
+      "sets": [
+        {
+          "name": "Card-Package",
+          "id": "13:54",
+          "props": {
+            "Name": "TEXT",
+            "Price": "TEXT",
+            "Description": "TEXT",
+            "State": [
+              "Default",
+              "Selected",
+              "Popular"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Checkbox",
+      "sets": [
+        {
+          "name": "Checkbox",
+          "id": "10:47",
+          "props": {
+            "Checked": [
+              "true",
+              "false"
+            ],
+            "State": [
+              "Default",
+              "Focus",
+              "Disabled",
+              "Hover"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Color Picker Modal",
+      "sets": [
+        {
+          "name": "CategoryItem",
+          "id": "300:112",
+          "props": {
+            "Label": "TEXT",
+            "State": [
+              "Default",
+              "Selected",
+              "Hover",
+              "Focus"
+            ]
+          }
+        },
+        {
+          "name": "ColorSwatch",
+          "id": "516:2647",
+          "props": {
+            "Label": "TEXT",
+            "Code": "TEXT",
+            "State": [
+              "Default",
+              "Selected",
+              "Hover",
+              "Focus"
+            ]
+          }
+        }
+      ],
+      "singles": [
+        {
+          "name": "ColorPickerModal",
+          "id": "183:734",
+          "props": {}
+        },
+        {
+          "name": "ColorPickerHeader",
+          "id": "494:265",
+          "props": {}
+        },
+        {
+          "name": "CategorySidebar",
+          "id": "494:292",
+          "props": {}
+        }
+      ]
+    },
+    {
+      "page": "Dropdown",
+      "sets": [
+        {
+          "name": "Dropdown",
+          "id": "259:37",
+          "props": {
+            "Label": "TEXT",
+            "Open": [
+              "false",
+              "true"
+            ],
+            "State": [
+              "Default",
+              "Focus"
+            ]
+          }
+        },
+        {
+          "name": "RoomOption",
+          "id": "504:56",
+          "props": {
+            "Room": "TEXT",
+            "State": [
+              "Default",
+              "Hover",
+              "Selected",
+              "Focus"
+            ],
+            "Status": [
+              "Complete",
+              "In Progress",
+              "Not Started"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Finish Group",
+      "sets": [],
+      "singles": [
+        {
+          "name": "FinishGroup",
+          "id": "213:360",
+          "props": {
+            "Label": "TEXT",
+            "Status": "TEXT"
+          }
+        }
+      ]
+    },
+    {
+      "page": "Form Field",
+      "sets": [],
+      "singles": [
+        {
+          "name": "FormField",
+          "id": "179:145",
+          "props": {
+            "Helper text": "TEXT",
+            "Show helper": "BOOLEAN",
+            "Error text": "TEXT",
+            "Show error": "BOOLEAN"
+          }
+        }
+      ]
+    },
+    {
+      "page": "Label",
+      "sets": [
+        {
+          "name": "Label",
+          "id": "11:11",
+          "props": {
+            "Label": "TEXT",
+            "Help icon": "BOOLEAN",
+            "Type": [
+              "Default",
+              "Required"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Material Swatch",
+      "sets": [
+        {
+          "name": "MaterialSwatch",
+          "id": "12:14",
+          "props": {
+            "Label": "TEXT",
+            "Content": [
+              "Chip",
+              "Sphere",
+              "Veneer",
+              "Opener"
+            ],
+            "State": [
+              "Default",
+              "Hover",
+              "Selected",
+              "Unavailable",
+              "Focus"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Material Thumbnail",
+      "sets": [
+        {
+          "name": "MaterialThumbnail",
+          "id": "253:21",
+          "props": {
+            "Shape": [
+              "Door",
+              "Square"
+            ],
+            "State": [
+              "Default",
+              "Hover",
+              "Selected",
+              "Focus"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Radio",
+      "sets": [
+        {
+          "name": "Radio",
+          "id": "10:57",
+          "props": {
+            "Selected": [
+              "true",
+              "false"
+            ],
+            "State": [
+              "Default",
+              "Focus",
+              "Disabled",
+              "Hover"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Search Field",
+      "sets": [
+        {
+          "name": "SearchField",
+          "id": "841:41",
+          "props": {
+            "Placeholder": "TEXT",
+            "State": [
+              "Default",
+              "Hover",
+              "Focus",
+              "Filled",
+              "Disabled"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Selection Indicator",
+      "sets": [
+        {
+          "name": "SelectionIndicator",
+          "id": "308:320",
+          "props": {
+            "Size": [
+              "Medium",
+              "Small"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Selection Tile",
+      "sets": [
+        {
+          "name": "SelectionTile",
+          "id": "254:84",
+          "props": {
+            "Title": "TEXT",
+            "Note": "TEXT",
+            "Shape": [
+              "Door",
+              "Square"
+            ],
+            "State": [
+              "Default",
+              "Hover",
+              "Selected",
+              "Focus"
+            ],
+            "Tier": [
+              "Included",
+              "Upgrade"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Selection Tray",
+      "sets": [
+        {
+          "name": "SelectionTray",
+          "id": "256:114",
+          "props": {
+            "Title": "TEXT",
+            "Scroll arrow": "BOOLEAN",
+            "Shape": [
+              "Door",
+              "Square"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Style Tile",
+      "sets": [
+        {
+          "name": "StyleTile",
+          "id": "203:327",
+          "props": {
+            "Title": "TEXT",
+            "Note": "TEXT",
+            "State": [
+              "Default",
+              "Hover",
+              "Selected",
+              "Focus"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Switch",
+      "sets": [
+        {
+          "name": "Switch",
+          "id": "10:70",
+          "props": {
+            "On": [
+              "true",
+              "false"
+            ],
+            "State": [
+              "Default",
+              "Focus",
+              "Disabled",
+              "Hover"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Text Field",
+      "sets": [
+        {
+          "name": "TextField",
+          "id": "11:36",
+          "props": {
+            "Value": "TEXT",
+            "Leading icon": "BOOLEAN",
+            "Trailing icon": "BOOLEAN",
+            "Leading icon glyph": "INSTANCE_SWAP",
+            "Trailing icon glyph": "INSTANCE_SWAP",
+            "State": [
+              "Default",
+              "Hover",
+              "Focus",
+              "Filled",
+              "Error",
+              "Disabled"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "View Preset Control",
+      "sets": [
+        {
+          "name": "ViewPresetControl",
+          "id": "259:30",
+          "props": {
+            "State": [
+              "Default",
+              "Hover",
+              "Focus"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Breadcrumbs",
+      "sets": [
+        {
+          "name": "Breadcrumb Item",
+          "id": "865:11",
+          "props": {
+            "State": [
+              "Default",
+              "Hover",
+              "Focus",
+              "Current"
+            ]
+          }
+        }
+      ],
+      "singles": [
+        {
+          "name": "Breadcrumbs",
+          "id": "865:12",
+          "props": {}
+        }
+      ]
+    },
+    {
+      "page": "Global Nav",
+      "sets": [],
+      "singles": [
+        {
+          "name": "GlobalNav",
+          "id": "265:6",
+          "props": {}
+        },
+        {
+          "name": "Logo",
+          "id": "312:63",
+          "props": {}
+        },
+        {
+          "name": "NavMenu",
+          "id": "313:64",
+          "props": {}
+        },
+        {
+          "name": "UserMenu",
+          "id": "313:1786",
+          "props": {}
+        },
+        {
+          "name": "SecondaryMenu",
+          "id": "313:1802",
+          "props": {}
+        }
+      ]
+    },
+    {
+      "page": "Link",
+      "sets": [
+        {
+          "name": "Link",
+          "id": "9:30",
+          "props": {
+            "Label": "TEXT",
+            "State": [
+              "Default",
+              "Hover",
+              "Focus",
+              "Disabled"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Navigation",
+      "sets": [],
+      "singles": [
+        {
+          "name": "Navigation",
+          "id": "179:975",
+          "props": {}
+        },
+        {
+          "name": "NavigationItem",
+          "id": "179:155",
+          "props": {
+            "Label": "TEXT"
+          }
+        }
+      ]
+    },
+    {
+      "page": "Tab Bar",
+      "sets": [
+        {
+          "name": "Tab",
+          "id": "10:37",
+          "props": {
+            "Label": "TEXT",
+            "State": [
+              "Default",
+              "Hover",
+              "Selected",
+              "Disabled",
+              "Focus"
+            ]
+          }
+        },
+        {
+          "name": "TabBar",
+          "id": "645:2971",
+          "props": {
+            "Fitted": [
+              "false",
+              "true"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Top Bar",
+      "sets": [],
+      "singles": [
+        {
+          "name": "TopBar",
+          "id": "181:146",
+          "props": {}
+        }
+      ]
+    },
+    {
+      "page": "Avatar",
+      "sets": [
+        {
+          "name": "Avatar",
+          "id": "293:9",
+          "props": {
+            "Initials": "TEXT",
+            "Size": [
+              "Small",
+              "Medium",
+              "Large"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Badge",
+      "sets": [
+        {
+          "name": "Badge",
+          "id": "106:65",
+          "props": {
+            "Label": "TEXT",
+            "Tone": [
+              "Promotional",
+              "Neutral",
+              "Info",
+              "Success",
+              "Warning",
+              "Critical"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Card-Header",
+      "sets": [],
+      "singles": [
+        {
+          "name": "Card-Header",
+          "id": "411:3",
+          "props": {
+            "Title": "TEXT",
+            "Link label": "TEXT",
+            "Show link": "BOOLEAN",
+            "Icon": "INSTANCE_SWAP"
+          }
+        }
+      ]
+    },
+    {
+      "page": "Divider",
+      "sets": [],
+      "singles": [
+        {
+          "name": "Divider",
+          "id": "181:143",
+          "props": {}
+        }
+      ]
+    },
+    {
+      "page": "Notification Badge",
+      "sets": [
+        {
+          "name": "NotificationBadge",
+          "id": "10:20",
+          "props": {
+            "Count": "TEXT",
+            "Tone": [
+              "Neutral",
+              "Brand",
+              "Info",
+              "Success",
+              "Warning",
+              "Critical",
+              "Accent"
+            ],
+            "Shape": [
+              "Count",
+              "Dot"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Table",
+      "sets": [],
+      "singles": [
+        {
+          "name": "Table",
+          "id": "182:60",
+          "props": {}
+        },
+        {
+          "name": "TableHeaderRow",
+          "id": "182:52",
+          "props": {}
+        },
+        {
+          "name": "TableRow",
+          "id": "182:56",
+          "props": {}
+        }
+      ]
+    },
+    {
+      "page": "Thumbnail",
+      "sets": [],
+      "singles": [
+        {
+          "name": "Thumbnail",
+          "id": "175:269",
+          "props": {}
+        }
+      ]
+    },
+    {
+      "page": "Dialog",
+      "sets": [],
+      "singles": [
+        {
+          "name": "Dialog",
+          "id": "180:362",
+          "props": {
+            "Title": "TEXT",
+            "Body": "TEXT"
+          }
+        }
+      ]
+    },
+    {
+      "page": "Home Hero",
+      "sets": [],
+      "singles": [
+        {
+          "name": "HomeHero",
+          "id": "427:3",
+          "props": {
+            "Eyebrow": "TEXT",
+            "Name": "TEXT",
+            "Subtitle": "TEXT"
+          }
+        }
+      ]
+    },
+    {
+      "page": "Right Rail",
+      "sets": [
+        {
+          "name": "RightRail",
+          "id": "222:250",
+          "props": {
+            "State": [
+              "Customize",
+              "Packages"
+            ]
+          }
+        }
+      ],
+      "singles": [
+        {
+          "name": "RightRailHeader",
+          "id": "331:624",
+          "props": {}
+        },
+        {
+          "name": "RightRailFooter",
+          "id": "330:377",
+          "props": {}
+        }
+      ]
+    },
+    {
+      "page": "Rail Footer",
+      "sets": [],
+      "singles": [
+        {
+          "name": "RailFooter",
+          "id": "730:3",
+          "props": {}
+        }
+      ]
+    },
+    {
+      "page": "ThreeDViewportShell",
+      "sets": [
+        {
+          "name": "ThreeDViewportShell",
+          "id": "1002:17",
+          "props": {
+            "State": [
+              "Ready",
+              "Loading"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Card-Progress",
+      "sets": [],
+      "singles": [
+        {
+          "name": "Card-Progress",
+          "id": "412:23",
+          "props": {}
+        }
+      ]
+    },
+    {
+      "page": "Card-KeyDate",
+      "sets": [],
+      "singles": [
+        {
+          "name": "Card-KeyDate",
+          "id": "413:22",
+          "props": {}
+        }
+      ]
+    },
+    {
+      "page": "Card-WhatsNext",
+      "sets": [],
+      "singles": [
+        {
+          "name": "Card-WhatsNext",
+          "id": "413:3",
+          "props": {
+            "CTA label": "TEXT"
+          }
+        }
+      ]
+    },
+    {
+      "page": "Key Date Row",
+      "sets": [],
+      "singles": [
+        {
+          "name": "KeyDateRow",
+          "id": "411:1867",
+          "props": {
+            "Label": "TEXT",
+            "Date": "TEXT",
+            "Divider": "BOOLEAN"
+          }
+        }
+      ]
+    },
+    {
+      "page": "Progress Ring",
+      "sets": [],
+      "singles": [
+        {
+          "name": "ProgressRing",
+          "id": "406:3",
+          "props": {
+            "Percent": "TEXT",
+            "Caption": "TEXT"
+          }
+        }
+      ]
+    },
+    {
+      "page": "Room Progress Item",
+      "sets": [
+        {
+          "name": "RoomProgressItem",
+          "id": "409:21",
+          "props": {
+            "Number": "TEXT",
+            "Name": "TEXT",
+            "State": [
+              "Get Started",
+              "Complete",
+              "In Progress"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "page": "Documentation Kit",
+      "sets": [
+        {
+          "name": "Doc/StatusBadge",
+          "id": "22:21",
+          "props": {
+            "Status": [
+              "Ready to use",
+              "Deprecated",
+              "Retired",
+              "In progress",
+              "Limited use"
+            ]
+          }
+        },
+        {
+          "name": "Doc/Note",
+          "id": "23:48",
+          "props": {
+            "Body": "TEXT",
+            "Type": [
+              "Responsive",
+              "Implementation",
+              "Warning",
+              "Decision",
+              "Do",
+              "Don't",
+              "Usage",
+              "Tokens",
+              "Behavior",
+              "Accessibility"
+            ]
+          }
+        }
+      ],
+      "singles": [
+        {
+          "name": "Doc/PageHeader",
+          "id": "23:2",
+          "props": {
+            "Title": "TEXT",
+            "Description": "TEXT",
+            "Storybook link": "BOOLEAN"
+          }
+        },
+        {
+          "name": "Doc/SectionHeader",
+          "id": "23:9",
+          "props": {
+            "Title": "TEXT",
+            "Description": "TEXT"
+          }
+        }
+      ]
+    }
+  ],
+  "docFrames": [
+    {
+      "id": "278:100",
+      "name": "Color Picker Modal Component",
+      "page": "Color Picker Modal"
+    },
+    {
+      "id": "279:3",
+      "name": "Material Thumbnail Component",
+      "page": "Material Thumbnail"
+    },
+    {
+      "id": "275:3",
+      "name": "Selection Tray Component",
+      "page": "Selection Tray"
+    },
+    {
+      "id": "478:2501",
+      "name": "TopBar Component",
+      "page": "Top Bar"
+    },
+    {
+      "id": "321:2",
+      "name": "Avatar Component",
+      "page": "Avatar"
+    },
+    {
+      "id": "282:14",
+      "name": "Dropdown Component",
+      "page": "Dropdown"
+    },
+    {
+      "id": "640:2944",
+      "name": "Navigation Component",
+      "page": "Navigation"
+    }
+  ],
+  "effectStyles": [
+    "Elevation/Flat",
+    "Elevation/Raised",
+    "Elevation/Raised-Hover",
+    "Elevation/Menu",
+    "Elevation/Tray",
+    "Elevation/Overlay-Dark",
+    "Ring/Rest",
+    "Ring/Hover",
+    "Ring/Pressed",
+    "Ring/Selected",
+    "Ring/Focus",
+    "Elevation/Card-Warm"
+  ]
+}

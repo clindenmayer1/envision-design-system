@@ -1,0 +1,29 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --envision-t2-color-accent-50: #eeefec;
+  --envision-t2-color-accent-100: #e5e5e1;
+  --envision-t2-color-accent-200: #d4d4ca;
+  --envision-t2-color-accent-300: #c1c1b3;
+  --envision-t2-color-accent-400: #adad9c;
+  --envision-t2-color-accent-500: #999988;
+  --envision-t2-color-accent-600: #7c7c6d;
+  --envision-t2-color-accent-700: #6c6c5f;
+  --envision-t2-color-accent-800: #3e3e35;
+  --envision-t2-color-accent-900: #1c1c16;
+  --envision-t2-color-content-on-primary-default: #ffffff;
+  --envision-t2-color-primary-50: #f5f4f2;
+  --envision-t2-color-primary-100: #e8e6e2;
+  --envision-t2-color-primary-200: #d2cfc9;
+  --envision-t2-color-primary-300: #aba7a0;
+  --envision-t2-color-primary-400: #726e68;
+  --envision-t2-color-primary-500: #3a3835;
+  --envision-t2-color-primary-600: #2e2c2a;
+  --envision-t2-color-primary-700: #242321;
+  --envision-t2-color-primary-800: #1a1918;
+  --envision-t2-color-primary-900: #101010;
+  --envision-t2-font-family-display: var(--envision-t1-font-family-playfair-display);
+  --envision-t2-font-family-wordmark: var(--envision-t1-font-family-georgia);
+}

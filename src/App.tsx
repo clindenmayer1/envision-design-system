@@ -75,9 +75,9 @@ export default function App() {
   const [backsplashTrayOpen, setBacksplashTrayOpen] = useState(false)
   const [hardwareTrayOpen, setHardwareTrayOpen] = useState(false)
   const [faucetTrayOpen, setFaucetTrayOpen] = useState(false)
-  // The full Choose Wall Color picker (opened by the "+" chip in the wall-colour row).
+  // The full Choose Wall Color picker (opened by the "+" chip in the wall-color row).
   const [wallPickerOpen, setWallPickerOpen] = useState(false)
-  // The wall colour in effect when the picker opened — restored if the user cancels/closes
+  // The wall color in effect when the picker opened — restored if the user cancels/closes
   // without confirming (swatch clicks live-preview on the model; the CTA commits).
   const wallColorBeforePicker = useRef(config.wallColor)
   const openWallPicker = useCallback(() => {

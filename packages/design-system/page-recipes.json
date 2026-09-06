@@ -34,8 +34,8 @@
     },
     {
       "id": "page-design-center", "route": "/design (Design Center)", "family": "design-center", "shell": "DesignCenterShell", "template": "DesignCenterTemplate", "layoutRecipe": "lr-viewport-rail",
-      "pageTitleRole": "section-title", "regions": { "globalNavigation": ["global-nav"], "viewport": ["three-d-viewport-shell", "view-preset-control", "room-selector"], "rightRail": ["right-rail(customize|packages)"], "bottomTray": ["bottom-action-tray"], "overlay": ["color-picker-modal"] },
-      "components": ["global-nav", "three-d-viewport-shell", "right-rail", "option-card", "material-swatch", "package-card", "view-preset-control", "room-selector", "bottom-action-tray", "color-picker-modal"],
+      "pageTitleRole": "section-title", "regions": { "globalNavigation": ["global-nav"], "viewport": ["three-d-viewport-shell", "view-preset-control", "dropdown"], "rightRail": ["right-rail(customize|packages)"], "bottomTray": ["bottom-action-tray"], "overlay": ["color-picker-modal"] },
+      "components": ["global-nav", "three-d-viewport-shell", "right-rail", "option-card", "material-swatch", "package-card", "view-preset-control", "dropdown", "bottom-action-tray", "color-picker-modal"],
       "dataModels": ["kitchenConfig", "materialOption", "designPackage", "priceAdjustment", "wallColor", "viewPreset", "designArea"], "fixture": "fixtures/design-center.json",
       "states": ["typical", "loading(3D)", "empty", "no-results", "error", "saving", "applying", "applied", "price-recalculating", "max-content", "desktop", "mobile"],
       "responsive": "row->column at 1024; rail->sheet mobile; canvas 60vh band", "focus": "rail not trapped desktop; trapped as modal on mobile sheet; return focus on close",

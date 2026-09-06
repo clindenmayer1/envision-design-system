@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "envision-theme@1",
+  "title": "Envision builder theme",
+  "description": "A white-label theme for the Envision platform. A theme supplies the BRAND LAYER only: the primary and accent ramps, the content color that sits on the brand, and the brand fonts. Everything else in the system (neutrals, status colors, spacing, radius, type scale, elevation, motion, z-index, breakpoints) is shared and is not a builder's to change. A theme is data applied at runtime, never a fork of the system.",
+  "type": "object",
+  "required": ["id", "name", "version", "brand"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Stable machine identifier, kebab-case. Used as the data-envision-theme attribute value."
+    },
+    "name": { "type": "string", "description": "Human-readable theme name, shown in tooling." },
+    "version": { "type": "string", "description": "Semantic version of this theme document." },
+    "kind": {
+      "enum": ["default", "builder", "example"],
+      "description": "default = the unbranded system theme; builder = a real builder's brand; example = fictional, for documentation and tests only."
+    },
+    "description": { "type": "string" },
+    "brand": {
+      "type": "object",
+      "required": ["primary", "accent", "contentOnBrand"],
+      "additionalProperties": false,
+      "properties": {
+        "primary": { "$ref": "#/definitions/ramp", "description": "The brand ramp. 500 is the base action color; 600 and 700 are its hover and pressed states; 50 is the subtle brand surface." },
+        "accent": { "$ref": "#/definitions/ramp", "description": "The secondary brand ramp, used for accent surfaces and highlights." },
+        "contentOnBrand": {
+          "$ref": "#/definitions/hex",
+          "description": "The content color that sits on top of the brand ramp (primary button labels, promotional badges, selection indicator icons). A light brand MUST set this to dark ink; it is contrast-gated against primary 500, 600 and 700."
+        },
+        "fontFamily": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "display": { "type": "string", "description": "Editorial display face." },
+            "wordmark": { "type": "string", "description": "Wordmark face." }
+          }
+        }
+      }
+    },
+    "overrides": {
+      "type": "object",
+      "description": "Escape hatch for the small set of semantic roles that DERIVE from the brand ramp and can fail for an unusual brand. Only these three properties may be overridden; anything else is outside the contract and is rejected by validation.",
+      "additionalProperties": false,
+      "properties": {
+        "--envision-t2-color-border-focus-default": { "$ref": "#/definitions/hex" },
+        "--envision-t2-color-content-brand-default": { "$ref": "#/definitions/hex" },
+        "--envision-t2-color-content-brand-hover": { "$ref": "#/definitions/hex" }
+      }
+    }
+  },
+  "definitions": {
+    "hex": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+    "ramp": {
+      "type": "object",
+      "description": "A complete 50-900 ramp. All ten steps are required: partial ramps leave hover, pressed and subtle states undefined.",
+      "required": ["50", "100", "200", "300", "400", "500", "600", "700", "800", "900"],
+      "additionalProperties": false,
+      "properties": {
+        "50": { "$ref": "#/definitions/hex" }, "100": { "$ref": "#/definitions/hex" },
+        "200": { "$ref": "#/definitions/hex" }, "300": { "$ref": "#/definitions/hex" },
+        "400": { "$ref": "#/definitions/hex" }, "500": { "$ref": "#/definitions/hex" },
+        "600": { "$ref": "#/definitions/hex" }, "700": { "$ref": "#/definitions/hex" },
+        "800": { "$ref": "#/definitions/hex" }, "900": { "$ref": "#/definitions/hex" }
+      }
+    }
+  }
+}

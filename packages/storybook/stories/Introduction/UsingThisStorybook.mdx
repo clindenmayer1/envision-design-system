@@ -15,7 +15,7 @@ import { Meta } from '@storybook/blocks';
   <envision-button variant="primary" label="Apply"></envision-button>
   ```
   ```tsx
-  // React (thin adapter — no duplicated logic)
+  // React (thin adapter, no duplicated logic)
   import { Button } from '@envision/react';
   <Button variant="primary" label="Apply" onClick={apply} />
   ```
@@ -28,19 +28,19 @@ import { Meta } from '@storybook/blocks';
 ## For designers
 
 - **This mirrors Figma.** The components, states, and tokens here are reconciled to the Figma
-  library and the shipped product — same values. Use it to confirm real behaviour that a static
+  library and the shipped product, at the same values. Use it to confirm real behavior that a static
   frame can’t show (focus order, keyboard, loading, content overflow, responsive re-composition).
 - **Explore states, not just the happy path.** Every component enumerates its meaningful states
   (hover/focus/disabled/loading/error/content-extremes). Use the **Backgrounds** and **Viewport**
   toolbars to check surfaces and breakpoints.
-- **Selection & status are never colour-only** — verify the ring + check + label treatments here.
+- **Selection & status are never color-only**, so verify the ring, check and label treatments here.
 
 ## Conventions in every component
 
 - **Stories** cover the applicable set: default · variants · sizes · hover · focus · active ·
   disabled · loading · validation/error · keyboard · short/long/extreme content · responsive ·
   themes · realistic Envision use cases. No filler permutations.
-- **Docs** cover: overview · anatomy · when to use / not use · variants · states · behaviour ·
+- **Docs** cover: overview · anatomy · when to use / not use · variants · states · behavior ·
   accessibility · content considerations · API · token relationships · implementation examples ·
   realistic Envision examples.
 
@@ -52,5 +52,5 @@ npm run build       -w @envision/storybook   # static build (visual-regression s
 npm run test:stories -w @envision/storybook  # run play/a11y tests headless
 ```
 
-Storybook depends on the built `@envision/components` and `@envision/tokens` — run their builds
+Storybook depends on the built `@envision/components` and `@envision/tokens`, so run their builds
 first (the monorepo `npm run components` / `npm run tokens`).

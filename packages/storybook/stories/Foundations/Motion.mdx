@@ -1,0 +1,90 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Foundations/Motion" />
+
+# Motion
+
+Four semantic durations, all aliasing the primitive duration scale.
+
+| Role | Value | Use |
+|---|---|---|
+| `--envision-t2-motion-micro-duration` | 150ms | Hover, focus, color and small state changes |
+| `--envision-t2-motion-dismiss-duration` | 180ms | Things leaving, such as closing a tray or dismissing |
+| `--envision-t2-motion-panel-duration` | 260ms | Panels and trays arriving |
+| `--envision-t2-motion-loading-duration` | 340ms | Shimmer and loading rhythm |
+
+### Easing
+The signature ease is **`cubic-bezier(.2, .8, .2, 1)`**, a fast start with a long settle. It is
+applied directly in components today; the semantic layer publishes **durations only**, no easing
+tokens. That is a known gap, and it is the reason four dead `--envision-theme-*-easing` definitions
+were removed from the legacy layer rather than repointed: there was nothing to point them at.
+
+### Dismiss is faster than arrival
+180ms out against 260ms in, on purpose. Something arriving deserves to be noticed; something
+leaving should get out of the way. Matching the two makes the interface feel sluggish.
+
+### Reduced motion is not optional
+Every animated component wraps its transition in a `prefers-reduced-motion` guard:
+
+```css
+transition: background-color var(--envision-t2-motion-micro-duration) cubic-bezier(.2, .8, .2, 1);
+
+@media (prefers-reduced-motion: reduce) {
+  transition: none;
+}
+```
+
+Motion in Envision is always **supportive**, so it explains where a panel came from. Nothing in the
+product depends on motion to be understood, so removing it costs nothing.
+
+### Camera motion
+
+The Design Center moves a camera rather than an element, and the same rule holds: the move exists so
+the viewer stays oriented when the subject changes. Opening the hardware tray reframes the pulls;
+opening the backsplash reframes the wall. Without it the model appears to teleport.
+
+A camera is judged differently from a panel, though. A panel that snaps into place reads as
+responsive. A camera that stops dead reads as a collision, because nothing physical arrives at speed
+and halts. So **the trip is fast and the arrival is not**.
+
+The move runs on one curve and its **tail is stretched, rather than the whole curve being slowed**.
+Three quarters of the distance is covered on the original timing; the last quarter is given three
+times as long with a further ease-out, so the camera keeps decelerating all the way in instead of
+levelling off and stopping.
+
+| Progress | Reached at | Note |
+|---|---|---|
+| 25% of the distance | 0.32s | Full speed, unchanged |
+| 50% | 0.46s | Full speed, unchanged |
+| 75% | 0.61s | Handover to the landing |
+| 100% | 1.76s | The last quarter takes 1.15s on its own |
+
+The stretch is applied to **time**, not to the position curve, so both phases ride the same curve and
+meet at the same point: no seam where the motion changes speed or direction. Slowing the curve as a
+whole was the obvious alternative and it was wrong, because it makes every trip sluggish to buy a
+softer stop.
+
+```ts
+const BASE_DURATION = 1.0
+const SPLIT = 0.62        // hand over with a quarter of the distance left
+const TAIL_STRETCH = 3.0  // and give that quarter three times as long
+
+let u
+if (t <= BASE_DURATION * SPLIT) {
+  u = t / BASE_DURATION                        // unchanged timing
+} else {
+  const r = (t - BASE_DURATION * SPLIT) / (tailBase * TAIL_STRETCH)
+  u = SPLIT + (1 - SPLIT) * (1 - (1 - r) ** 3) // keeps slowing all the way in
+}
+```
+
+Two knobs, and they are independent: `SPLIT` decides how much of the distance is left to land with,
+and `TAIL_STRETCH` decides how long that landing takes. Neither touches the speed of the trip.
+
+### The camera stays in the room
+
+Zoom-out is capped at the room's own shell. Past it the walls show their outside faces and the floor
+shows its cut edge, and the room stops reading as a room. The cap is computed from the model rather
+than typed in: from the orbit target, along the current view direction, to the point where it would
+leave the room's bounds. Because it follows the live direction, you can pull back further along the
+room's length than across its width, which is what the space actually allows.

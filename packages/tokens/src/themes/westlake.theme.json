@@ -1,0 +1,39 @@
+{
+  "$schema": "../theme.schema.json",
+  "id": "westlake",
+  "name": "Westlake",
+  "version": "1.0.0",
+  "kind": "builder",
+  "description": "A builder theme. This green shipped first and was long treated as the system's own color; it is Westlake's brand, and it is one theme among many.",
+  "brand": {
+    "primary": {
+      "50": "#EAF0EE",
+      "100": "#D3E0DC",
+      "200": "#A7C1BA",
+      "300": "#7AA097",
+      "400": "#4D7D72",
+      "500": "#29594F",
+      "600": "#234C43",
+      "700": "#1F453D",
+      "800": "#15302A",
+      "900": "#0D201C"
+    },
+    "accent": {
+      "50": "#FAEBE2",
+      "100": "#FDDFCB",
+      "200": "#FFC8A3",
+      "300": "#FFAE74",
+      "400": "#FB913D",
+      "500": "#E67E22",
+      "600": "#BC640F",
+      "700": "#A45713",
+      "800": "#612F01",
+      "900": "#2F1400"
+    },
+    "contentOnBrand": "#FFFFFF",
+    "fontFamily": {
+      "display": "Playfair Display",
+      "wordmark": "Georgia"
+    }
+  }
+}

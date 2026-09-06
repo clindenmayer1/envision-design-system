@@ -21,10 +21,10 @@ export default function OptionSwatch({ option, selected, onSelect }: Props) {
   const [sphere, setSphere] = useState<string | undefined>(() => (isMetal ? peekMetalSwatch(option.id) : undefined))
   useEffect(() => {
     if (!isMetal) return
-    let cancelled = false
+    let canceled = false
     setSphere(peekMetalSwatch(option.id))
-    getMetalSwatch(option.id).then((d) => { if (!cancelled) setSphere(d) }).catch(() => {})
-    return () => { cancelled = true }
+    getMetalSwatch(option.id).then((d) => { if (!canceled) setSphere(d) }).catch(() => {})
+    return () => { canceled = true }
   }, [isMetal, option.id])
 
   return (

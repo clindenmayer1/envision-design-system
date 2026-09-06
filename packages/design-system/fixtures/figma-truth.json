@@ -1,0 +1,546 @@
+{
+  "note": "Ground truth exported from the Figma library by scripts/verify-claims.mjs's companion use_figma query. Regenerate when the library changes; every page's section, status badge and component node ids as Figma actually reports them.",
+  "exported": "2026-09-03",
+  "pages": [
+    {
+      "page": "Button",
+      "section": "ACTIONS",
+      "badge": "Ready to use",
+      "sets": [
+        "Button"
+      ],
+      "nodeIds": [
+        "8:62"
+      ]
+    },
+    {
+      "page": "Icon Button",
+      "section": "ACTIONS",
+      "badge": "Ready to use",
+      "sets": [
+        "IconButton",
+        "ScrollArrow"
+      ],
+      "nodeIds": [
+        "9:41",
+        "481:176"
+      ]
+    },
+    {
+      "page": "Notification Bell",
+      "section": "ACTIONS",
+      "badge": "Ready to use",
+      "sets": [
+        "NotificationBell"
+      ],
+      "nodeIds": [
+        "265:2"
+      ]
+    },
+    {
+      "page": "Card-Option",
+      "section": "INPUTS & SELECTION",
+      "badge": "Ready to use",
+      "sets": [
+        "Card-Option"
+      ],
+      "nodeIds": [
+        "12:39"
+      ]
+    },
+    {
+      "page": "Card-Package",
+      "section": "INPUTS & SELECTION",
+      "badge": "Ready to use",
+      "sets": [
+        "Card-Package"
+      ],
+      "nodeIds": [
+        "13:54"
+      ]
+    },
+    {
+      "page": "Checkbox",
+      "section": "INPUTS & SELECTION",
+      "badge": "Ready to use",
+      "sets": [
+        "Checkbox"
+      ],
+      "nodeIds": [
+        "10:47"
+      ]
+    },
+    {
+      "page": "Color Picker Modal",
+      "section": "INPUTS & SELECTION",
+      "badge": "Ready to use",
+      "sets": [
+        "ColorPickerModal",
+        "CategoryItem",
+        "ColorPickerHeader",
+        "CategorySidebar",
+        "ColorSwatch"
+      ],
+      "nodeIds": [
+        "183:734",
+        "300:112",
+        "494:265",
+        "494:292",
+        "516:2647"
+      ]
+    },
+    {
+      "page": "Dropdown",
+      "section": "INPUTS & SELECTION",
+      "badge": "Ready to use",
+      "sets": [
+        "Dropdown",
+        "RoomOption"
+      ],
+      "nodeIds": [
+        "259:37",
+        "504:56"
+      ]
+    },
+    {
+      "page": "Finish Group",
+      "section": "INPUTS & SELECTION",
+      "badge": "Ready to use",
+      "sets": [
+        "FinishGroup"
+      ],
+      "nodeIds": [
+        "213:360"
+      ]
+    },
+    {
+      "page": "Form Field",
+      "section": "INPUTS & SELECTION",
+      "badge": "Ready to use",
+      "sets": [
+        "FormField"
+      ],
+      "nodeIds": [
+        "179:145"
+      ]
+    },
+    {
+      "page": "Label",
+      "section": "INPUTS & SELECTION",
+      "badge": "Ready to use",
+      "sets": [
+        "Label"
+      ],
+      "nodeIds": [
+        "11:11"
+      ]
+    },
+    {
+      "page": "Material Swatch",
+      "section": "INPUTS & SELECTION",
+      "badge": "Ready to use",
+      "sets": [
+        "MaterialSwatch"
+      ],
+      "nodeIds": [
+        "12:14"
+      ]
+    },
+    {
+      "page": "Material Thumbnail",
+      "section": "INPUTS & SELECTION",
+      "badge": "Ready to use",
+      "sets": [
+        "MaterialThumbnail"
+      ],
+      "nodeIds": [
+        "253:21"
+      ]
+    },
+    {
+      "page": "Radio",
+      "section": "INPUTS & SELECTION",
+      "badge": "Ready to use",
+      "sets": [
+        "Radio"
+      ],
+      "nodeIds": [
+        "10:57"
+      ]
+    },
+    {
+      "page": "Search Field",
+      "section": "INPUTS & SELECTION",
+      "badge": "Ready to use",
+      "sets": [
+        "SearchField"
+      ],
+      "nodeIds": [
+        "841:41"
+      ]
+    },
+    {
+      "page": "Selection Indicator",
+      "section": "INPUTS & SELECTION",
+      "badge": "Ready to use",
+      "sets": [
+        "SelectionIndicator"
+      ],
+      "nodeIds": [
+        "308:320"
+      ]
+    },
+    {
+      "page": "Selection Tile",
+      "section": "INPUTS & SELECTION",
+      "badge": "Ready to use",
+      "sets": [
+        "SelectionTile"
+      ],
+      "nodeIds": [
+        "254:84"
+      ]
+    },
+    {
+      "page": "Selection Tray",
+      "section": "INPUTS & SELECTION",
+      "badge": "Ready to use",
+      "sets": [
+        "SelectionTray"
+      ],
+      "nodeIds": [
+        "256:114"
+      ]
+    },
+    {
+      "page": "Style Tile",
+      "section": "INPUTS & SELECTION",
+      "badge": "Ready to use",
+      "sets": [
+        "StyleTile"
+      ],
+      "nodeIds": [
+        "203:327"
+      ]
+    },
+    {
+      "page": "Switch",
+      "section": "INPUTS & SELECTION",
+      "badge": "Ready to use",
+      "sets": [
+        "Switch"
+      ],
+      "nodeIds": [
+        "10:70"
+      ]
+    },
+    {
+      "page": "Text Field",
+      "section": "INPUTS & SELECTION",
+      "badge": "Ready to use",
+      "sets": [
+        "TextField"
+      ],
+      "nodeIds": [
+        "11:36"
+      ]
+    },
+    {
+      "page": "View Preset Control",
+      "section": "INPUTS & SELECTION",
+      "badge": "Ready to use",
+      "sets": [
+        "ViewPresetControl"
+      ],
+      "nodeIds": [
+        "259:30"
+      ]
+    },
+    {
+      "page": "Breadcrumbs",
+      "section": "NAVIGATION",
+      "badge": "In progress",
+      "sets": [
+        "Breadcrumb Item",
+        "Breadcrumbs"
+      ],
+      "nodeIds": [
+        "865:11",
+        "865:12"
+      ]
+    },
+    {
+      "page": "Global Nav",
+      "section": "NAVIGATION",
+      "badge": "Ready to use",
+      "sets": [
+        "GlobalNav",
+        "Logo",
+        "NavMenu",
+        "UserMenu",
+        "SecondaryMenu"
+      ],
+      "nodeIds": [
+        "265:6",
+        "312:63",
+        "313:64",
+        "313:1786",
+        "313:1802"
+      ]
+    },
+    {
+      "page": "Link",
+      "section": "NAVIGATION",
+      "badge": "Ready to use",
+      "sets": [
+        "Link"
+      ],
+      "nodeIds": [
+        "9:30"
+      ]
+    },
+    {
+      "page": "Navigation",
+      "section": "NAVIGATION",
+      "badge": "Ready to use",
+      "sets": [
+        "Navigation",
+        "NavigationItem"
+      ],
+      "nodeIds": [
+        "179:975",
+        "179:155"
+      ]
+    },
+    {
+      "page": "Tab Bar",
+      "section": "NAVIGATION",
+      "badge": "Ready to use",
+      "sets": [
+        "Tab",
+        "TabBar"
+      ],
+      "nodeIds": [
+        "10:37",
+        "645:2971"
+      ]
+    },
+    {
+      "page": "Top Bar",
+      "section": "NAVIGATION",
+      "badge": "Ready to use",
+      "sets": [
+        "TopBar"
+      ],
+      "nodeIds": [
+        "181:146"
+      ]
+    },
+    {
+      "page": "Avatar",
+      "section": "DATA DISPLAY",
+      "badge": "Ready to use",
+      "sets": [
+        "Avatar"
+      ],
+      "nodeIds": [
+        "293:9"
+      ]
+    },
+    {
+      "page": "Badge",
+      "section": "DATA DISPLAY",
+      "badge": "Ready to use",
+      "sets": [
+        "Badge"
+      ],
+      "nodeIds": [
+        "106:65"
+      ]
+    },
+    {
+      "page": "Card-Header",
+      "section": "DATA DISPLAY",
+      "badge": "Ready to use",
+      "sets": [
+        "Card-Header"
+      ],
+      "nodeIds": [
+        "411:3"
+      ]
+    },
+    {
+      "page": "Divider",
+      "section": "DATA DISPLAY",
+      "badge": "Ready to use",
+      "sets": [
+        "Divider"
+      ],
+      "nodeIds": [
+        "181:143"
+      ]
+    },
+    {
+      "page": "Notification Badge",
+      "section": "DATA DISPLAY",
+      "badge": "Ready to use",
+      "sets": [
+        "NotificationBadge"
+      ],
+      "nodeIds": [
+        "10:20"
+      ]
+    },
+    {
+      "page": "Table",
+      "section": "DATA DISPLAY",
+      "badge": "Ready to use",
+      "sets": [
+        "Table",
+        "TableHeaderRow",
+        "TableRow"
+      ],
+      "nodeIds": [
+        "182:60",
+        "182:52",
+        "182:56"
+      ]
+    },
+    {
+      "page": "Thumbnail",
+      "section": "DATA DISPLAY",
+      "badge": "Ready to use",
+      "sets": [
+        "Thumbnail"
+      ],
+      "nodeIds": [
+        "175:269"
+      ]
+    },
+    {
+      "page": "Dialog",
+      "section": "PANELS",
+      "badge": "Ready to use",
+      "sets": [
+        "Dialog"
+      ],
+      "nodeIds": [
+        "180:362"
+      ]
+    },
+    {
+      "page": "Home Hero",
+      "section": "PANELS",
+      "badge": "Ready to use",
+      "sets": [
+        "HomeHero"
+      ],
+      "nodeIds": [
+        "427:3"
+      ]
+    },
+    {
+      "page": "Right Rail",
+      "section": "PANELS",
+      "badge": "Ready to use",
+      "sets": [
+        "RightRail",
+        "RightRailHeader",
+        "RightRailFooter"
+      ],
+      "nodeIds": [
+        "222:250",
+        "331:624",
+        "330:377"
+      ]
+    },
+    {
+      "page": "Rail Footer",
+      "section": "PANELS",
+      "badge": "Ready to use",
+      "sets": [
+        "RailFooter"
+      ],
+      "nodeIds": [
+        "730:3"
+      ]
+    },
+    {
+      "page": "ThreeDViewportShell",
+      "section": "PANELS",
+      "badge": "Ready to use",
+      "sets": [
+        "ThreeDViewportShell"
+      ],
+      "nodeIds": [
+        "1002:17"
+      ]
+    },
+    {
+      "page": "Card-Progress",
+      "section": "STATUS & PROGRESS",
+      "badge": "Ready to use",
+      "sets": [
+        "Card-Progress"
+      ],
+      "nodeIds": [
+        "412:23"
+      ]
+    },
+    {
+      "page": "Card-KeyDate",
+      "section": "STATUS & PROGRESS",
+      "badge": "Ready to use",
+      "sets": [
+        "Card-KeyDate"
+      ],
+      "nodeIds": [
+        "413:22"
+      ]
+    },
+    {
+      "page": "Card-WhatsNext",
+      "section": "STATUS & PROGRESS",
+      "badge": "Ready to use",
+      "sets": [
+        "Card-WhatsNext"
+      ],
+      "nodeIds": [
+        "413:3"
+      ]
+    },
+    {
+      "page": "Key Date Row",
+      "section": "STATUS & PROGRESS",
+      "badge": "Ready to use",
+      "sets": [
+        "KeyDateRow"
+      ],
+      "nodeIds": [
+        "411:1867"
+      ]
+    },
+    {
+      "page": "Progress Ring",
+      "section": "STATUS & PROGRESS",
+      "badge": "Ready to use",
+      "sets": [
+        "ProgressRing"
+      ],
+      "nodeIds": [
+        "406:3"
+      ]
+    },
+    {
+      "page": "Room Progress Item",
+      "section": "STATUS & PROGRESS",
+      "badge": "Ready to use",
+      "sets": [
+        "RoomProgressItem"
+      ],
+      "nodeIds": [
+        "409:21"
+      ]
+    }
+  ]
+}

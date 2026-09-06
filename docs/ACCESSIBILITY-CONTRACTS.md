@@ -1,7 +1,7 @@
 # Envision — Accessibility Contracts
 
 The explicit, enforceable accessibility contract for each interactive component. **Baseline: WCAG
-2.2 AA**, behaviour per the WAI-ARIA Authoring Practices. Each contract line is tagged with how it
+2.2 AA**, behavior per the WAI-ARIA Authoring Practices. Each contract line is tagged with how it
 is verified:
 
 - **[unit]** — Vitest contract test and/or `vitest-axe` (headless, every PR).
@@ -15,7 +15,7 @@ is verified:
 - **Focus visibility** — a 2px brand focus ring (`--envision-t2-color-border-focus`), unclipped.
   presence **[unit]** · painted-and-visible-in-context **[manual]**
 - **Contrast** — text & meaningful non-text meet AA. **[axe]** (rendered) · edge cases **[manual]**
-- **Not colour-only** — selection/status/error carry ring + check + text. presence **[unit]** ·
+- **Not color-only** — selection/status/error carry ring + check + text. presence **[unit]** ·
   *meaningfulness* **[manual]**
 - **Reduced motion** — animations gated by `prefers-reduced-motion`. code path **[unit]** ·
   perceived reduction **[manual]**
@@ -38,12 +38,12 @@ is verified:
 
 ## IconButton — `<envision-icon-button>`
 Accessible name is **mandatory** (`accessibleName`) — icon-only has no visible text **[unit][axe]**;
-`aria-pressed` only when a toggle **[unit]**; Enter/Space **[play]**; icon colour must contrast with
+`aria-pressed` only when a toggle **[unit]**; Enter/Space **[play]**; icon color must contrast with
 its (possibly brand) background **[axe]** (a real bug this suite caught).
 
 ## Link — `<envision-link>`
 Real `<a href>` **[unit]**; Enter activates **[manual]**; disabled drops `href` + tab order + sets
-`aria-disabled` **[unit]**; distinguishable from body text (underline, not colour-only) **[axe][manual]**.
+`aria-disabled` **[unit]**; distinguishable from body text (underline, not color-only) **[axe][manual]**.
 
 ## Input — `<envision-input>`
 Persistent `<label>` associated by id (never placeholder-as-label) **[unit][axe]**; `aria-required`
@@ -52,7 +52,7 @@ associated **[unit]**; focus ring on focus-within **[play]**; error text contras
 
 ## Checkbox / Radio / Switch
 Native `<input>` semantics **[unit]**; checked/selected state is a **shape** (tick / filled dot /
-thumb position), not colour-only **[unit][axe]**; **Radio** implements the APG roving-tabindex group
+thumb position), not color-only **[unit][axe]**; **Radio** implements the APG roving-tabindex group
 (Arrow/Home/End, single-selection by name) **[play][unit]**; **Switch** is `role=switch`, Space/Enter
 toggle **[play][unit]**; required/invalid wired **[unit]**; group has an accessible label **[manual]**.
 
@@ -60,12 +60,12 @@ toggle **[play][unit]**; required/invalid wired **[unit]**; group has an accessi
 `role=tab` + `aria-selected`; **requires a `role=tablist` parent** **[unit][axe]**; roving tabindex +
 Arrow/Home/End, selection-follows-focus **[play][unit]**. Note: because tabs are separate custom
 elements, cross-shadow `aria-controls`→panel IDREF is **not** used (invalid across shadow roots) —
-the panel is a labelled region; full tab/panel association needs a same-scope Tabs container (a
+the panel is a labeled region; full tab/panel association needs a same-scope Tabs container (a
 tracked follow-up).
 
 ## MaterialSwatch — `<envision-material-swatch>`
 Toggle `<button>`, `aria-pressed` **[unit]**; accessible name = material + finish + price
-**[unit][axe]**; selection = **ring + check** (not colour-only) **[unit][manual]**; unavailable blocks
+**[unit][axe]**; selection = **ring + check** (not color-only) **[unit][manual]**; unavailable blocks
 selection & is conveyed non-visually **[unit]**.
 
 ## OptionCard — `<envision-option-card>`
@@ -76,7 +76,7 @@ below.
 
 ## PackageCard — `<envision-package-card>`
 Real select `<button>` **and a separate** Customize `<button>` — no div-as-button, no nested buttons
-**[unit][axe]**; `aria-pressed` on select **[unit]**; labelled actions **[unit]**; image has
+**[unit][axe]**; `aria-pressed` on select **[unit]**; labeled actions **[unit]**; image has
 loading/ready/error states **[unit]**.
 
 ## RightRail — `<envision-right-rail>`

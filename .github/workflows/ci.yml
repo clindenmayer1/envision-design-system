@@ -46,7 +46,7 @@ jobs:
       - name: Token tests (validation + generated-CSS integration)
         run: npm run test:tokens
 
-  # ── Layer 3: unit / contract behaviour (incl. fast axe a11y) ─────────────────
+  # ── Layer 3: unit / contract behavior (incl. fast axe a11y) ─────────────────
   unit:
     name: Unit + contract tests — blocking
     runs-on: ubuntu-latest

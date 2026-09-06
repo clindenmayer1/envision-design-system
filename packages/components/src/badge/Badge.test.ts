@@ -36,8 +36,8 @@ describe('envision-badge', () => {
     expect(badge(counted).getAttribute('aria-label')).toBe('5 items');
     const dot = await mount({ shape: 'dot' });
     expect(badge(dot).getAttribute('aria-hidden')).toBe('true');
-    const labelledDot = await mount({ shape: 'dot', label: 'Unread' });
-    expect(labelledDot.shadowRoot!.querySelector('.badge')!.getAttribute('aria-label')).toBe('Unread');
+    const labeledDot = await mount({ shape: 'dot', label: 'Unread' });
+    expect(labeledDot.shadowRoot!.querySelector('.badge')!.getAttribute('aria-label')).toBe('Unread');
   });
 
   it('renders a status label as visible text when there is no count', async () => {

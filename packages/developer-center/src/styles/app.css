@@ -1,0 +1,1246 @@
+/*
+ * Envision Design chrome.
+ *
+ * Every color, radius, border and type value below resolves to a PRODUCTION Envision token
+ * (--envision-t1/t2/t3-*), imported from @envision/tokens. This file adds only layout primitives
+ * (grid geometry, sticky behavior, documentation rhythm) that are specific to a documentation
+ * site and are not part of the product design system.
+ *
+ * Layout numbers come from Parts VI-IX of the build specification:
+ *   sidebar 256px  ·  utility bar 84px  ·  content gutter 40px  ·  doc container 1160px
+ *   article body 740px  ·  table of contents 208px  ·  article/TOC gap 48px
+ * They are declared once here as --dc-* so a change is made in one place.
+ *
+ * There is no dark mode. Part V removes the theme selector from the system, so this file defines
+ * a single light environment and never redefines its colors under a media query.
+ */
+
+:root {
+  /* ---------------------------------------------------------------- spacing
+     Every step below IS an Envision spacing primitive. The documentation site
+     never invents a spacing value: it names which step it is using. The scale is
+     0 / 4 / 8 / 12 / 16 / 20 / 24 / 28 / 32 / 40 / 48 / 64. */
+  --dc-space-1: var(--envision-t1-spacing-50);   /*  4 */
+  --dc-space-2: var(--envision-t1-spacing-100);  /*  8 */
+  --dc-space-3: var(--envision-t1-spacing-150);  /* 12 */
+  --dc-space-4: var(--envision-t1-spacing-200);  /* 16 */
+  --dc-space-5: var(--envision-t1-spacing-250);  /* 20 */
+  --dc-space-6: var(--envision-t1-spacing-300);  /* 24 */
+  --dc-space-7: var(--envision-t1-spacing-350);  /* 28 */
+  --dc-space-8: var(--envision-t1-spacing-400);  /* 32 */
+  --dc-space-10: var(--envision-t1-spacing-500); /* 40 */
+  --dc-space-12: var(--envision-t1-spacing-600); /* 48 */
+  --dc-space-16: var(--envision-t1-spacing-800); /* 64 */
+
+  /* ------------------------------------------------------- documentation rhythm
+     Part VIII's rhythm, expressed only in steps that exist on the scale. */
+  --dc-rhythm-h2: var(--dc-space-16);        /* 64 between major sections */
+  --dc-rhythm-h3: var(--dc-space-10);        /* 40 before a subsection */
+  --dc-rhythm-block: var(--dc-space-8);      /* 32 header to first module */
+  --dc-rhythm-tight: var(--dc-space-4);      /* 16 heading to paragraph */
+  --dc-rhythm-example: var(--dc-space-6);    /* 24 paragraph to example */
+  --dc-rhythm-related: var(--dc-space-16);   /* 64 before related guidance */
+  --dc-rhythm-section: var(--dc-space-16);   /* 64 between page sections */
+
+  /* ----------------------------------------------------------- layout geometry
+     Fixed chrome dimensions from the approved Figma design (node 108-69). These
+     are measurements of the design, not spacing decisions, so they are literal. */
+  /* Widened from 260 when the tree went to three levels: a component row carries a group indent
+     as well as its label, so the longer component names have room without wrapping. */
+  --dc-nav-width: 300px;
+  /* Sized to the Tab component rather than chosen: 16 padding + label + 16 padding + the 2px
+     indicator. That is what lands the active indicator exactly on the bar's bottom edge. */
+  --dc-topbar-height: 56px;
+  --dc-container: 1160px;
+  --dc-article: 740px;
+  --dc-toc: 208px;
+  --dc-gutter: var(--dc-space-10);
+  --dc-article-gap: var(--dc-space-12);
+
+  /* ------------------------------------------------------------------ surfaces
+     All documentation surfaces resolve to Envision semantic tokens. Nothing here
+     is a raw color: the two values taken from the Figma design turned out to be
+     the sunken surface and the info-subtle background. */
+  --dc-surface: var(--envision-t2-color-background-surface-default);
+  --dc-surface-warm: var(--envision-t2-color-background-surface-warm-default);
+  --dc-surface-sunken: var(--envision-t2-color-background-surface-sunken-default);
+  --dc-border: var(--envision-t2-color-border-default-default);
+  --dc-border-strong: var(--envision-t2-color-border-strong-default);
+  /* The six ecosystem-card media frames. Chosen directly rather than taken from a token — there is
+     no token for it, and inventing a semantic name for one card surface would claim a meaning the
+     system has not agreed. Every artwork in the frames is drawn in white against it. */
+  --dc-icon-tile: #a7c1ba;
+  /* The frame deepens on card hover. Same family, further down: the artwork is white, so a darker
+     frame also means it reads better under the cursor than at rest (4.67:1 against 1.91:1). */
+  --dc-icon-tile-hover: #4d7d72;
+  /* The ecosystem cards' hairline. */
+  --dc-eco-card-border: #eaf0ee;
+  /* One duration and easing for everything the card hover moves. */
+  --dc-eco-hover-duration: var(--envision-t2-motion-panel-duration);
+  --dc-eco-hover-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dc-eco-hover-scale: 1.02;
+  /* Breathing room between an artwork and the edge of its frame, applied to all six. */
+  --dc-media-pad: 24px;
+  /* Header bands: the homepage hero and the component page band are the same surface, so they
+     share one alias and cannot drift apart. Resolves to #F3F0EA. */
+  --dc-surface-hero: var(--dc-surface-sunken);
+
+  /* Diagram grammar (Part XXXVI), mapped onto semantic roles rather than hexes. */
+  --dc-diagram-active: var(--envision-t2-color-background-brand-default);
+  --dc-diagram-active-surface: var(--envision-t2-color-background-brand-subtle-default);
+  --dc-diagram-active-line: var(--envision-t2-color-border-brand-default);
+  --dc-diagram-abstract: var(--envision-t2-color-background-info-subtle-default);
+  --dc-diagram-abstract-line: var(--envision-t2-color-border-info-default, var(--envision-t2-color-border-default-default));
+  --dc-diagram-neutral: var(--envision-t2-color-background-surface-sunken-default);
+  /* Categorical tints, for diagrams whose rows have to be told apart from each other rather than
+     ranked. Named for what they look like because being distinguishable IS the role here. Both sit
+     above 4.5:1 against content/secondary, which is the smallest text any diagram row carries. */
+  --dc-diagram-warm: var(--envision-t1-color-warning-100);
+  --dc-diagram-warm-line: var(--envision-t1-color-warning-200);
+  --dc-diagram-sage: var(--envision-t1-color-success-100);
+  --dc-diagram-sage-line: var(--envision-t1-color-success-200);
+
+  /* Guidance tones, all semantic feedback roles. */
+  --dc-tone-do: var(--envision-t2-color-content-success-default);
+  --dc-tone-do-border: var(--envision-t2-color-border-success-default);
+  --dc-tone-dont: var(--envision-t2-color-content-error-default);
+  /* The don't card was outlined in its own background tint, which is barely a line at all. The
+     pair now reads as a matched green and red outline. */
+  --dc-tone-dont-border: var(--envision-t2-color-border-error-default);
+  --dc-tone-dont-surface: var(--envision-t2-color-background-error-subtle-default);
+  --dc-tone-warning-surface: var(--envision-t2-color-background-warning-subtle-default);
+  --dc-tone-warning-line: var(--envision-t2-color-border-warning-default, var(--envision-t2-color-border-strong-default));
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--envision-t1-font-family-inter), Inter, system-ui, sans-serif;
+  font-size: var(--envision-t1-font-size-16);
+  line-height: 1.6;
+  color: var(--envision-t2-color-content-primary-default);
+  background: var(--envision-t2-color-background-surface-default);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+/* Focus is visible everywhere, using the system's own focus token (Part XLIX). */
+:where(a, button, input, summary, [tabindex]):focus-visible {
+  outline: var(--envision-t2-border-width-focus) solid var(--envision-t2-color-border-focus-default);
+  outline-offset: 2px;
+  border-radius: var(--envision-t2-border-radius-control-xs);
+}
+
+/* Skip link, required by Part XLIX. Visible only once focused. */
+.dc-skip {
+  position: absolute;
+  left: var(--dc-space-2);
+  top: -60px;
+  z-index: 100;
+  padding: var(--dc-space-3) var(--dc-space-4);
+  background: var(--dc-surface);
+  border: var(--envision-t2-border-width-default) solid var(--envision-t2-color-border-strong-default);
+  border-radius: var(--envision-t2-border-radius-control);
+  font-weight: var(--envision-t1-font-weight-600);
+  transition: top 120ms ease;
+}
+.dc-skip:focus { top: var(--dc-space-2); }
+
+/* ------------------------------------------------------------------ shell */
+
+.dc-shell { min-height: 100vh; }
+
+/* The top bar spans the full width above everything, so the sidebar starts beneath it rather than
+   beside a header that only covers the content column. */
+.dc-topbar {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 30;
+  height: var(--dc-topbar-height);
+  display: flex;
+  align-items: center;
+  gap: var(--dc-space-8);
+  padding-inline-start: var(--dc-space-5);
+  padding-inline-end: var(--dc-space-8);
+  background: var(--envision-t2-color-background-surface-default);
+  border-block-end: 1px solid var(--envision-t2-color-border-default-default);
+}
+
+.dc-topbar-links {
+  margin-inline-start: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--dc-space-6);
+}
+
+.dc-nav {
+  position: fixed;
+  inset-block-start: var(--dc-topbar-height);
+  inset-block-end: 0;
+  inset-inline-start: 0;
+  width: var(--dc-nav-width);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--envision-t2-color-background-surface-default);
+  border-inline-end: 1px solid var(--envision-t2-color-border-default-default);
+  padding: var(--dc-space-6) 0 var(--dc-space-12);
+  z-index: 30;
+}
+
+.dc-main {
+  margin-inline-start: var(--dc-nav-width);
+  padding-block-start: var(--dc-topbar-height);
+}
+
+.dc-container {
+  max-width: var(--dc-container);
+  padding-inline: var(--dc-gutter);
+  padding-block: var(--dc-space-10) var(--dc-space-16);
+}
+
+/* ---------------------------------------------------------------- component page hero
+   A component page opens with a full-width band carrying the title, the lead and the tab bar.
+   The band spans the whole content column rather than the article measure, and the tabs sit on
+   its bottom edge so the active tab reads as the lip of the panel below it. */
+.dc-comp-hero {
+  background: var(--dc-surface-hero);
+  border-block-end: 1px solid var(--envision-t2-color-border-default-default);
+}
+/* Same box as .dc-container, deliberately including its lack of an auto margin: the container is
+   left-aligned in the content column, so centering this one pushed the band's text 70px right of
+   the article text beneath it. */
+.dc-comp-hero-inner {
+  max-width: var(--dc-container);
+  padding-inline: var(--dc-gutter);
+  padding-block-start: var(--dc-space-10);
+}
+/* The band is the page's opening statement, so the title gets more room than it does in a running
+   article. Scoped to the band: the article H1 rhythm elsewhere is unchanged. */
+.dc-comp-hero .dc-h1 { margin-block-start: var(--dc-space-16); }
+/* The lead belongs to the title, so it sits close to it. This is the same title-to-lead gap the
+   article templates use, which is what keeps a component page and a foundation page consistent. */
+.dc-comp-hero .dc-lead { margin-block-start: var(--dc-rhythm-tight); }
+
+/* The tab row sits flush with the band's lower edge, so its underline and the band border meet. */
+.dc-comp-tabs {
+  display: flex;
+  gap: var(--dc-space-6);
+  margin-block-start: var(--dc-space-16);
+  margin-block-end: -1px;
+  overflow-x: auto;
+}
+/* The tabs themselves are <envision-tab>, so their padding, type, indicator and states come from
+   the shipped component. Nothing here restyles them; this file only lays the row out. */
+/* The band supplies the top spacing, so the panel below it must not add a second helping. */
+.dc-comp-body { padding-block-start: var(--dc-space-10); }
+
+/* Article + sticky table of contents (Part VII). */
+.dc-article-layout {
+  display: grid;
+  grid-template-columns: minmax(0, var(--dc-article)) var(--dc-toc);
+  gap: var(--dc-article-gap);
+  align-items: start;
+}
+.dc-article { min-width: 0; }
+
+.dc-toc {
+  position: sticky;
+  top: calc(var(--dc-topbar-height) + var(--dc-space-6));
+  max-height: calc(100vh - var(--dc-topbar-height) - var(--dc-space-12));
+  overflow-y: auto;
+  font-size: var(--envision-t1-font-size-13);
+}
+
+/* ------------------------------------------------------------- typography */
+
+.dc-h1 {
+  font-size: var(--envision-t1-font-size-48);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: var(--envision-t1-font-weight-600);
+  /* Breadcrumb -> H1 is one value everywhere (Part VIII: 20-24px). Pages must not
+     override it inline: that is what made the H1-to-lead gap look different between
+     the Design Tokens landing and the Token architecture article. */
+  margin: var(--dc-space-5) 0 0;
+  /* Component names such as ThreeDViewportShell are single unbreakable words wider than a phone
+     viewport. Without this they force the document to scroll horizontally. */
+  overflow-wrap: anywhere;
+}
+.dc-h2 {
+  font-size: var(--envision-t1-font-size-32);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  font-weight: var(--envision-t1-font-weight-600);
+  margin: var(--dc-rhythm-h2) 0 var(--dc-rhythm-tight);
+  scroll-margin-top: calc(var(--dc-topbar-height) + var(--dc-space-6));
+}
+.dc-h3 {
+  font-size: var(--envision-t1-font-size-22);
+  line-height: 1.3;
+  font-weight: var(--envision-t1-font-weight-600);
+  margin: var(--dc-rhythm-h3) 0 var(--dc-space-3);
+  scroll-margin-top: calc(var(--dc-topbar-height) + var(--dc-space-6));
+}
+.dc-lead {
+  font-size: var(--envision-t1-font-size-20);
+  line-height: 1.55;
+  color: var(--envision-t2-color-content-secondary-default);
+  /* H1 -> lead: one value everywhere. */
+  margin: var(--dc-rhythm-tight) 0 0;
+  max-width: 68ch;
+}
+
+/* Uniform text rhythm. Every heading owns the space above it and the space to its
+   own first paragraph, so a page never has to set a margin to look right. */
+.dc-article > h2 + p,
+.dc-article > h3 + p,
+.dc-article section > h2 + p,
+.dc-article section > h3 + p { margin-block-start: 0; }
+
+.dc-article figure + p,
+.dc-article table + p,
+.dc-article ul + p,
+.dc-article ol + p { margin-block-start: var(--dc-rhythm-tight); }
+
+/* A section is the unit of vertical rhythm, so the SECTION carries the space and its first heading
+   contributes none. Zeroing the heading alone was the bug: where two sections ran back to back the
+   second one's heading lost its 64px entirely and sat against the block above it. */
+.dc-article section,
+.dc-container > section { margin-block-start: var(--dc-rhythm-h2); }
+.dc-article section:first-child,
+.dc-container > section:first-child { margin-block-start: 0; }
+.dc-article section > :first-child,
+.dc-container section > h2:first-child { margin-block-start: 0; }
+/* Only the BOTTOM margin is set here. Using the `margin` shorthand also reset the lead's
+   top margin, because `.dc-article p` outranks `.dc-lead`. That is what made the H1-to-lead
+   gap 0 on article pages and 16 on section landings. */
+.dc-article p { max-width: 72ch; margin-block: 0 var(--dc-rhythm-tight); }
+.dc-article .dc-lead,
+.dc-container .dc-lead { margin-block: var(--dc-rhythm-tight) 0; }
+.dc-article ul, .dc-article ol { max-width: 72ch; padding-inline-start: var(--dc-space-6); margin: 0 0 var(--dc-rhythm-tight); }
+.dc-article li { margin-block-end: var(--dc-space-2); }
+.dc-small { font-size: var(--envision-t1-font-size-13); color: var(--envision-t2-color-content-secondary-default); }
+.dc-eyebrow {
+  font-size: var(--envision-t1-font-size-12);
+  font-weight: var(--envision-t1-font-weight-600);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--envision-t2-color-content-secondary-default);
+  margin: 0 0 12px;
+}
+code:not(pre code) {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.9em;
+  background: var(--envision-t2-color-background-surface-sunken-default);
+  border-radius: var(--envision-t2-border-radius-control-xs);
+  padding: 0.12em 0.36em;
+  /* Inline code is often a long unbreakable identifier (a token name, a computed-style call).
+     Without this it forces the whole document to scroll horizontally on a phone. Block code keeps
+     its own overflow-x container instead, so it is unaffected by this rule. */
+  overflow-wrap: anywhere;
+}
+
+/* --------------------------------------------------------------- surfaces */
+
+.dc-surface {
+  background: var(--dc-surface-warm);
+  border: 1px solid var(--dc-border);
+  border-radius: var(--envision-t2-border-radius-container-md);
+}
+
+/* ------------------------------------------------------------- responsive */
+
+/* Tablet (Part XLVIII): the TOC is the first thing to go, article width is preserved. */
+@media (max-width: 1180px) {
+  .dc-article-layout { grid-template-columns: minmax(0, 1fr); }
+  .dc-toc { display: none; }
+}
+
+/* Mobile (Part XLVII): the persistent sidebar is replaced by a drawer. */
+@media (max-width: 900px) {
+  :root { --dc-gutter: var(--dc-space-5); }
+  .dc-nav {
+    transform: translateX(-100%);
+    transition: transform 200ms ease;
+    box-shadow: none;
+    width: min(320px, 86vw);
+  }
+  .dc-nav[data-open='true'] { transform: none; box-shadow: 0 8px 40px rgb(0 0 0 / 18%); }
+  .dc-main { margin-inline-start: 0; }
+  .dc-topbar { gap: var(--dc-space-4); padding-inline: var(--dc-space-4); }
+  .dc-topbar-links { display: none; }
+  .dc-h1 { font-size: var(--envision-t1-font-size-32); }
+  .dc-h2 { font-size: var(--envision-t1-font-size-24); margin-top: var(--dc-space-12); }
+  .dc-container { padding-block: var(--dc-space-6) var(--dc-space-16); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* Visually hidden, but available to assistive technology. Used for diagram text alternatives. */
+.dc-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* A tab strip: the row's rule and the selected tab's indicator are the same line.
+   Without the negative margin the tab's 2px indicator ends one pixel above the row's 1px rule, so
+   the two stack into a three-pixel step under the selected tab and the indicator reads as detached
+   from the strip it belongs to. */
+.dc-tabstrip {
+  border-block-end: 1px solid var(--envision-t2-color-border-default-default);
+}
+.dc-tabstrip > envision-tab {
+  margin-block-end: -1px;
+}
+.dc-tabstrip--fitted > envision-tab {
+  flex: 1 1 0;
+}
+.dc-tabstrip--fitted > envision-tab::part(tab) {
+  inline-size: 100%;
+  text-align: center;
+}
+
+/* type=search keeps the semantics, but WebKit draws its own clear button, which sat beside the
+   one the field already provides. Two clear buttons is one too many. */
+.dc-nav-filter::-webkit-search-cancel-button,
+.dc-nav-filter::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* ------------------------------------------------------------------------------ ecosystem card */
+
+/* The whole card is one link. It carries no button any more, so the affordance is the card's own:
+   the border strengthens under the pointer, and the focus ring sits outside the corner radius so
+   it is never clipped. The border lives here rather than inline because a hover rule cannot
+   override an inline declaration. */
+/* The card sits on the system's `raised` elevation and lifts to `raised-hover`. Both are real
+   tokens, so the two states cannot drift from the elevation scale the rest of the system uses.
+   The hairline is not the hover affordance — the elevation is — so it holds one colour in both
+   states and just draws the card's edge against the page. */
+.dc-eco-card {
+  border: 1px solid var(--dc-eco-card-border);
+  background: var(--dc-surface);
+  box-shadow: var(--envision-t2-elevation-raised);
+  /* The hovered card grows past its grid track, so it needs to be able to sit above its
+     neighbours. Without a position it cannot take a z-index and the card to its right would
+     overlap the growth. */
+  position: relative;
+  /* All three hover changes share one duration and easing, so the lift, the deepening frame and
+     the shadow read as a single movement. `micro` (150ms) is the right length for a border
+     snapping colour; it is too short for a colour to visibly FADE, which is what `panel` is for. */
+  transition:
+    transform var(--dc-eco-hover-duration) var(--dc-eco-hover-ease),
+    box-shadow var(--dc-eco-hover-duration) var(--dc-eco-hover-ease),
+    background-color var(--dc-eco-hover-duration) var(--dc-eco-hover-ease);
+}
+
+/* Redefining the variable rather than restyling the frame: the frame's background is
+   `var(--dc-icon-tile)`, and custom properties inherit, so scoping a new value to the hovered card
+   reaches it without the hover rule needing to know the frame exists. */
+.dc-eco-card:hover {
+  box-shadow: var(--envision-t2-elevation-raised-hover);
+  background: var(--envision-t2-color-background-surface-warm-default);
+  /* Small on purpose. The shadow is doing most of the work of lifting; the scale only has to
+     confirm it. Past about 1.03 the card's text visibly resamples and the whole thing reads as
+     a zoom rather than a lift. */
+  transform: scale(var(--dc-eco-hover-scale));
+  z-index: 1;
+  --dc-icon-tile: var(--dc-icon-tile-hover);
+}
+
+.dc-eco-media {
+  transition: background-color var(--dc-eco-hover-duration) var(--dc-eco-hover-ease);
+}
+
+.dc-eco-card:focus-visible {
+  outline: var(--envision-t2-border-width-focus) solid var(--envision-t2-color-border-focus-default);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dc-eco-card,
+  .dc-eco-media { transition: none; }
+  /* The colour and shadow still change, so hover is still answered. The geometry does not move. */
+  .dc-eco-card:hover { transform: none; }
+}
+
+/* -------------------------------------------------------------- "100 dots into the void" artwork */
+
+/* Adapted from Sandrina Pereira's CSS-only pen (https://codepen.io/sandrina-p/pen/mdbRKgg), which
+   follows a gif by beesandbombs. Two changes were needed to bring it inside a card: it is sized in
+   container units rather than viewport units, so it scales with the frame instead of the window,
+   and the wave that drives every cell is computed in the component rather than shipped as 156
+   hand-written nth-child rules. */
+.dv {
+  position: absolute;
+  inset: 0;
+  container-type: inline-size;
+  overflow: hidden;
+  color: var(--dv-ink, var(--envision-t1-color-neutral-0));
+  /* Thin enough to read as a drawn line at card size. The original's 2px was set against a
+     viewport-wide grid, where the cells are several times larger than these. */
+  --dv-stroke: 1.5px;
+}
+
+/* Wider than the frame and centred, so the field runs off every edge instead of ending in a
+   visible border of empty cells. */
+.dv-grid {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: 108.3333cqw;
+  block-size: 108.3333cqw;
+  transform: translate(-50%, -50%);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+}
+
+/* The wave sets each cell's delay, which is what sends the pulse across the grid on a diagonal
+   rather than all at once. The original also fed it to opacity, fading the field toward its edges;
+   every mark here is drawn at the same strength instead. */
+.dv-cell {
+  position: relative;
+}
+
+.dv-cell::before,
+.dv-cell::after {
+  content: '';
+  position: absolute;
+  background: currentColor;
+  border-radius: 1px;
+}
+
+.dv-cell::before {
+  inset-block-start: 0;
+  inset-inline-start: 2.375cqw;
+  inline-size: calc(100% - 1.75cqw - 3cqw);
+  block-size: var(--dv-stroke);
+  transform: translateY(-50%);
+  animation: dv-line-y 2.5s infinite alternate-reverse ease-in;
+}
+
+.dv-cell::after {
+  inset-block-start: 2.375cqw;
+  inset-inline-start: 0;
+  inline-size: var(--dv-stroke);
+  block-size: calc(100% - 1.75cqw - 3cqw);
+  transform: translateX(-50%);
+  animation: dv-line-x 2.5s infinite alternate-reverse ease-in;
+}
+
+/* Two dots per cell: the first sits on the grid intersection, the second in the cell's middle and
+   running the other way, so the field never pulses in unison. */
+.dv-dot {
+  position: absolute;
+  inline-size: 1.75cqw;
+  block-size: 1.75cqw;
+  background: currentColor;
+  border-radius: var(--envision-t2-border-radius-circular);
+  transform: translate(-50%, -50%);
+  animation: dv-dot 2.5s infinite alternate ease-in;
+}
+
+.dv-dot:last-child {
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  animation-direction: alternate-reverse;
+}
+
+.dv-cell::before,
+.dv-cell::after,
+.dv-dot {
+  animation-delay: calc(var(--wave) * -1s);
+}
+
+@keyframes dv-dot {
+  0%, 35% { transform: translate3d(-50%, -50%, 0) scale(0); }
+  65%, 100% { transform: translate3d(-50%, -50%, 0) scale(1); }
+}
+
+@keyframes dv-line-x {
+  0%, 35% { transform: translate3d(-50%, 0, 0) rotate(0deg); }
+  65%, 100% { transform: translate3d(-50%, 0, 0) rotate(90deg); }
+}
+
+@keyframes dv-line-y {
+  0%, 35% { transform: translate3d(0, -50%, 0) rotate(0deg); }
+  65%, 100% { transform: translate3d(0, -50%, 0) rotate(90deg); }
+}
+
+/* The field still draws, it simply stops moving. */
+@media (prefers-reduced-motion: reduce) {
+  .dv-cell::before,
+  .dv-cell::after,
+  .dv-dot {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ gravity media
+   The Governance card's artwork. Geometry is computed in GravityDots; everything that
+   moves is here, so the motion can be tuned without touching the ring maths. */
+.gv {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  /* White on the frame colour, matching the other five artworks. */
+  fill: var(--gv-ink, var(--envision-t1-color-neutral-0));
+}
+
+.gv-core {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: gv-core 3.5s cubic-bezier(0.5, 0, 0.1, 1) infinite;
+}
+
+/* The resting position is the ring radius; the animation pulls it in to 62% of that. Sharing one
+   duration and easing with the core is what makes the core read as the thing doing the pulling. */
+.gv-dot {
+  transform: translate(var(--gx), var(--gy));
+  animation: gv-fall 3.5s cubic-bezier(0.5, 0, 0.1, 1) infinite;
+}
+
+@keyframes gv-core {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(0.78); }
+}
+
+@keyframes gv-fall {
+  0%, 100% { transform: translate(var(--gx), var(--gy)); }
+  50% { transform: translate(calc(var(--gx) * 0.62), calc(var(--gy) * 0.62)); }
+}
+
+/* Movement is the whole point of this mark, so under reduced motion it holds its open resting
+   state rather than animating slowly. The composition still reads; it just stops moving. */
+@media (prefers-reduced-motion: reduce) {
+  .gv-core,
+  .gv-dot { animation: none; }
+}
+
+/* ------------------------------------------------------------------- "dots sphere" card artwork */
+
+/* Adapted from Milleus's CSS-only pen (https://codepen.io/Milleus/pen/eYOBMWj). The dot positions
+   are generated in the component rather than shipped as 100 nth-child rules, and the whole thing is
+   sized in container units so it fits the card frame instead of the window.
+
+   Everything is expressed in em on purpose: that is the pen's trick. `beat` animates font-size, so
+   a dot swells AND its em-based position pushes further out at the same time, which is what makes
+   the pulse travel through the surface of the sphere rather than just brightening it. */
+.ds {
+  position: absolute;
+  inset: 0;
+  container-type: inline-size;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: var(--ds-ink, var(--envision-t1-color-neutral-0));
+}
+
+/* The tilt sits on its own element because the spin animation owns `transform` on the next one.
+   Both are spans, so they need blockifying before they can take a size at all. */
+.ds-tilt {
+  display: block;
+  transform: rotateZ(30deg);
+  transform-style: preserve-3d;
+}
+
+.ds-sphere {
+  display: block;
+  position: relative;
+  /* The sphere is 20em across, so this is what fits it to the frame. */
+  font-size: var(--ds-scale, 4.267cqw);
+  inline-size: 20em;
+  block-size: 20em;
+  transform-style: preserve-3d;
+  animation: ds-spin 10s linear infinite;
+}
+
+/* The dot's place on the sphere. It carries the beat, because the beat works by changing font-size
+   and every position on this sphere is written in em. */
+.ds-dot {
+  --ds-dot-size: 0.4em;
+  position: absolute;
+  inset-block-start: calc(50% - var(--ds-dot-size) / 2);
+  inset-inline-start: calc(50% - var(--ds-dot-size) / 2);
+  inline-size: var(--ds-dot-size);
+  block-size: var(--ds-dot-size);
+  transform-style: preserve-3d;
+  animation: ds-beat 2s linear infinite;
+}
+
+/* The visible dot, turned against the sphere so it always faces the viewer.
+   Without this every dot shares the sphere's rotateY, and a flat disc turned edge-on is a line:
+   the whole sphere collapses into diagonal dashes twice per rotation. Countering the spin at the
+   same 10s period keeps them circular the whole way round. */
+.ds-dot-face {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  background: currentColor;
+  border-radius: var(--envision-t2-border-radius-circular);
+  animation: ds-unspin 10s linear infinite;
+}
+
+@keyframes ds-unspin {
+  0% { transform: rotateY(0); }
+  100% { transform: rotateY(-360deg); }
+}
+
+@keyframes ds-spin {
+  0% { transform: rotateY(0); }
+  100% { transform: rotateY(360deg); }
+}
+
+/* Two quick swells rather than one, so it reads as a pulse travelling round the sphere. */
+@keyframes ds-beat {
+  0% { font-size: 1em; }
+  5% { font-size: 1.1em; }
+  10% { font-size: 1em; }
+  15% { font-size: 1.1em; }
+  25%, 100% { font-size: 1em; }
+}
+
+/* The sphere still draws, it simply stops turning and pulsing. */
+@media (prefers-reduced-motion: reduce) {
+  .ds-sphere,
+  .ds-dot,
+  .ds-dot-face {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ "dots loader" card artwork */
+
+
+/* --------------------------------------------------------- square-in-a-circle media
+   The Components card's artwork. Spoke count, rotation and delay are generated in
+   SquareInCircle; the proportions below are all expressed against --sq-r, so the figure
+   scales with the frame instead of being pinned to the pen's original 300px square. */
+.sq {
+  position: absolute;
+  inset: 0;
+  container-type: inline-size;
+  overflow: hidden;
+  /* Radius of the ring. 80cqw across is ~80% of the square frame, which centres the figure
+     without letting it touch the edges. */
+  --sq-r: 40cqw;
+}
+
+/* Each spoke is a radius laid from the rim to the centre, pivoting on its centre end. */
+.sq-spoke {
+  position: absolute;
+  inset-inline-start: calc(50% - var(--sq-r));
+  inset-block-start: 50%;
+  inline-size: var(--sq-r);
+  block-size: 0;
+  transform-origin: 100% 50%;
+}
+
+/* The swing. Pivots on the RIM end, which is what throws the bar's far tip out into the
+   corner of the square rather than just rocking it in place. */
+.sq-metronome {
+  display: block;
+  block-size: 0;
+  transform-origin: 0 50%;
+  animation: sq-metronome var(--sq-cycle, 1.25s) infinite linear;
+  animation-delay: var(--sq-delay);
+}
+
+.sq-bar {
+  display: block;
+  position: absolute;
+  inline-size: 46.7%;
+  block-size: 1.5px;
+  margin-block-start: -0.75px;
+  background: var(--sq-bar-ink, var(--envision-t1-color-neutral-200));
+  transform-origin: 0 50%;
+  animation: sq-scale var(--sq-cycle, 1.25s) infinite linear;
+  animation-delay: var(--sq-delay);
+}
+
+/* A dot at each end of the bar. These are what the eye actually follows: the bars read as
+   the construction lines, the dots as the figure being drawn. */
+.sq-bar::before,
+.sq-bar::after {
+  content: '';
+  position: absolute;
+  inline-size: 4px;
+  block-size: 4px;
+  border-radius: 50%;
+  background: var(--sq-dot-ink, var(--envision-t1-color-neutral-0));
+  inset-block-start: -1.25px;
+}
+
+.sq-bar::before { inset-inline-start: -2px; }
+.sq-bar::after { inset-inline-end: -2px; }
+
+@keyframes sq-metronome {
+  0% { transform: rotate(-25deg); }
+  50% { transform: rotate(25deg); }
+  100% { transform: rotate(-25deg); }
+}
+
+/* The bar breathes in and out of the swing. Without this the tips trace a plain circle;
+   the 0.74/1.16 pair is what pulls the path into corners. The -10deg is carried inside the
+   keyframes because an animated `transform` replaces the property outright — declaring the
+   tilt separately would have it dropped the moment the animation started. */
+@keyframes sq-scale {
+  0% { transform: rotate(-10deg) scaleX(1); }
+  25% { transform: rotate(-10deg) scaleX(0.74); }
+  50% { transform: rotate(-10deg) scaleX(1); }
+  75% { transform: rotate(-10deg) scaleX(1.16); }
+  100% { transform: rotate(-10deg) scaleX(1); }
+}
+
+/* The figure only exists as movement, so under reduced motion it holds one frame of it. */
+@media (prefers-reduced-motion: reduce) {
+  .sq-metronome,
+  .sq-bar { animation: none; }
+  .sq-bar { transform: rotate(-10deg); }
+}
+
+/* ----------------------------------------------------------------- dna helix media
+   The Foundations card's artwork, after Neil Morgan's pen (credit in DnaHelix). Rungs and
+   delays are generated in the component; the journey each dot takes is the two keyframe
+   blocks below, and every length is in em so one font-size scales the whole figure. */
+.dna {
+  position: absolute;
+  inset: 0;
+  container-type: inline-size;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  color: var(--dna-ink, var(--envision-t1-color-neutral-0));
+}
+
+/* The one length everything else is measured from. The strand is rotated, so its footprint is
+   the diagonal — (2.5em wide + 5.5em tall) / sqrt2 ≈ 5.7em square — and 7.5cqw keeps that
+   inside the short axis of a 16:9 frame with room to spare. */
+.dna-strand {
+  position: relative;
+  font-size: 15cqw;
+  inline-size: 2.5em;
+  block-size: 5.5em;
+  /* The -45deg start is the pen's own angle; the turn carries on from there. Counter-clockwise, so
+     the angle DECREASES — -45 to -405 is one full revolution the short way round. */
+  animation: dna-spin var(--dna-spin, 8s) linear infinite;
+}
+
+@keyframes dna-spin {
+  from { transform: rotate(-45deg); }
+  to { transform: rotate(-405deg); }
+}
+
+.dna-dot {
+  position: absolute;
+  inset-block-start: var(--dna-row);
+  block-size: 0.5em;
+  inline-size: 0.5em;
+  background: currentColor;
+  border-radius: 50%;
+  animation-duration: var(--dna-cycle, 1.75s);
+  animation-iteration-count: infinite;
+  animation-delay: var(--dna-delay);
+}
+
+/* Anchored to opposite edges, which is what lets the pair cross rather than chase. */
+.dna-dot[data-strand='a'] { animation-name: dna-a; }
+.dna-dot[data-strand='b'] { animation-name: dna-b; }
+
+@keyframes dna-a {
+  0% { left: 0; }
+  25% { block-size: 0.75em; inline-size: 0.75em; }
+  50% { left: 2em; }
+  75% { block-size: 0.25em; inline-size: 0.25em; }
+  100% { left: 0; }
+}
+
+@keyframes dna-b {
+  0% { right: 0; }
+  25% { block-size: 0.25em; inline-size: 0.25em; }
+  50% { right: 2em; }
+  75% { block-size: 0.75em; inline-size: 0.75em; }
+  100% { right: 0; }
+}
+
+/* The helix is nothing but its motion, so under reduced motion it holds its opening rung. */
+@media (prefers-reduced-motion: reduce) {
+  .dna-dot { animation: none; }
+  .dna-dot[data-strand='a'] { left: 0; }
+  .dna-dot[data-strand='b'] { right: 0; }
+  /* The turn stops too, and the strand holds the angle it was drawn at. */
+  .dna-strand { animation: none; transform: rotate(-45deg); }
+}
+
+/* --------------------------------------------------------------------- css atom media
+   The Components card's artwork, after Daniele Moraschi's pen (credit in CssAtom). Every
+   length is a fraction of one em, taken from the pen's own pixel values over its 250px
+   stage, so --at-size scales the whole figure. Keyframes are unprefixed; the pen declares
+   its own only under -webkit- and -moz-. */
+.at {
+  position: absolute;
+  inset: 0;
+  container-type: inline-size;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+/* The one length everything is measured from. 80cqw is ~80% of the square frame. */
+.at-stage {
+  position: relative;
+  font-size: 80cqw;
+  inline-size: 1em;
+  block-size: 1em;
+  transform-style: preserve-3d;
+}
+
+.at-wrap,
+.at-ring {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inline-size: 1em;
+  block-size: 1em;
+  transform-style: preserve-3d;
+}
+
+/* The two shells counter-rotate about Z, which is what keeps the crossings moving. */
+.at-wrap { animation: at-lateral 15s ease-in-out infinite; }
+.at-wrap-reverse { animation: at-lateral-reverse 8s linear infinite; }
+
+.at-ring {
+  border: 0.012em solid var(--at-ink, var(--envision-t1-color-neutral-0));
+  border-radius: 50%;
+}
+
+/* Outer shell: the full stage. Inner shell: the pen's 140/250, centred at its 55/250. */
+.at-c2 {
+  inline-size: 0.56em;
+  block-size: 0.56em;
+  inset-block-start: 0.22em;
+  inset-inline-start: 0.22em;
+  border-color: var(--at-ink, var(--envision-t1-color-neutral-0));
+}
+
+/* One ring of each pair turns about X and the other about Y, so they cross. The inner shell
+   runs at roughly double the rate of the outer, as in the pen. */
+.at-v { animation: at-vertical 8s linear infinite; }
+.at-h { animation: at-horizontal-reverse 6s linear infinite; }
+.at-v.at-c2 { animation: at-vertical 4s linear infinite; }
+.at-h.at-c2 { animation: at-horizontal-reverse 3s linear infinite; }
+
+/* Carries the electron around its own ring, independently of the ring's own turn. */
+.at-orbit {
+  position: absolute;
+  inline-size: 100%;
+  block-size: 100%;
+  animation: at-electron 3s linear infinite;
+}
+
+.at-c2 .at-orbit { animation-duration: 2s; }
+
+.at-electron {
+  position: absolute;
+  inline-size: 0.048em;
+  block-size: 0.048em;
+  inset-inline-start: 50%;
+  margin-inline-start: -0.032em;
+  inset-block-start: -0.028em;
+  background: var(--at-ink, var(--envision-t1-color-neutral-0));
+  border-radius: 50%;
+}
+
+.at-c2 .at-electron { inset-block-start: -0.024em; }
+
+/* The pen's 30/250 at its 110/250. No glow: the pen's `box-shadow: 0 0 5px #fff` was there to
+   make a white nucleus bloom against a near-black page, and on a light tile it only softened the
+   edge into a smudge. A flat disc is the same shape, read cleanly. */
+.at-nucleus {
+  position: absolute;
+  inline-size: 0.12em;
+  block-size: 0.12em;
+  inset-block-start: 0.44em;
+  inset-inline-start: 0.44em;
+  background: var(--at-ink, var(--envision-t1-color-neutral-0));
+  border-radius: 50%;
+}
+
+@keyframes at-electron { from { transform: rotateZ(0deg); } to { transform: rotateZ(360deg); } }
+@keyframes at-vertical { from { transform: rotateX(0deg); } to { transform: rotateX(360deg); } }
+@keyframes at-horizontal-reverse { from { transform: rotateY(360deg); } to { transform: rotateY(0deg); } }
+@keyframes at-lateral { from { transform: rotateZ(0deg); } to { transform: rotateZ(360deg); } }
+@keyframes at-lateral-reverse { from { transform: rotateZ(360deg); } to { transform: rotateZ(0deg); } }
+
+/* Everything about the atom is motion, so under reduced motion it holds one arrangement. */
+@media (prefers-reduced-motion: reduce) {
+  .at-wrap,
+  .at-ring,
+  .at-orbit { animation: none; }
+  .at-h { transform: rotateY(72deg); }
+}
+
+/* Ported from AlikinVV's pen (https://codepen.io/AlikinVV/pen/pXpYwm). The geometry is the pen's
+   own; what changed is that it is anchored to this frame instead of the viewport, coloured from
+   tokens instead of white on black, and scaled to fit a card. The motion lives in
+   modules/dotsLoader.tsx, because it is an anime.js timeline rather than keyframes. */
+.dl {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: var(--dl-ink, var(--envision-t1-color-neutral-0));
+}
+
+/* The composition is drawn at the pen's own pixel sizes; this fits it to the frame without
+   touching any of them. */
+.dl-stage {
+  position: relative;
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  transform: scale(var(--dl-scale, 0.782));
+}
+
+/* `position: absolute`, not the pen's `fixed`: inside a card, fixed would escape to the viewport. */
+.dl .four {
+  display: block;
+  inline-size: 0;
+  block-size: 0;
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-start: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: 0 0;
+}
+
+.dl .dot {
+  display: block;
+  inline-size: 4px;
+  block-size: 4px;
+  background: currentColor;
+  border-radius: var(--envision-t2-border-radius-circular);
+  position: absolute;
+}
+
+.dl .dot.d1 { inset-inline-start: -2px; inset-block-start: -2px; }
+.dl .dot.d2 { inset-inline-end: -2px; inset-block-start: -2px; }
+.dl .dot.d3 { inset-inline-start: -2px; inset-block-end: -2px; }
+.dl .dot.d4 { inset-inline-end: -2px; inset-block-end: -2px; }
+.dl .dot.d5 { inset-inline-end: -2px; inset-block-end: -2px; }
+.dl .dot.d7 { inset-inline-start: -2px; inset-block-end: -2px; }
+.dl .dot.d8 { inset-inline-end: -2px; inset-block-start: -2px; }
+.dl .dot.d9 { inset-inline-start: -2px; inset-block-start: -2px; }
+.dl .dot.d10 { inset-inline-end: -42px; inset-block-end: -42px; inline-size: 0; block-size: 0; }
+.dl .dot.d11 { inset-inline-start: -52px; inset-block-end: -2px; opacity: 0; }
+.dl .dot.d12 { inset-inline-end: -52px; inset-block-start: -2px; opacity: 0; }
+.dl .dot.d13 { inset-inline-end: -52px; inset-block-start: -2px; opacity: 0; }
+.dl .dot.d14 { inset-inline-start: -2px; inset-block-end: -52px; opacity: 0; }
+.dl .dot.d15 { inset-inline-end: -2px; inset-block-start: -52px; opacity: 0; }
+.dl .dot.d16 { inset-inline-start: -52px; inset-block-end: -2px; opacity: 0; }
+.dl .dot.d17 { inset-inline-end: 88px; inset-block-start: -44px; opacity: 0; }
+.dl .dot.d18 { inset-inline-start: 47px; inset-block-end: -51px; opacity: 0; }
+.dl .dot.d19 { inset-block-end: -51px; inset-inline-start: -2px; opacity: 0; }
+.dl .dot.d20 { inset-inline-start: -51px; inset-block-end: -2px; opacity: 0; }
+.dl .dot.d21 { inset-inline-start: -52px; inset-block-start: -1px; opacity: 0; }
+.dl .dot.d22 { inset-block-start: -52px; inset-inline-end: -2px; opacity: 0; }
+.dl .dot.d23 { inset-inline-end: 48px; inset-block-start: -52px; opacity: 0; }
+.dl .dot.d24 { inset-inline-end: -50px; inset-block-end: 48px; opacity: 0; }
+.dl .dot.d25 { inset-inline-end: -51px; inset-block-start: 47px; opacity: 0; }
+
+.dl .circle {
+  display: block;
+  inline-size: 4px;
+  block-size: 4px;
+  border: 2px solid currentColor;
+  border-radius: var(--envision-t2-border-radius-circular);
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  transform-origin: 0 0;
+  transform: translate(-50%, -50%);
+}
+
+.dl .circle.c5 {
+  inline-size: 30px;
+  block-size: 30px;
+  opacity: 0;
+}
+
+/* ------------------------------------------------------------------ section banner
+   The header at the top of each area's landing page: copy left, that area's mark right,
+   on the dark green. Sized so the mark reads at a glance without competing with the
+   heading beside it. */
+.dc-banner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--dc-space-8);
+  /* Clear of the breadcrumbs above it. No block-end margin: the header that wraps this already
+     sets the rhythm below itself. */
+  margin-block-start: var(--dc-space-6);
+  /* Taller than it is padded at the sides: the banner is a header, not a strip. */
+  padding: var(--dc-space-16) var(--dc-space-10);
+  background: var(--dc-icon-tile-hover);
+  border-radius: var(--envision-t1-border-radius-16);
+  /* The mark is scaled past the box it is laid out in, so the banner has to be the thing that
+     ends it. Clipping to the rounded rect is deliberate: the mark bleeds off the edge rather
+     than being sized down to fit inside it. */
+  overflow: hidden;
+}
+
+.dc-banner-copy { min-inline-size: 0; }
+
+/* White on the banner green is 4.67:1 — AA for this size, and the same ink the mark uses. */
+.dc-banner-title {
+  margin: 0 0 var(--dc-space-3);
+  font-size: var(--envision-t1-font-size-32);
+  line-height: 1.15;
+  font-weight: var(--envision-t1-font-weight-700);
+  color: var(--envision-t1-color-neutral-0);
+}
+
+.dc-banner-lead {
+  margin: 0;
+  max-inline-size: 56ch;
+  font-size: var(--envision-t1-font-size-16);
+  line-height: 1.55;
+  color: var(--envision-t1-color-neutral-0);
+}
+
+/* No tile behind the mark. On the cards the well exists to separate the artwork from a white
+   card; here the banner is already a field of colour, and a second panel inside it just drew a
+   box around something that did not need one. The mark sits straight on the green, where white
+   reads at 4.67:1. */
+.dc-banner-well {
+  position: relative;
+  inline-size: 200px;
+  aspect-ratio: 1 / 1;
+}
+
+/* DotsLoader needs a wider column than the other five, and only a wider one.
+   Measured across its full timeline it draws 511px across, against a 200px well — 155px past the
+   left edge and 156px past the right. Every other mark is drawn in container units and fits its
+   well by construction; this one is fixed pixels, so the well never sized it.
+   inline-size is the ONLY thing that changes here. block-size stays at the 200px every other well
+   uses, because the well is the tallest thing in the banner row and growing it would grow the
+   banner. aspect-ratio has to be cleared or the new width would set the height and do exactly that.
+   Nothing about the scale is touched. */
+.dc-banner-well:has(.dl) {
+  inline-size: 520px;
+  aspect-ratio: auto;
+  block-size: 200px;
+  /* Shifted right into the banner's own inline padding, so the mark sits against the edge rather
+     than stopping short of it. This moves the CONTAINER; the animation inside it is untouched. */
+  transform: translateX(var(--dc-banner-mark-shift, 80px));
+}
+
+/* No inset either: with no tile edge to hold away from, the mark uses the whole square.
+   The scale is applied here rather than by enlarging the well, so the well keeps its 200px
+   footprint in the grid and the banner's height and the copy's column are unaffected. Every mark
+   is sized in container units against that footprint, so one transform enlarges the whole
+   drawing — strokes, dots and gaps together — instead of re-tuning six separate scale hooks. */
+.dc-banner-well > * {
+  position: absolute;
+  inset: 0;
+  transform: scale(var(--dc-banner-mark-scale, 2.25));
+  /* Held back off the banner so the mark reads as a watermark behind the title rather than as a
+     second thing competing with it. Banner only: the same marks sit on light card frames on the
+     home page, where full strength is what makes them legible. */
+  opacity: var(--dc-banner-mark-opacity, 0.6);
+}
+
+/* The helix is the one mark that is taller than it is wide: 2.5em across against 5.5em high. Every
+   other mark is roughly square, so the shared 2.25 reads as a bleed on them and an overshoot on
+   this one, whose strand stood 330px in a banner about 300 tall and cropped to a diagonal line of
+   dots. Scaled to its own proportions instead, so it bleeds by the same amount as the rest. */
+.dc-banner-well > .dna {
+  transform: scale(var(--dc-banner-mark-scale-tall, 1.5));
+}
+
+@media (max-width: 860px) {
+  /* The mark is decorative, so on a narrow screen it yields to the copy rather than shrinking it. */
+  .dc-banner { grid-template-columns: minmax(0, 1fr); padding: var(--dc-space-8) var(--dc-space-6); }
+  .dc-banner-media { display: none; }
+}
+
+/* ------------------------------------------------------------ concentric rings media
+   The Tools card's artwork, after werls' p5 sketch (credit in ConcentricRings). Ring
+   counts, radii and dot counts are generated in the component; the turn is here. */
+.cr {
+  position: absolute;
+  inset: 0;
+  container-type: inline-size;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  color: var(--cr-ink, var(--envision-t1-color-neutral-0));
+}
+
+/* A zero-size point at the centre. Every ring and dot is positioned out from here, so the figure
+   is centred no matter how many rings there are. */
+.cr-stage {
+  position: relative;
+  font-size: 45cqw;
+  inline-size: 0;
+  block-size: 0;
+  transform-style: preserve-3d;
+  /* The camera. It belongs HERE, on the parent of the rings, and in em — which on this element is
+     the figure's own unit. Setting it on .cr instead meant em resolved against the inherited 14px
+     root size, putting the camera ~34px from a 200px figure and shearing every dot into a streak.
+     7em is a little over three times the figure's diameter: enough depth to read, not a fisheye. */
+  perspective: 7em;
+}
+
+/* One ring each, turning at its own rate: the innermost completes six turns while the outermost
+   completes one, so no two are ever aligned. */
+.cr-ring {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  animation: cr-spin calc(var(--cr-cycle, 18s) / var(--cr-rate, 1)) linear infinite;
+}
+
+.cr-dot {
+  position: absolute;
+  inline-size: 0.033em;
+  block-size: 0.033em;
+  margin: -0.0165em 0 0 -0.0165em;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* Z carries the full turn: it is the screen-plane axis, so the discs keep facing the viewer.
+   X and Y only tilt, and 34deg is the ceiling — a flat disc at 60deg has already lost two thirds
+   of its width, and past that the ring reads as a line rather than a ring. */
+@keyframes cr-spin {
+  0% { transform: rotateX(0deg) rotateY(34deg) rotateZ(0deg); }
+  25% { transform: rotateX(34deg) rotateY(0deg) rotateZ(90deg); }
+  50% { transform: rotateX(0deg) rotateY(-34deg) rotateZ(180deg); }
+  75% { transform: rotateX(-34deg) rotateY(0deg) rotateZ(270deg); }
+  100% { transform: rotateX(0deg) rotateY(34deg) rotateZ(360deg); }
+}
+
+/* The figure is only legible as movement, so under reduced motion it holds one arrangement. */
+@media (prefers-reduced-motion: reduce) {
+  .cr-ring { animation: none; }
+}

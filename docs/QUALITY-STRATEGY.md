@@ -19,12 +19,12 @@ or release · what remains a human responsibility.
 | 1 | **Lint** | Inconsistent/unsafe code, banned patterns | ESLint + typescript-eslint | every commit / PR | **Blocks PR** | Choosing the rules; reviewing intent |
 | 2 | **Type checking** | Broken component/adapter APIs, wrong prop/attr types | `tsc --noEmit` (per package) | every commit / PR | **Blocks PR** | Designing the type contracts |
 | 3 | **Token validation** | Malformed tokens, broken alias chains, **committed token `dist` drifting from source** | token unit tests + `git diff` drift check | every PR | **Blocks PR** | Token architecture & naming decisions |
-| 4 | **Unit / contract behaviour** | Component behaviour regressions — states, events, ARIA wiring, keyboard, form participation, content extremes | Vitest + happy-dom (80 tests) | every PR | **Blocks PR** | Deciding the intended behaviour |
+| 4 | **Unit / contract behavior** | Component behavior regressions — states, events, ARIA wiring, keyboard, form participation, content extremes | Vitest + happy-dom (80 tests) | every PR | **Blocks PR** | Deciding the intended behavior |
 | 5 | **Accessibility — unit (fast)** | ARIA / accessible-name / structure violations | `vitest-axe` (happy-dom) | every PR | **Blocks PR** | Everything axe can’t see (see below) |
 | 6 | **Component + adapter build** | Un-buildable code; committed `dist` not matching source | `tsc` + `git diff` drift check | every PR | **Blocks PR** | — |
 | 7 | **Storybook / docs build** | Broken stories or MDX docs; a spec that won’t compile | `storybook build` | every PR | **Blocks PR** | Doc content & accuracy |
 | 8 | **Interaction testing** | Broken keyboard / focus / activation flows | Storybook **test-runner** `play` fns (Chromium) | every PR | **Blocks PR** | Designing the interaction |
-| 9 | **Accessibility — browser (WCAG 2.2 AA)** | Colour-contrast + rendered ARIA + focus visibility that unit a11y can’t evaluate | test-runner + **axe** (`@axe-core/playwright`) | every PR | **Blocks PR** (documented per-story exceptions only) | The manual-review checklist (below) |
+| 9 | **Accessibility — browser (WCAG 2.2 AA)** | Color-contrast + rendered ARIA + focus visibility that unit a11y can’t evaluate | test-runner + **axe** (`@axe-core/playwright`) | every PR | **Blocks PR** (documented per-story exceptions only) | The manual-review checklist (below) |
 | 10 | **Visual regression** | Unintended visual change to any component/state | Playwright `toHaveScreenshot` vs committed baselines | every PR | **Blocks PR until the diff is reviewed & approved** | Judging intended vs accidental |
 
 **Release gate.** A release (a version bump / publish) requires the same set green on `main`, plus
@@ -67,7 +67,7 @@ flowchart TB
     L10[Visual regression · Playwright vs baselines]
   end
 
-  HUMAN{{Human review: manual a11y checklist · visual-diff approval · design judgement}}
+  HUMAN{{Human review: manual a11y checklist · visual-diff approval · design judgment}}
   MERGE([Merge ▸ Release])
   ADV[App checks · advisory only]:::adv
 
@@ -103,8 +103,8 @@ changed interactive component, a person must verify:
   don’t collide, focus goes somewhere sensible after actions (modal open/close, delete, submit).
 - **Focus visibility in context** — the ring is actually visible against the real adjacent
   surfaces and not clipped/obscured by overlapping content.
-- **Meaning is not colour-only** — that ring + check + text truly convey selection/status/error
-  (axe can’t judge whether a non-colour cue is *meaningful*).
+- **Meaning is not color-only** — that ring + check + text truly convey selection/status/error
+  (axe can’t judge whether a non-color cue is *meaningful*).
 - **Zoom & reflow** — 200% zoom and 400% / reflow don’t break layout or hide content.
 - **Text spacing / translation** — layouts survive increased spacing and longer translated strings.
 - **Reduced motion** — animations are genuinely reduced/removed, not just technically gated.

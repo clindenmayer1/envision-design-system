@@ -2,7 +2,7 @@
   "name": "@envision/react",
   "version": "0.1.0",
   "private": true,
-  "description": "Thin React adapter for @envision/components. Auto-generated wrappers over the custom elements — no component logic is duplicated here.",
+  "description": "Thin React adapter for @envision/components. Auto-generated wrappers over the custom elements, so no component logic is duplicated here.",
   "type": "module",
   "license": "UNLICENSED",
   "exports": {

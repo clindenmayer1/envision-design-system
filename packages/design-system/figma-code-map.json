@@ -16,19 +16,205 @@
   },
   "cssVariablePrefix": "--envision-",
   "mappings": [
-    { "figmaName": "Button", "figmaNodeId": "8:62", "codeComponent": "Button", "propertyMap": { "Type": "variant('primary'|'outline'|'ghost')", "State": "(pseudo-state/story, NOT a prop)", "Label": "label", "Leading icon": "leadingIcon(boolean->MaterialSymbol)", "Trailing icon": "trailingIcon" }, "tokenMap": ["t3.button.*"], "storybookStory": "Components/Button", "parity": "figma+tokens done; code+story pending stack" },
-    { "figmaName": "IconButton", "figmaNodeId": "9:41", "codeComponent": "IconButton", "propertyMap": { "State": "(story)", "Icon": "icon(instance-swap)" }, "storybookStory": "Components/IconButton", "parity": "figma done; code+story pending" },
-    { "figmaName": "Link", "figmaNodeId": "9:30", "codeComponent": "Link", "propertyMap": { "State": "(story)", "Label": "label" }, "storybookStory": "Components/Link", "parity": "figma done" },
-    { "figmaName": "Label", "figmaNodeId": "11:11", "codeComponent": "Label", "propertyMap": { "Type": "required(boolean)", "Label": "text", "Help icon": "helpIcon(boolean)" }, "storybookStory": "Components/Label", "parity": "figma done" },
-    { "figmaName": "Field", "figmaNodeId": "11:36", "codeComponent": "Input", "propertyMap": { "State": "invalid/disabled/(pseudo)", "Value": "value" }, "storybookStory": "Components/Input", "parity": "figma done" },
-    { "figmaName": "Checkbox", "figmaNodeId": "10:47", "codeComponent": "Checkbox", "propertyMap": { "Checked": "checked", "State": "(story/disabled)" }, "storybookStory": "Components/Checkbox", "parity": "figma done" },
-    { "figmaName": "Radio", "figmaNodeId": "10:57", "codeComponent": "Radio", "propertyMap": { "Selected": "checked", "State": "(story/disabled)" }, "storybookStory": "Components/Radio", "parity": "figma done" },
-    { "figmaName": "Switch", "figmaNodeId": "10:70", "codeComponent": "Switch", "propertyMap": { "On": "checked", "State": "(story/disabled)" }, "storybookStory": "Components/Switch", "parity": "figma done" },
-    { "figmaName": "Badge", "figmaNodeId": "10:20", "codeComponent": "Badge", "propertyMap": { "Tone": "tone", "Shape": "shape", "Count": "count" }, "storybookStory": "Components/Badge", "parity": "figma done" },
-    { "figmaName": "RightRail/Tab", "figmaNodeId": "10:37", "codeComponent": "Tab", "propertyMap": { "State": "selected/disabled", "Label": "label" }, "storybookStory": "Components/Tab", "parity": "figma done" },
-    { "figmaName": "MaterialSwatch", "figmaNodeId": "12:14", "codeComponent": "MaterialSwatch", "propertyMap": { "State": "selected/unavailable/(pseudo)", "Label": "option.label" }, "slotMap": { "fill": "product-data (option.texture|swatch|color)" }, "storybookStory": "Product Components/MaterialSwatch", "parity": "figma done" },
-    { "figmaName": "OptionCard", "figmaNodeId": "12:39", "codeComponent": "OptionCard", "propertyMap": { "State": "active/selected/(pseudo)", "Title": "title", "Note": "note" }, "storybookStory": "Product Components/OptionCard", "parity": "figma done" },
-    { "figmaName": "PackageCard", "figmaNodeId": "13:54", "codeComponent": "PackageCard", "propertyMap": { "State": "selected/popular", "Name": "pkg.name", "Price": "pkg.price", "Description": "pkg.description" }, "slotMap": { "swatches": "packageSwatches(pkg)", "image": "packageThumbUrl(pkg)" }, "storybookStory": "Product Components/PackageCard", "parity": "figma done" },
-    { "figmaName": "RightRail", "figmaNodeId": "16:2", "codeComponent": "RightRail", "propertyMap": { "mode": "mode", "config": "config" }, "childMap": { "RightRail/Tab": "Tab", "OptionCard": "OptionCard", "Button": "Button" }, "tokenMap": ["t3.right-rail.*"], "storybookStory": "Patterns/RightRail", "parity": "figma done; states in registry" }
+    {
+      "figmaName": "Button",
+      "figmaNodeId": "8:62",
+      "codeComponent": "Button",
+      "propertyMap": {
+        "Type": "variant('primary'|'outline'|'ghost')",
+        "State": "(pseudo-state/story, NOT a prop)",
+        "Label": "label",
+        "Leading icon": "leadingIcon(boolean->MaterialSymbol)",
+        "Trailing icon": "trailingIcon"
+      },
+      "tokenMap": [
+        "t3.button.*"
+      ],
+      "storybookStory": "Components/Button",
+      "parity": "figma+tokens done; code+story pending stack"
+    },
+    {
+      "figmaName": "IconButton",
+      "figmaNodeId": "9:41",
+      "codeComponent": "IconButton",
+      "propertyMap": {
+        "State": "(story)",
+        "Icon": "icon(instance-swap)"
+      },
+      "storybookStory": "Components/IconButton",
+      "parity": "figma done; code+story pending"
+    },
+    {
+      "figmaName": "Link",
+      "figmaNodeId": "9:30",
+      "codeComponent": "Link",
+      "propertyMap": {
+        "State": "(story)",
+        "Label": "label"
+      },
+      "storybookStory": "Components/Link",
+      "parity": "figma done"
+    },
+    {
+      "figmaName": "Label",
+      "figmaNodeId": "11:11",
+      "codeComponent": "Label",
+      "propertyMap": {
+        "Type": "required(boolean)",
+        "Label": "text",
+        "Help icon": "helpIcon(boolean)"
+      },
+      "storybookStory": "Components/Label",
+      "parity": "figma done"
+    },
+    {
+      "figmaName": "Field",
+      "figmaNodeId": "11:36",
+      "codeComponent": "Input",
+      "propertyMap": {
+        "State": "invalid/disabled/(pseudo)",
+        "Value": "value"
+      },
+      "storybookStory": "Components/Input",
+      "parity": "figma done"
+    },
+    {
+      "figmaName": "Checkbox",
+      "figmaNodeId": "10:47",
+      "codeComponent": "Checkbox",
+      "propertyMap": {
+        "Checked": "checked",
+        "State": "(story/disabled)"
+      },
+      "storybookStory": "Components/Checkbox",
+      "parity": "figma done"
+    },
+    {
+      "figmaName": "Radio",
+      "figmaNodeId": "10:57",
+      "codeComponent": "Radio",
+      "propertyMap": {
+        "Selected": "checked",
+        "State": "(story/disabled)"
+      },
+      "storybookStory": "Components/Radio",
+      "parity": "figma done"
+    },
+    {
+      "figmaName": "Switch",
+      "figmaNodeId": "10:70",
+      "codeComponent": "Switch",
+      "propertyMap": {
+        "On": "checked",
+        "State": "(story/disabled)"
+      },
+      "storybookStory": "Components/Switch",
+      "parity": "figma done"
+    },
+    {
+      "figmaName": "Badge",
+      "figmaNodeId": "10:20",
+      "codeComponent": "Badge",
+      "propertyMap": {
+        "Tone": "tone",
+        "Shape": "shape",
+        "Count": "count"
+      },
+      "storybookStory": "Components/Badge",
+      "parity": "figma done"
+    },
+    {
+      "figmaName": "RightRail/Tab",
+      "figmaNodeId": "10:37",
+      "codeComponent": "Tab",
+      "propertyMap": {
+        "State": "selected/disabled",
+        "Label": "label"
+      },
+      "storybookStory": "Components/Tab",
+      "parity": "figma done"
+    },
+    {
+      "figmaName": "MaterialSwatch",
+      "figmaNodeId": "12:14",
+      "codeComponent": "MaterialSwatch",
+      "propertyMap": {
+        "State": "selected/unavailable/(pseudo)",
+        "Label": "option.label"
+      },
+      "slotMap": {
+        "fill": "product-data (option.texture|swatch|color)"
+      },
+      "storybookStory": "Product Components/MaterialSwatch",
+      "parity": "figma done"
+    },
+    {
+      "figmaName": "OptionCard",
+      "figmaNodeId": "12:39",
+      "codeComponent": "OptionCard",
+      "propertyMap": {
+        "State": "active/selected/(pseudo)",
+        "Title": "title",
+        "Note": "note"
+      },
+      "storybookStory": "Product Components/OptionCard",
+      "parity": "figma done"
+    },
+    {
+      "figmaName": "PackageCard",
+      "figmaNodeId": "13:54",
+      "codeComponent": "PackageCard",
+      "propertyMap": {
+        "State": "selected/popular",
+        "Name": "pkg.name",
+        "Price": "pkg.price",
+        "Description": "pkg.description"
+      },
+      "slotMap": {
+        "swatches": "packageSwatches(pkg)",
+        "image": "packageThumbUrl(pkg)"
+      },
+      "storybookStory": "Product Components/PackageCard",
+      "parity": "figma done"
+    },
+    {
+      "figmaName": "RightRail",
+      "figmaNodeId": "16:2",
+      "codeComponent": "RightRail",
+      "propertyMap": {
+        "mode": "mode",
+        "config": "config"
+      },
+      "childMap": {
+        "RightRail/Tab": "Tab",
+        "OptionCard": "OptionCard",
+        "Button": "Button"
+      },
+      "tokenMap": [
+        "t3.right-rail.*"
+      ],
+      "storybookStory": "Patterns/RightRail",
+      "parity": "figma done; states in registry"
+    },
+    {
+      "figmaName": "Breadcrumbs",
+      "figmaNodeId": "865:12",
+      "codeComponent": "Breadcrumbs",
+      "propertyMap": {
+        "(trail composition)": "items: BreadcrumbItem[] — a JS property, not an attribute",
+        "Breadcrumb Item / State=Default|Hover|Focus": "an <a href> ancestor; Hover and Focus are pseudo-states, not props",
+        "Breadcrumb Item / State=Current": "the last item — rendered as text with aria-current=\"page\"",
+        "separator": "decorative text, aria-hidden; not a prop"
+      },
+      "tokenMap": [
+        "t2.color.content.primary",
+        "t2.color.content.secondary",
+        "t2.color.content.tertiary",
+        "t1.spacing.100",
+        "t1.font-size.13"
+      ],
+      "storybookStory": "Components/Navigation/Breadcrumbs",
+      "parity": "figma+code+story done; figma pending review"
+    }
   ]
 }

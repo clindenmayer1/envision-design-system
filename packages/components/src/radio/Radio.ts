@@ -3,7 +3,7 @@ import { css } from '../base/css.js';
 import { emitChange } from '../base/internals.js';
 
 /**
- * Envision Radio — `<envision-radio>`.
+ * Envision Radio, `<envision-radio>`.
  *
  * Registry contract → "radio":
  *   props:  checked(required) · name(required) · value(required) · label(required) · disabled(false)
@@ -97,7 +97,7 @@ export class EnvisionRadio extends EnvisionElement {
     this.#input.name = this.name;
     this.#input.value = this.value;
     this.#input.disabled = this.disabled;
-    // Roving tabindex depends on GROUP state, so recompute it for every member — a radio added
+    // Roving tabindex depends on GROUP state, so recompute it for every member, a radio added
     // or selected must correct its siblings' tab order, not just its own.
     this.#applyRovingTabIndex();
   }

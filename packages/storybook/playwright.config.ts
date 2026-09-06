@@ -15,7 +15,19 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? [['github'], ['html', { open: 'never' }]] : [['list']],
-  // Fail on any perceptible pixel change; anti-aliasing tolerance keeps false positives out.
+  // KNOWN WEAKNESS — this threshold is too slack to catch a small control changing geometry.
+  // Button lost ALL of its vertical padding and every single-button story still passed, because
+  // the delta fell under 1% of the image; only the two densest stories failed.
+  //
+  // It cannot be tightened yet. `.storybook/preview-head.html` pulls Inter, Playfair Display and
+  // Material Symbols from Google Fonts over the network with `display=swap`, so glyph rendering
+  // depends on network timing and consecutive runs of an UNCHANGED build differ by up to ~8,000
+  // pixels (~0.007). Anything below 0.01 turns that nondeterminism into permanent red.
+  //
+  // Fix the cause first: self-host the three fonts (e.g. @fontsource/inter, @fontsource/
+  // playfair-display, material-symbols) so rendering is deterministic and offline-safe, then drop
+  // this to ~0.001. That would also settle the intermittent failures in the a11y/interaction
+  // runner, which share the same root cause.
   expect: {
     toHaveScreenshot: { maxDiffPixelRatio: 0.01, animations: 'disabled', caret: 'hide' },
   },

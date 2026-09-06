@@ -12,6 +12,10 @@ tradeoffs) lives in [`TOKEN-PIPELINE.md`](./TOKEN-PIPELINE.md).
 src/            DTCG source of truth
   _figma-export.txt      diffable Figma snapshot (name|$type|value[|mobile])
   *.tokens.json          primitives / brand / semantic / responsive / components (DTCG)
+  theme.schema.json      envision-theme@1 — the white-label theme contract
+  themes/*.theme.json    builder themes (envision = unbranded default, westlake = builder,
+                         example-* = fictional). Validated by `npm run test:themes`.
+  ../lib/theme.mjs       applyTheme / themeToCss / validateTheme
   build-dtcg.mjs         snapshot → DTCG
   tokens-table.md        reference table
 lib/responsive.mjs       pure, tested responsive helpers

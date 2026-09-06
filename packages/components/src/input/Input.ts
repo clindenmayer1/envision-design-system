@@ -3,19 +3,24 @@ import { css } from '../base/css.js';
 import { tryAttachInternals, setFormValue, emitChange, emitInput } from '../base/internals.js';
 
 /**
- * Envision Input (Field) — `<envision-input>`.
+ * Envision Input (Field), `<envision-input>`.
  *
  * Registry contract → "field" (codeName Input):
  *   props:  type('text'|'email'|'search'|'number'|'price'|'password'=text) · value · label(required) ·
  *           helperText · errorMessage · invalid(false) · required(false) · disabled(false) ·
  *           leadingIcon · trailingIcon
+ *
+ * The icons take a Material Symbols name here, where the Figma set carries a boolean per side plus
+ * a glyph to swap: a design file toggles a layer, code names the glyph it wants. Each side exposes
+ * its own CSS part (`icon-leading` / `icon-trailing`) as well as the shared `icon`, so one end can
+ * be styled without the other. Both are aria-hidden; the persistent label names the field.
  *   states: empty · filled · hover · focus-visible · invalid · disabled · read-only · required
  *   a11y:   persistent <label> associated by id (placeholder is NOT a label) · aria-invalid ·
  *           aria-describedby → error/helper · aria-required
  *
  * Label, input, and messages all live in ONE shadow root, so `for`/`id`/`aria-describedby`
  * association works within scope. `price` maps to a text input with decimal inputmode (locale
- * formatting is product/content responsibility, not a control concern — SYSTEM_SPEC §8).
+ * formatting is product/content responsibility, not a control concern, SYSTEM_SPEC §8).
  */
 const styles = css`
   :host { display: block; }
@@ -110,9 +115,9 @@ export class EnvisionInput extends EnvisionElement {
       <div class="field" part="field">
         <label class="label" part="label" for="${this.#id}"><span class="label-text"></span><span class="req" aria-hidden="true" hidden>*</span></label>
         <div class="control" part="control">
-          <span class="icon lead" part="icon" aria-hidden="true"></span>
+          <span class="icon lead" part="icon icon-leading" aria-hidden="true"></span>
           <input id="${this.#id}" part="input" />
-          <span class="icon trail" part="icon" aria-hidden="true"></span>
+          <span class="icon trail" part="icon icon-trailing" aria-hidden="true"></span>
         </div>
         <div class="msg helper" id="${this.#id}-help" part="helper"></div>
         <div class="msg error" id="${this.#id}-err" part="error"></div>

@@ -2,7 +2,7 @@ import { EnvisionElement } from '../base/element.js';
 import { css } from '../base/css.js';
 
 /**
- * Envision Button — `<envision-button>`.
+ * Envision Button, `<envision-button>`.
  *
  * Registry contract (component-registry.json → "button"):
  *   props:  variant('primary'|'outline'|'ghost'=primary) · size('sm'|'md'|'lg'=md) ·
@@ -15,12 +15,12 @@ import { css } from '../base/css.js';
  * Semantics: renders a real <button type="button"> in the shadow root, so keyboard
  * activation, disabled focus behavior, and form semantics come from the platform.
  *
- * Tokens only (no raw color/radius): primary = t3.button.primary.*. Outline is a NEUTRAL
- * secondary button matching the web (t2.color.border.default var(--envision-t2-color-border-default-default) + t2.color.content.primary
- * + t2.color.background.surface) — the t3.button.outline.* tokens resolve to brand green and do
- * NOT match the shipped product (AUDIT.md §B/§D). Ghost falls back to T2 brand roles. Per-size
- * type/padding tokens do not exist yet, so size scales by relative ratio over the base control
- * padding — a noted follow-up, not a raw design value.
+ * Tokens only, no raw color or radius. Primary uses t3.button.primary.*. Outline is a NEUTRAL
+ * secondary button matching the shipped web product's hairline buttons, so it binds to t2 roles
+ * (t2.color.background.surface + t2.color.content.primary + t2.color.border.default) rather than
+ * to a brand family; the system publishes no t3.button.outline.* tokens. Ghost falls back to T2
+ * brand roles. Each size takes its own type and padding from
+ * t3.button.{small,medium,large}.{font-size,padding-block,padding-inline}.
  */
 const styles = css`
   :host {
@@ -42,26 +42,56 @@ const styles = css`
     width: 100%;
     /* Explicit type to match the website (14px / 600), not inherited. */
     font-family: inherit;
-    font-size: var(--envision-t1-font-size-14);
+    font-size: var(--envision-t3-button-medium-font-size-default);
     font-weight: var(--envision-t1-font-weight-600);
-    line-height: 1.2;
+    /* Medium locks the label to an 18px line box, the same height as the icon frame, so a medium
+       button is 50 tall whether or not it carries an icon. A ratio (1.2) gave a 17px box, one pixel
+       SHORTER than the icon, so adding an icon grew the button by 1px. Small and Large keep the
+       120% ratio (see the size rules below): Large's box is already 19 and clears the icon, and
+       Small is intentionally left at its 14px box. */
+    line-height: 18px;
     cursor: pointer;
-    border: var(--envision-t2-border-width-default) solid transparent;
+    /* The 1px control edge is drawn INSIDE the box as an inset ring, not as a CSS border.
+       A real border adds to the height of a content-sized element (box-sizing does not prevent
+       that when the height is auto), so every button rendered 2px taller than its Figma master,
+       where strokes are drawn inside the frame. An inset ring occupies no layout, so the button
+       is exactly padding + label tall: 16 + 18 + 16 = 50, matching Figma. The ring follows
+       border-radius, so rounded corners are unaffected.
+       The explicit "border: none" is REQUIRED: dropping the declaration entirely does not remove
+       the border, it restores the UA default for a button (2px outset), which made it 4px taller. */
+    border: none;
+    box-shadow: inset 0 0 0 var(--envision-t2-border-width-default) transparent;
     /* Website primary CTA radius = 10 (container-md), not the shared control radius. */
     border-radius: var(--envision-t2-border-radius-container-md);
-    padding-block: var(--envision-t1-spacing-16);
-    padding-inline: var(--envision-t2-spacing-control-padding-inline);
+    /* Size geometry comes from the T3 button size tokens, which the Figma Button set binds to its
+       Size variant. Medium is the base and is applied here rather than on a :host([size]) rule, so
+       a button with no size attribute is a medium. */
+    padding-block: var(--envision-t3-button-medium-padding-block-default);
+    padding-inline: var(--envision-t3-button-medium-padding-inline-default);
     transition: background-color var(--envision-t2-motion-micro-duration)
         cubic-bezier(0.2, 0.8, 0.2, 1),
-      border-color var(--envision-t2-motion-micro-duration) cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow var(--envision-t2-motion-micro-duration) cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   @media (prefers-reduced-motion: reduce) {
     .btn { transition: none; }
   }
 
-  /* size: relative scaling over the base control padding (no per-size tokens exist yet) */
-  :host([size='sm']) .btn { padding-block: calc(var(--envision-t2-spacing-control-padding-block) * 0.6); padding-inline: calc(var(--envision-t2-spacing-control-padding-inline) * 0.75); font-size: 0.875em; }
-  :host([size='lg']) .btn { padding-block: calc(var(--envision-t2-spacing-control-padding-block) * 1.35); padding-inline: calc(var(--envision-t2-spacing-control-padding-inline) * 1.25); font-size: 1.0625em; }
+  /* size, every value is a published T3 token bound to the Figma Button's Size variant.
+     Previously these were calc() ratios (0.6 / 0.75 / 1.35 / 1.25 / 0.875em / 1.0625em) over a
+     DIFFERENT base than medium used, which made large render SMALLER than medium and gave small
+     the same font size as medium. Resolved geometry is now 38 / 49 / 59 tall, matching Figma. */
+  :host([size='sm']) .btn {
+    padding-block: var(--envision-t3-button-small-padding-block-default);
+    padding-inline: var(--envision-t3-button-small-padding-inline-default);
+    font-size: var(--envision-t3-button-small-font-size-default);
+    line-height: 1.2; /* 14px box, matching Figma. Only Medium is pinned to the icon height. */
+  }
+  :host([size='lg']) .btn {
+    padding-block: var(--envision-t3-button-large-padding-block-default);
+    padding-inline: var(--envision-t3-button-large-padding-inline-default);
+    font-size: var(--envision-t3-button-large-font-size-default);
+    line-height: 1.2; /* 19px box, already taller than the 18px icon. */
+  }
 
   /* variant: primary */
   :host([variant='primary']) .btn {
@@ -75,22 +105,24 @@ const styles = css`
     background: var(--envision-t3-button-primary-color-background-pressed);
   }
 
-  /* variant: outline — NEUTRAL secondary button. Matches the web design (the app's hairline
-     "Customize"/secondary buttons: var(--envision-t2-color-border-default-default) border, dark text, surface fill). The registry's
-     t3.button.outline.* tokens resolve to BRAND green, which does not match the shipped web
-     product, so outline binds to the nearest existing neutral tokens instead. See AUDIT.md §B/§D. */
+  /* variant: outline, a NEUTRAL secondary button. It matches the app's hairline
+     "Customize"/secondary buttons: default border, dark text, surface fill. There is no
+     t3.button.outline family, so it binds to the T2 neutral roles directly. */
   :host([variant='outline']) .btn {
     background: var(--envision-t2-color-background-surface-default);
     color: var(--envision-t2-color-content-primary-default);
-    border-color: var(--envision-t2-color-border-default-default);
+    box-shadow: inset 0 0 0 var(--envision-t2-border-width-default)
+      var(--envision-t2-color-border-default-default);
   }
   :host([variant='outline']) .btn:hover {
     background: var(--envision-t2-color-background-surface-warm-default);
-    border-color: var(--envision-t2-color-border-strong-default);
+    box-shadow: inset 0 0 0 var(--envision-t2-border-width-default)
+      var(--envision-t2-color-border-strong-default);
   }
   :host([variant='outline']) .btn:active {
     background: var(--envision-t2-color-background-surface-warm-default);
-    border-color: var(--envision-t2-color-border-strong-default);
+    box-shadow: inset 0 0 0 var(--envision-t2-border-width-default)
+      var(--envision-t2-color-border-strong-default);
   }
 
   /* variant: ghost (no T3 tokens → T2 brand roles) */
@@ -105,7 +137,7 @@ const styles = css`
     background: var(--envision-t2-color-background-brand-subtle-default);
   }
 
-  /* focus ring — the DS 2px brand ring, never clipped (offset outline) */
+  /* focus ring, the DS 2px brand ring, never clipped (offset outline) */
   .btn:focus-visible {
     outline: var(--envision-t2-border-width-focus) solid
       var(--envision-t2-color-border-focus-default);
@@ -118,12 +150,13 @@ const styles = css`
     cursor: not-allowed;
     background: var(--envision-t3-button-primary-color-background-disabled);
     color: var(--envision-t3-button-primary-color-content-disabled);
-    border-color: transparent;
+    box-shadow: inset 0 0 0 var(--envision-t2-border-width-default) transparent;
   }
   :host([variant='outline'][disabled]) .btn,
   :host([variant='ghost'][disabled]) .btn {
     background: transparent;
-    border-color: var(--envision-t3-button-primary-color-background-disabled);
+    box-shadow: inset 0 0 0 var(--envision-t2-border-width-default)
+      var(--envision-t3-button-primary-color-background-disabled);
   }
 
   /* loading */

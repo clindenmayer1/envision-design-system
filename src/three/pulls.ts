@@ -81,7 +81,7 @@ const unit = (i: number) => new THREE.Vector3(i === 0 ? 1 : 0, i === 1 ? 1 : 0, 
 /**
  * Build one pull instance: clone the source, center it, then rotate its (long, depth, thin)
  * frame onto the target's, scale uniformly so the long axis matches, and place at the
- * target centre. Uniform scale preserves the pull's true proportions.
+ * target center. Uniform scale preserves the pull's true proportions.
  */
 export function makePullInstance(src: PullSource, tgt: PullTarget, material: THREE.Material, rollFix = 0): THREE.Object3D {
   // Right-handed source + target bases.

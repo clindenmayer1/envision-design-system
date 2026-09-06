@@ -12,7 +12,7 @@ configured to serve six roles at once:
 - **executable component reference** — live components + full API via Controls,
 - **state library** — every meaningful state as a story,
 - **technical documentation** — per-component MDX (overview → anatomy → when to use/not → states →
-  behaviour → accessibility → content → API → tokens → examples),
+  behavior → accessibility → content → API → tokens → examples),
 - **interaction-testing environment** — `play` functions (keyboard/focus/activation),
 - **accessibility-testing environment** — the axe (WCAG 2.2 AA) panel on every story,
 - **visual-regression source** — the rendered stories are the canonical snapshot frames.
@@ -22,7 +22,7 @@ configured to serve six roles at once:
 **Storybook = the spec you can run.** The dedicated **docs site = the system you reason about**
 (foundations, methodology, patterns/page-recipes, accessibility guidance, adoption, governance,
 releases, contribution, education). If a claim can be *proven by running the component*, it lives
-here; if it's about *judgement, process, or the system as a whole*, it lives on the docs site. See
+here; if it's about *judgment, process, or the system as a whole*, it lives on the docs site. See
 **Introduction → Storybook vs the docs site** inside Storybook for the full split.
 
 ## For engineers
@@ -41,10 +41,10 @@ here; if it's about *judgement, process, or the system as a whole*, it lives on 
 
 ## For designers
 
-- Confirms real behaviour a static frame can’t: focus order, keyboard, loading, content overflow,
+- Confirms real behavior a static frame can’t: focus order, keyboard, loading, content overflow,
   and the RightRail’s responsive rail→sheet re-composition.
 - Use the **Backgrounds**, **Viewport**, and **Theme** toolbars to check surfaces, breakpoints, and
-  light/dark. Verify that selection/status are never colour-only (ring + check + label).
+  light/dark. Verify that selection/status are never color-only (ring + check + label).
 
 ## Scripts
 

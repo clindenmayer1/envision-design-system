@@ -5,7 +5,7 @@ import { fn } from '@storybook/test';
 interface Args { checked: boolean; label: string; disabled: boolean; required: boolean; invalid: boolean; onChange: (e: Event) => void; }
 
 const meta: Meta<Args> = {
-  title: 'Components/Checkbox',
+  title: 'Components/Inputs & Selection/Checkbox',
   component: 'envision-checkbox',
   tags: ['autodocs'],
   argTypes: {
@@ -18,15 +18,22 @@ const meta: Meta<Args> = {
   },
   args: { checked: false, label: 'Include lighting package', disabled: false, required: false, invalid: false, onChange: fn() },
   render: (a) => html`<envision-checkbox ?checked=${a.checked} label=${a.label} ?disabled=${a.disabled} ?required=${a.required} ?invalid=${a.invalid} @change=${a.onChange}></envision-checkbox>`,
-  parameters: { docs: { description: { component: 'Boolean choice — `<envision-checkbox>`, built on a native `<input type=checkbox>`. The check is drawn as **geometry** (a tick), so the checked state is not conveyed by colour alone. Space toggles.' } } },
+  parameters: { docs: { description: { component: 'Boolean choice, `<envision-checkbox>`, built on a native `<input type=checkbox>`. The check is drawn as **geometry** (a tick), so the checked state is not conveyed by color alone. Space toggles.' } } },
 };
 export default meta;
 type Story = StoryObj<Args>;
 
 export const Default: Story = {};
-export const Checked: Story = { args: { checked: true } };
-export const Disabled: Story = { args: { disabled: true } };
-export const Error: Story = { args: { invalid: true, required: true, label: 'Accept the builder agreement' } };
+
+/**
+ * Single-state stories carry `tags: ['!dev']`: they are reachable by flipping the matching
+ * control on Default rather than by their own sidebar page, so they are hidden from the sidebar.
+ * They still exist as stories, so the docs page keeps embedding them with `<Canvas of={...}>`
+ * and visual regression keeps screenshotting them. Only the duplicate navigation is removed.
+ */
+export const Checked: Story = { tags: ['!dev'], args: { checked: true } };
+export const Disabled: Story = { tags: ['!dev'], args: { disabled: true } };
+export const Error: Story = { tags: ['!dev'], args: { invalid: true, required: true, label: 'Accept the builder agreement' } };
 
 export const States: Story = {
   parameters: { controls: { disable: true } },

@@ -2,7 +2,16 @@
  * Do not edit directly, this file was auto-generated.
  */
 
+export const EnvisionT2ColorAccent50: string;
+export const EnvisionT2ColorAccent100: string;
+export const EnvisionT2ColorAccent200: string;
+export const EnvisionT2ColorAccent300: string;
+export const EnvisionT2ColorAccent400: string;
 export const EnvisionT2ColorAccent500: string;
+export const EnvisionT2ColorAccent600: string;
+export const EnvisionT2ColorAccent700: string;
+export const EnvisionT2ColorAccent800: string;
+export const EnvisionT2ColorAccent900: string;
 export const EnvisionT2ColorContentOnPrimaryDefault: string;
 export const EnvisionT2ColorContentBrandDefault: string;
 export const EnvisionT2ColorContentBrandHover: string;
@@ -175,12 +184,21 @@ export const EnvisionT3BadgeSuccessColorBackgroundDefault: string;
 export const EnvisionT3BadgeSuccessColorContentDefault: string;
 export const EnvisionT3BadgeWarningColorBackgroundDefault: string;
 export const EnvisionT3BadgeWarningColorContentDefault: string;
+export const EnvisionT3ButtonLargeFontSizeDefault: string;
+export const EnvisionT3ButtonLargePaddingBlockDefault: string;
+export const EnvisionT3ButtonLargePaddingInlineDefault: string;
+export const EnvisionT3ButtonMediumFontSizeDefault: string;
+export const EnvisionT3ButtonMediumPaddingBlockDefault: string;
+export const EnvisionT3ButtonMediumPaddingInlineDefault: string;
 export const EnvisionT3ButtonPrimaryColorBackgroundDefault: string;
 export const EnvisionT3ButtonPrimaryColorBackgroundDisabled: string;
 export const EnvisionT3ButtonPrimaryColorBackgroundHover: string;
 export const EnvisionT3ButtonPrimaryColorBackgroundPressed: string;
 export const EnvisionT3ButtonPrimaryColorContentDefault: string;
 export const EnvisionT3ButtonPrimaryColorContentDisabled: string;
+export const EnvisionT3ButtonSmallFontSizeDefault: string;
+export const EnvisionT3ButtonSmallPaddingBlockDefault: string;
+export const EnvisionT3ButtonSmallPaddingInlineDefault: string;
 export const EnvisionT3CabinetStyleTrayGap: string;
 export const EnvisionT3CabinetStyleTrayPadding: string;
 export const EnvisionT3DialogFooterGap: string;
@@ -200,7 +218,7 @@ export const EnvisionT3MaterialSwatchRingHoverColor: string;
 export const EnvisionT3MaterialSwatchRingHoverWidth: string;
 export const EnvisionT3MaterialSwatchRingSelectedColor: string;
 export const EnvisionT3MaterialSwatchRingSelectedGapColor: string;
-export const EnvisionT3MaterialSwatchRingSelectedGapWidth: number;
+export const EnvisionT3MaterialSwatchRingSelectedGapWidth: string;
 export const EnvisionT3MaterialSwatchRingSelectedWidth: string;
 export const EnvisionT3MaterialSwatchUnavailableOpacity: number;
 export const EnvisionT3MaterialSymbolColorDefault: string;

@@ -41,7 +41,7 @@ describe('envision-material-swatch', () => {
     expect(fired).toBe(0);
   });
 
-  it('supports the product use cases that forced the API: fluid, circular, check-less, labelled', async () => {
+  it('supports the product use cases that forced the API: fluid, circular, check-less, labeled', async () => {
     const el = await mount((e) => {
       e.setAttribute('fluid', '');
       e.setAttribute('shape', 'circle');

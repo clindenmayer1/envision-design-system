@@ -34,6 +34,11 @@ StyleDictionary.registerTransform({
   transform: (t) => `${t.$value}ms`,
 });
 
+// A token belongs to the brand (themeable) layer if it came from brand.tokens.json. Deriving this
+// from the source file rather than re-listing names keeps one definition of the seam: whatever
+// build-dtcg.mjs classifies as brand is what a theme is allowed to replace.
+const isBrand = (t) => typeof t.filePath === 'string' && t.filePath.endsWith('brand.tokens.json');
+
 const sd = new StyleDictionary({
   source: [`${tokensDir}/*.tokens.json`],
   platforms: {
@@ -44,7 +49,12 @@ const sd = new StyleDictionary({
       files: [
         { destination: 'tokens.css', format: 'css/variables' }, // all tiers, the full chain
         { destination: 'primitives.css', format: 'css/variables', filter: (t) => t.path[1] === 't1' },
-        { destination: 'semantic.css', format: 'css/variables', filter: (t) => t.path[1] === 't2' },
+        // The brand layer is emitted SEPARATELY from the rest of Tier 2. It is the white-label
+        // seam: a builder theme replaces exactly this file (or overrides the same custom
+        // properties at runtime) and touches nothing else. Folding it into semantic.css would
+        // mean a theme could not be swapped without swapping every role in the system.
+        { destination: 'brand.css', format: 'css/variables', filter: isBrand },
+        { destination: 'semantic.css', format: 'css/variables', filter: (t) => t.path[1] === 't2' && !isBrand(t) },
         { destination: 'components.css', format: 'css/variables', filter: (t) => t.path[1] === 't3' },
       ],
     },

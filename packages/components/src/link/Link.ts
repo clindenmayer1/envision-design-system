@@ -2,7 +2,7 @@ import { EnvisionElement } from '../base/element.js';
 import { css } from '../base/css.js';
 
 /**
- * Envision Link — `<envision-link>`. Inline or standalone navigation.
+ * Envision Link, `<envision-link>`. Inline or standalone navigation.
  *
  * Registry contract → "link":
  *   props:  href(required) · label(required) · variant('inline'|'standalone'=inline) ·

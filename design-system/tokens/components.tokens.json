@@ -424,7 +424,7 @@
           "hover": {
             "color": {
               "$value": "{envision.t2.color.ring.hover.default}",
-              "$description": "Hover ring colour."
+              "$description": "Hover ring color."
             },
             "width": {
               "$value": "{envision.t2.border-width.emphasis.default}",
@@ -434,7 +434,7 @@
           "selected": {
             "color": {
               "$value": "{envision.t2.color.ring.selected.default}",
-              "$description": "Selected ring colour (taupe-600)."
+              "$description": "Selected ring color (taupe-600)."
             },
             "width": {
               "$value": "{envision.t2.border-width.emphasis.default}",

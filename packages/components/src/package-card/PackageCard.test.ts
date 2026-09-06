@@ -63,7 +63,7 @@ describe('envision-package-card (audit fix: real buttons, not a div-as-button)',
     expect(el.shadowRoot!.querySelector('.desc')!.textContent).toBe('White cabinets, Calacatta, and chrome.');
   });
 
-  it('confirms the applied state with a check, so selection is never colour-only', async () => {
+  it('confirms the applied state with a check, so selection is never color-only', async () => {
     const el = await mount((e) => { e.pkg = { id: 'p', name: 'Summit' }; });
     const applied = el.shadowRoot!.querySelector('.applied') as HTMLElement;
     expect(applied.getAttribute('aria-label')).toBe('Applied');

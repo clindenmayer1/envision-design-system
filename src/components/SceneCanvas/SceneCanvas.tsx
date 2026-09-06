@@ -5,7 +5,7 @@
  * actual download progress) — never a simulated, timed, or decorative animation. All of that
  * load logic lives in useSceneLoad; the bar below is purely presentational and reads only a
  * number + a couple of flags, so it can be replaced by any graphic without touching the loading,
- * completion, or error behaviour. The scene mounts only once assets are cached (useGLTF then
+ * completion, or error behavior. The scene mounts only once assets are cached (useGLTF then
  * reads from cache — no double download), and the bar reaches 100% only when the scene has truly
  * rendered. If everything is already cached, the model shows immediately with no preloader. */
 import { Component, Suspense, useRef, type ReactNode } from 'react'
@@ -40,7 +40,7 @@ interface Props {
 
 /* Lives inside <Suspense>, so it mounts only after the GLBs have parsed and every suspending
  * texture has resolved. It waits a few rendered frames (the scene has built and actually painted
- * by then) before signalling ready — this is the true "model is on screen" moment that drives the
+ * by then) before signaling ready — this is the true "model is on screen" moment that drives the
  * bar to 100%. */
 function ReadyDetector({ onReady }: { onReady: () => void }) {
   const frames = useRef(0)

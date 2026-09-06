@@ -1,0 +1,28 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Foundations/Spacing" />
+
+export const Space = ({ token, px }) => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '4px 0' }}>
+    <code style={{ fontSize: 12, color: '#666', width: 180, flex: 'none' }}>{token}</code>
+    <div style={{ height: 16, width: `var(${token})`, background: 'var(--envision-t2-color-background-brand-default)', borderRadius: 2 }} />
+    <span style={{ fontSize: 12, color: '#666' }}>{px}px</span>
+  </div>
+);
+
+
+# Spacing
+
+## Spacing on a 4pt grid (`--envision-t1-spacing-*`)
+Layout gaps and control padding come from the spacing scale. Components bind semantic spacing roles
+(`--envision-t2-spacing-control-*`, `--envision-t2-spacing-container-*`) that resolve to these.
+
+<Space token="--envision-t1-spacing-50" px="4" />
+<Space token="--envision-t1-spacing-100" px="8" />
+<Space token="--envision-t1-spacing-150" px="12" />
+<Space token="--envision-t1-spacing-200" px="16" />
+<Space token="--envision-t1-spacing-250" px="20" />
+<Space token="--envision-t1-spacing-300" px="24" />
+<Space token="--envision-t1-spacing-400" px="32" />
+
+Radius is a border property and lives on the [Border](?path=/docs/foundations-border--docs) page.

@@ -32,7 +32,7 @@ interface Props {
   packageCustomized: boolean
   /** Apply a package's full configuration to the live model. */
   onApplyPackage: (pkg: KitchenPackage) => void
-  /** Open the full Choose Wall Color picker (the "+" chip in the wall-colour row). */
+  /** Open the full Choose Wall Color picker (the "+" chip in the wall-color row). */
   onOpenWallPicker?: () => void
 }
 

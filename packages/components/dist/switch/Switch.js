@@ -2,7 +2,7 @@ import { EnvisionElement } from '../base/element.js';
 import { css } from '../base/css.js';
 import { tryAttachInternals, setFormValue, emitChange } from '../base/internals.js';
 /**
- * Envision Switch — `<envision-switch>`.
+ * Envision Switch, `<envision-switch>`.
  *
  * Registry contract → "switch":
  *   props:  checked(required) · label(required) · disabled(false)

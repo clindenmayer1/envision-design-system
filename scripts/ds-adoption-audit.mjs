@@ -95,5 +95,5 @@ if (process.argv.includes('--json')) {
     String(T.canonical).padStart(11) + String(T.legacy).padStart(8) + String(T.hardcoded).padStart(11));
   console.log(`\ncomponents touching the DS : ${T.componentsUsingDs}/${T.componentsTotal}`);
   console.log(`fully migrated             : ${T.componentsFullyMigrated}/${T.componentsTotal}`);
-  console.log(`hardcoded breakdown        : colour ${T.hcColor} · length ${T.hcLength} · shadow ${T.hcShadow} · type ${T.hcType}`);
+  console.log(`hardcoded breakdown        : color ${T.hcColor} · length ${T.hcLength} · shadow ${T.hcShadow} · type ${T.hcType}`);
 }

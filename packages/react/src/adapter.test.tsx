@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { flushSync } from 'react-dom';
-import { Button, Checkbox, Input, MaterialSwatch, OptionCard, PackageCard, RightRail } from './index.js';
+import { Button, Checkbox, Input, MaterialSwatch, OptionCard, PackageCard, RightRail, Breadcrumbs } from './index.js';
 
 /** Render synchronously so useLayoutEffect (which applies attrs/events) has committed. */
 function render(node: React.ReactElement): HTMLElement {
@@ -87,5 +87,21 @@ describe('@envision/react thin adapter', () => {
     el.shadowRoot!.querySelector<HTMLButtonElement>('.select')!.click();
     el.shadowRoot!.querySelector<HTMLButtonElement>('.customize')!.click();
     expect(seen).toEqual(['select', 'customize']);
+  });
+});
+
+describe('object props', () => {
+  it('assigns objects and arrays as element PROPERTIES, never as stringified attributes', () => {
+    const items = [
+      { label: 'Envision Design System', href: '/' },
+      { label: 'Design Tokens', href: '/tokens' },
+      { label: 'Token architecture' },
+    ];
+    const c = render(<Breadcrumbs items={items} />);
+    const el = c.querySelector('envision-breadcrumbs') as HTMLElement & { items: unknown };
+    // The property carries the real array...
+    expect(el.items).toEqual(items);
+    // ...and no attribute was written, which is what would have produced "[object Object]".
+    expect(el.getAttribute('items')).toBeNull();
   });
 });

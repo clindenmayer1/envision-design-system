@@ -86,7 +86,7 @@
   white-space: nowrap;
 }
 
-/* Simple status colors: green = complete, amber = in progress, grey = not started. */
+/* Simple status colors: green = complete, amber = in progress, gray = not started. */
 .roomsel__status--complete {
   color: #3f9d5a;
 }

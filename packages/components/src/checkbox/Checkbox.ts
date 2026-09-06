@@ -3,7 +3,7 @@ import { css } from '../base/css.js';
 import { tryAttachInternals, setFormValue, emitChange } from '../base/internals.js';
 
 /**
- * Envision Checkbox — `<envision-checkbox>`.
+ * Envision Checkbox, `<envision-checkbox>`.
  *
  * Registry contract → "checkbox":
  *   props:  checked(required) · label(required) · disabled(false) · required(false) · invalid(false)
@@ -26,6 +26,9 @@ const styles = css`
     color: var(--envision-t2-color-content-primary-default);
     cursor: pointer;
   }
+  :host {
+    --ev-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 9'%3E%3Cpath d='M1 4.6 4.4 8 11 1' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
   input {
     appearance: none;
     -webkit-appearance: none;
@@ -45,11 +48,12 @@ const styles = css`
   @media (prefers-reduced-motion: reduce) { input { transition: none; } }
   input::after {
     content: '';
-    inline-size: 0.34rem;
-    block-size: 0.62rem;
-    border: solid var(--envision-t2-color-content-on-brand-default);
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg) translateY(-1px);
+    /* 11.5 x 8.3 in Figma's 22px box, expressed against this box's own size. */
+    inline-size: 0.6rem;
+    block-size: 0.44rem;
+    background: var(--envision-t2-color-content-on-brand-default);
+    -webkit-mask: var(--ev-check) center / contain no-repeat;
+    mask: var(--ev-check) center / contain no-repeat;
     opacity: 0;
   }
   input:checked {

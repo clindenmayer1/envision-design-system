@@ -43,7 +43,7 @@ export const BACKSPLASH_FINISHES: Option[] = [
   { id: 'textured-stone', label: 'Textured Stone', swatch: '#edeae2' },
 ]
 
-// Flooring = the four cabinet wood tones (ids match WOOD_FINISHES so the floor recolour
+// Flooring = the four cabinet wood tones (ids match WOOD_FINISHES so the floor recolor
 // reuses woodFinishTone). Each option shows the veneer thumbnail.
 export const FLOORING: Option[] = [
   // Woods grouped together, lightest → darkest …
@@ -63,7 +63,7 @@ export const FLOORING: Option[] = [
   { id: 'terracotta-hex', label: 'Terracotta Hexagon Tile', swatch: '#b06a4f', texture: '/textures/floor/terracottahex_thumb.jpg' },
 ]
 
-// The curated wall colours shown as chips in the rail. The 12th chip in the UI is a "+" that
+// The curated wall colors shown as chips in the rail. The 12th chip in the UI is a "+" that
 // opens the full Choose Wall Color picker (see WALL_COLOR_LIBRARY). The original five ids are
 // kept (packages reference them); six real Benjamin Moore neutrals round the row out to eleven.
 export const WALL_COLORS: Option[] = [
@@ -80,7 +80,7 @@ export const WALL_COLORS: Option[] = [
   { id: 'gray-cashmere', label: 'Gray Cashmere', swatch: '#cfd5cd' },
 ]
 
-// Resolve a wallColor id to its hex / label, whether it's a curated chip above or any colour
+// Resolve a wallColor id to its hex / label, whether it's a curated chip above or any color
 // picked from the full library modal.
 export function wallColorHex(id: string): string | undefined {
   return optionById(WALL_COLORS, id)?.swatch ?? wallLibraryById(id)?.hex
@@ -130,12 +130,12 @@ export const HARDWARE_STYLES: Option[] = [
 export const COUNTERTOP_MATERIALS: Option[] = [
   // Option 1 = the current authored countertop stone (Calacatta, embedded in the GLB).
   { id: 'calacatta', label: 'Calacatta Marble', swatch: '#efeae2', texture: '/textures/countertops/calacatta_thumb.jpg' },
-  // Bianco Carrara (classic white Carrara) sits ahead of the grey marble.
+  // Bianco Carrara (classic white Carrara) sits ahead of the gray marble.
   { id: 'carrara3', label: 'Bianco Carrara Marble', swatch: '#e6e4e1', texture: '/textures/countertops/carrara3_thumb.jpg' },
   { id: 'whitemarble4', label: 'Bianco Venato Marble', swatch: '#efefee', texture: '/textures/countertops/whitemarble4_thumb.jpg' },
   // Option 2 = Marble012 texture set (applied as the countertop map in the scene).
   { id: 'marble012', label: 'Gray Marble', swatch: '#d9dadd', texture: '/textures/countertops/marble012_thumb.jpg' },
-  // Option 5 = marble_108 (charcoal grey with bold white veining).
+  // Option 5 = marble_108 (charcoal gray with bold white veining).
   { id: 'marble108', label: 'Charcoal Marble', swatch: '#4a4a4d', texture: '/textures/countertops/marble108_thumb.jpg' },
   // Option 3 = Marble016 (black marble).
   { id: 'marble016', label: 'Nero Marble', swatch: '#33352f', texture: '/textures/countertops/marble016_thumb.jpg' },
@@ -147,9 +147,9 @@ export const COUNTERTOP_MATERIALS: Option[] = [
   { id: 'statuario', label: 'Statuario Marble', swatch: '#e9e9e8', texture: '/textures/countertops/statuario_thumb.jpg' },
   { id: 'polarwhite', label: 'Polar Gray Quartzite', swatch: '#dededd', texture: '/textures/countertops/polarwhite_thumb.jpg' },
   { id: 'romanobeige', label: 'Romano Beige Travertine', swatch: '#cdccc8', texture: '/textures/countertops/romanobeige_thumb.jpg' },
-  { id: 'romanogrey', label: 'Romano Grey Travertine', swatch: '#bdbdbe', texture: '/textures/countertops/romanogrey_thumb.jpg' },
-  { id: 'medgrey', label: 'Mediterranean Grey Quartzite', swatch: '#9c8f84', texture: '/textures/countertops/medgrey_thumb.jpg' },
-  { id: 'grey5', label: 'Pearl Grey Quartzite', swatch: '#7d838a', texture: '/textures/countertops/grey5_thumb.jpg' },
+  { id: 'romanogrey', label: 'Romano Gray Travertine', swatch: '#bdbdbe', texture: '/textures/countertops/romanogrey_thumb.jpg' },
+  { id: 'medgrey', label: 'Mediterranean Gray Quartzite', swatch: '#9c8f84', texture: '/textures/countertops/medgrey_thumb.jpg' },
+  { id: 'grey5', label: 'Pearl Gray Quartzite', swatch: '#7d838a', texture: '/textures/countertops/grey5_thumb.jpg' },
   { id: 'monaco', label: 'Monaco Quartzite', swatch: '#a89f92', texture: '/textures/countertops/monaco_thumb.jpg' },
   { id: 'whitequartz', label: 'White Quartz', swatch: '#ecebe9', texture: '/textures/countertops/whitequartz_thumb.jpg' },
   { id: 'marble15', label: 'Ming Green Marble', swatch: '#dde7e0', texture: '/textures/countertops/marble15_thumb.jpg' },
